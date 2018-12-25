@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'myriad-pro';
+  src: url('assets/fonts/MyriadPro.ttf') format('ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'myriad-pro';
+  src: url('assets/fonts/MyriadProItalic.ttf') format('ttf');
+  font-weight: 600;
+  font-style: italic;
+}
+
+html {
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+p,
+a,
+span {
+  font-family: 'myriad-pro';
+}
