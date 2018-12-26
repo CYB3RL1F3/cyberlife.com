@@ -3,6 +3,7 @@ import { ThemedStyledComponentsModule } from 'styled-components';
 
 export interface Theme {
   color: string;
+  picturePlaceholder: string;
   fonts: {
     primary: string;
   };
@@ -14,6 +15,7 @@ export interface Theme {
 
 export const theme: Theme = {
   color: '#6ca1a6',
+  picturePlaceholder: 'rgba(42, 43, 65, 0.5)',
   fonts: {
     primary: 'myriad pro'
   },

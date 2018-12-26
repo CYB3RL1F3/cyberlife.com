@@ -3,7 +3,9 @@ import { inject, observer } from 'mobx-react';
 import { RouteComponentProps } from 'react-router';
 import { ChartStore } from 'app/stores';
 import { STORE_ROUTER, STORE_CHART } from 'app/constants';
-import { Track } from 'types/charts';
+import { Title } from 'types/charts';
+import { ChartItem } from 'app/components/molecules/ChartItem';
+import { Container } from './Charts.styled';
 
 export interface ChartProps extends RouteComponentProps<any> {
   /** MobX Stores will be injected via @inject() **/
@@ -31,13 +33,13 @@ export class Charts extends React.Component<ChartProps, chartState> {
     const { data } = chartStore;
     if (data) {
       return (
-        <div>
-          {data.tracks.map(
-            (track: Track): JSX.Element => (
-              <div>{track.title} </div>
+        <Container>
+          {data.titles.map(
+            (track: Title): JSX.Element => (
+              <ChartItem title={track.title} label={track.label} />
             )
           )}
-        </div>
+        </Container>
       );
     } else {
       return <div>LOADINGUE </div>;

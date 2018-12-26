@@ -1,5 +1,5 @@
-import { observable } from 'mobx';
-import { Tracks } from '../../../types/charts';
+import { observable, computed } from 'mobx';
+import { Tracks, Track, Title } from '../../../types/charts';
 
 export class ChartModel {
   readonly id: number;
@@ -13,6 +13,18 @@ export class ChartModel {
       (key: string): void => {
         this[key] = chart[key];
       }
+    );
+  }
+
+  @computed
+  get titles() {
+    return this.tracks.map(
+      (track: Track): Title => ({
+        title: `${track.artist} - ${track.title} ${
+          track.remix ? `(${track.remix})` : ''
+        }`,
+        label: track.label
+      })
     );
   }
 }

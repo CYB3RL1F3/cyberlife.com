@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router';
 import { ReleasesStore } from 'app/stores';
 import { STORE_ROUTER, STORE_RELEASES } from 'app/constants';
 import { ReleaseModel } from 'app/models/releaseModel';
-import { ReleaseItem } from 'app/components/molecules';
+import { ReleaseItem } from 'app/components/molecules/ReleaseItem';
 import { Container } from './Releases.styled';
 
 export interface ReleasesProps extends RouteComponentProps<any> {
@@ -43,6 +43,7 @@ export class Releases extends React.Component<ReleasesProps, releasesState> {
                 title={release.name}
                 info={release.releaseDate}
                 tracks={release.tracklist}
+                thumb={release.thumb}
               />
             )
           )}

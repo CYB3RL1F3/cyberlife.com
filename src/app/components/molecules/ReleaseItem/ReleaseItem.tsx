@@ -25,7 +25,7 @@ export const ReleaseItemComponent: React.StatelessComponent<ReleaseProps> = (
   <Container>
     <ThumbHandler>
       <Image
-        placeholderColor={props.theme.color}
+        placeholderColor={props.theme.picturePlaceholder}
         src={props.thumb}
         alt={props.title}
         retry={{

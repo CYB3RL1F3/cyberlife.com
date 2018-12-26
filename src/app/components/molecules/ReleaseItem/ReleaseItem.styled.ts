@@ -5,13 +5,13 @@ import { TextStyle } from 'app/components/atoms/SharedStyled';
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  min-height: 20rem;
-  margin: 1rem;
+  min-height: 11rem;
+  margin: 1rem 0 1rem 1rem;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 `;
 
 export const ThumbHandler = styled.p`
   display: flex;
-  margin: 1rem;
   width: 12rem;
 `;
 
@@ -48,4 +48,5 @@ export const A = styled.a`
 export const Title = styled.h3`
   ${style};
   text-transform: uppercase;
+  font-weight: normal;
 `;
