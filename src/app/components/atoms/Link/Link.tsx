@@ -16,13 +16,18 @@ interface LinkProps {
 @inject(STORE_ROUTER)
 @observer
 export class Link extends React.Component<LinkProps> {
+  onClick = (path: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    this.props.router.push(path);
+  };
   render() {
     const { className, path, router, children, underlineCurrent } = this.props;
     return (
       <A
         active={underlineCurrent && router.location.pathname === path}
         className={className}
-        onClick={() => router.push(path)}
+        href={path}
+        onClick={this.onClick(path)}
       >
         {children}
       </A>

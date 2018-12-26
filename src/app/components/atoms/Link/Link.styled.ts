@@ -10,6 +10,7 @@ const focus = css`
 `;
 
 export const A = styled.a<Activable>`
+  text-decoration: none;
   &:hover {
     ${focus}
   }

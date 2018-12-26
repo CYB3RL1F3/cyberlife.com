@@ -4643,6 +4643,11 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "~3.0.0"
 
+lodash.throttle@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+  integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
+
 lodash.union@4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.union/-/lodash.union-4.6.0.tgz#48bb5088409f16f1821666641c44dd1aaae3cd88"
@@ -6452,7 +6457,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.4, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.0.0, prop-types@^15.5.4, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
@@ -6622,6 +6627,14 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.12.0"
+
+react-graceful-image@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/react-graceful-image/-/react-graceful-image-1.2.9.tgz#aa228ef1877bfb552c12fa1414e3778ef2ed16f9"
+  integrity sha512-LfHc0FsmRG8+2muWE78fZ67u7XkSV9lZPUWm+hUJ0K5UuydB10xDE5WdxtgbXTXBghbCK32UoKcpFYVipyhqyA==
+  dependencies:
+    lodash.throttle "^4.1.1"
+    prop-types "^15.0.0"
 
 react-hot-loader@^4.0.0:
   version "4.6.3"

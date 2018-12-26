@@ -33,13 +33,13 @@ export class Events extends React.Component<EventsProps, EventsState> {
   render() {
     const eventsStore = this.props[STORE_PAST_EVENTS] as EventsStore;
     const { data } = eventsStore;
-    console.log(eventsStore);
     if (data) {
       return (
         <Container>
           {data.map(
             (event: EventModel): JSX.Element => (
               <EventItem
+                key={event.id}
                 id={event.id}
                 title={event.title}
                 location={event.address}
