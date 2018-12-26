@@ -1,4 +1,5 @@
-import { observable } from 'mobx';
+import { format } from 'date-fns';
+import { observable, computed } from 'mobx';
 import { Time, Links } from '../../../types/events';
 import { Location } from '../../../types/location';
 
@@ -22,6 +23,11 @@ export class EventModel {
         this[key] = event[key];
       }
     );
+  }
+
+  @computed
+  get formattedDate() {
+    return format(new Date(this.date), 'DD/MM/YYYY');
   }
 }
 

@@ -4,7 +4,7 @@ const ID = '045af2a3';
 
 const instance = axios.create({
   baseURL: `https://profilart.herokuapp.com/`,
-  timeout: 3000
+  timeout: 10000
 });
 
 export const getFinalEndPoint = (endpoint: string): string =>

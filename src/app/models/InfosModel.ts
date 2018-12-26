@@ -1,9 +1,14 @@
 import { observable } from 'mobx';
 
+interface Bio {
+  content: string;
+  intro: string;
+}
+
 export class InfosModel {
   readonly id: number;
   @observable public name: string;
-  @observable public bio: string;
+  @observable public bio: Bio;
   @observable public info: string;
   @observable public labels: string[];
   @observable public picture: string;

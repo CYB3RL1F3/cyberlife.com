@@ -1,6 +1,14 @@
 import * as React from 'react';
-import { Background } from './Layout.styled';
+import { Background, Bg1, Bg2, Bg3, Waveform } from './Layout.styled';
 
 export const Layout = ({ children }): JSX.Element => (
-  <Background>{children}</Background>
+  <Background>
+    <Bg1>
+      <Bg2>
+        <Bg3>
+          <Waveform>{children}</Waveform>
+        </Bg3>
+      </Bg2>
+    </Bg1>
+  </Background>
 );

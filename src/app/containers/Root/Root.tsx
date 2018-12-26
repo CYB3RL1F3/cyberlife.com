@@ -2,7 +2,7 @@ import * as React from 'react';
 import { theme, ThemeProvider } from 'app/theme';
 import { App } from 'app/containers';
 import { inject, observer } from 'mobx-react';
-import { STORE_ROUTER, STORE_APP, STORE_INFOS } from '../../constants/stores';
+import { STORE_ROUTER, STORE_APP, STORE_INFOS } from 'app/constants/stores';
 import { AppStore } from 'app/stores';
 import { RouterStore } from 'app/stores';
 import { AppLoader } from '../AppLoader';

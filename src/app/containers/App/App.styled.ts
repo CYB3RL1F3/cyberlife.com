@@ -23,7 +23,7 @@ export const Container = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   width: 100vw;
-  height: 80vh;
+  height: 85vh;
   padding: 1rem 0;
 `;
 
@@ -31,7 +31,7 @@ export const Content = styled.div`
   width: 0;
   animation: ${welcome} 0.75s ease-in-out forwards;
   animation-delay: 0.25s;
-  height: 70vh;
+  height: 85vh;
   overflow: scroll;
   background: rgba(0, 0, 0, 0.4);
   color: white;

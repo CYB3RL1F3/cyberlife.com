@@ -6,7 +6,7 @@ export class EventsStore {
   public type: number;
   @observable public loading: boolean;
   @observable public error: string;
-  @observable public events: EventModel[];
+  @observable public data: EventModel[];
 
   constructor(type: number) {
     this.type = type;
@@ -22,18 +22,19 @@ export class EventsStore {
 
   @action.bound
   onEventsLoaded = (response) => {
-    this.events = response.data.map((event) => new EventModel(event));
+    this.data = response.data.map((event) => new EventModel(event));
     this.loading = false;
-    console.log(this.events);
+    console.log(this.data);
   };
 
   @action.bound
   onEventsFailed = (e) => {
+    console.log(e);
     this.error = e;
     this.loading = false;
   };
 
-  getSelectedEvent = (index: number): EventModel => this.events[index];
+  getSelectedEvent = (index: number): EventModel => this.data[index];
 }
 
 export default EventsStore;

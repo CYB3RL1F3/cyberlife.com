@@ -4,6 +4,8 @@ import { RouteComponentProps } from 'react-router';
 import { EventsStore } from 'app/stores';
 import { STORE_ROUTER, STORE_PAST_EVENTS } from 'app/constants';
 import EventModel from 'app/models/EventModel';
+import { EventItem } from 'app/components/molecules/EventItem';
+import { Container } from './Events.styled';
 
 export interface EventsProps extends RouteComponentProps<any> {
   /** MobX Stores will be injected via @inject() **/
@@ -30,17 +32,22 @@ export class Events extends React.Component<EventsProps, EventsState> {
 
   render() {
     const eventsStore = this.props[STORE_PAST_EVENTS] as EventsStore;
-    const { events } = eventsStore;
+    const { data } = eventsStore;
     console.log(eventsStore);
-    if (events) {
+    if (data) {
       return (
-        <div>
-          {events.map(
+        <Container>
+          {data.map(
             (event: EventModel): JSX.Element => (
-              <div key={event.id}>{event.title}</div>
+              <EventItem
+                id={event.id}
+                title={event.title}
+                location={event.address}
+                date={event.formattedDate}
+              />
             )
           )}
-        </div>
+        </Container>
       );
     } else {
       return <div>LOADINGUE</div>;

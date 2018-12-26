@@ -1,4 +1,4 @@
-import styled, { css } from 'app/theme';
+import { css } from 'app/theme';
 
 export const HeaderTextStyle = css`
   font-family: ${({ theme }) => theme.fonts.primary};
@@ -7,7 +7,8 @@ export const HeaderTextStyle = css`
   color: ${({ theme }) => theme.color};
 `;
 
-export const Paragraph = styled.p`
-  font-size: 24pt;
+export const TextStyle = css`
   font-style: italic;
+  color: ${({ theme }) => theme.color};
+  font-family: ${({ theme }) => theme.fonts.primary};
 `;

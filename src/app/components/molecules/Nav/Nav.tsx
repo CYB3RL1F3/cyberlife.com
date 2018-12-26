@@ -6,12 +6,12 @@ export const Nav: React.StatelessComponent = () => (
   <NavContainer>
     {routes.map(
       (route: RouteType, index: number): JSX.Element => (
-        <>
+        <React.Fragment key={`nav__${route.key}`}>
           {index > 0 && <Dash key={index} />}
-          <Link key={`nav__${route.key}`} path={route.path} underlineCurrent>
+          <Link path={route.path} underlineCurrent>
             {route.label}
           </Link>
-        </>
+        </React.Fragment>
       )
     )}
   </NavContainer>
