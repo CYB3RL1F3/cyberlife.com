@@ -3,8 +3,36 @@
   <head>
     <meta charset="utf-8" />
     <title>Cyberlife</title>
+    <style>
+      body {
+        background: black;
+      }
+      #noscript {
+        margin: 1rem;
+      }
+      #noscript,
+      #noscript a {
+        color: white;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+      }
+      #noscript a {
+        text-decoration: underline;
+      }
+      #error {
+        color: red;
+      }
+    </style>
   </head>
   <body>
+    <noscript>
+      <p id="noscript">
+        <span id="error">FATAL EXCEPTION !!!</span><br /><br />
+        <a href="https://fr.wikipedia.org/wiki/JavaScript">Javascript</a> MUST
+        be enabled on your browser to run the website... <br />Please activate
+        it and <a href="http://cyberlife.com/">reload this page</a>.
+      </p>
+    </noscript>
     <div id="root"></div>
   </body>
 </html>

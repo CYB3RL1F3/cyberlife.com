@@ -28,6 +28,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
+  width: 0;
   animation: ${welcome} 0.75s ease-in-out forwards;
   animation-delay: 0.25s;
   height: 70vh;

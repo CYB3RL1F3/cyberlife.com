@@ -22,9 +22,12 @@ export class ChartStore {
 
   @action.bound
   onChartsLoaded = (response) => {
-    this.data = this.getFirstChart(response.data);
-    this.loading = false;
-    console.log(this.data);
+    try {
+      this.data = this.getFirstChart(response.data);
+      this.loading = false;
+    } catch (e) {
+      this.onChartsError(e);
+    }
   };
 
   @action.bound

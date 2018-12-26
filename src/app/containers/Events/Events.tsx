@@ -22,7 +22,9 @@ export class Events extends React.Component<EventsProps, EventsState> {
   }
 
   init() {
-    const eventsStore = this.props[STORE_PAST_EVENTS] as EventsStore;
+    const eventsStore: EventsStore = this.props[
+      STORE_PAST_EVENTS
+    ] as EventsStore;
     eventsStore.loadEvents();
   }
 

@@ -1,16 +1,23 @@
 import { observable, action } from 'mobx';
 import { getInfos } from 'app/actions';
 import { InfosModel } from 'app/models';
+import AppStore from './AppStore';
 
 export class InfosStore {
+  private appStore: AppStore;
   public type: number;
   @observable public loading: boolean;
   @observable public error: string;
-  @observable public data: InfosModel[];
+  @observable public data: InfosModel;
+
+  constructor(appStore: AppStore) {
+    this.appStore = appStore;
+  }
 
   @action
   loadInfos = () => {
     this.loading = true;
+    this.appStore.startFetchingData();
     getInfos()
       .then(this.onInfosLoaded)
       .catch(this.onInfosFailed);
@@ -18,15 +25,21 @@ export class InfosStore {
 
   @action.bound
   onInfosLoaded = (response) => {
-    this.data = response.data.map((Info) => new InfosModel(Info));
-    this.loading = false;
-    console.log(this.data);
+    try {
+      this.data = new InfosModel(response.data);
+      this.loading = false;
+      this.appStore.validateInfos();
+      console.log(this.data);
+    } catch (e) {
+      this.onInfosFailed(e);
+    }
   };
 
   @action.bound
   onInfosFailed = (e) => {
     this.error = e;
     this.loading = false;
+    this.appStore.fail(e);
   };
 }
 

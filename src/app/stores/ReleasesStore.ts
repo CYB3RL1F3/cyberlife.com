@@ -11,19 +11,23 @@ export class ReleasesStore {
   loadReleases = () => {
     this.loading = true;
     getReleases()
-      .then(this.onInfosLoaded)
-      .catch(this.onInfosFailed);
+      .then(this.onReleasesLoaded)
+      .catch(this.onReleasesFailed);
   };
 
   @action.bound
-  onInfosLoaded = (response) => {
-    this.data = response.data.map((release) => new ReleaseModel(release));
-    this.loading = false;
-    console.log(this.data);
+  onReleasesLoaded = (response) => {
+    try {
+      this.data = response.data.map((release) => new ReleaseModel(release));
+      this.loading = false;
+      console.log(this.data);
+    } catch (e) {
+      this.onReleasesFailed(e);
+    }
   };
 
   @action.bound
-  onInfosFailed = (e) => {
+  onReleasesFailed = (e) => {
     this.error = e;
     this.loading = false;
   };

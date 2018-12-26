@@ -5,3 +5,4 @@ export const STORE_FORTHCOMING_EVENTS = 'forthcoming_events';
 export const STORE_RELEASES = 'releases';
 export const STORE_CHART = 'chart';
 export const STORE_INFOS = 'infos';
+export const STORE_APP = 'app';
