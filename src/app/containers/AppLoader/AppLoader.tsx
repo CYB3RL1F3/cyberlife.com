@@ -6,13 +6,13 @@ import {
   Output,
   Console,
   Container,
-  WebbrowserList,
   A
 } from './AppLoader.styled';
 import { observer, inject } from 'mobx-react';
 import { STORE_APP, STORE_INFOS } from 'app/constants/stores';
 import { AppStore, InfosStore } from 'app/stores';
 import { isIe } from '../../utils/ie';
+import { IE } from './atoms/IE';
 
 const waveform = require('assets/images/waveform.png');
 const bg1 = require('assets/images/bg1.png');
@@ -49,32 +49,7 @@ export class AppLoader extends React.Component<AppLoaderProps> {
       this.stateMessages
     );
     return isIe() ? (
-      <Container>
-        <Console>
-          <Output>
-            <strong>
-              <u>Cyberlife.com</u> loading process
-            </strong>
-          </Output>
-          <br />
-          <Output>
-            This website is not compatible with your #!@$ browser. Sorry, please
-            use a real one, like one of the followings : <br />
-            <br />
-          </Output>
-          <Output>
-            <WebbrowserList />
-          </Output>
-          <Output>
-            <br />
-            It's for your comfort, sure you'll be grateful !! :)
-          </Output>
-          <Output>
-            <br />
-            Have a nice day !!
-          </Output>
-        </Console>
-      </Container>
+      <IE />
     ) : (
       <Container>
         <PixelTrackersWrapper>
@@ -102,7 +77,9 @@ export class AppLoader extends React.Component<AppLoaderProps> {
           </Output>
           <br />
           {this.stateMessages.map((message: string) => (
-            <Output key={message}>{message}</Output>
+            <Output key={message}>
+              {message !== 'EMPTY' ? message : <span>&nbsp;</span>}
+            </Output>
           ))}
           {appStore.error && (
             <Output>

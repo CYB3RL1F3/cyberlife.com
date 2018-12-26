@@ -32,7 +32,9 @@ export const getMessagesAccordingToLoadingState = (
       pushMessageState(stateMessages, messages.appReady);
     }
   } else {
+    pushMessageState(stateMessages, 'EMPTY');
     pushMessageState(stateMessages, messages.error);
+    pushMessageState(stateMessages, messages.errorApi);
   }
   return stateMessages;
 };
