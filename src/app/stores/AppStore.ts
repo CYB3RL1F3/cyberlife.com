@@ -2,7 +2,7 @@ import { observable, action } from 'mobx';
 
 export class AppStore {
   @observable public loading: boolean;
-  @observable public error?: string;
+  @observable public error?: Error;
   @observable public loaded: boolean;
 
   @observable public fetchingInfos: boolean;
@@ -71,7 +71,7 @@ export class AppStore {
   };
 
   @action
-  fail = (e: string) => {
+  fail = (e: Error) => {
     this.error = e;
   };
 }

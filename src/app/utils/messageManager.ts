@@ -17,7 +17,7 @@ export const getMessagesAccordingToLoadingState = (
   stateMessages: string[]
 ) => {
   pushMessageState(stateMessages, messages.init);
-  if (appStore) {
+  if (appStore && !appStore.error) {
     pushMessageState(stateMessages, messages.storeReady);
     if (appStore.fetchingInfos)
       pushMessageState(stateMessages, messages.fetchingInfos);
@@ -31,6 +31,8 @@ export const getMessagesAccordingToLoadingState = (
       pushMessageState(stateMessages, ' ');
       pushMessageState(stateMessages, messages.appReady);
     }
+  } else {
+    pushMessageState(stateMessages, messages.error);
   }
   return stateMessages;
 };

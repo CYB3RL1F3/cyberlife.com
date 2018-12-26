@@ -6,5 +6,7 @@ export const messages = {
   fetchingInfos: 'Fetching data...',
   assetsCompleted: 'Assets ready',
   fetchCompleted: 'Store ready',
-  appReady: 'App ready, booting...'
+  appReady: 'App ready, booting...',
+  error:
+    '\nA fatal exception occured, and the booting process had to be interrupted. Seems being API content not distributed properly'
 };

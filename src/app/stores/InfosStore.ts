@@ -37,6 +37,7 @@ export class InfosStore {
 
   @action.bound
   onInfosFailed = (e) => {
+    console.log(e);
     this.error = e;
     this.loading = false;
     this.appStore.fail(e);
