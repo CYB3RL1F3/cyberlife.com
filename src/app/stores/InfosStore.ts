@@ -17,6 +17,7 @@ export class InfosStore {
   @action
   loadInfos = () => {
     this.loading = true;
+    this.error = null;
     this.appStore.startFetchingData();
     getInfos()
       .then(this.onInfosLoaded)

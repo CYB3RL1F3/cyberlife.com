@@ -15,11 +15,16 @@ export const withLoadingStore = (storeName: string) => (
       if (!store.data) store.init();
     }
     render() {
-      const { loading, error, data } = this.props[storeName];
+      const { init, loading, error, data } = this.props[storeName];
       if (loading) {
         return <Loading />;
       } else if (error) {
-        return <Error message={error.message} />;
+        return (
+          <Error
+            init={init}
+            message={'Impossible to load content, because the API seems down.'}
+          />
+        );
       } else {
         return <WrappedComponent {...props} data={data} />;
       }

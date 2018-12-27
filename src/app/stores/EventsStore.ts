@@ -19,6 +19,7 @@ export class EventsStore implements InitializableStore {
   @action
   loadEvents = () => {
     this.loading = true;
+    this.error = null;
     getEvents(this.type)
       .then(this.onEventsLoaded)
       .catch(this.onEventsFailed);

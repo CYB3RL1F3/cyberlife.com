@@ -14,6 +14,7 @@ export class ReleasesStore implements InitializableStore {
   @action
   loadReleases = () => {
     this.loading = true;
+    this.error = null;
     getReleases()
       .then(this.onReleasesLoaded)
       .catch(this.onReleasesFailed);

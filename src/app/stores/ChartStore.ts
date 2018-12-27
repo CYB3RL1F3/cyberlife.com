@@ -19,6 +19,7 @@ export class ChartStore implements InitializableStore {
   @action
   loadCharts = () => {
     this.loading = true;
+    this.error = null;
     getChart()
       .then(this.onChartsLoaded)
       .catch(this.onChartsError);
