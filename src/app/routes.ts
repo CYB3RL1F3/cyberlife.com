@@ -6,6 +6,7 @@ export interface RouteType {
   path: string;
   label: string;
   key: string;
+  menu: boolean;
 }
 
 export const routes: RouteType[] = [
@@ -13,25 +14,29 @@ export const routes: RouteType[] = [
     component: Events,
     path: '/',
     label: 'Gigs',
-    key: 'gigs'
+    key: 'gigs',
+    menu: true
   },
   {
     component: Releases,
     path: '/releases',
     label: 'Releases',
-    key: 'releases'
+    key: 'releases',
+    menu: true
   },
   {
     component: Charts,
     path: '/charts',
     label: 'Charts',
-    key: 'charts'
+    key: 'charts',
+    menu: true
   },
   {
     component: Contact,
     path: '/contact',
     label: 'Contact',
-    key: 'contact'
+    key: 'contact',
+    menu: true
   }
 ];
 
