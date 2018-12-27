@@ -1,8 +1,9 @@
 import { observable, action } from 'mobx';
 import { getEvents } from 'app/actions';
 import { EventModel } from 'app/models';
+import { InitializableStore } from './stores';
 
-export class EventsStore {
+export class EventsStore implements InitializableStore {
   public type: number;
   @observable public loading: boolean;
   @observable public error: string;
@@ -11,6 +12,9 @@ export class EventsStore {
   constructor(type: number) {
     this.type = type;
   }
+
+  @action
+  init = () => this.loadEvents();
 
   @action
   loadEvents = () => {

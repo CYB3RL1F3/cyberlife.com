@@ -1,8 +1,9 @@
 import { observable, action } from 'mobx';
 import { ChartModel } from 'app/models';
 import { getChart } from 'app/actions';
+import { InitializableStore } from './stores';
 
-export class ChartStore {
+export class ChartStore implements InitializableStore {
   @observable public loading: boolean;
   @observable public error: string;
   @observable public data: ChartModel;
@@ -11,6 +12,9 @@ export class ChartStore {
     const keys = Object.keys(charts);
     return new ChartModel(charts[keys[0]]);
   };
+
+  @action
+  init = () => this.loadCharts();
 
   @action
   loadCharts = () => {
