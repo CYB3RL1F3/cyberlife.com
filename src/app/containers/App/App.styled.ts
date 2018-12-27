@@ -44,4 +44,5 @@ export const Handler = styled.div`
   opacity: 0;
   animation: ${appear} 0.5s linear forwards;
   animation-delay: 1s;
+  display: flex;
 `;

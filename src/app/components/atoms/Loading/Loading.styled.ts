@@ -1,14 +1,14 @@
 import styled, { keyframes } from 'app/theme';
 
 const rotation = keyframes`
-  0 % {
+  0% {
     transform: rotate(0deg);
     opacity: 1;
   }
-  50 % {
+  50% {
     opacity: 0.5;
   }
-  100 % {
+  100% {
     transform: rotate(360deg);
     opacity: 1;
   }

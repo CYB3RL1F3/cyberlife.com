@@ -1,4 +1,4 @@
 export * from './Link';
 export * from './PixelTracker';
-export * from './Loader';
+export * from './Loading';
 export * from './Error';

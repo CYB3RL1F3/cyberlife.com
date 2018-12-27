@@ -1,11 +1,15 @@
 import { observable, action } from 'mobx';
 import { getReleases } from 'app/actions';
 import { ReleaseModel } from 'app/models';
+import { InitializableStore } from './stores';
 
-export class ReleasesStore {
+export class ReleasesStore implements InitializableStore {
   @observable public loading: boolean;
   @observable public data: ReleaseModel[];
   @observable public error: string;
+
+  @action
+  init = () => this.loadReleases();
 
   @action
   loadReleases = () => {
