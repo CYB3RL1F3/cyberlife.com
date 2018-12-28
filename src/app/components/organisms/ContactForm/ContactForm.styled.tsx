@@ -1,5 +1,9 @@
 import styled, { css } from 'app/theme';
-import { TextStyle } from 'app/components/atoms/SharedStyled';
+import {
+  TextStyle,
+  AlphaTransitionDelay,
+  Positionnable
+} from 'app/components/atoms/SharedStyled';
 import { Spinner } from 'app/components/atoms/Loading/Loading.styled';
 import { Field } from 'formik';
 
@@ -18,7 +22,8 @@ export const Form = styled.form`
   }
 `;
 
-const inputStyle = css`
+const inputStyle = (index: number) => css`
+  ${({ index }) => AlphaTransitionDelay(index)}
   transition: background 0.25s linear;
   border: none;
   outline: none;
@@ -37,14 +42,14 @@ export interface InputProps {
   hasError?: boolean;
 }
 
-export const Input = styled(Field)`
-  ${inputStyle};
+export const Input = styled<Positionnable>(Field)`
+  ${({ index }) => inputStyle(index)};
   background: ${({ hasError }) =>
     hasError ? 'rgba(244, 12, 26, 0.3)' : 'rgba(6, 11, 11, 0.57)'};
 `;
 
-export const Textarea = styled(Field)`
-  ${inputStyle};
+export const Textarea = styled<Positionnable>(Field)`
+  ${({ index }) => inputStyle(index)};
   height: 10rem;
   resize: vertical;
   background: ${({ hasError }) =>
@@ -59,10 +64,11 @@ export const SubmitWrapper = styled.p`
   margin: 0;
 `;
 
-export const Bottom = styled.div`
+export const Bottom = styled.div<Positionnable>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  ${({ index }) => AlphaTransitionDelay(index)}
 `;
 
 export const Submit = styled.button`

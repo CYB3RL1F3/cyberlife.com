@@ -29,8 +29,8 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 0;
-  animation: ${welcome} 0.75s ease-in-out forwards;
-  animation-delay: 0.25s;
+  animation: ${welcome} 0.3s ease-in-out forwards;
+  animation-delay: 1s;
   height: 85vh;
   overflow-x: hidden;
   overflow-y: overlay;
@@ -38,6 +38,7 @@ export const Content = styled.div`
   color: white;
   display: flex;
   flex-direction: row;
+
   ::-webkit-scrollbar * {
     background: transparent;
   }
@@ -50,7 +51,7 @@ export const Content = styled.div`
 
   /* Track */
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: rgba(16, 27, 28, 0.2);
   }
 
   /* Handle */
@@ -68,8 +69,7 @@ export const Content = styled.div`
 export const Handler = styled.div`
   flex: 1;
   opacity: 0;
-  animation: ${appear} 0.5s linear forwards;
-  animation-delay: 1s;
+  animation: ${appear} 0.25s linear forwards;
+  animation-delay: 1.25s;
   display: flex;
-  margin-right: -1rem;
 `;

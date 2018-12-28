@@ -17,12 +17,13 @@ export interface ReleaseProps {
   thumb: string;
   theme: Theme;
   tracks: Tracks;
+  index: number;
 }
 
 export const ReleaseItemComponent: React.StatelessComponent<ReleaseProps> = (
   props: ReleaseProps
 ) => (
-  <Container>
+  <Container index={props.index}>
     <ThumbHandler>
       <Image
         placeholderColor={props.theme.picturePlaceholder}

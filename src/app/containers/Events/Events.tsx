@@ -25,8 +25,9 @@ export class EventsComponent extends React.Component<EventsProps, EventsState> {
       return (
         <Container>
           {data.map(
-            (event: EventModel): JSX.Element => (
+            (event: EventModel, index: number): JSX.Element => (
               <EventItem
+                index={index}
                 key={event.id}
                 id={event.id}
                 title={event.title}

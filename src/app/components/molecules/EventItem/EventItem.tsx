@@ -6,12 +6,13 @@ interface EventProp {
   date: string;
   title: string;
   location: string;
+  index: number;
 }
 
 export const EventItem: React.StatelessComponent<EventProp> = (
   event: EventProp
 ) => (
-  <Container>
+  <Container index={event.index}>
     <Link path={`/events/${event.id}`}>{event.date}</Link>
     <Link path={`/events/${event.id}`}>{event.title}</Link>
     <Paragraph>{event.location}</Paragraph>

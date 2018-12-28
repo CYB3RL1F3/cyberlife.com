@@ -46,6 +46,7 @@ export class ContactForm extends React.Component<ContactFormProps, {}> {
               value={values.name}
               placeholder="name"
               hasError={errors.name && touched.name}
+              index={1}
             />
             <Input
               type="email"
@@ -55,6 +56,7 @@ export class ContactForm extends React.Component<ContactFormProps, {}> {
               value={values.email}
               placeholder="email"
               hasError={errors.email && touched.email}
+              index={2}
             />
             <Input
               type="text"
@@ -64,6 +66,7 @@ export class ContactForm extends React.Component<ContactFormProps, {}> {
               value={values.subject}
               placeholder="subject"
               hasError={errors.subject && touched.subject}
+              index={3}
             />
             <Textarea
               component="textarea"
@@ -72,9 +75,10 @@ export class ContactForm extends React.Component<ContactFormProps, {}> {
               onBlur={handleBlur}
               value={values.message}
               placeholder="message"
+              index={4}
               hasError={errors.message && touched.message}
             />
-            <Bottom>
+            <Bottom index={5}>
               <ErrorField>
                 {Object.keys(errors).map(
                   (error: string) =>

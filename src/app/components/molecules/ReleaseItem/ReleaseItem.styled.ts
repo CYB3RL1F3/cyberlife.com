@@ -1,8 +1,10 @@
 import styled, { css } from 'app/theme';
 import GracefulImage from 'react-graceful-image';
 import { TextStyle } from 'app/components/atoms/SharedStyled';
+import { AlphaTransitionDelay } from 'app/components/atoms/SharedStyled/SharedStyled';
 
 export const Container = styled.div`
+  ${({ index }) => AlphaTransitionDelay(index)}
   display: flex;
   flex-direction: row;
   min-height: 11rem;

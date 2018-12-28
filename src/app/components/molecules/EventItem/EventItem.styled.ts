@@ -1,6 +1,7 @@
 import styled, { css } from 'app/theme';
 import { TextStyle } from 'app/components/atoms/SharedStyled';
 import { Link as BaseLink } from 'app/components/atoms';
+import { AlphaTransitionDelay } from '../../atoms/SharedStyled/SharedStyled';
 
 const style = css`
   ${TextStyle};
@@ -16,6 +17,7 @@ export const Link = styled(BaseLink)`
 `;
 
 export const Container = styled.div`
+  ${({ index }) => AlphaTransitionDelay(index)}
   display: flex;
   flex-direction: column;
   margin: 1rem;

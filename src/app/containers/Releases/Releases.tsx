@@ -23,8 +23,9 @@ export class ReleasesComponent extends React.Component<ReleasesProps, {}> {
       return (
         <Container>
           {data.map(
-            (release: ReleaseModel): JSX.Element => (
+            (release: ReleaseModel, index: number): JSX.Element => (
               <ReleaseItem
+                index={index}
                 key={release.id}
                 title={release.name}
                 info={release.releaseDate}

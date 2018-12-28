@@ -1,6 +1,9 @@
 import styled from 'app/theme';
 import { Link as BaseLink } from 'app/components/atoms';
-import { HeaderTextStyle } from 'app/components/atoms/SharedStyled';
+import {
+  HeaderTextStyle,
+  DownTransitionDelay
+} from 'app/components/atoms/SharedStyled';
 
 export const Link = styled(BaseLink)`
   ${HeaderTextStyle};
@@ -15,4 +18,5 @@ export const Container = styled.div`
 export const Cyberlife = styled.p`
   padding: 1rem;
   text-align: left;
+  ${DownTransitionDelay(0.5)}
 `;
