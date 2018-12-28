@@ -32,11 +32,37 @@ export const Content = styled.div`
   animation: ${welcome} 0.75s ease-in-out forwards;
   animation-delay: 0.25s;
   height: 85vh;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: overlay;
   background: rgba(0, 0, 0, 0.4);
   color: white;
   display: flex;
   flex-direction: row;
+  ::-webkit-scrollbar * {
+    background: transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(16, 27, 28, 0.7);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #101b1c;
+    cursor: pointer;
+  }
 `;
 
 export const Handler = styled.div`
@@ -45,4 +71,5 @@ export const Handler = styled.div`
   animation: ${appear} 0.5s linear forwards;
   animation-delay: 1s;
   display: flex;
+  margin-right: -1rem;
 `;

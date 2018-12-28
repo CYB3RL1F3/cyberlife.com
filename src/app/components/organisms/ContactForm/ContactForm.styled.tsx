@@ -54,13 +54,19 @@ export const Textarea = styled(Field)`
 export const SubmitWrapper = styled.p`
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  flex: 0.4;
   height: 4rem;
   margin: 0;
 `;
 
+export const Bottom = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 export const Submit = styled.button`
-  flex: 0.4;
+  flex: 1;
   background: rgba(6, 11, 11, 0.57);
   ${inputStyle};
   color: ${({ theme }) => theme.color};
@@ -74,4 +80,14 @@ export const Submit = styled.button`
 export const Loading = styled(Spinner)`
   width: 0.5rem;
   height: 0.5rem;
+`;
+
+export const ErrorField = styled.p`
+  ${TextStyle};
+  font-style: normal;
+  line-height: 1rem;
+  font-size: 10pt;
+  flex: 0.6;
+  padding-top: 0.25rem;
+  color: rgba(188, 11, 26, 0.8);
 `;

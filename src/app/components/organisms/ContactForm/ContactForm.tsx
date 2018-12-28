@@ -6,7 +6,9 @@ import {
   Textarea,
   SubmitWrapper,
   Submit,
-  Loading
+  Loading,
+  ErrorField,
+  Bottom
 } from './ContactForm.styled';
 import { validate, initialValues } from './ContactForm.data';
 
@@ -72,12 +74,23 @@ export class ContactForm extends React.Component<ContactFormProps, {}> {
               placeholder="message"
               hasError={errors.message && touched.message}
             />
-
-            <SubmitWrapper>
-              <Submit type="submit" disabled={isSubmitting}>
-                {isSubmitting ? <Loading /> : 'Send'}
-              </Submit>
-            </SubmitWrapper>
+            <Bottom>
+              <ErrorField>
+                {Object.keys(errors).map(
+                  (error: string) =>
+                    touched[error] && (
+                      <>
+                        {errors[error]} <br />
+                      </>
+                    )
+                )}
+              </ErrorField>
+              <SubmitWrapper>
+                <Submit type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? <Loading /> : 'Send'}
+                </Submit>
+              </SubmitWrapper>
+            </Bottom>
           </Form>
         )}
       </Formik>
