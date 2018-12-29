@@ -35,6 +35,7 @@ export const Content = styled.div`
   overflow-x: hidden;
   overflow-y: overlay;
   background: rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.2);
   color: white;
   display: flex;
   flex-direction: row;

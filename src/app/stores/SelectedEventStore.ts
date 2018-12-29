@@ -81,7 +81,6 @@ export class SelectedEventStore implements InitializableStore {
       this.error = null;
       try {
         this.data = new EventModel(response.data, type);
-        console.log(this.data);
         this.loading = false;
       } catch (e) {
         console.log(e);

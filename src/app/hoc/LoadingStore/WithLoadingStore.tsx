@@ -16,15 +16,15 @@ export const withLoadingStore = (storeName: string) => (
     }
     render() {
       const { init, loading, error, data } = this.props[storeName];
-      console.log(this.props[storeName], storeName);
       if (loading) {
         return <Loading />;
       } else if (error) {
-        console.log(error);
         return (
           <Error
             init={init}
-            message={'Impossible to load content, because the API seems down.'}
+            message={
+              'Impossible to load content. Seems to meet a problem with the data provider.'
+            }
           />
         );
       } else {

@@ -40,7 +40,7 @@ export class EventsComponent extends React.Component<EventsProps, EventsState> {
         </Container>
       );
     } else {
-      return <div>No content</div>;
+      return <div />;
     }
   }
 }

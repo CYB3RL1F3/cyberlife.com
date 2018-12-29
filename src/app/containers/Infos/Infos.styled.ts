@@ -17,7 +17,7 @@ const bioAnim = keyframes`
   }
 `;
 
-export const InfosContainer = styled.div`
+export const InfosContainer = styled.article`
   mask-type: luminance;
   overflow: hidden;
   width: 46vw;
@@ -29,4 +29,10 @@ export const InfosContainer = styled.div`
 export const Paragraph = styled.p`
   font-size: 8pt;
   ${TextStyle};
+`;
+
+export const A = styled.a`
+  font-size: 8pt;
+  ${TextStyle};
+  text-decoration: underline;
 `;

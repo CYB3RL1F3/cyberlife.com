@@ -37,7 +37,7 @@ export class ReleasesComponent extends React.Component<ReleasesProps, {}> {
         </Container>
       );
     } else {
-      return <div>No content...</div>;
+      return <div />;
     }
   }
 }

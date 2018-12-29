@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { observable, computed } from 'mobx';
 import { Time, Links } from '../../../types/events';
-import { Location } from '../../../types/location';
+import { Location, Coordinates } from '../../../types/location';
 
 export class EventModel {
   readonly id: number;
@@ -30,6 +30,13 @@ export class EventModel {
   @computed
   get formattedDate() {
     return format(new Date(this.date), 'DD/MM/YYYY');
+  }
+
+  @computed
+  get coordinates(): Coordinates {
+    return this.location.position.map(
+      (value: string): number => parseFloat(value)
+    ) as Coordinates;
   }
 }
 

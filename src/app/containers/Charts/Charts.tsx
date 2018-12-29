@@ -38,7 +38,7 @@ export class ChartsComponent extends React.Component<ChartProps, chartState> {
         </Container>
       );
     } else {
-      return <div>No content </div>;
+      return <div />;
     }
   }
 }

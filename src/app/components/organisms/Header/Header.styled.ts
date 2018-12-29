@@ -15,8 +15,10 @@ export const Container = styled.header`
   justify-content: space-between;
 `;
 
-export const Cyberlife = styled.p`
+export const Cyberlife = styled.h1`
   padding: 1rem;
   text-align: left;
+  font-weight: normal;
+  line-height: 1.1rem;
   ${DownTransitionDelay(0.5)}
 `;
