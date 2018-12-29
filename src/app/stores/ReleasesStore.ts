@@ -9,7 +9,7 @@ export class ReleasesStore implements InitializableStore {
   @observable public error: string;
 
   @action
-  init = () => this.loadReleases();
+  init = () => !this.data && this.loadReleases();
 
   @action
   loadReleases = () => {

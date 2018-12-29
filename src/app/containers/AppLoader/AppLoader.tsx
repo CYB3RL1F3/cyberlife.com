@@ -39,7 +39,7 @@ export class AppLoader extends React.Component<AppLoaderProps> {
     setTimeout(() => {
       const infosStore: InfosStore = this.props[STORE_INFOS] as InfosStore;
       infosStore.loadInfos();
-    }, 1000);
+    }, 400);
   }
 
   render() {

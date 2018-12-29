@@ -20,7 +20,7 @@ const isForbiddenEmail = (email: string): boolean =>
     email
   );
 
-const validateEmail = (email): string | null => {
+const validateEmail = (email: string): string | null => {
   let msg = undefined;
   if (!email) {
     msg = 'Email required';
@@ -32,15 +32,26 @@ const validateEmail = (email): string | null => {
   return msg;
 };
 
-export const hasInsults = (message): boolean =>
-  /(.*)(fils de pute|nique ta mère|connard|petite merde|grosse merde|your shit|you're making shit|fuck you|hijo de puta|salope|pute|enculé|encule|de la merde|salaud|merdasse|tapette|tafiolle|dumb|stupid|crétin|looser|babtou|négro|nigga|dumbass|bougnoule|bâtard|batard|PD)/g.test(
+export const hasInsults = (message: string): boolean =>
+  /(.*)(fils de pute|nique ta mère|connard|petite merde|grosse merde|\schiasse|fuck you|hijo de puta|salope|\spute|encul|de la merde|salaud|merdasse|tapette|tafiolle|\sdumb|stupid|crétin|looser|babtou|négro|nigga|dumbass|bougnoule|bâtard|batard|\sPD)/g.test(
     message
   );
 
+export const validateSubject = (subject: string): string | null => {
+  if (required('subject', subject)) return 'Subject required';
+  if (subject.length < 5)
+    return 'Subject must be serious and contain at least 5 characters';
+  if (hasInsults(subject))
+    return `Your subject contains insults and can't be sent. Please be polite.`;
+  return undefined;
+};
+
 export const validateMessage = (message) => {
   if (required('message', message)) return 'Message required';
+  if (message.length < 20)
+    return 'Message must contain serious content with at least 20 characters';
   if (hasInsults(message))
-    return `Your message contains insults. Please be polite.`;
+    return `Your message contains insults and can't be sent. Please be polite.`;
   return undefined;
 };
 
@@ -48,7 +59,7 @@ export const validate = (values) => {
   const errors: Schema = {};
   const email = validateEmail(values.email);
   const name = required('name', values.name);
-  const subject = required('subject', values.subject);
+  const subject = validateSubject(values.subject);
   const message = validateMessage(values.message);
   if (email) errors.email = email;
   if (name) errors.name = name;

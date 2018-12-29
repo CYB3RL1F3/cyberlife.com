@@ -1,4 +1,4 @@
-import styled, { css } from 'app/theme';
+import styled, { css, keyframes } from 'app/theme';
 const bg1 = require('assets/images/bg1.png');
 const bg2 = require('assets/images/bg2.png');
 const bg3 = require('assets/images/bg3.png');
@@ -43,10 +43,35 @@ export const Bg3 = styled.div`
   background-size: 100% auto;
 `;
 
+const initialClip = css`
+  clip: rect(0, 0, 100vh, 0);
+`;
+
+export const waveformAnimation = keyframes`
+  from {
+    ${initialClip}
+  }
+  to {
+    clip: rect(0, 100vw, 100vh, 0);
+  }
+`;
+
 export const Waveform = styled.div`
-  ${BackgroundLayer};
+  ${BackgroundLayer}
+  ${initialClip}
+  animation-delay: 0.15;
+  animation: ${waveformAnimation} 0.5s linear forwards;
   background-image: url(${waveform});
   background-repeat: no-repeat;
   background-position: 0% 90%;
   background-size: 100% auto;
+  position: absolute;
+  opacity: 0.75;
+  z-index: 0;
+`;
+
+export const ChildrenHandler = styled.div`
+  ${BackgroundLayer};
+  position: absolute;
+  z-index: 1;
 `;

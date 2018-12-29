@@ -16,8 +16,10 @@ export class EventModel {
   @observable public location: Location;
   @observable public time: Time;
   @observable public links: Links;
+  public type: number;
 
-  constructor(event: any) {
+  constructor(event: any, type: number) {
+    this.type = type;
     Object.keys(event).forEach(
       (key: string): void => {
         this[key] = event[key];

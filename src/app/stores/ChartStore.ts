@@ -14,7 +14,7 @@ export class ChartStore implements InitializableStore {
   };
 
   @action
-  init = () => this.loadCharts();
+  init = () => !this.data && this.loadCharts();
 
   @action
   loadCharts = () => {

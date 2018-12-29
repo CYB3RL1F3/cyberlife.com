@@ -5,7 +5,7 @@ import { STORE_PAST_EVENTS } from 'app/constants';
 import EventModel from 'app/models/EventModel';
 import { EventItem } from 'app/components/molecules/EventItem';
 import { Container } from './Events.styled';
-import { withLoadingStore } from '../../hoc/LoadingStore/WithLoadingStore';
+import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
 
 export interface EventsProps extends RouteComponentProps<any> {
   [STORE_PAST_EVENTS]: EventsStore;
@@ -32,6 +32,7 @@ export class EventsComponent extends React.Component<EventsProps, EventsState> {
                 id={event.id}
                 title={event.title}
                 location={event.address}
+                type={event.type}
                 date={event.formattedDate}
               />
             )

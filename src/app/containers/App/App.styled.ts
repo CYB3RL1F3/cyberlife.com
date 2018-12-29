@@ -24,7 +24,7 @@ export const Container = styled.div`
   justify-content: flex-end;
   width: 100vw;
   height: 85vh;
-  padding: 1rem 0;
+  padding: 1rem 0 0 0;
 `;
 
 export const Content = styled.div`

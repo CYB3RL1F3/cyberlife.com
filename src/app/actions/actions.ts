@@ -26,6 +26,8 @@ export const post = (endpoint: string, params = {}): AxiosPromise =>
 
 export const getEvents = (type: number): AxiosPromise =>
   fetch('events', { type });
+export const getEventById = (ID: number, type: number): AxiosPromise =>
+  fetch('event', { ID, type });
 export const getChart = (): AxiosPromise => fetch('charts');
 export const getInfos = (): AxiosPromise => fetch('infos');
 export const getReleases = (): AxiosPromise => fetch('releases');

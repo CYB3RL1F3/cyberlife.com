@@ -12,13 +12,15 @@ export const withLoadingStore = (storeName: string) => (
   class Loadable extends React.Component {
     componentDidMount() {
       const store: InitializableStore = this.props[storeName];
-      if (!store.data) store.init();
+      store.init();
     }
     render() {
       const { init, loading, error, data } = this.props[storeName];
+      console.log(this.props[storeName], storeName);
       if (loading) {
         return <Loading />;
       } else if (error) {
+        console.log(error);
         return (
           <Error
             init={init}
@@ -26,7 +28,7 @@ export const withLoadingStore = (storeName: string) => (
           />
         );
       } else {
-        return <WrappedComponent {...props} data={data} />;
+        return <WrappedComponent {...props} {...this.props} data={data} />;
       }
     }
   }

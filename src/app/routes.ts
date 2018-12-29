@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Events, Charts, Releases, Contact } from 'app/containers';
+import { EventDetails } from 'app/containers/EventDetails/EventDetails';
 
 export interface RouteType {
   component: React.ComponentType<any>;
@@ -8,7 +9,7 @@ export interface RouteType {
   key: string;
   menu: boolean;
 }
-
+console.log(EventDetails);
 export const routes: RouteType[] = [
   {
     component: Events,
@@ -37,6 +38,20 @@ export const routes: RouteType[] = [
     label: 'Contact',
     key: 'contact',
     menu: true
+  },
+  {
+    component: EventDetails,
+    path: '/events/:id',
+    label: '',
+    key: 'event',
+    menu: false
+  },
+  {
+    component: EventDetails,
+    path: '/events/:type/:id',
+    label: '',
+    key: 'eventTyped',
+    menu: false
   }
 ];
 

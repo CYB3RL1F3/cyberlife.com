@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Layout } from 'app/components';
+import { Layout, Footer } from 'app/components';
 import { Header } from 'app/components/organisms';
 import { Content, Container, Handler } from './App.styled';
 import { Infos } from 'app/containers';
@@ -17,6 +17,7 @@ export class App extends React.Component {
             <Handler>{this.props.children}</Handler>
           </Content>
         </Container>
+        <Footer />
       </Layout>
     );
   }

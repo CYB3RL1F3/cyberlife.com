@@ -5,3 +5,4 @@ export { Root } from './Root';
 export { Contact } from './Contact';
 export { App } from './App';
 export { Infos } from './Infos';
+export { EventDetails } from './EventDetails';

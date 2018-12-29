@@ -9,7 +9,7 @@ export const Link = styled(BaseLink)`
   ${HeaderTextStyle};
 `;
 
-export const Container = styled.div`
+export const Container = styled.header`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
