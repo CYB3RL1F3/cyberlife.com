@@ -2,7 +2,8 @@ import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import { STORE_INFOS } from 'app/constants';
 import { InfosBox, InfosContainer, Paragraph, A } from './Infos.styled';
-import InfosStore from '../../stores/InfosStore';
+import InfosStore from 'app/stores/InfosStore';
+import { Audio } from 'app/components/atoms/Audio';
 
 @inject(STORE_INFOS)
 @observer
@@ -23,6 +24,7 @@ export class Infos extends React.Component {
             <A href={infosStore.data.RA}>Resident Advisor</A>
           </Paragraph>
         </InfosContainer>
+        <Audio />
       </InfosBox>
     );
   }
