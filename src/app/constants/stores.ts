@@ -6,4 +6,6 @@ export const STORE_RELEASES = 'releases';
 export const STORE_CHART = 'chart';
 export const STORE_INFOS = 'infos';
 export const STORE_APP = 'app';
+export const STORE_PODCAST = 'playlist';
 export const STORE_SELECTED_EVENT = 'selected_event';
+export const STORE_PLAYER = 'player';

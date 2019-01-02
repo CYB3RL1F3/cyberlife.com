@@ -6,8 +6,10 @@ import { FORTHCOMING_EVENTS, PAST_EVENTS } from '../constants/events';
 import InfosStore from './InfosStore';
 import ReleasesStore from './ReleasesStore';
 import ChartStore from './ChartStore';
+import PodcastStore from './PodcastStore';
 import AppStore from './AppStore';
 import SelectedEventStore from './SelectedEventStore';
+import PlayerStore from './PlayerStore';
 import {
   STORE_FORTHCOMING_EVENTS,
   STORE_PAST_EVENTS,
@@ -15,7 +17,9 @@ import {
   STORE_INFOS,
   STORE_RELEASES,
   STORE_CHART,
-  STORE_APP
+  STORE_PODCAST,
+  STORE_APP,
+  STORE_PLAYER
 } from '../constants/stores';
 
 export function createStores(history: History) {
@@ -38,6 +42,8 @@ export function createStores(history: History) {
     [STORE_SELECTED_EVENT]: selectedEventStore,
     [STORE_INFOS]: new InfosStore(appStore),
     [STORE_RELEASES]: new ReleasesStore(),
-    [STORE_CHART]: new ChartStore()
+    [STORE_CHART]: new ChartStore(),
+    [STORE_PODCAST]: new PodcastStore(),
+    [STORE_PLAYER]: new PlayerStore()
   };
 }

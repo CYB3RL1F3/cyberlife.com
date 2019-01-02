@@ -14,8 +14,12 @@ export const withLoadingStore = (storeName: string) => (
       const store: InitializableStore = this.props[storeName];
       store.init();
     }
+    componentDidCatch(e) {
+      console.log(e);
+    }
     render() {
-      const { init, loading, error, data } = this.props[storeName];
+      const { init, loading, error } = this.props[storeName];
+      console.log(this.props[storeName].currentTrack);
       if (loading) {
         return <Loading />;
       } else if (error) {
@@ -28,7 +32,13 @@ export const withLoadingStore = (storeName: string) => (
           />
         );
       } else {
-        return <WrappedComponent {...props} {...this.props} data={data} />;
+        return (
+          <WrappedComponent
+            {...props}
+            {...this.props}
+            {...this.props[storeName]}
+          />
+        );
       }
     }
   }

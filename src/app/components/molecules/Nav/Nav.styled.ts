@@ -5,7 +5,7 @@ import {
   DownTransitionDelay
 } from 'app/components/atoms/SharedStyled';
 
-export const NavContainer = styled.p`
+export const NavContainer = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
