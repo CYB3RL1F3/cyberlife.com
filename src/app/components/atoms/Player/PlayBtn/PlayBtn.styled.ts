@@ -31,26 +31,28 @@ export const IconPlay = styled.div<PlayBtnProps>`
   ${({ playing }) =>
     playing
       ? `
-    width: 6px;
-    height: 22px;
-    border-left-width: 5px;
-    border-right-color: ${borderColor(0.8)};
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-    border-right-width: 5px;
-    border-top-width: 0;
-    border-bottom-width: 0;
-  `
+      width: 6px;
+      height: 22px;
+      border-left-width: 5px;
+      border-right-color: ${borderColor(0.8)};
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      border-right-width: 5px;
+      border-top-width: 0;
+      border-bottom-width: 0;
+      margin-left: 0;
+    `
       : `
-    width: 0;
-    height: 0;
-    border-left-width: 14px;
-    border-right-color: ${borderColor(0)};
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-    border-right-width: 12px;
-    border-top-width: 14px;
-    border-bottom-width: 14px;
+      width: 0;
+      height: 0;
+      border-left-width: 22px;
+      border-right-color: ${borderColor(0)};
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      border-right-width: 12px;
+      border-top-width: 14px;
+      border-bottom-width: 14px;
+      margin-left: 22px;
   `}
 `;
 

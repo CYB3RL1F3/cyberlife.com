@@ -4,6 +4,7 @@ import { STORE_INFOS } from 'app/constants';
 import { InfosBox, InfosContainer, Paragraph, A } from './Infos.styled';
 import InfosStore from 'app/stores/InfosStore';
 import { Audio } from 'app/components/atoms/Audio';
+import { MiniPlayer } from 'app/components/atoms/Player';
 
 @inject(STORE_INFOS)
 @observer
@@ -23,6 +24,7 @@ export class Infos extends React.Component {
             <A href={discogs}>Discogs</A> -&nbsp;
             <A href={infosStore.data.RA}>Resident Advisor</A>
           </Paragraph>
+          <MiniPlayer />
         </InfosContainer>
         <Audio />
       </InfosBox>
