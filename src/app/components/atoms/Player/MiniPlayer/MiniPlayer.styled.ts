@@ -1,9 +1,13 @@
 import styled from 'app/theme';
-import { PlayBtnProps } from '../PlayBtn';
+export interface PlayBtnProps {
+  backgroundImage: string;
+  playing: boolean;
+  onClick: (e: React.MouseEvent) => void;
+}
 
-type Opaque = {
+export interface Opaque {
   opacity: number;
-};
+}
 
 const borderColor = (alpha) => `rgba(222, 222, 222, ${alpha});`;
 

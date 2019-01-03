@@ -1,4 +1,4 @@
-import styled, { css } from 'app/theme';
+import styled from 'app/theme';
 
 export interface Background {
   backgroundImage: string;

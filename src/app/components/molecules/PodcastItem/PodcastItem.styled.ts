@@ -41,9 +41,9 @@ export const Title = styled.h3`
   font-weight: normal;
 `;
 
-type Displayable = {
+export interface Displayable {
   opacity: number;
-};
+}
 
 export const TrackHandler = styled.div<Displayable>`
   flex: 1;

@@ -62,6 +62,11 @@ export class PlayerStore {
   get playing() {
     return this.currentTrack.playing;
   }
+
+  @action
+  setVolume = (value: number) => {
+    this.volume = value;
+  };
 }
 
 export default PlayerStore;

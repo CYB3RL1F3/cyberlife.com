@@ -15,6 +15,13 @@ export interface Theme {
     backgroundColor: string;
     backgroundColorMini: string;
   };
+  slider: {
+    color: string;
+    thumbBorder: string;
+    thumbShadow: string;
+    thumbColor: string;
+    focus: string;
+  };
 }
 
 export const theme: Theme = {
@@ -30,6 +37,13 @@ export const theme: Theme = {
   player: {
     backgroundColor: '#1c2d2f',
     backgroundColorMini: '#457076'
+  },
+  slider: {
+    color: '#1c2d2f',
+    focus: '#1f3a3a',
+    thumbBorder: 'rgba(0, 0, 0, 0.4)',
+    thumbShadow: 'rgba(0, 0, 0, 0.2)',
+    thumbColor: 'rgba(255, 255, 255, 0.3)'
   }
 };
 
