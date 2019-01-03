@@ -40,3 +40,14 @@ export const Title = styled.h3`
   text-transform: uppercase;
   font-weight: normal;
 `;
+
+type Displayable = {
+  opacity: number;
+};
+
+export const TrackHandler = styled.div<Displayable>`
+  flex: 1;
+  display: flex;
+  opacity: ${({ opacity }) => opacity};
+  transition: opacity 0.5s;
+`;

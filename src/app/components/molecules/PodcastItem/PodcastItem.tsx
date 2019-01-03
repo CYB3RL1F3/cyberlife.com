@@ -6,12 +6,11 @@ import {
   ThumbHandler,
   InfosHandler,
   Title,
-  P
+  P,
+  TrackHandler
 } from './PodcastItem.styled';
 import { format } from 'date-fns';
-import { PlayBtn } from 'app/components/atoms/Player';
-
-console.log(Container, ThumbHandler, Image, InfosHandler, Title, P);
+import { PlayBtn, Track } from 'app/components/atoms/Player';
 
 export interface PodcastItemProps {
   title: string;
@@ -22,13 +21,16 @@ export interface PodcastItemProps {
   index: number;
   date: number;
   playing: boolean;
+  duration: number;
+  waveform: string;
+  loaded: number;
+  seek: number;
   onPlay: (e: React.MouseEvent) => void;
 }
 
 export const PodcastItemComponent: React.StatelessComponent<
   PodcastItemProps
 > = (props: PodcastItemProps) => {
-  console.log(props.artwork);
   return (
     <Container index={props.index}>
       <ThumbHandler>
@@ -41,6 +43,14 @@ export const PodcastItemComponent: React.StatelessComponent<
       <InfosHandler>
         <Title>{props.title}</Title>
         <P>{format(props.date, 'DD/MM/YYYY')}</P>
+        <TrackHandler opacity={props.playing ? 1 : 0.5}>
+          <Track
+            waveform={props.waveform}
+            loaded={props.loaded}
+            seek={props.seek}
+            duration={props.duration}
+          />
+        </TrackHandler>
       </InfosHandler>
     </Container>
   );

@@ -9,16 +9,28 @@ export interface AudioProps {}
 @inject(STORE_PLAYER)
 @observer
 export class Audio extends React.Component<AudioProps> {
-  player = null;
-  native = null;
+  player: ReactAudioPlayer = null;
+  element: HTMLAudioElement = null;
 
   refer = (ref) => {
     this.player = ref;
-    this.native = ref && ref.audioEl;
+    this.element = ref && ref.audioEl;
   };
 
   seekTo = (value: number) => {
-    this.native.seekTo(value);
+    if (this.element) this.element.currentTime = value;
+  };
+
+  onListen = (value: number) => {
+    const store: PlayerStore = this.props[STORE_PLAYER];
+    if (store.jumpTo > 0 && this.element) {
+      this.element.currentTime =
+        (store.jumpTo / 100) * (store.currentTrack.duration / 1000);
+      store.clearJump();
+    } else {
+      const pct = (value / (store.currentTrack.duration / 1000)) * 100;
+      store.onSeek(pct, false);
+    }
   };
 
   render() {
@@ -34,6 +46,8 @@ export class Audio extends React.Component<AudioProps> {
             ref={this.refer}
             withRef
             src={url}
+            listenInterval={100}
+            onListen={this.onListen}
             controls={false}
             autoPlay
             volume={volume}

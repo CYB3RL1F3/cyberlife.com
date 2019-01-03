@@ -1,5 +1,4 @@
 import { observable, action } from 'mobx';
-import { Track } from '../../../types/playlists';
 
 export class TrackModel {
   readonly id: number;
@@ -12,7 +11,7 @@ export class TrackModel {
   @observable public url: string;
   @observable public duration: number;
   @observable public soundcloud: string;
-  @observable public tracks: Track[];
+  @observable public waveform: string;
 
   @observable public playing: boolean = false;
   @observable public seek: number = 0;
@@ -31,12 +30,12 @@ export class TrackModel {
 
   getPosition = (pct: number): number => (pct / 100) * this.duration;
 
-  @action.bound
+  @action
   onSeek = (pct: number) => {
     this.seek = this.getPosition(pct);
   };
 
-  @action.bound
+  @action
   onLoaded = (pct: number) => {
     this.loaded = this.getPosition(pct);
   };

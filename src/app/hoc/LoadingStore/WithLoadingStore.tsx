@@ -19,7 +19,6 @@ export const withLoadingStore = (storeName: string) => (
     }
     render() {
       const { init, loading, error } = this.props[storeName];
-      console.log(this.props[storeName].currentTrack);
       if (loading) {
         return <Loading />;
       } else if (error) {

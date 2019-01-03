@@ -20,7 +20,6 @@ export class Root extends React.Component<RootProps, {}> {
   render() {
     const appStore = this.props[STORE_APP];
     const loaded = appStore && appStore.loaded;
-    console.log(loaded);
     return (
       <ThemeProvider theme={theme}>
         {loaded ? <App>{this.props.children}</App> : <AppLoader />}

@@ -39,12 +39,10 @@ export class PodcastsComponent extends React.Component<PlaylistProps, {}> {
   render() {
     const { data } = this.props;
     if (data) {
-      console.log('pass');
       return (
         <Container>
           {data.tracks.map(
             (track: TrackModel, index: number): JSX.Element => {
-              console.log(track);
               return (
                 <PodcastItem
                   onPlay={this.play(index)}

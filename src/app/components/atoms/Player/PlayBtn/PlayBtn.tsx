@@ -8,7 +8,6 @@ export interface PlayBtnProps {
 }
 
 export const PlayBtn: React.StatelessComponent<PlayBtnProps> = (props) => {
-  console.log('playing ==> ', props.playing);
   return (
     <Container {...props}>
       <Cover>
