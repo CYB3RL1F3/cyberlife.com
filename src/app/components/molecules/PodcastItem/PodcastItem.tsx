@@ -49,6 +49,7 @@ export const PodcastItemComponent: React.StatelessComponent<
             loaded={props.loaded}
             seek={props.seek}
             duration={props.duration}
+            isMini={false}
           />
         </TrackHandler>
       </InfosHandler>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Container, Waveform } from './Track.styled';
+import { Container, Waveform, Content } from './Track.styled';
 import { inject, observer } from 'mobx-react';
 import { STORE_PLAYER } from 'app/constants/stores';
 import PlayerStore from 'app/stores/PlayerStore';
@@ -9,6 +9,7 @@ export interface TrackProps {
   loaded: number;
   seek: number;
   duration: number;
+  isMini: boolean;
 }
 
 @inject(STORE_PLAYER)
@@ -26,16 +27,13 @@ export class Track extends React.Component<TrackProps> {
   trackRef = null;
 
   render() {
-    const { waveform, loaded, seek } = this.props;
+    const { waveform, loaded, seek, isMini } = this.props;
     return (
-      <Container className="trakk" onClick={this.seek}>
-        <Waveform backgroundImage={waveform} opacity={0.3} progression={100} />
-        <Waveform
-          backgroundImage={waveform}
-          opacity={0.6}
-          progression={loaded}
-        />
-        <Waveform backgroundImage={waveform} opacity={0.9} progression={seek} />
+      <Container isMini={isMini} onClick={this.seek}>
+        <Content opacity={0.3} progression={100} />
+        <Content opacity={0.6} progression={loaded} />
+        <Content opacity={0.9} progression={seek} />
+        <Waveform isMini={isMini} backgroundImage={waveform} />
       </Container>
     );
   }

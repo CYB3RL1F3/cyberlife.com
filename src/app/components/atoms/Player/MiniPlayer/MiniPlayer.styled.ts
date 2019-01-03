@@ -31,15 +31,16 @@ export const TrackHandler = styled.div`
 
 export const PlayBtn = styled.div`
   display: flex;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: ${({ theme }) => theme.player.backgroundColorMini};
   &:hover {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(255, 255, 255, 0.1);
   }
-  width: 5vh;
-  height: 5vh;
+  width: 10vh;
+  height: 10vh;
   justify-content: center;
   align-items: center;
+  margin-top: 5vh;
 `;
 
 export const IconPlay = styled.div<PlayBtnProps>`
@@ -50,13 +51,13 @@ export const IconPlay = styled.div<PlayBtnProps>`
   ${({ playing }) =>
     playing
       ? `
-    width: 3px;
-    height: 11px;
-    border-left-width: 2px;
+    width: 6px;
+    height: 22px;
+    border-left-width: 4px;
     border-right-color: ${borderColor(0.8)};
     border-top-color: transparent;
     border-bottom-color: transparent;
-    border-right-width: 2px;
+    border-right-width: 4px;
     border-top-width: 0;
     border-bottom-width: 0;
     margin-left: 0;
@@ -64,13 +65,13 @@ export const IconPlay = styled.div<PlayBtnProps>`
       : `
     width: 0;
     height: 0;
-    border-left-width: 8px;
+    border-left-width: 16px;
     border-right-color: ${borderColor(0)};
     border-top-color: transparent;
     border-bottom-color: transparent;
-    border-right-width: 6px;
-    border-top-width: 6px;
-    border-bottom-width: 6px;
-    margin-left: 8px;
+    border-right-width: 12px;
+    border-top-width: 12px;
+    border-bottom-width: 12px;
+    margin-left: 16px;
   `}
 `;

@@ -2,41 +2,51 @@ import styled, { css } from 'app/theme';
 
 export interface Background {
   backgroundImage: string;
-  opacity: number;
+}
+
+export interface Trackline {
+  opacity: string;
   progression: number;
 }
 
-export const bg = (image, opacity) => css`
-  background-image: url(${image});
-  opacity: ${opacity};
-`;
+export interface MiniContext {
+  isMini: boolean;
+}
 
-const width = 30;
 const height = 5;
 
-export const Waveform = styled.div<Background>`
+export const Waveform = styled.div<Background & MiniContext>`
   position: absolute;
-  top: 0;
+  top: 2.5vh;
   left: 0;
-  width: ${width}vw;
+  width: calc(100% + 1px);
   height: ${height}vh;
-  background-size: 100% ${height}vh;
-  background-image: url(${({ backgroundImage }) => backgroundImage});
-  opacity: ${({ opacity }) => opacity};
-  clip: rect(
-    0,
-    ${({ progression }) => `${(progression / 100) * width}vw`},
-    ${height}vh,
-    0
-  );
+  mask-size: 100% ${height}vh;
+  background-color: ${({ theme, isMini }) =>
+    isMini ? theme.player.backgroundColorMini : theme.player.backgroundColor};
+  mask-image: url(${({ backgroundImage }) => backgroundImage});
+  opacity: 1;
   transition: all 0.25s;
 `;
 
-export const Container = styled.div`
-  width: ${width}vw;
-  height: ${height}vh;
+export const Container = styled.div<MiniContext>`
+  width: 95%;
+  height: 10vh;
+  background-color: ${({ theme, isMini }) =>
+    isMini ? theme.player.backgroundColorMini : theme.player.backgroundColor};
   overflow: hidden;
   position: relative;
   margin: auto 0;
-  background-color: ${({ theme }) => theme.picturePlaceholder};
+`;
+
+export const Content = styled.div<Trackline>`
+  width: ${({ progression }) => `${progression}`}%;
+  height: ${height - 0.2}vh;
+  top: 2.6vh;
+  background-color: white;
+  opacity: ${({ opacity }) => opacity};
+  overflow: hidden;
+  position: absolute;
+  margin: auto 0;
+  transition: all 0.25s;
 `;

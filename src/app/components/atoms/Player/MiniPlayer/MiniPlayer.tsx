@@ -44,7 +44,7 @@ export class MiniPlayer extends React.Component {
           </PlayBtn>
         </ButtonHandler>
         <TrackHandler>
-          <Track {...currentTrack} />
+          <Track isMini {...currentTrack} />
         </TrackHandler>
       </Container>
     );

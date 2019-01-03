@@ -11,6 +11,10 @@ export interface Theme {
     fromColor: string;
     toColor: string;
   };
+  player: {
+    backgroundColor: string;
+    backgroundColorMini: string;
+  };
 }
 
 export const theme: Theme = {
@@ -22,6 +26,10 @@ export const theme: Theme = {
   background: {
     fromColor: '#3a5c5f',
     toColor: '#273e40'
+  },
+  player: {
+    backgroundColor: '#1c2d2f',
+    backgroundColorMini: '#457076'
   }
 };
 
