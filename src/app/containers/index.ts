@@ -7,3 +7,4 @@ export { App } from './App';
 export { Podcasts } from './Podcasts';
 export { Infos } from './Infos';
 export { EventDetails } from './EventDetails';
+export { PodcastDetails } from './PodcastDetails';

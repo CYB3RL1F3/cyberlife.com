@@ -23,7 +23,7 @@ export class PodcastsComponent extends React.Component<PlaylistProps, {}> {
   play = (index: number) => (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    const store = this.props[STORE_PLAYER];
+    const store: PlayerStore = this.props[STORE_PLAYER];
     const track = this.props.data.tracks[index];
     if (
       !store.currentTrack ||

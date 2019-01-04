@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Events, Charts, Releases, Contact } from 'app/containers';
 import { Podcasts } from 'app/containers/Podcasts';
 import { EventDetails } from 'app/containers/EventDetails/EventDetails';
+import { PodcastDetails } from './containers/PodcastDetails/PodcastDetails';
 console.log(Podcasts);
 
 export interface RouteType {
@@ -60,6 +61,13 @@ export const routes: RouteType[] = [
     path: '/events/:type/:id',
     label: '',
     key: 'eventTyped',
+    menu: false
+  },
+  {
+    component: PodcastDetails,
+    path: '/podcasts/:id',
+    label: '',
+    key: 'podcast',
     menu: false
   }
 ];

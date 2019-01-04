@@ -1,5 +1,11 @@
 import { observable, action } from 'mobx';
 
+export interface Stats {
+  count: number;
+  downloads: number;
+  favorites: number;
+}
+
 export class TrackModel {
   readonly id: number;
   @observable public title: string;
@@ -12,6 +18,9 @@ export class TrackModel {
   @observable public duration: number;
   @observable public soundcloud: string;
   @observable public waveform: string;
+  @observable public genre: string;
+  @observable public stats: Stats;
+  @observable public taglist: string[];
 
   @observable public playing: boolean = false;
   @observable public seek: number = 0;

@@ -58,9 +58,11 @@
     "react-audio-player": "^0.11.0",
     "react-dom": "^16.2.0",
     "react-graceful-image": "^1.2.9",
+    "react-html-parser": "^2.0.2",
     "react-lottie": "^1.2.3",
     "react-mapbox-gl": "^4.0.2",
     "react-router": "^4.2.0",
+    "sanitize-html": "^1.20.0",
     "styled-components": "^4.1.3"
   }
 }

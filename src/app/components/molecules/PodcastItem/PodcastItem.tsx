@@ -7,12 +7,14 @@ import {
   InfosHandler,
   Title,
   Description,
-  TrackHandler
+  TrackHandler,
+  Link
 } from './PodcastItem.styled';
 import { PlayBtn, Track } from 'app/components/atoms/Player';
 import { Handler } from 'app/containers/App/App.styled';
 
 export interface PodcastItemProps {
+  id: number;
   title: string;
   description: string;
   artwork: string;
@@ -41,9 +43,13 @@ export const PodcastItemComponent: React.StatelessComponent<
         />
       </ThumbHandler>
       <InfosHandler>
-        <Title>{props.title}</Title>
+        <Title>
+          <Link path={`/podcasts/${props.id}`}>{props.title}</Link>
+        </Title>
         <Handler>
-          <Description>{props.description.substring(0, 250)}</Description>
+          <Description>
+            {props.description.replace(/(\\n)/g, ' ').substring(0, 250)}
+          </Description>
         </Handler>
         <TrackHandler opacity={props.playing ? 1 : 0.5}>
           <Track
