@@ -36,7 +36,7 @@ export const Container = styled.div<MiniContext>`
     isMini ? theme.player.backgroundColorMini : theme.player.backgroundColor};
   overflow: hidden;
   position: relative;
-  margin: auto 0;
+  margin: 0;
 `;
 
 export const Content = styled.div<Trackline>`

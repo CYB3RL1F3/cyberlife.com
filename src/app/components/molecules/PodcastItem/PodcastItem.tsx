@@ -6,11 +6,11 @@ import {
   ThumbHandler,
   InfosHandler,
   Title,
-  P,
+  Description,
   TrackHandler
 } from './PodcastItem.styled';
-import { format } from 'date-fns';
 import { PlayBtn, Track } from 'app/components/atoms/Player';
+import { Handler } from 'app/containers/App/App.styled';
 
 export interface PodcastItemProps {
   title: string;
@@ -42,7 +42,9 @@ export const PodcastItemComponent: React.StatelessComponent<
       </ThumbHandler>
       <InfosHandler>
         <Title>{props.title}</Title>
-        <P>{format(props.date, 'DD/MM/YYYY')}</P>
+        <Handler>
+          <Description>{props.description.substring(0, 250)}</Description>
+        </Handler>
         <TrackHandler opacity={props.playing ? 1 : 0.5}>
           <Track
             waveform={props.waveform}
