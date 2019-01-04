@@ -1,4 +1,4 @@
-import styled from 'app/theme';
+import styled, { css } from 'app/theme';
 import {
   TextStyle,
   AlphaTransitionDelay
@@ -15,16 +15,24 @@ export const Container = styled.footer`
   justify-content: space-between;
 `;
 
-export const Text = styled.p`
+export const FooterTxt = css`
   ${TextStyle};
   font-size: 8pt;
-  flex: 0.9;
   font-style: normal;
   line-height: ${height};
+  ${AlphaTransitionDelay(50)}
+`;
+
+export const Text = styled.p`
+  ${FooterTxt};
+  margin: 0 auto;
   padding: 0 1rem;
   box-sizing: border-box;
-  margin: 0 auto;
-  ${AlphaTransitionDelay(50)}
+  flex: 0.9;
+`;
+
+export const A = styled.a`
+  ${FooterTxt};
 `;
 
 export const VolumeContainer = styled.div`

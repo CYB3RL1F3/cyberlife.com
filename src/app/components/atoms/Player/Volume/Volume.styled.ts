@@ -1,10 +1,12 @@
 import styled from 'app/theme';
+import { AlphaTransitionDelay } from 'app/components/atoms/SharedStyled';
 
 export const Container = styled.p`
   width: 10rem;
   line-height: 4.5vh;
   display: inline-flex;
   justify-content: space-between;
+  ${AlphaTransitionDelay(60)};
 `;
 
 export const InputHandler = styled.span`

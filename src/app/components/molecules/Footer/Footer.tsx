@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { format } from 'date-fns';
-import { Container, Text, VolumeContainer } from './Footer.styled';
+import { Container, Text, VolumeContainer, A } from './Footer.styled';
 import { Volume } from 'app/components/atoms/Player/Volume/Volume';
 
 export const Footer: React.StatelessComponent = () => (
   <Container>
-    <Text>© Cyberlife - {format(new Date(), 'YYYY')}</Text>
+    <Text>
+      © <A href="https://github.com/CYB3RL1F3">Cyberlife</A> -{' '}
+      {format(new Date(), 'YYYY')}
+    </Text>
     <VolumeContainer>
       <Volume />
     </VolumeContainer>

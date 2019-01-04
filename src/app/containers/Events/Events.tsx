@@ -1,19 +1,22 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { EventsStore } from 'app/stores';
-import { STORE_PAST_EVENTS } from 'app/constants';
+import { STORE_FORTHCOMING_EVENTS } from 'app/constants';
 import EventModel from 'app/models/EventModel';
 import { EventItem } from 'app/components/molecules/EventItem';
 import { Container } from './Events.styled';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
+import { FallbackEvents } from 'app/components/molecules/FallbackEvents';
+console.log(FallbackEvents);
 
 export interface EventsProps extends RouteComponentProps<any> {
-  [STORE_PAST_EVENTS]: EventsStore;
+  [STORE_FORTHCOMING_EVENTS]: EventsStore;
   data: EventModel[];
 }
 
-export interface EventsState {}
-
+export interface EventsState {
+  pastEventsLoaded: boolean;
+}
 export class EventsComponent extends React.Component<EventsProps, EventsState> {
   constructor(props: EventsProps, context: any) {
     super(props, context);
@@ -21,7 +24,7 @@ export class EventsComponent extends React.Component<EventsProps, EventsState> {
 
   render() {
     const { data } = this.props;
-    if (data) {
+    if (data && data.length > 0) {
       return (
         <Container>
           {data.map(
@@ -37,12 +40,15 @@ export class EventsComponent extends React.Component<EventsProps, EventsState> {
               />
             )
           )}
+          <FallbackEvents />
         </Container>
       );
     } else {
-      return <div />;
+      return <FallbackEvents asFail />;
     }
   }
 }
 
-export const Events = withLoadingStore(STORE_PAST_EVENTS)(EventsComponent);
+export const Events = withLoadingStore(STORE_FORTHCOMING_EVENTS)(
+  EventsComponent
+);

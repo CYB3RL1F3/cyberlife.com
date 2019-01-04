@@ -5,3 +5,5 @@ export * from './ChartItem';
 export * from './ContactSuccess';
 export * from './Footer';
 export * from './PodcastItem';
+export * from './PastEvents';
+export * from './FallbackEvents';
