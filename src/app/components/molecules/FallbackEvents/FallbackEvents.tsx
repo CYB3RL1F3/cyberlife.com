@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { inject } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import { STORE_PAST_EVENTS } from 'app/constants';
 import {
   NoGigsHandler,
@@ -18,31 +18,24 @@ export interface FallbackEventsProps {
   asFail?: boolean;
 }
 
-export interface FallbackEventsState {
-  pastEventsLoaded: boolean;
-}
+export interface FallbackEventsState {}
 
 @inject(STORE_PAST_EVENTS)
+@observer
 export class FallbackEvents extends React.Component<
   FallbackEventsProps,
   FallbackEventsState
 > {
-  state = {
-    pastEventsLoaded: false
-  };
-
   loadPastEvents = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const store: EventsStore = this.props[STORE_PAST_EVENTS];
     store.init();
-    this.setState({
-      pastEventsLoaded: true
-    });
   };
 
   render() {
-    if (!this.state.pastEventsLoaded) {
+    const store: EventsStore = this.props[STORE_PAST_EVENTS];
+    if (!store.data) {
       if (this.props.asFail) {
         return (
           <Container>
