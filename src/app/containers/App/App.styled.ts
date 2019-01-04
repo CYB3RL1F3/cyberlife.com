@@ -44,20 +44,22 @@ export const Container = styled.div`
 export const Content = styled.div`
   width: 0;
   animation: ${welcome} 0.3s ease-in-out forwards;
-
-  ${({ theme }) => theme.media.tablet`
-    animation: ${welcomeTabs} 0.3s ease-in-out forwards;
-    animation-delay: 0.25s;
-  `}
   animation-delay: 1s;
   height: 85vh;
-  overflow-x: hidden;
   overflow-y: overlay;
+  overflow-x: hidden;
   background: rgba(0, 0, 0, 0.4);
   box-shadow: 2px 2px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.2);
   color: white;
   display: flex;
   flex-direction: row;
+
+  ${({ theme }) => theme.media.tablet`
+    animation: ${welcomeTabs} 0.3s ease-in-out forwards;
+    min-height: 66vh;
+    height: unset;
+    overflow-y: visible;
+  `}
 
   ::-webkit-scrollbar * {
     background: transparent;

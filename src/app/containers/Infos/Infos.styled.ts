@@ -1,5 +1,8 @@
 import styled, { keyframes } from 'app/theme';
-import { TextStyle } from 'app/components/atoms/SharedStyled';
+import {
+  TextStyle,
+  AlphaTransitionDelay
+} from 'app/components/atoms/SharedStyled';
 
 export const InfosBox = styled.div`
   display: flex;
@@ -23,6 +26,8 @@ export const InfosContainer = styled.article`
   width: 46vw;
   ${({ theme }) => theme.media.tablet`
     width: 100vw;
+    height: calc(100% - 1px);
+    ${AlphaTransitionDelay(50)}
   `}
   height: 0;
   animation: ${bioAnim} 0.5s ease-in-out forwards;
