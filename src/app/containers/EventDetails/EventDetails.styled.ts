@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin: 1rem;
+  margin: 2rem;
 `;
 
 export const Content = styled.div`
@@ -22,7 +22,7 @@ export const ContentHandler = styled.div`
 
 export const MapboxHandler = styled.div`
   flex: 0.4;
-  margin: 2rem 1rem;
+  margin: 1rem 0;
   .mapboxgl-map {
     box-shadow: 2px 2px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.2);
   }

@@ -47,6 +47,7 @@ export const Link = styled(BaseLink)`
 
 export const A = styled.a`
   ${PleaseContactStyle};
+  line-height: 4rem;
 `;
 
 export const Title = styled.h3`

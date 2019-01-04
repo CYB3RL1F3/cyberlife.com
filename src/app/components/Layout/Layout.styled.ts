@@ -65,13 +65,14 @@ export const Waveform = styled.div`
   background-repeat: no-repeat;
   background-position: 0% 90%;
   background-size: 100% auto;
-  position: absolute;
+  position: fixed;
   opacity: 0.75;
   z-index: 0;
 `;
 
 export const ChildrenHandler = styled.div`
   ${BackgroundLayer};
-  position: absolute;
+  position: fixed;
   z-index: 1;
+  overflow: scroll;
 `;

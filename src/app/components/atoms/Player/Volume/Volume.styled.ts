@@ -14,9 +14,10 @@ export const InputHandler = styled.span`
   height: 4.5vh;
 `;
 
-export const IconHandler = styled.span`
+export const IconHandler = styled.a`
   width: 2rem;
   line-height: 4vh;
   overflow: hidden;
   padding-top: 0.8vh;
+  cursor: pointer;
 `;

@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin: 1rem;
+  margin: 2rem;
 `;
 
 export const TitleHandler = styled.div`
