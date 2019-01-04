@@ -29,6 +29,7 @@ export const Text = styled.p`
   padding: 0 1rem;
   box-sizing: border-box;
   flex: 0.9;
+  line-height: 2.5rem;
 `;
 
 export const A = styled.a`

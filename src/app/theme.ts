@@ -22,7 +22,36 @@ export interface Theme {
     thumbColor: string;
     focus: string;
   };
+  media: {
+    desktop: () => any;
+    tablet: () => any;
+    mobile: () => any;
+  };
 }
+
+export const sizes = {
+  desktop: 992,
+  tablet: 768,
+  mobile: 576
+};
+
+// Iterate through the sizes and create a media template
+export const media = Object.keys(sizes).reduce(
+  (acc, label) => {
+    acc[label] = (...args) => css`
+      @media screen and (max-width: ${sizes[label] / 16}em) {
+        ${css(...args)}
+      }
+    `;
+
+    return acc;
+  },
+  {
+    desktop: null,
+    tablet: null,
+    mobile: null
+  }
+);
 
 export const theme: Theme = {
   color: '#6ca1a6',
@@ -44,7 +73,8 @@ export const theme: Theme = {
     thumbBorder: 'rgba(0, 0, 0, 0.4)',
     thumbShadow: 'rgba(0, 0, 0, 0.2)',
     thumbColor: 'rgba(255, 255, 255, 0.3)'
-  }
+  },
+  media
 };
 
 export interface WithThemeProps {

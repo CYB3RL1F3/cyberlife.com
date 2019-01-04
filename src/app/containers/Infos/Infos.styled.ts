@@ -21,6 +21,9 @@ export const InfosContainer = styled.article`
   mask-type: luminance;
   overflow: hidden;
   width: 46vw;
+  ${({ theme }) => theme.media.tablet`
+    width: 100vw;
+  `}
   height: 0;
   animation: ${bioAnim} 0.5s ease-in-out forwards;
   animation-delay: 1.5s;

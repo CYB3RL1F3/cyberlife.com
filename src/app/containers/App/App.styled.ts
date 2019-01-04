@@ -9,6 +9,15 @@ const welcome = keyframes`
   }
 `;
 
+const welcomeTabs = keyframes`
+  from {
+    width: 0vw;
+  }
+  to {
+    width: 100vw;
+  }
+`;
+
 const appear = keyframes`
   from {
     opacity: 0;
@@ -22,6 +31,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  ${({ theme }) => theme.media.tablet`
+    flex-direction: column;
+    justify-content: flex-start;
+    height: unset;
+  `}
   width: 100vw;
   height: 85vh;
   padding: 1rem 0 0 0;
@@ -30,6 +44,11 @@ export const Container = styled.div`
 export const Content = styled.div`
   width: 0;
   animation: ${welcome} 0.3s ease-in-out forwards;
+
+  ${({ theme }) => theme.media.tablet`
+    animation: ${welcomeTabs} 0.3s ease-in-out forwards;
+    animation-delay: 0.25s;
+  `}
   animation-delay: 1s;
   height: 85vh;
   overflow-x: hidden;
