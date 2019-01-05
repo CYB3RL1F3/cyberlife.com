@@ -60,8 +60,8 @@ export const Title = styled.h3`
   font-size: 20pt;
   text-transform: uppercase;
   letter-spacing: 2px;
-  height: 4rem;
-  line-height: 4rem;
+  height: 2rem;
+  line-height: 2.5rem;
 `;
 
 export const Close = styled.a``;

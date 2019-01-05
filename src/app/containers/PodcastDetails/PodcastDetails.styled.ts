@@ -38,6 +38,9 @@ export const Section = styled.section`
   display: flex;
   flex-direction: column;
   margin: 1rem 0;
+  ${({ theme }) => theme.media.mobile`
+    margin: 0.5rem 0;
+  `}
 `;
 
 export const DataContainer = styled.div`

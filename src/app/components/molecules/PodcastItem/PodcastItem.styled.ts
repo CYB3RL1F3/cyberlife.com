@@ -35,7 +35,7 @@ const style = css`
   ${TextStyle};
   font-size: 10pt;
   ${({ theme }) => theme.media.mobile`
-    font-size: 14pt;
+    font-size: 12pt;
   `}
 `;
 
@@ -53,7 +53,7 @@ export const Description = styled.p`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   ${({ theme }) => theme.media.mobile`
-    font-size: 11pt;
+    font-size: 10pt;
   `}
 `;
 

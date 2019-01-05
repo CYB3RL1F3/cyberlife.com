@@ -51,14 +51,16 @@ export class EventDetailsComponent extends React.Component<EventDetailsProps> {
                   {data.area}, {data.country}
                 </Info>
               </Section>
-              <Section>
-                <H3>Lineup : </H3>
-                <Lineup>
-                  {data.lineup.map((artist: string) => (
-                    <LineupLine>{artist}</LineupLine>
-                  ))}
-                </Lineup>
-              </Section>
+              {data.lineup && data.lineup.length > 0 && (
+                <Section>
+                  <H3>Lineup : </H3>
+                  <Lineup>
+                    {data.lineup.map((artist: string) => (
+                      <LineupLine>{artist}</LineupLine>
+                    ))}
+                  </Lineup>
+                </Section>
+              )}
             </ContentHandler>
             {data.location.position && (
               <MapboxHandler>

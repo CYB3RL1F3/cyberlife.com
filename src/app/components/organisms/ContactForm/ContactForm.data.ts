@@ -1,10 +1,10 @@
+import * as sanitizeHtml from 'sanitize-html';
 interface Schema {
   name?: string;
   email?: string;
   subject?: string;
   message?: string;
 }
-
 export const initialValues: Schema = {
   name: '',
   email: '',
@@ -37,12 +37,29 @@ export const hasInsults = (message: string): boolean =>
     message
   );
 
+export const hasXss = (message: string): boolean =>
+  message !== sanitizeHtml(message);
+
 export const validateSubject = (subject: string): string | null => {
   if (required('subject', subject)) return 'Subject required';
   if (subject.length < 5)
     return 'Subject must be serious and contain at least 5 characters';
+  if (hasXss(subject)) {
+    return 'Subject contains forbidden XSS injections';
+  }
   if (hasInsults(subject))
     return `Your subject contains insults and can't be sent. Please be polite.`;
+  return undefined;
+};
+
+export const validateName = (name: string): string | null => {
+  if (required('name', name)) return 'Name required';
+  if (hasXss(name)) {
+    return 'Name contains forbidden XSS injections';
+  }
+  if (name.length < 2) return 'Name must contain at least 2 characters';
+  if (name.length > 50)
+    return "Name can't contain more than 50 characters. Please shortize.";
   return undefined;
 };
 
@@ -50,23 +67,31 @@ export const validateMessage = (message) => {
   if (required('message', message)) return 'Message required';
   if (message.length < 20)
     return 'Message must contain serious content with at least 20 characters';
+  if (message.length > 5000)
+    return "Message can't contain more than 5000 characters.";
+  if (hasXss(message)) {
+    return 'Message contains forbidden XSS injections';
+  }
   if (hasInsults(message))
     return `Your message contains insults and can't be sent. Please be polite.`;
   return undefined;
 };
 
+let vibrated = false;
+
 export const validate = (values) => {
   const errors: Schema = {};
   const email = validateEmail(values.email);
-  const name = required('name', values.name);
+  const name = validateName(values.name);
   const subject = validateSubject(values.subject);
   const message = validateMessage(values.message);
   if (email) errors.email = email;
   if (name) errors.name = name;
   if (subject) errors.subject = subject;
   if (message) errors.message = message;
-  if (Object.keys(errors).length && navigator.vibrate) {
+  if (Object.keys(errors).length && navigator.vibrate && !vibrated) {
     navigator.vibrate(300);
+    vibrated = true;
   }
   return errors;
 };

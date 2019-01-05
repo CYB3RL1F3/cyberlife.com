@@ -7,7 +7,7 @@ const style = css`
   ${TextStyle};
   font-size: 10pt;
   ${({ theme }) => theme.media.mobile`
-    font-size: 14pt;
+    font-size: 12pt;
   `}
 `;
 

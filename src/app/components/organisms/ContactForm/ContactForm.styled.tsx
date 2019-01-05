@@ -40,11 +40,11 @@ const inputStyle = (index: number) => css`
   color: white;
   box-sizing: border-box;
   ${({ theme }) => theme.media.mobile`
-    margin: 0.5rem 0;
-    height: 4.5rem;
-    line-height: 4rem;
-    padding-left: 2rem;
-    font-size: 18pt;
+    margin: 0.25rem 0;
+    height: 2.5rem;
+    line-height: 2rem;
+    padding-left: 1rem;
+    font-size: 12pt;
   `}
 `;
 
@@ -77,7 +77,7 @@ export const SubmitWrapper = styled.p`
   margin: 0;
   ${({ theme }) => theme.media.mobile`
     flex: 1;
-    height: 6rem;
+    height: 4rem;
   `}
 `;
 
@@ -102,7 +102,7 @@ export const Submit = styled.button`
   font-weight: normal;
   cursor: pointer;
   ${({ theme }) => theme.media.mobile`
-    line-height: 4rem;
+    line-height: 2rem;
     padding-left: 0;
   `}
 `;
@@ -122,8 +122,8 @@ export const ErrorField = styled.p`
   color: rgba(188, 11, 26, 0.8);
   ${({ theme }) => theme.media.mobile`
     flex: 1;
-    font-size: 18pt;
+    font-size: 14pt;
     min-height: 2rem;
-    line-height: 20pt;
+    line-height: 16pt;
   `}
 `;

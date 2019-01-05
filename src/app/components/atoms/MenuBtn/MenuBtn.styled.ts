@@ -3,8 +3,8 @@ import styled from 'app/theme';
 export const A = styled.a`
   display: inline-block;
   margin: 0.8rem;
-  height: 4rem;
-  line-height: 4.9rem;
+  height: 2rem;
+  line-height: 3rem;
 `;
 
 export const Img = styled.img`

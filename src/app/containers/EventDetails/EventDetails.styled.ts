@@ -57,8 +57,9 @@ export const Title = styled.h3`
 export const Info = styled.p`
   ${TextStyle}
   font-size: 10pt;
+  width: 95%;
   ${({ theme }) => theme.media.mobile`
-    font-size: 14pt;
+    font-size: 12pt;
   `}
   line-height: 12pt;
 `;
@@ -72,7 +73,7 @@ export const LineupLine = styled.li`
   ${TextStyle};
   font-size: 10pt;
   ${({ theme }) => theme.media.mobile`
-    font-size: 14pt;
+    font-size: 12pt;
   `}
 `;
 
@@ -80,6 +81,9 @@ export const Section = styled.section`
   display: flex;
   flex-direction: column;
   margin: 1rem 0;
+  ${({ theme }) => theme.media.mobile`
+    margin: 0.5rem 0;
+  `}
 `;
 
 export const H3 = styled.h3`
@@ -91,6 +95,6 @@ export const H3 = styled.h3`
   text-decoration: underline;
   margin-bottom: 0.4rem;
   ${({ theme }) => theme.media.mobile`
-    font-size: 14pt;
+    font-size: 12pt;
   `}
 `;
