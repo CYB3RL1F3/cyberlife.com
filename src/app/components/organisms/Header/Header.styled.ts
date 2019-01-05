@@ -7,6 +7,12 @@ import {
 
 export const Link = styled(BaseLink)`
   ${HeaderTextStyle};
+  ${({ theme }) => theme.media.mobile`
+    font-size: 20pt;
+    line-height: 4rem;
+    height: 4rem;
+    display: inline-block;
+  `}
 `;
 
 export const Container = styled.header`
@@ -22,4 +28,10 @@ export const Cyberlife = styled.h1`
   font-weight: normal;
   line-height: 1.1rem;
   ${DownTransitionDelay(0.5)}
+  ${({ theme }) => theme.media.mobile`
+    font-size: 20pt;
+    line-height: 4rem;
+    height: 4rem;
+    display: inline-block;
+  `}
 `;

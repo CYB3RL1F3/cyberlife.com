@@ -5,6 +5,8 @@ export type Coordinates = [number, number];
 
 interface MapProps {
   coordinates: Coordinates;
+  width: string;
+  height: string;
 }
 
 const accessToken =
@@ -15,15 +17,19 @@ const Mapbox = ReactMapboxGl({
   accessToken
 });
 
-export const Map: React.StatelessComponent<MapProps> = ({ coordinates }) => {
+export const Map: React.StatelessComponent<MapProps> = ({
+  coordinates,
+  width,
+  height
+}) => {
   return (
     <Mapbox
       style={url}
       zoom={[14]}
       center={coordinates}
       containerStyle={{
-        height: '50vh',
-        width: '20vw'
+        height,
+        width
       }}
     >
       <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>

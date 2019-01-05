@@ -13,6 +13,10 @@ export const Container = styled.footer`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  ${({ theme }) => theme.media.tablet`
+    width: 100vw;
+    height: 4vh;
+  `}
 `;
 
 export const FooterTxt = css`
@@ -30,6 +34,9 @@ export const Text = styled.p`
   box-sizing: border-box;
   flex: 0.9;
   line-height: 2.5rem;
+  ${({ theme }) => theme.media.tablet`
+    line-height: 2rem;
+  `}
 `;
 
 export const A = styled.a`

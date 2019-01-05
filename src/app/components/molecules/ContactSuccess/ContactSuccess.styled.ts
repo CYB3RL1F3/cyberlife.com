@@ -6,6 +6,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 2rem;
+  ${({ theme }) => theme.media.mobile`
+    margin: 1rem;
+  `}
 `;
 
 export const H3 = styled.h3`

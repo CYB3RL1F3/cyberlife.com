@@ -11,11 +11,18 @@ export const Container = styled.div`
   margin: 1rem 0 1rem 1rem;
   border-bottom: solid 1px rgba(255, 255, 255, 0.1);
   padding-bottom: 1rem;
+  ${({ theme }) => theme.media.mobile`
+    min-height: 6rem;
+    margin: 0 0 1rem 0;
+  `}
 `;
 
 export const ThumbHandler = styled.p`
   display: flex;
   width: 12rem;
+  ${({ theme }) => theme.media.mobile`
+    width: 7rem;
+  `}
 `;
 
 export const InfosHandler = styled.div`
@@ -27,6 +34,9 @@ export const InfosHandler = styled.div`
 const style = css`
   ${TextStyle};
   font-size: 10pt;
+  ${({ theme }) => theme.media.mobile`
+    font-size: 14pt;
+  `}
 `;
 
 export const Handler = styled.div`
@@ -42,6 +52,9 @@ export const Description = styled.p`
   width: 95%;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  ${({ theme }) => theme.media.mobile`
+    font-size: 11pt;
+  `}
 `;
 
 export const A = styled.a`

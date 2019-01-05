@@ -5,6 +5,8 @@ import { InfosBox, InfosContainer, Paragraph, A } from './Infos.styled';
 import InfosStore from 'app/stores/InfosStore';
 import { Audio } from 'app/components/atoms/Audio';
 import { MiniPlayer } from 'app/components/atoms/Player';
+import MediaQuery from 'react-responsive';
+import { sizes } from 'app/theme';
 
 @inject(STORE_INFOS)
 @observer
@@ -14,18 +16,20 @@ export class Infos extends React.Component {
     const discogs = `https://discogs.com/artist/${infosStore.data.discogs}`;
     return (
       <InfosBox>
-        <InfosContainer>
-          <Paragraph>{infosStore.data.bio.content}</Paragraph>
-          <br />
-          <Paragraph>
-            <A href={infosStore.data.facebook}>Facebook</A> -&nbsp;
-            <A href={infosStore.data.twitter}>Twitter</A> -&nbsp;
-            <A href={infosStore.data.soundcloud}>Soundcloud</A> -&nbsp;
-            <A href={discogs}>Discogs</A> -&nbsp;
-            <A href={infosStore.data.RA}>Resident Advisor</A>
-          </Paragraph>
-          <MiniPlayer />
-        </InfosContainer>
+        <MediaQuery query={`(min-width: ${sizes.mobile / 16}em)`}>
+          <InfosContainer>
+            <Paragraph>{infosStore.data.bio.content}</Paragraph>
+            <br />
+            <Paragraph>
+              <A href={infosStore.data.facebook}>Facebook</A> -&nbsp;
+              <A href={infosStore.data.twitter}>Twitter</A> -&nbsp;
+              <A href={infosStore.data.soundcloud}>Soundcloud</A> -&nbsp;
+              <A href={discogs}>Discogs</A> -&nbsp;
+              <A href={infosStore.data.RA}>Resident Advisor</A>
+            </Paragraph>
+            <MiniPlayer />
+          </InfosContainer>
+        </MediaQuery>
         <Audio />
       </InfosBox>
     );

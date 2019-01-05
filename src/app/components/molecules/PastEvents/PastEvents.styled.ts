@@ -7,6 +7,11 @@ export interface Failable {
 
 export const Container = styled.div`
   margin: ${({ asFail }) => (asFail ? '1rem' : '0')};
+  ${({ theme }) => theme.media.mobile`
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  `}
 `;
 
 export const NoPast = styled.p`

@@ -9,6 +9,10 @@ export const Container = styled.div<PlayBtnProps>`
   max-height: 10rem;
   background-size: cover;
   background-image: url(${({ backgroundImage }) => backgroundImage});
+  ${({ theme }) => theme.media.mobile`
+  min-width: 6rem;
+  max-height: 6rem;
+  `}
 `;
 
 export const Cover = styled.div`

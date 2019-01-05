@@ -6,12 +6,19 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 2rem;
+  ${({ theme }) => theme.media.mobile`
+    margin: 1rem;
+  `}
 `;
 
 export const Content = styled.div`
   flex: 0.9;
   display: flex;
   flex-direction: row;
+  ${({ theme }) => theme.media.mobile`
+    flex-direction: column-reverse;
+    flex: auto;
+  `}
 `;
 
 export const ContentHandler = styled.div`
@@ -22,6 +29,12 @@ export const ContentHandler = styled.div`
 
 export const MapboxHandler = styled.div`
   flex: 0.4;
+  ${({ theme }) => theme.media.mobile`
+    flex: 0;
+    .mapboxgl-map {
+      margin: 1rem 0;
+    }
+  `}
   margin: 1rem 0;
   .mapboxgl-map {
     box-shadow: 2px 2px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.2);
@@ -44,6 +57,9 @@ export const Title = styled.h3`
 export const Info = styled.p`
   ${TextStyle}
   font-size: 10pt;
+  ${({ theme }) => theme.media.mobile`
+    font-size: 14pt;
+  `}
   line-height: 12pt;
 `;
 
@@ -55,6 +71,9 @@ export const LineupLine = styled.li`
   list-style: none;
   ${TextStyle};
   font-size: 10pt;
+  ${({ theme }) => theme.media.mobile`
+    font-size: 14pt;
+  `}
 `;
 
 export const Section = styled.section`
@@ -71,4 +90,7 @@ export const H3 = styled.h3`
   padding-bottom: 0.1rem;
   text-decoration: underline;
   margin-bottom: 0.4rem;
+  ${({ theme }) => theme.media.mobile`
+    font-size: 14pt;
+  `}
 `;

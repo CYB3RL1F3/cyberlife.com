@@ -6,6 +6,9 @@ import { AlphaTransitionDelay } from '../../atoms/SharedStyled/SharedStyled';
 const style = css`
   ${TextStyle};
   font-size: 10pt;
+  ${({ theme }) => theme.media.mobile`
+    font-size: 14pt;
+  `}
 `;
 
 export const Paragraph = styled.p`

@@ -30,9 +30,9 @@ export interface Theme {
 }
 
 export const sizes = {
-  desktop: 992,
-  tablet: 768,
-  mobile: 576
+  desktop: 1024,
+  tablet: 960,
+  mobile: 768
 };
 
 // Iterate through the sizes and create a media template

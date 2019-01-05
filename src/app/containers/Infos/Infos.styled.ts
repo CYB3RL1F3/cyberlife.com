@@ -9,6 +9,10 @@ export const InfosBox = styled.div`
   flex: 1;
   justify-content: flex-start;
   margin: 1rem;
+  ${({ theme }) => theme.media.mobile`
+    max-height: 1rem;
+    flex: 0;
+  `}
 `;
 
 const bioAnim = keyframes`

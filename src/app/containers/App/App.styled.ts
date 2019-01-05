@@ -35,6 +35,7 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     height: unset;
+    min-height: 86vh;
   `}
   width: 100vw;
   height: 85vh;
@@ -56,7 +57,7 @@ export const Content = styled.div`
 
   ${({ theme }) => theme.media.tablet`
     animation: ${welcomeTabs} 0.3s ease-in-out forwards;
-    min-height: 66vh;
+    min-height: 68vh;
     height: unset;
     overflow-y: visible;
   `}

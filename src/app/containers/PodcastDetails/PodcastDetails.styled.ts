@@ -6,6 +6,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 2rem;
+  ${({ theme }) => theme.media.mobile`
+    margin: 1rem;
+  `}
 `;
 
 export const TitleHandler = styled.div`
@@ -27,6 +30,8 @@ export const Hashtag = styled.h4`
   ${TextStyle};
   flex: 0.3;
   text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 `;
 
 export const Section = styled.section`

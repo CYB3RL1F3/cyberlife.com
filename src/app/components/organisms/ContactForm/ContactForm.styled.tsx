@@ -11,6 +11,9 @@ export const Form = styled.form`
   flex: 1;
   display: flex;
   margin: 2rem;
+  ${({ theme }) => theme.media.mobile`
+    margin: 1rem;
+  `}
   flex-direction: column;
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -23,7 +26,7 @@ export const Form = styled.form`
 `;
 
 const inputStyle = (index: number) => css`
-  ${({ index }) => AlphaTransitionDelay(index)}
+  ${AlphaTransitionDelay(index)}
   transition: background 0.25s linear;
   border: none;
   outline: none;
@@ -36,6 +39,13 @@ const inputStyle = (index: number) => css`
   font-size: 12pt;
   color: white;
   box-sizing: border-box;
+  ${({ theme }) => theme.media.mobile`
+    margin: 0.5rem 0;
+    height: 4.5rem;
+    line-height: 4rem;
+    padding-left: 2rem;
+    font-size: 18pt;
+  `}
 `;
 
 export interface InputProps {
@@ -51,6 +61,9 @@ export const Input = styled<Positionnable>(Field)`
 export const Textarea = styled<Positionnable>(Field)`
   ${({ index }) => inputStyle(index)};
   height: 10rem;
+  ${({ theme }) => theme.media.mobile`
+    height: 14rem;
+  `}
   resize: vertical;
   background: ${({ hasError }) =>
     hasError ? 'rgba(244, 12, 26, 0.3)' : 'rgba(6, 11, 11, 0.57)'};
@@ -62,6 +75,10 @@ export const SubmitWrapper = styled.p`
   flex: 0.4;
   height: 4rem;
   margin: 0;
+  ${({ theme }) => theme.media.mobile`
+    flex: 1;
+    height: 6rem;
+  `}
 `;
 
 export const Bottom = styled.div<Positionnable>`
@@ -69,6 +86,9 @@ export const Bottom = styled.div<Positionnable>`
   flex-direction: row;
   justify-content: space-between;
   ${({ index }) => AlphaTransitionDelay(index)}
+  ${({ theme }) => theme.media.mobile`
+    flex-direction: column-reverse;
+  `}
 `;
 
 export const Submit = styled.button`
@@ -81,6 +101,10 @@ export const Submit = styled.button`
   text-transform: uppercase;
   font-weight: normal;
   cursor: pointer;
+  ${({ theme }) => theme.media.mobile`
+    line-height: 4rem;
+    padding-left: 0;
+  `}
 `;
 
 export const Loading = styled(Spinner)`
@@ -96,4 +120,10 @@ export const ErrorField = styled.p`
   flex: 0.6;
   padding-top: 0.25rem;
   color: rgba(188, 11, 26, 0.8);
+  ${({ theme }) => theme.media.mobile`
+    flex: 1;
+    font-size: 18pt;
+    min-height: 2rem;
+    line-height: 20pt;
+  `}
 `;

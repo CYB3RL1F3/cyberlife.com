@@ -65,5 +65,8 @@ export const validate = (values) => {
   if (name) errors.name = name;
   if (subject) errors.subject = subject;
   if (message) errors.message = message;
+  if (Object.keys(errors).length && navigator.vibrate) {
+    navigator.vibrate(300);
+  }
   return errors;
 };
