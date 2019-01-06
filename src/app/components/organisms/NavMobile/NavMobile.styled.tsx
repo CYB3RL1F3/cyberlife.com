@@ -12,7 +12,6 @@ export const Menu = styled.div<NavMobileState>`
   z-index: 1000;
   width: ${({ opened }) => (opened ? '100vw' : '0')};
   height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
   transition: all 0.25s;
   display: flex;
   flex-direction: row;
@@ -20,13 +19,14 @@ export const Menu = styled.div<NavMobileState>`
   overflow: hidden;
 `;
 
-export const Container = styled.div<NavMobileState>`
+export const Container = styled.div`
   height: 100vh;
   width: 100vw;
   transition: width 0.25s;
   margin: 0;
   display: flex;
   flex-direction: column;
+  background: rgba(0, 0, 0, 0.85);
   box-sizing: border-box;
   padding: 1rem 2rem;
 `;

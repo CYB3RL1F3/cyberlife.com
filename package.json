@@ -56,6 +56,7 @@
     "mobx-react-router": "^4.0.1",
     "react": "^16.2.0",
     "react-audio-player": "^0.11.0",
+    "react-backdrop-filter": "https://github.com/CYB3RL1F3/react-backdrop-filter.git",
     "react-dom": "^16.2.0",
     "react-graceful-image": "^1.2.9",
     "react-html-parser": "^2.0.2",
