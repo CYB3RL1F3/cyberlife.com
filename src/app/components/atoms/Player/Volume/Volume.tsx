@@ -3,7 +3,7 @@ import { Slider } from 'app/components/atoms/Slider';
 import { inject, observer } from 'mobx-react';
 import { STORE_PLAYER } from 'app/constants/stores';
 import { PlayerStore } from 'app/stores';
-import { Container, InputHandler, IconHandler } from './Volume.styled';
+import { Container, InputHandler, IconHandler, Icon } from './Volume.styled';
 
 export interface VolumeProps {}
 
@@ -30,34 +30,38 @@ export class Volume extends React.Component<VolumeProps> {
     }
   };
 
-  getEmoji = (volume) => {
+  getEmojiValue = (volume) => {
     switch (volume) {
       case 0:
-        return '🔇';
+        return 0;
       case 0.1:
       case 0.2:
+        return 1;
       case 0.3:
       case 0.4:
-        return '🔈';
       case 0.5:
       case 0.6:
+        return 2;
       case 0.7:
       case 0.8:
-        return '🔉';
       case 0.9:
       case 1:
-        return '🔊';
+        return 3;
       default:
         return '';
     }
   };
+
+  getEmoji = (volume) =>
+    require(`assets/images/volume/${this.getEmojiValue(volume)}.svg`);
+
   render() {
     const store: PlayerStore = this.props[STORE_PLAYER] as PlayerStore;
     const { volume } = store;
     return (
       <Container>
         <IconHandler onClick={this.toggleMute}>
-          {this.getEmoji(volume)}
+          <Icon src={this.getEmoji(volume)} alt={`volume ${volume * 100}%`} />
         </IconHandler>
         <InputHandler>
           <Slider

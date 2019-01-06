@@ -21,3 +21,16 @@ export const IconHandler = styled.a`
   padding-top: 0.8vh;
   cursor: pointer;
 `;
+
+export const Icon = styled.img`
+  width: 15px;
+  height: auto;
+  padding-left: 5px;
+  filter: brightness(80%);
+  opacity: 0.5;
+  ${({ theme }) => theme.media.desktop`
+    &:hover {
+      opacity: 1;
+    }
+  `};
+`;

@@ -72,10 +72,11 @@ export const A = styled.a`
 
 export const Description = styled.div`
   display: flex;
-  flex: 0;
+  flex-direction: column;
+  flex: 1;
 `;
 
-export const DescriptionHandler = styled.div`
+export const DescriptionHandler = styled.p`
   margin: 1rem 0;
   ${TextStyle};
   font-size: 12pt;
