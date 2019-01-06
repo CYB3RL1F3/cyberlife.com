@@ -45,7 +45,7 @@ export const A = styled.a`
   height: 4rem;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 0.4rem;
 `;
 
 export const Img = styled.img`

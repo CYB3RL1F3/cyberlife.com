@@ -27,6 +27,9 @@ export const P = styled.p`
   text-align: center;
   font-style: normal;
   letter-spacing: 0.5px;
+  ${({ theme }) => theme.media.mobile`
+    font-size: 10pt;
+  `}
 `;
 
 export const A = styled.a`

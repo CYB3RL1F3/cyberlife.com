@@ -18,6 +18,9 @@ export const Container = styled.div<Opaque>`
   flex-direction: row;
   justify-content: space-between;
   opacity: ${({ opacity }) => opacity};
+  ${({ theme }) => theme.media.mobile`
+    opacity: 1;
+  `}
   transition: opacity 0.5s;
   margin: 1rem 0;
 `;
@@ -39,6 +42,9 @@ export const PlayBtn = styled.div`
   &:hover {
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.1);
+    ${({ theme }) => theme.media.mobile`
+      background-color: ${theme.player.backgroundColorMini};
+    `}
   }
   width: 10vh;
   height: 10vh;

@@ -48,25 +48,25 @@ const inputStyle = (index: number) => css`
   `}
 `;
 
-export interface InputProps {
-  hasError?: boolean;
+export interface InputProps extends Positionnable {
+  haserror: string;
 }
 
-export const Input = styled<Positionnable>(Field)`
+export const Input = styled<InputProps, {}>(Field)`
   ${({ index }) => inputStyle(index)};
-  background: ${({ hasError }) =>
-    hasError ? 'rgba(244, 12, 26, 0.3)' : 'rgba(6, 11, 11, 0.57)'};
+  background: ${({ haserror }) =>
+    haserror === 'true' ? 'rgba(244, 12, 26, 0.3)' : 'rgba(6, 11, 11, 0.57)'};
 `;
 
-export const Textarea = styled<Positionnable>(Field)`
+export const Textarea = styled<InputProps, {}>(Field)`
   ${({ index }) => inputStyle(index)};
   height: 10rem;
   ${({ theme }) => theme.media.mobile`
     height: 14rem;
   `}
   resize: vertical;
-  background: ${({ hasError }) =>
-    hasError ? 'rgba(244, 12, 26, 0.3)' : 'rgba(6, 11, 11, 0.57)'};
+  background: ${({ haserror }) =>
+    haserror === 'true' ? 'rgba(244, 12, 26, 0.3)' : 'rgba(6, 11, 11, 0.57)'};
 `;
 
 export const SubmitWrapper = styled.p`

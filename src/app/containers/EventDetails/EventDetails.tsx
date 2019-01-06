@@ -56,7 +56,7 @@ export class EventDetailsComponent extends React.Component<EventDetailsProps> {
                   <H3>Lineup : </H3>
                   <Lineup>
                     {data.lineup.map((artist: string) => (
-                      <LineupLine>{artist}</LineupLine>
+                      <LineupLine key={artist}>{artist}</LineupLine>
                     ))}
                   </Lineup>
                 </Section>

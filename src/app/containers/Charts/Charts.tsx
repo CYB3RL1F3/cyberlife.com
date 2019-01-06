@@ -29,6 +29,7 @@ export class ChartsComponent extends React.Component<ChartProps, chartState> {
           {data.titles.map(
             (track: Title, index: number): JSX.Element => (
               <ChartItem
+                key={index}
                 index={index}
                 title={track.title}
                 label={track.label}

@@ -47,6 +47,7 @@ export class PodcastsComponent extends React.Component<PlaylistProps, {}> {
                 <PodcastItem
                   onPlay={this.play(index)}
                   index={index}
+                  key={track.id}
                   {...track}
                 />
               );

@@ -52,7 +52,7 @@ export const PodcastItemComponent: React.StatelessComponent<
             {props.description.replace(/(\\n)/g, ' ').substring(0, 250)}
           </Description>
         </Handler>
-        <MediaQuery query={`min-width: ${sizes.mobile / 16}em`}>
+        <MediaQuery query={`(min-width: ${sizes.mobile / 16}em)`}>
           <TrackHandler opacity={props.playing ? 1 : 0.5}>
             <Track
               waveform={props.waveform}

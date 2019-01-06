@@ -27,7 +27,11 @@ const appear = keyframes`
   }
 `;
 
-export const Container = styled.div`
+export interface Reducible {
+  toBeReduced: boolean;
+}
+
+export const Container = styled.div<Reducible>`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -36,6 +40,10 @@ export const Container = styled.div`
     justify-content: flex-start;
     height: unset;
     min-height: 86vh;
+  `}
+  ${({ theme, toBeReduced }) => theme.media.mobile`
+    min-height: ${toBeReduced ? '77vh' : '86vh'};
+    transition: min-height 0.5s;
   `}
   width: 100vw;
   height: 85vh;

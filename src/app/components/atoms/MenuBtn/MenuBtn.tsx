@@ -9,10 +9,12 @@ export class MenuBtn extends React.Component<{}, {}> {
   };
   render() {
     return (
-      <A onClick={this.toggle}>
-        <Img src={require('assets/images/menu.svg')} alt="MENU" />
+      <>
+        <A onClick={this.toggle}>
+          <Img src={require('assets/images/menu.svg')} alt="MENU" />
+        </A>
         <NavMobile ref={this.nav} />
-      </A>
+      </>
     );
   }
 }

@@ -5,13 +5,13 @@ const borderColor = (alpha) => `rgba(222, 222, 222, ${alpha});`;
 
 export const Container = styled.div<PlayBtnProps>`
   display: flex;
-  min-width: 10rem;
-  max-height: 10rem;
+  width: 10rem;
+  height: 10rem;
   background-size: cover;
   background-image: url(${({ backgroundImage }) => backgroundImage});
   ${({ theme }) => theme.media.mobile`
-  min-width: 6rem;
-  max-height: 6rem;
+    width: 6rem;
+    height: 6rem;
   `}
 `;
 

@@ -94,7 +94,7 @@ export class PodcastDetailsComponent extends React.Component<
               <TagList>
                 {taglist.map(
                   (tag: string): JSX.Element => (
-                    <Tag>#{tag}</Tag>
+                    <Tag key={tag}>#{tag}</Tag>
                   )
                 )}
               </TagList>

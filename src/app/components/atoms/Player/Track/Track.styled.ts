@@ -31,6 +31,9 @@ export const Waveform = styled.div<Background & MiniContext>`
 
 export const Container = styled.div<MiniContext>`
   width: 95%;
+  ${({ theme }) => theme.media.mobile`
+    width: 100%;
+  `}
   height: 10vh;
   background-color: ${({ theme, isMini }) =>
     isMini ? theme.player.backgroundColorMini : theme.player.backgroundColor};

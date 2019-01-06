@@ -17,7 +17,7 @@ export const Container = styled.div`
   `}
 `;
 
-export const ThumbHandler = styled.p`
+export const ThumbHandler = styled.div`
   display: flex;
   width: 12rem;
   ${({ theme }) => theme.media.mobile`

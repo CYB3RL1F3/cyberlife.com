@@ -55,7 +55,10 @@ export class NavMobile extends React.Component<NavMobileProps, NavMobileState> {
             {routes.map(
               (route: RouteType): JSX.Element =>
                 route.menu && (
-                  <MenuItem isActive={this.isCurrent(route.path)}>
+                  <MenuItem
+                    key={`route__${route.key}`}
+                    isActive={this.isCurrent(route.path)}
+                  >
                     <Link onClick={this.toggle} path={route.path}>
                       {route.label}
                     </Link>

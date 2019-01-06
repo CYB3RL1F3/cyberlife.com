@@ -77,8 +77,6 @@ export const validateMessage = (message) => {
   return undefined;
 };
 
-let vibrated = false;
-
 export const validate = (values) => {
   const errors: Schema = {};
   const email = validateEmail(values.email);
@@ -89,9 +87,5 @@ export const validate = (values) => {
   if (name) errors.name = name;
   if (subject) errors.subject = subject;
   if (message) errors.message = message;
-  if (Object.keys(errors).length && navigator.vibrate && !vibrated) {
-    navigator.vibrate(300);
-    vibrated = true;
-  }
   return errors;
 };
