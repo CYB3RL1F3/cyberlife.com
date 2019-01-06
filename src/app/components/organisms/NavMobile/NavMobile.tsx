@@ -69,7 +69,7 @@ export class NavMobile extends React.Component<NavMobileProps, NavMobileState> {
     return (
       <Menu opened={opened}>
         <BackdropFilter
-          filter={'blur(2px)'}
+          filter={'blur(8px)'}
           shouldDraw={!this.state.blurred}
           onDraw={this.onBlurred}
         >

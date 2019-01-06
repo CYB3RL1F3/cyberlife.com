@@ -26,7 +26,7 @@ export const Container = styled.div`
   margin: 0;
   display: flex;
   flex-direction: column;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.8);
   box-sizing: border-box;
   padding: 1rem 2rem;
 `;

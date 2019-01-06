@@ -1,9 +1,11 @@
 import * as styledComponents from 'styled-components';
 import { ThemedStyledComponentsModule } from 'styled-components';
+import { isAndroid } from './utils/browsers';
 
 export interface Theme {
   color: string;
   picturePlaceholder: string;
+  isAndroid: boolean;
   fonts: {
     primary: string;
   };
@@ -55,6 +57,7 @@ export const media = Object.keys(sizes).reduce(
 
 export const theme: Theme = {
   color: '#6ca1a6',
+  isAndroid: isAndroid(),
   picturePlaceholder: 'rgba(42, 43, 65, 0.5)',
   fonts: {
     primary: 'myriad pro'

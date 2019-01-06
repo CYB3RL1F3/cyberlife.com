@@ -11,7 +11,7 @@ import {
 import { observer, inject } from 'mobx-react';
 import { STORE_APP, STORE_INFOS } from 'app/constants/stores';
 import { AppStore, InfosStore } from 'app/stores';
-import { isIe } from '../../utils/ie';
+import { isIe, isAndroid } from 'app/utils/browsers';
 import { IE } from './atoms/IE';
 
 const waveform = require('assets/images/waveform.png');
@@ -40,6 +40,12 @@ export class AppLoader extends React.Component<AppLoaderProps> {
       const infosStore: InfosStore = this.props[STORE_INFOS] as InfosStore;
       infosStore.loadInfos();
     }, 400);
+    if (isAndroid()) {
+      const className = 'android';
+      const root = document.getElementsByTagName('html')[0]; // '0' to assign the first (and only `HTML` tag)
+      root.classList.add(className);
+      document.body.classList.add(className);
+    }
   }
 
   render() {

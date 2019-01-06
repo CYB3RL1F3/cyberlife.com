@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'app/theme';
+import { isAndroid } from '../../utils/browsers';
 
 const welcome = keyframes`
   from {
@@ -40,10 +41,22 @@ export const Container = styled.div<Reducible>`
     justify-content: flex-start;
     height: unset;
     min-height: 86vh;
+    @supports (-webkit-appearance:none) {
+      ${theme.isAndroid ? 'min-height: calc(86vh - 56px);' : ''}
+    }
   `}
   ${({ theme, toBeReduced }) => theme.media.mobile`
     min-height: ${toBeReduced ? '77vh' : '86vh'};
     transition: min-height 0.5s;
+    @supports (-webkit-appearance:none) {
+      ${
+        theme.isAndroid
+          ? `min-height: ${
+              toBeReduced ? 'calc(77vh - 56px)' : 'calc(86vh - 56px)'
+            };`
+          : ''
+      }
+    }
   `}
   width: 100vw;
   height: 85vh;

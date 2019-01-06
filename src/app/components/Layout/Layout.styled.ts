@@ -9,6 +9,11 @@ const BackgroundLayer = css`
   padding: 0;
   width: 100vw;
   height: 100vh;
+  ${({ theme }) => theme.media.mobile`
+    @supports (-webkit-appearance:none) {
+      ${({ theme }) => (theme.isAndroid ? 'height: calc(100vh - 56px);' : '')}
+    }
+  `};
 `;
 
 export const Background = styled.div`
@@ -68,6 +73,9 @@ export const Waveform = styled.div`
   position: fixed;
   opacity: 0.75;
   z-index: 0;
+  ${({ theme }) => theme.media.mobile`
+    opacity: 0.2;
+  `}
 `;
 
 export const ChildrenHandler = styled.div`

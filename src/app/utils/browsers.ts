@@ -8,3 +8,8 @@ export const isIe = (): boolean => {
   else if (!!navigator.userAgent.match(/Trident\/7\./)) return true;
   else return false;
 };
+
+export const isAndroid = (): boolean => {
+  const ua = navigator.userAgent.toLowerCase();
+  return ua.indexOf('android') > -1;
+};

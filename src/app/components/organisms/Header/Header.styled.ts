@@ -20,6 +20,9 @@ export const Container = styled.header`
   flex-direction: row;
   justify-content: space-between;
   height: 3rem;
+  ${({ theme }) => theme.media.mobile`
+    height: 6vh;
+  `};
 `;
 
 export const Cyberlife = styled.h1`
