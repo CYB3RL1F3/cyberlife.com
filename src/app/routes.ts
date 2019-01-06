@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { Events, Charts, Releases, Contact } from 'app/containers';
 import { Podcasts } from 'app/containers/Podcasts';
+import { Bio } from 'app/containers/Bio';
 import { EventDetails } from 'app/containers/EventDetails/EventDetails';
 import { PodcastDetails } from './containers/PodcastDetails/PodcastDetails';
-console.log(Podcasts);
-
 export interface RouteType {
   component: React.ComponentType<any>;
   path: string;
@@ -12,7 +11,6 @@ export interface RouteType {
   key: string;
   menu: boolean;
 }
-
 export const routes: RouteType[] = [
   {
     component: Podcasts,
@@ -69,7 +67,25 @@ export const routes: RouteType[] = [
     label: '',
     key: 'podcast',
     menu: false
+  },
+  {
+    component: Bio,
+    path: '/biography',
+    label: 'Biography',
+    key: 'bio',
+    menu: false
   }
 ];
+
+export const replaceId = (path: string, id: string | number) =>
+  path.replace(':id', id ? id.toString() : '');
+
+export const getRouteByKey = (key: string) =>
+  routes.find((route) => route.key === key);
+
+export const getPath = (key: string, id?: string | number) => {
+  const route = getRouteByKey(key);
+  return id ? replaceId(route.path, id) : route.path;
+};
 
 export default routes;

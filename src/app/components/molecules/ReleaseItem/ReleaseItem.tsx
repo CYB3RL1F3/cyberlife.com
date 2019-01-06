@@ -39,11 +39,13 @@ export const ReleaseItemComponent: React.StatelessComponent<ReleaseProps> = (
     <InfosHandler>
       <Title>{props.title}</Title>
       <P>{props.info}</P>
-      <Tracklist>
-        {props.tracks.map((track: Track) => (
-          <P>{track.title}</P>
-        ))}
-      </Tracklist>
+      {props.tracks && props.tracks.length > 0 && (
+        <Tracklist>
+          {props.tracks.map((track: Track) => (
+            <P key={track.title}>{track.title}</P>
+          ))}
+        </Tracklist>
+      )}
     </InfosHandler>
   </Container>
 );

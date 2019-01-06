@@ -17,8 +17,11 @@ import {
   H3,
   MapboxHandler
 } from './EventDetails.styled';
-import { sizes } from 'app/theme';
-import MediaQuery from 'react-responsive';
+import {
+  DesktopMediaQuery,
+  DesktopAndTabletsMediaQuery,
+  MobileMediaQuery
+} from 'app/components/atoms/Responsive';
 
 interface EventDetailsProps {
   data: EventModel;
@@ -64,30 +67,27 @@ export class EventDetailsComponent extends React.Component<EventDetailsProps> {
             </ContentHandler>
             {data.location.position && (
               <MapboxHandler>
-                <MediaQuery query={`(min-width: ${sizes.tablet / 16}em)`}>
+                <DesktopMediaQuery>
                   <Map
                     width="20vw"
                     height="50vh"
                     coordinates={data.coordinates}
                   />
-                </MediaQuery>
-                <MediaQuery
-                  query={`(min-width: ${sizes.mobile /
-                    16}em) and (max-width: ${sizes.tablet / 16}em)`}
-                >
+                </DesktopMediaQuery>
+                <DesktopAndTabletsMediaQuery>
                   <Map
                     width="35vw"
                     height="50vh"
                     coordinates={data.coordinates}
                   />
-                </MediaQuery>
-                <MediaQuery query={`(max-width: ${sizes.mobile / 16}em)`}>
+                </DesktopAndTabletsMediaQuery>
+                <MobileMediaQuery>
                   <Map
                     width="100%"
                     height="20vh"
                     coordinates={data.coordinates}
                   />
-                </MediaQuery>
+                </MobileMediaQuery>
               </MapboxHandler>
             )}
           </Content>

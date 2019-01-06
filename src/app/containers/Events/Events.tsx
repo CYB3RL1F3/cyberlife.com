@@ -7,7 +7,6 @@ import { EventItem } from 'app/components/molecules/EventItem';
 import { Container } from './Events.styled';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
 import { FallbackEvents } from 'app/components/molecules/FallbackEvents';
-console.log(FallbackEvents);
 
 export interface EventsProps extends RouteComponentProps<any> {
   [STORE_FORTHCOMING_EVENTS]: EventsStore;

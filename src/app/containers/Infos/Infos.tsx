@@ -5,8 +5,7 @@ import { InfosBox, InfosContainer, Paragraph, A } from './Infos.styled';
 import InfosStore from 'app/stores/InfosStore';
 import { Audio } from 'app/components/atoms/Audio';
 import { MiniPlayer } from 'app/components/atoms/Player';
-import MediaQuery from 'react-responsive';
-import { sizes } from 'app/theme';
+import { DesktopAndTabletsMediaQuery } from 'app/components/atoms/Responsive';
 
 @inject(STORE_INFOS)
 @observer
@@ -16,7 +15,7 @@ export class Infos extends React.Component {
     const discogs = `https://discogs.com/artist/${infosStore.data.discogs}`;
     return (
       <InfosBox>
-        <MediaQuery query={`(min-width: ${sizes.mobile / 16}em)`}>
+        <DesktopAndTabletsMediaQuery>
           <InfosContainer>
             <Paragraph>{infosStore.data.bio.content}</Paragraph>
             <br />
@@ -29,7 +28,7 @@ export class Infos extends React.Component {
             </Paragraph>
             <MiniPlayer />
           </InfosContainer>
-        </MediaQuery>
+        </DesktopAndTabletsMediaQuery>
         <Audio />
       </InfosBox>
     );

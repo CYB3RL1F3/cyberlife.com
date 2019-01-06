@@ -3,10 +3,9 @@ import { Layout, Footer, MiniPlayerMobileWrapper } from 'app/components';
 import { Header } from 'app/components/organisms';
 import { Content, Container, Handler } from './App.styled';
 import { Infos } from 'app/containers';
-import { sizes } from 'app/theme';
-import MediaQuery from 'react-responsive';
 import { STORE_PLAYER } from 'app/constants/stores';
 import { inject, observer } from 'mobx-react';
+import { MobileMediaQuery } from 'app/components/atoms/Responsive';
 
 require('assets/main.css');
 
@@ -25,9 +24,9 @@ export class App extends React.Component {
           </Content>
         </Container>
         <Footer />
-        <MediaQuery query={`(max-width: ${sizes.mobile / 16}em)`}>
+        <MobileMediaQuery>
           <MiniPlayerMobileWrapper />
-        </MediaQuery>
+        </MobileMediaQuery>
       </Layout>
     );
   }

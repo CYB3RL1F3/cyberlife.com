@@ -1,5 +1,5 @@
 import * as React from 'react';
-import routes, { RouteType } from 'app/routes';
+import routes, { RouteType, getRouteByKey } from 'app/routes';
 
 import { inject, observer } from 'mobx-react';
 import { STORE_ROUTER } from '../../../constants/stores';
@@ -42,6 +42,7 @@ export class NavMobile extends React.Component<NavMobileProps, NavMobileState> {
 
   render() {
     const { opened } = this.state;
+    const biography = getRouteByKey('bio');
     return (
       <Menu opened={opened}>
         <Container>
@@ -52,6 +53,14 @@ export class NavMobile extends React.Component<NavMobileProps, NavMobileState> {
             </A>
           </TitleHandler>
           <MenuHandler>
+            <MenuItem
+              key={`route__${biography.key}`}
+              isActive={this.isCurrent(biography.path)}
+            >
+              <Link onClick={this.toggle} path={biography.path}>
+                {biography.label}
+              </Link>
+            </MenuItem>
             {routes.map(
               (route: RouteType): JSX.Element =>
                 route.menu && (

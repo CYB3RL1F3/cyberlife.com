@@ -2,8 +2,10 @@ import * as React from 'react';
 import { Container, Cyberlife, Link } from './Header.styled';
 import { Nav } from 'app/components/molecules';
 import { MenuBtn } from 'app/components/atoms/MenuBtn';
-import MediaQuery from 'react-responsive';
-import { sizes } from 'app/theme';
+import {
+  DesktopAndTabletsMediaQuery,
+  MobileMediaQuery
+} from 'app/components/atoms/Responsive';
 
 type HeaderProps = {};
 
@@ -14,11 +16,11 @@ export const Header: React.StatelessComponent<
     <Cyberlife>
       <Link path="/">CYBERLIFE</Link>
     </Cyberlife>
-    <MediaQuery query={`(min-width: ${sizes.mobile / 16}em)`}>
+    <DesktopAndTabletsMediaQuery>
       <Nav />
-    </MediaQuery>
-    <MediaQuery query={`(max-width: ${sizes.mobile / 16}em)`}>
+    </DesktopAndTabletsMediaQuery>
+    <MobileMediaQuery>
       <MenuBtn />
-    </MediaQuery>
+    </MobileMediaQuery>
   </Container>
 );

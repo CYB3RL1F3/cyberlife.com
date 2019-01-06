@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Theme, withTheme, sizes } from 'app/theme';
+import { Theme, withTheme } from 'app/theme';
 import { Tracks } from '../../../../../types/playlists';
 import {
   Container,
@@ -12,7 +12,7 @@ import {
 } from './PodcastItem.styled';
 import { PlayBtn, Track } from 'app/components/atoms/Player';
 import { Handler } from 'app/containers/App/App.styled';
-import MediaQuery from 'react-responsive';
+import { DesktopAndTabletsMediaQuery } from 'app/components/atoms/Responsive';
 
 export interface PodcastItemProps {
   id: number;
@@ -48,11 +48,9 @@ export const PodcastItemComponent: React.StatelessComponent<
           <Link path={`/podcasts/${props.id}`}>{props.title}</Link>
         </Title>
         <Handler>
-          <Description>
-            {props.description.replace(/(\\n)/g, ' ').substring(0, 250)}
-          </Description>
+          <Description>{props.description}</Description>
         </Handler>
-        <MediaQuery query={`(min-width: ${sizes.mobile / 16}em)`}>
+        <DesktopAndTabletsMediaQuery>
           <TrackHandler opacity={props.playing ? 1 : 0.5}>
             <Track
               waveform={props.waveform}
@@ -62,7 +60,7 @@ export const PodcastItemComponent: React.StatelessComponent<
               isMini={false}
             />
           </TrackHandler>
-        </MediaQuery>
+        </DesktopAndTabletsMediaQuery>
       </InfosHandler>
     </Container>
   );
