@@ -40,11 +40,18 @@ export const sizes = {
 // Iterate through the sizes and create a media template
 export const media = Object.keys(sizes).reduce(
   (acc, label) => {
-    acc[label] = (...args) => css`
-      @media screen and (max-width: ${sizes[label] / 16 - 1}em) {
-        ${css(...args)}
-      }
-    `;
+    acc[label] = (...args) =>
+      label === 'desktop'
+        ? css`
+            @media screen and (min-width: ${sizes[label] / 16 - 1}em) {
+              ${css(...args)}
+            }
+          `
+        : css`
+            @media screen and (max-width: ${sizes[label] / 16 - 1}em) {
+              ${css(...args)}
+            }
+          `;
 
     return acc;
   },

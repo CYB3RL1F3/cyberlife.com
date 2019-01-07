@@ -19,9 +19,12 @@ export const Container = styled.div`
 
 export const ThumbHandler = styled.div`
   display: flex;
-  width: 12rem;
+  width: 10rem;
+  flex-direction: column;
+  margin-right: 2rem;
   ${({ theme }) => theme.media.mobile`
-    width: 7rem;
+    width: 6rem;
+    margin-right: 1rem;
   `}
 `;
 
@@ -35,12 +38,13 @@ const style = css`
   ${TextStyle};
   font-size: 10pt;
   ${({ theme }) => theme.media.mobile`
-    font-size: 12pt;
+    font-size: 11pt;
   `}
 `;
 
 export const Handler = styled.div`
-  max-height: 3rem;
+  flex: 1;
+  display: flex;
 `;
 
 export const Description = styled.p`

@@ -45,6 +45,9 @@ export const Text = styled.p`
   ${({ theme }) => theme.media.tablet`
     line-height: 2rem;
   `}
+  ${({ theme }) => theme.media.desktop`
+    margin-top: 0.4rem;
+  `}
 `;
 
 export const A = styled.a`

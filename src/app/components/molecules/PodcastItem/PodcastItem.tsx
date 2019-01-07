@@ -7,11 +7,11 @@ import {
   InfosHandler,
   Title,
   Description,
+  Handler,
   TrackHandler,
   Link
 } from './PodcastItem.styled';
 import { PlayBtn, Track } from 'app/components/atoms/Player';
-import { Handler } from 'app/containers/App/App.styled';
 import { DesktopAndTabletsMediaQuery } from 'app/components/atoms/Responsive';
 
 export interface PodcastItemProps {

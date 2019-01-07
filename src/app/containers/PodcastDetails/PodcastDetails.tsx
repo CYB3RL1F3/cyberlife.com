@@ -17,14 +17,15 @@ import {
   Hashtag,
   Tag
 } from './PodcastDetails.styled';
-import {
-  ThumbHandler,
-  A
-} from 'app/components/molecules/PodcastItem/PodcastItem.styled';
+import { ThumbHandler } from 'app/components/molecules/PodcastItem/PodcastItem.styled';
 import { PlayBtn, Track } from 'app/components/atoms/Player';
 import { inject, observer } from 'mobx-react';
 import { PlayerStore } from 'app/stores';
-import { DescriptionHandler, TagList } from './PodcastDetails.styled';
+import {
+  DescriptionHandler,
+  TagList,
+  DownloadBtn
+} from './PodcastDetails.styled';
 import { parseHtml } from 'app/utils/html';
 
 interface PodcastDetailsProps {
@@ -88,6 +89,7 @@ export class PodcastDetailsComponent extends React.Component<
                 playing={playing}
                 onClick={this.play}
               />
+              {download && <DownloadBtn href={download}>Download</DownloadBtn>}
             </ThumbHandler>
             <TextHandler>
               <P>Released on {format(new Date(date), 'DD/MM/YYYY')}</P>
@@ -98,7 +100,6 @@ export class PodcastDetailsComponent extends React.Component<
                   )
                 )}
               </TagList>
-              {download && <A href={download}>Download</A>}
             </TextHandler>
           </DataContainer>
           <TrackHandler opacity={playing ? 1 : 0.5}>

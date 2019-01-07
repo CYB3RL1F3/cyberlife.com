@@ -5,10 +5,6 @@ export const SliderInput = styled.input`
   width: 100%;
   background: transparent;
 
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-  }
-
   /* Special styling for WebKit/Blink */
   &::-webkit-slider-thumb {
     -webkit-appearance: none;

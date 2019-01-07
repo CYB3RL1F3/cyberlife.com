@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'app/theme';
-import { isAndroid } from '../../utils/browsers';
 
 const welcome = keyframes`
   from {

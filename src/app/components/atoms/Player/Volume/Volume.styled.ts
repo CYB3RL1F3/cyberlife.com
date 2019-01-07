@@ -7,6 +7,9 @@ export const Container = styled.p`
   display: inline-flex;
   justify-content: space-between;
   ${AlphaTransitionDelay(60)};
+  ${({ theme }) => theme.media.desktop`
+    padding-top: 0.3rem;
+  `}
 `;
 
 export const InputHandler = styled.span`
