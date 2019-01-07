@@ -13,3 +13,8 @@ export const isAndroid = (): boolean => {
   const ua = navigator.userAgent.toLowerCase();
   return ua.indexOf('android') > -1;
 };
+
+export const isFirefox = (): boolean => {
+  const ua = navigator.userAgent.toLowerCase();
+  return ua.indexOf('firefox') > -1;
+};

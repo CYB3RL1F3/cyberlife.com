@@ -53,12 +53,16 @@ export const SliderInput = styled.input`
 
   &::-moz-range-track {
     width: 100%;
-    height: 2.3rem;
+    height: 0.4rem;
     cursor: pointer;
     box-shadow: 1px 1px 1px ${({ theme }) => theme.slider.thumbBorder},
       0px 0px 1px ${({ theme }) => theme.slider.thumbShadow};
     background: ${({ theme }) => theme.slider.color};
     border-radius: 1px;
     border: 0.2px solid #010101;
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
   }
 `;

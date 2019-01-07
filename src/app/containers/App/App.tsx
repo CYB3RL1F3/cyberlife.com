@@ -6,6 +6,7 @@ import { Infos } from 'app/containers';
 import { STORE_PLAYER } from 'app/constants/stores';
 import { inject, observer } from 'mobx-react';
 import { MobileMediaQuery } from 'app/components/atoms/Responsive';
+import PlayerStore from 'app/stores/PlayerStore';
 
 require('assets/main.css');
 
@@ -13,7 +14,7 @@ require('assets/main.css');
 @observer
 export class App extends React.Component {
   render() {
-    const { currentTrack } = this.props[STORE_PLAYER];
+    const { currentTrack } = this.props[STORE_PLAYER] as PlayerStore;
     return (
       <Layout>
         <Header />

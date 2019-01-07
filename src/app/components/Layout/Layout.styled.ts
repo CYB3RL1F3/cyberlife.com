@@ -11,7 +11,10 @@ const BackgroundLayer = css`
   height: 100vh;
   ${({ theme }) => theme.media.mobile`
     @supports (-webkit-appearance:none) {
-      ${({ theme }) => (theme.isAndroid ? 'height: calc(100vh - 56px);' : '')}
+      ${({ theme }) =>
+        theme.isAndroid && !theme.isFirefox
+          ? 'height: calc(100vh - 56px);'
+          : ''}
     }
   `};
 `;
@@ -70,7 +73,7 @@ export const Waveform = styled.div`
   background-repeat: no-repeat;
   background-position: 0% 90%;
   background-size: 100% auto;
-  position: fixed;
+  position: absolute;
   opacity: 0.75;
   z-index: 0;
   ${({ theme }) => theme.media.mobile`
@@ -80,7 +83,9 @@ export const Waveform = styled.div`
 
 export const ChildrenHandler = styled.div`
   ${BackgroundLayer};
-  position: fixed;
+  position: absolute;
   z-index: 1;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  will-change: scroll-position;
 `;

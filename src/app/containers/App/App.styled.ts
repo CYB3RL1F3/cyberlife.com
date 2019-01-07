@@ -41,7 +41,11 @@ export const Container = styled.div<Reducible>`
     height: unset;
     min-height: 86vh;
     @supports (-webkit-appearance:none) {
-      ${theme.isAndroid ? 'min-height: calc(86vh - 56px);' : ''}
+      ${
+        theme.isAndroid && !theme.isFirefox
+          ? 'min-height: calc(86vh - 56px);'
+          : ''
+      }
     }
   `}
   ${({ theme, toBeReduced }) => theme.media.mobile`
@@ -49,7 +53,7 @@ export const Container = styled.div<Reducible>`
     transition: min-height 0.5s;
     @supports (-webkit-appearance:none) {
       ${
-        theme.isAndroid
+        theme.isAndroid && !theme.isFirefox
           ? `min-height: ${
               toBeReduced ? 'calc(77vh - 56px)' : 'calc(86vh - 56px)'
             };`
@@ -68,6 +72,7 @@ export const Content = styled.div`
   animation-delay: 1s;
   height: 85vh;
   overflow-y: overlay;
+  will-change: scroll-position;
   overflow-x: hidden;
   background: rgba(0, 0, 0, 0.4);
   box-shadow: 2px 2px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.2);
