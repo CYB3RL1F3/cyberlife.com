@@ -15,7 +15,8 @@ export const Container = styled.footer`
   justify-content: space-between;
   ${({ theme }) => theme.media.tablet`
     width: 100vw;
-    height: 4vh;
+    height: ${height};
+    min-height: 2.2rem;
   `}
 `;
 
@@ -25,6 +26,13 @@ export const FooterTxt = css`
   font-style: normal;
   line-height: ${height};
   ${AlphaTransitionDelay(50)}
+  min-height: 2.2rem;
+  ${({ theme }) => theme.media.tablet`
+    line-height: 2.4rem;
+    @media (max-height: 720px) {
+      line-height: 2.2rem;
+    }
+  `}
 `;
 
 export const Text = styled.p`

@@ -19,8 +19,8 @@ import {
 } from './EventDetails.styled';
 import {
   DesktopMediaQuery,
-  DesktopAndTabletsMediaQuery,
-  MobileMediaQuery
+  MobileMediaQuery,
+  TabletMediaQuery
 } from 'app/components/atoms/Responsive';
 
 interface EventDetailsProps {
@@ -74,17 +74,17 @@ export class EventDetailsComponent extends React.Component<EventDetailsProps> {
                     coordinates={data.coordinates}
                   />
                 </DesktopMediaQuery>
-                <DesktopAndTabletsMediaQuery>
+                <TabletMediaQuery>
                   <Map
                     width="35vw"
                     height="50vh"
                     coordinates={data.coordinates}
                   />
-                </DesktopAndTabletsMediaQuery>
+                </TabletMediaQuery>
                 <MobileMediaQuery>
                   <Map
                     width="100%"
-                    height="20vh"
+                    height="25vh"
                     coordinates={data.coordinates}
                   />
                 </MobileMediaQuery>

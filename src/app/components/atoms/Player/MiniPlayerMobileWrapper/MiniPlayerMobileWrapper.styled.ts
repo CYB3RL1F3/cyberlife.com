@@ -16,5 +16,5 @@ export const Container = styled.div<Active>`
 
 export const Sustain = styled.div<Active>`
   width: 100vw;
-  height: ${({ active }) => (active ? '12vh' : '0')};
+  height: ${({ active }) => (active ? '9.5vh' : '0')};
 `;
