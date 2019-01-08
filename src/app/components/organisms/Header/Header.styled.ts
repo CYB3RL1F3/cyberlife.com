@@ -21,7 +21,8 @@ export const Container = styled.header`
   justify-content: space-between;
   height: 3rem;
   ${({ theme }) => theme.media.mobile`
-    height: 6vh;
+    height: 5vh;
+    max-height: 2rem;
   `};
 `;
 

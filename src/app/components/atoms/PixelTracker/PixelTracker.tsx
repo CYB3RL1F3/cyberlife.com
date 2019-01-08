@@ -19,6 +19,8 @@ export class PixelTracker extends React.Component<PixelTrackerProps, {}> {
       opacity: 0.1;
       position: absolute;
     `;
-    return <Img src={src} alt="" onLoad={onLoad} width="1" height="1" />;
+    return (
+      <Img src={src} alt={'loading'} onLoad={onLoad} width="1" height="1" />
+    );
   }
 }

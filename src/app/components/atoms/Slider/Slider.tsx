@@ -6,6 +6,7 @@ export interface SliderProps {
   max: number;
   value: number;
   step: number;
+  id: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void | any;
 }
 

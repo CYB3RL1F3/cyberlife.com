@@ -33,7 +33,8 @@ export const Container = styled.div`
 
 export const TitleHandler = styled.div`
   width: 100vw;
-  height: 4rem;
+  height: 7.5vh;
+  max-height: 3rem;
   border-bottom: solid 1px #ccc;
   display: flex;
   justify-content: space-between;

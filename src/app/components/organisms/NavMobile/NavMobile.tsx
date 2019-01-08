@@ -77,7 +77,10 @@ export class NavMobile extends React.Component<NavMobileProps, NavMobileState> {
             <TitleHandler>
               <Title>Menu</Title>
               <A onClick={this.toggle}>
-                <Img src={require('assets/images/close-button.svg')} />
+                <Img
+                  src={require('assets/images/close-button.svg')}
+                  alt="Close"
+                />
               </A>
             </TitleHandler>
             <MenuHandler>

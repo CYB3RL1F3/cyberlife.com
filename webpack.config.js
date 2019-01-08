@@ -10,6 +10,55 @@ var outPath = path.join(__dirname, './dist');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+var RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
+var SitemapWebpackPlugin = require('sitemap-webpack-plugin').default;
+
+const domain = process.env.domain || 'localhost:3000';
+
+const robotsOptions = {
+  policy: [
+    {
+      userAgent: '*',
+      allow: '/',
+      crawlDelay: 3
+    }
+  ],
+  host: 'https://' + domain,
+  sitemap: 'https://' + domain + '/sitemap.xml'
+};
+
+const paths = [
+  {
+    path: '/',
+    lastMod: true,
+    priority: '1',
+    changeFreq: 'daily'
+  },
+  {
+    path: '/gigs',
+    lastMod: true,
+    priority: '1',
+    changeFreq: 'daily'
+  },
+  {
+    path: '/charts',
+    lastMod: true,
+    priority: '0.5',
+    changeFreq: 'monthly'
+  },
+  {
+    path: '/releases',
+    lastMod: true,
+    priority: '0.8',
+    changeFreq: 'daily'
+  },
+  {
+    path: '/contact',
+    lastMod: true,
+    priority: '0.8',
+    changeFreq: 'monthly'
+  }
+];
 
 module.exports = {
   context: sourcePath,
@@ -110,6 +159,13 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: 'assets/index.html'
+    }),
+    new RobotstxtPlugin(robotsOptions),
+    new SitemapWebpackPlugin('http:' + domain, paths, {
+      fileName: 'sitemap.xml',
+      lastMod: true,
+      changeFreq: 'monthly',
+      priority: '0.5'
     })
   ],
   devServer: {
@@ -120,7 +176,8 @@ module.exports = {
     historyApiFallback: {
       disableDotRule: true
     },
-    stats: 'minimal'
+    stats: 'minimal',
+    https: true
   },
   devtool: 'cheap-module-eval-source-map',
   node: {

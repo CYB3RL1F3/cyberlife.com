@@ -19,7 +19,7 @@ export const InputHandler = styled.span`
   height: 4.5vh;
 `;
 
-export const IconHandler = styled.a`
+export const IconHandler = styled.label`
   width: 2rem;
   line-height: ${({ theme }) => (theme.isFirefox ? '5.5vh' : '4vh')};
   overflow: hidden;
