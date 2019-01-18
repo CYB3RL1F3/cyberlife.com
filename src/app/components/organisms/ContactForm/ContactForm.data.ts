@@ -4,12 +4,14 @@ interface Schema {
   email?: string;
   subject?: string;
   message?: string;
+  captcha?: string;
 }
 export const initialValues: Schema = {
   name: '',
   email: '',
   subject: '',
-  message: ''
+  message: '',
+  captcha: ''
 };
 
 const required = (key, value): string | null =>
@@ -87,5 +89,8 @@ export const validate = (values) => {
   if (name) errors.name = name;
   if (subject) errors.subject = subject;
   if (message) errors.message = message;
+  if (!values.captcha)
+    errors.captcha =
+      "Please prove you're a human being or from smarter species";
   return errors;
 };

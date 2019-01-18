@@ -127,3 +127,8 @@ export const ErrorField = styled.p`
     line-height: 16pt;
   `}
 `;
+
+export const CaptchaHandler = styled.div`
+  width: 100%;
+  height: 0;
+`;

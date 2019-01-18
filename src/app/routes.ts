@@ -1,9 +1,15 @@
 import * as React from 'react';
-import { Events, Charts, Releases, Contact } from 'app/containers';
-import { Podcasts } from 'app/containers/Podcasts';
-import { Bio } from 'app/containers/Bio';
-import { EventDetails } from 'app/containers/EventDetails/EventDetails';
-import { PodcastDetails } from './containers/PodcastDetails/PodcastDetails';
+import {
+  Bio,
+  Podcasts,
+  Events,
+  Charts,
+  Releases,
+  Contact,
+  EventDetails,
+  PodcastDetails
+} from 'app/containers';
+
 export interface RouteType {
   component: React.ComponentType<any>;
   path: string;

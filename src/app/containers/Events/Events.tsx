@@ -6,7 +6,7 @@ import EventModel from 'app/models/EventModel';
 import { EventItem } from 'app/components/molecules/EventItem';
 import { Container } from './Events.styled';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
-import { FallbackEvents } from 'app/components/molecules/FallbackEvents';
+import { FallbackEvents } from 'app/containers/FallbackEvents';
 
 export interface EventsProps extends RouteComponentProps<any> {
   [STORE_FORTHCOMING_EVENTS]: EventsStore;

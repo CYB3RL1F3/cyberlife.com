@@ -5,7 +5,7 @@ var path = require('path');
 var isProduction = process.argv.indexOf('-p') >= 0;
 var sourcePath = path.join(__dirname, './src');
 var outPath = path.join(__dirname, './dist');
-
+const mode = isProduction ? 'production' : 'development';
 // plugins
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -35,7 +35,7 @@ const paths = [
     changeFreq: 'daily'
   },
   {
-    path: '/gigs',
+    path: '/events',
     lastMod: true,
     priority: '1',
     changeFreq: 'daily'
@@ -62,6 +62,7 @@ const paths = [
 
 module.exports = {
   context: sourcePath,
+  mode,
   entry: {
     main: './main.tsx'
   },
@@ -176,8 +177,7 @@ module.exports = {
     historyApiFallback: {
       disableDotRule: true
     },
-    stats: 'minimal',
-    https: true
+    stats: 'minimal'
   },
   devtool: 'cheap-module-eval-source-map',
   node: {

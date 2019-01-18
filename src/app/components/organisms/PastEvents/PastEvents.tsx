@@ -3,7 +3,7 @@ import { STORE_PAST_EVENTS } from 'app/constants/stores';
 import EventModel from 'app/models/EventModel';
 import { EventsStore } from 'app/stores';
 import { Container, NoPast } from './PastEvents.styled';
-import { EventItem } from '../EventItem';
+import { EventItem } from 'app/components/molecules/EventItem';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
 
 export interface PastEventsProps {

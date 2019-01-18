@@ -60,7 +60,7 @@ export class Volume extends React.Component<VolumeProps> {
     const { volume } = store;
     return (
       <Container>
-        <IconHandler for="volume" onClick={this.toggleMute}>
+        <IconHandler htmlFor="volume" onClick={this.toggleMute}>
           <Icon src={this.getEmoji(volume)} alt={`volume ${volume * 100}%`} />
         </IconHandler>
         <InputHandler>

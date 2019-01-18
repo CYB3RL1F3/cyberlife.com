@@ -73,6 +73,7 @@ export class PodcastDetailsComponent extends React.Component<
         duration,
         taglist,
         download,
+        soundcloud,
         description
       } = data;
       const descriptionHtml = description.replace(/(\n)/g, '<br />');
@@ -89,7 +90,11 @@ export class PodcastDetailsComponent extends React.Component<
                 playing={playing}
                 onClick={this.play}
               />
-              {download && <DownloadBtn href={download}>Download</DownloadBtn>}
+              {download && soundcloud && (
+                <DownloadBtn href={soundcloud} target="_blank">
+                  Download
+                </DownloadBtn>
+              )}
             </ThumbHandler>
             <TextHandler>
               <P>Released on {format(new Date(date), 'DD/MM/YYYY')}</P>

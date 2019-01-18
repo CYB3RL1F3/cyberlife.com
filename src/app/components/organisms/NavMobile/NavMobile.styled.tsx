@@ -19,7 +19,7 @@ export const Menu = styled.div<NavMobileState>`
   overflow: hidden;
 `;
 
-export const Container = styled.div`
+export const Container = styled.nav`
   height: 100vh;
   width: 100vw;
   transition: width 0.25s;

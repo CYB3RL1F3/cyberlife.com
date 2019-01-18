@@ -8,9 +8,11 @@ import {
   Submit,
   Loading,
   ErrorField,
-  Bottom
+  Bottom,
+  CaptchaHandler
 } from './ContactForm.styled';
 import { validate, initialValues } from './ContactForm.data';
+import Captcha from 'react-recaptcha';
 
 interface ContactFormProps {
   onSubmit: any;
@@ -30,6 +32,22 @@ export class ContactForm extends React.Component<
       vibrated: false
     };
   }
+
+  captcha: Captcha;
+
+  componentDidMount() {
+    const script = document.createElement('script');
+    script.src =
+      'https://www.google.com/recaptcha/api.js?render=6Lcit4oUAAAAANK3PpC31u3YAqhsT4zO6EcqUAdl';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+
+  onCaptchaLoaded = () => {
+    console.log('loaded');
+    this.captcha && this.captcha.execute();
+  };
 
   vibrate = () => {
     if (navigator.vibrate && !this.state.vibrated) {
@@ -65,7 +83,8 @@ export class ContactForm extends React.Component<
           handleChange,
           handleBlur,
           handleSubmit,
-          isSubmitting
+          isSubmitting,
+          setFieldValue
         }) => {
           this.checkAndVibrate(errors, touched);
           return (
@@ -110,6 +129,25 @@ export class ContactForm extends React.Component<
                 index={4}
                 haserror={errors.message && touched.message ? 'true' : 'false'}
               />
+              <CaptchaHandler>
+                <Captcha
+                  ref={(c) => {
+                    console.log(c);
+                    this.captcha = c;
+                    if (c && !values.captcha) {
+                      this.onCaptchaLoaded();
+                    }
+                  }}
+                  size="invisible"
+                  render="explicit"
+                  sitekey="6Lcit4oUAAAAANK3PpC31u3YAqhsT4zO6EcqUAdl"
+                  onloadCallback={this.onCaptchaLoaded}
+                  verifyCallback={() => {
+                    console.log('call');
+                    setFieldValue('captcha', true);
+                  }}
+                />
+              </CaptchaHandler>
               <Bottom index={5}>
                 <ErrorField>
                   {Object.keys(errors).map(

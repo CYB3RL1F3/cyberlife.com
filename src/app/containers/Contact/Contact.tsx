@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ContactForm } from 'app/components/organisms/ContactForm';
 import { sendMail } from 'app/actions';
-import { ContactSuccess } from 'app/components/molecules/ContactSuccess';
+import { ContactSuccess } from 'app/components/organisms/ContactSuccess';
 
 interface ContactState {
   sent: boolean;

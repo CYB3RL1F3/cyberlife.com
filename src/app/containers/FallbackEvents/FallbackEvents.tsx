@@ -11,7 +11,7 @@ import {
   A
 } from './FallbackEvents.styled';
 import { EventsStore } from 'app/stores';
-import { PastEvents } from '../PastEvents';
+import { PastEvents } from 'app/components/organisms/PastEvents';
 
 export interface FallbackEventsProps {
   [STORE_PAST_EVENTS]?: EventsStore;

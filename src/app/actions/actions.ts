@@ -3,11 +3,9 @@ import axios, { AxiosPromise } from 'axios';
 const ID = '045af2a3';
 
 const instance = axios.create({
-  baseURL: `https://profilart.herokuapp.com/`,
+  baseURL: `http://profilart.fr/`,
   timeout: 10000
 });
-
-console.log(instance);
 
 export const getFinalEndPoint = (endpoint: string): string =>
   `${ID}/${endpoint}`;
