@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { A, Img } from './MenuBtn.styled';
-import { NavMobile } from 'app/components/organisms/NavMobile';
+import { NavMobile } from 'app/components/atoms/NavMobile';
 
 export class MenuBtn extends React.Component<{}, {}> {
   nav: React.RefObject<any> = React.createRef();

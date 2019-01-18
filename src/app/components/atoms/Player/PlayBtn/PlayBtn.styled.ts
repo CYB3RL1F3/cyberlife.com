@@ -1,7 +1,12 @@
 import styled from 'app/theme';
-import { PlayBtnProps } from './PlayBtn';
 
 const borderColor = (alpha) => `rgba(222, 222, 222, ${alpha});`;
+
+export interface PlayBtnProps {
+  backgroundImage: string;
+  playing: boolean;
+  onClick: (e: React.MouseEvent) => void;
+}
 
 export const Container = styled.div<PlayBtnProps>`
   display: flex;

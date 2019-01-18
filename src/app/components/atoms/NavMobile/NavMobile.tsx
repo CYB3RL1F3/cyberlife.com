@@ -13,14 +13,10 @@ import {
   Link,
   TitleHandler,
   A,
-  Img
+  Img,
+  NavMobileState
 } from './NavMobile.styled';
 import { RouterStore } from 'app/stores';
-
-export interface NavMobileState {
-  opened: boolean;
-  blurred: boolean;
-}
 
 export interface NavMobileProps {}
 

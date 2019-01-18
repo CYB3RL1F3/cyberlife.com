@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Container, Cyberlife, Link } from './Header.styled';
-import { Nav } from 'app/components/molecules';
-import { MenuBtn } from 'app/components/atoms/MenuBtn';
+import { Nav, MenuBtn } from 'app/components/molecules';
 import {
   DesktopAndTabletsMediaQuery,
   MobileMediaQuery

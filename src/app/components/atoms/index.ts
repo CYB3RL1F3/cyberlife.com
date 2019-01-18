@@ -5,3 +5,4 @@ export * from './Error';
 export * from './Map';
 export * from './Player';
 export * from './Audio';
+export * from './NavMobile';

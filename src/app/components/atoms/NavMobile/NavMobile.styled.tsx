@@ -1,9 +1,11 @@
 import styled from 'app/theme';
-import { NavMobileState } from './NavMobile';
 import { TextStyle } from 'app/components/atoms/SharedStyled';
 import { Link as BaseLink } from 'app/components/atoms';
 
-export interface PourCompil extends NavMobileState {}
+export interface NavMobileState {
+  opened: boolean;
+  blurred: boolean;
+}
 
 export const Menu = styled.div<NavMobileState>`
   position: absolute;

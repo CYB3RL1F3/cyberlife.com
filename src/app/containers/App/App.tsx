@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Layout, Footer, MiniPlayerMobileWrapper } from 'app/components';
 import { Header } from 'app/components/organisms';
 import { Content, Container, Handler } from './App.styled';
-import { Infos } from 'app/containers';
+import { Infos } from 'app/components/organisms';
 import { STORE_PLAYER } from 'app/constants/stores';
 import { inject, observer } from 'mobx-react';
 import { MobileMediaQuery } from 'app/components/atoms/Responsive';

@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react';
 import { STORE_ROUTER, STORE_APP, STORE_INFOS } from 'app/constants/stores';
 import { AppStore } from 'app/stores';
 import { RouterStore } from 'app/stores';
-import { AppLoader } from '../AppLoader';
+import { AppLoader } from 'app/containers/AppLoader';
 
 require('assets/main.css');
 
