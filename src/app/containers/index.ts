@@ -7,4 +7,5 @@ export { Podcasts } from './Podcasts';
 export { EventDetails } from './EventDetails';
 export { PodcastDetails } from './PodcastDetails';
 export { Bio } from './Bio';
+export { Charts } from './Charts';
 export { App } from './App';
