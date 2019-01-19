@@ -11,17 +11,16 @@ import {
   PodcastDetails
 } from 'app/containers';
 */
-import * as C from 'app/containers';
+
 import { Bio } from 'app/containers/Bio';
 import { Podcasts } from 'app/containers/Podcasts';
 import { Events } from 'app/containers/Events';
-import { Charts } from 'app/containers/Charts';
+import { Charts } from 'app/containers/Charts/Charts';
 import { Releases } from 'app/containers/Releases';
 import { Contact } from 'app/containers/Contact';
 import { EventDetails } from 'app/containers/EventDetails';
 import { PodcastDetails } from 'app/containers/PodcastDetails';
 
-console.log(C.Podcasts, Podcasts);
 export interface RouteType {
   component: React.ComponentType<any>;
   path: string;

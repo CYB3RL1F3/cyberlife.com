@@ -150,7 +150,7 @@ module.exports = {
         }
       }
     },
-    runtimeChunk: true
+    runtimeChunk: false
   },
   plugins: [
     new WebpackCleanupPlugin(),

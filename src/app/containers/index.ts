@@ -1,4 +1,3 @@
-export { Charts } from './Charts';
 export { FallbackEvents } from './FallbackEvents';
 export { Events } from './Events';
 export { Releases } from './Releases';

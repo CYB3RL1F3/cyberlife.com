@@ -3,7 +3,7 @@ import { hot } from 'react-hot-loader';
 import { Router, Route, Switch } from 'react-router';
 import { Root } from 'app/Root';
 import routes, { RouteType } from './routes';
-import { Err404 } from './containers/Err404';
+import { Err404 } from './containers';
 
 // render react DOM
 export const App = hot(module)(({ history }) => (
