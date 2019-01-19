@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getMessagesAccordingToLoadingState } from '../../utils/messageManager';
+import { getMessagesAccordingToLoadingState } from 'app/utils/messageManager';
 import { PixelTracker } from 'app/components/atoms';
 import {
   PixelTrackersWrapper,
