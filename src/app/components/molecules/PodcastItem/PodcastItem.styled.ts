@@ -1,7 +1,9 @@
 import styled, { css } from 'app/theme';
-import { TextStyle } from 'app/components/atoms/SharedStyled';
-import { AlphaTransitionDelay } from 'app/components/atoms/SharedStyled/SharedStyled';
-import { Link as BaseLink } from 'app/components/atoms';
+import {
+  TextStyle,
+  AlphaTransitionDelay
+} from 'app/components/atoms/SharedStyled';
+import { Link } from 'app/components/atoms/Link';
 
 export const Container = styled.div`
   ${({ index }) => AlphaTransitionDelay(index)}
@@ -82,6 +84,6 @@ export const TrackHandler = styled.div<Displayable>`
   transition: opacity 0.5s;
 `;
 
-export const Link = styled(BaseLink)`
+export const PodcastLink = styled(Link)`
   ${style};
 `;

@@ -36,10 +36,8 @@ export class AppLoader extends React.Component<AppLoaderProps> {
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      const infosStore: InfosStore = this.props[STORE_INFOS] as InfosStore;
-      infosStore.loadInfos();
-    }, 400);
+    const infosStore: InfosStore = this.props[STORE_INFOS] as InfosStore;
+    infosStore.loadInfos();
     if (isAndroid()) {
       const className = 'android';
       const root = document.getElementsByTagName('html')[0]; // '0' to assign the first (and only `HTML` tag)

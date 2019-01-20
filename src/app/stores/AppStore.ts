@@ -37,14 +37,12 @@ export class AppStore {
 
   @action
   startFetchingData = () => {
-    console.log('fetch data');
     this.fetchingInfos = true;
   };
 
   @action
   startFetchingAsset = (asset) => {
     const name = `asset${asset}Loading`;
-    console.log(`fetch asset ${name}`);
     this[name] = true;
   };
 
@@ -52,14 +50,12 @@ export class AppStore {
   validAsset = (asset: string) => {
     const assetName = `asset${asset}Loaded`;
     this[assetName] = true;
-    console.log(`loaded asset ${assetName}`);
     this.validate();
   };
 
   @action
   validateInfos = () => {
     this.infosLoaded = true;
-    console.log('valided');
     this.validate();
   };
 

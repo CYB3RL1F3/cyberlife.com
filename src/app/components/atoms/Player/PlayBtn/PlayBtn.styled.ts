@@ -1,11 +1,11 @@
-import styled from 'app/theme';
+import styled, { css } from 'app/theme';
 
 const borderColor = (alpha) => `rgba(222, 222, 222, ${alpha});`;
 
 export interface PlayBtnProps {
   backgroundImage: string;
   playing: boolean;
-  onClick: (e: React.MouseEvent) => void;
+  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export const Container = styled.div<PlayBtnProps>`
@@ -39,30 +39,28 @@ export const IconPlay = styled.div<PlayBtnProps>`
   border-width: 0;
   ${({ playing }) =>
     playing
-      ? `
-      width: 6px;
-      height: 22px;
-      border-left-width: 5px;
-      border-right-color: ${borderColor(0.8)};
-      border-top-color: transparent;
-      border-bottom-color: transparent;
-      border-right-width: 5px;
-      border-top-width: 0;
-      border-bottom-width: 0;
-      margin-left: 0;
-    `
-      : `
-      width: 0;
-      height: 0;
-      border-left-width: 22px;
-      border-right-color: ${borderColor(0)};
-      border-top-color: transparent;
-      border-bottom-color: transparent;
-      border-right-width: 12px;
-      border-top-width: 14px;
-      border-bottom-width: 14px;
-      margin-left: 22px;
-  `}
+      ? css`
+          width: 6px;
+          height: 22px;
+          border-left-width: 5px;
+          border-right-color: ${borderColor(0.8)};
+          border-top-color: transparent;
+          border-bottom-color: transparent;
+          border-right-width: 5px;
+          border-top-width: 0;
+          border-bottom-width: 0;
+          margin-left: 0;
+        `
+      : css`
+          width: 0;
+          height: 0;
+          border-left-width: 22px;
+          border-right-color: ${borderColor(0)};
+          border-top-color: transparent;
+          border-bottom-color: transparent;
+          border-right-width: 12px;
+          border-top-width: 14px;
+          border-bottom-width: 14px;
+          margin-left: 22px;
+        `}
 `;
-
-export type zo = PlayBtnProps;

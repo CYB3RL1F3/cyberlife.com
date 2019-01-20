@@ -25,7 +25,6 @@ export class ReleasesStore implements InitializableStore {
     try {
       this.data = response.data.map((release) => new ReleaseModel(release));
       this.loading = false;
-      console.log(this.data);
     } catch (e) {
       this.onReleasesFailed(e);
     }

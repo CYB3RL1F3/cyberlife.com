@@ -1,4 +1,4 @@
-import styled from 'app/theme';
+import styled, { css } from 'app/theme';
 export interface PlayBtnProps {
   backgroundImage: string;
   playing: boolean;
@@ -60,28 +60,28 @@ export const IconPlay = styled.div<PlayBtnProps>`
   border-width: 0;
   ${({ playing }) =>
     playing
-      ? `
-    width: 6px;
-    height: 22px;
-    border-left-width: 4px;
-    border-right-color: ${borderColor(0.8)};
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-    border-right-width: 4px;
-    border-top-width: 0;
-    border-bottom-width: 0;
-    margin-left: 0;
-  `
-      : `
-    width: 0;
-    height: 0;
-    border-left-width: 16px;
-    border-right-color: ${borderColor(0)};
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-    border-right-width: 12px;
-    border-top-width: 12px;
-    border-bottom-width: 12px;
-    margin-left: 16px;
-  `}
+      ? css`
+          width: 6px;
+          height: 22px;
+          border-left-width: 4px;
+          border-right-color: ${borderColor(0.8)};
+          border-top-color: transparent;
+          border-bottom-color: transparent;
+          border-right-width: 4px;
+          border-top-width: 0;
+          border-bottom-width: 0;
+          margin-left: 0;
+        `
+      : css`
+          width: 0;
+          height: 0;
+          border-left-width: 16px;
+          border-right-color: ${borderColor(0)};
+          border-top-color: transparent;
+          border-bottom-color: transparent;
+          border-right-width: 12px;
+          border-top-width: 12px;
+          border-bottom-width: 12px;
+          margin-left: 16px;
+        `}
 `;

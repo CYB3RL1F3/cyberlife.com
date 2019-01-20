@@ -24,7 +24,6 @@ export class SelectedEventStore implements InitializableStore {
     this.router = router;
     this.pastEventsStore = pastEventsStore;
     this.forthcomingEventsStore = forthcomingEventsStore;
-    console.log(this);
   }
 
   getEventFromStore = (id, type): EventModel | null => {

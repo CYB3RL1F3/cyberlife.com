@@ -1,6 +1,6 @@
 import styled from 'app/theme';
 import { TextStyle } from 'app/components/atoms/SharedStyled';
-import { Link as BaseLink } from 'app/components/atoms';
+import { Link as BaseLink } from 'app/components/atoms/Link';
 
 export interface NavMobileState {
   opened: boolean;

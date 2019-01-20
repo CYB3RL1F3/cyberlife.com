@@ -14,6 +14,10 @@ require('assets/main.css');
 @observer
 export class App extends React.Component {
   render() {
+    console.log(
+      '%cYou look \nlike being \na curious nerd!',
+      'background: #120000; color: #bada55; font-size: 35px; text-transform: uppercase; margin: 1px'
+    );
     const { currentTrack } = this.props[STORE_PLAYER] as PlayerStore;
     return (
       <Layout>

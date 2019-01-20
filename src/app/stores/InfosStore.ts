@@ -30,7 +30,6 @@ export class InfosStore {
       this.data = new InfosModel(response.data);
       this.loading = false;
       this.appStore.validateInfos();
-      console.log(this.data);
     } catch (e) {
       this.onInfosFailed(e);
     }

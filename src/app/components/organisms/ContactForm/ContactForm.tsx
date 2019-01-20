@@ -45,7 +45,6 @@ export class ContactForm extends React.Component<
   }
 
   onCaptchaLoaded = () => {
-    console.log('loaded');
     this.captcha && this.captcha.execute();
   };
 
@@ -132,7 +131,6 @@ export class ContactForm extends React.Component<
               <CaptchaHandler>
                 <Captcha
                   ref={(c) => {
-                    console.log(c);
                     this.captcha = c;
                     if (c && !values.captcha) {
                       this.onCaptchaLoaded();
@@ -143,7 +141,6 @@ export class ContactForm extends React.Component<
                   sitekey="6Lcit4oUAAAAANK3PpC31u3YAqhsT4zO6EcqUAdl"
                   onloadCallback={this.onCaptchaLoaded}
                   verifyCallback={() => {
-                    console.log('call');
                     setFieldValue('captcha', true);
                   }}
                 />

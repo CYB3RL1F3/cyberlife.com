@@ -1,7 +1,9 @@
 import styled, { css } from 'app/theme';
-import { TextStyle } from 'app/components/atoms/SharedStyled';
-import { Link as BaseLink } from 'app/components/atoms';
-import { AlphaTransitionDelay } from 'app/components/atoms/SharedStyled/SharedStyled';
+import {
+  TextStyle,
+  AlphaTransitionDelay
+} from 'app/components/atoms/SharedStyled';
+import { Link as BaseLink } from 'app/components/atoms/Link';
 
 const style = css`
   ${TextStyle};

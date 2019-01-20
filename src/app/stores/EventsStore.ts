@@ -30,7 +30,6 @@ export class EventsStore implements InitializableStore {
   onEventsLoaded = (response) => {
     this.data = response.data.map((event) => new EventModel(event, this.type));
     this.loading = false;
-    console.log(this.data);
   };
 
   @action.bound

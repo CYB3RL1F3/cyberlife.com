@@ -28,7 +28,6 @@ export class MiniPlayerMobileWrapper extends React.Component<
 
   render() {
     const active = this.isActive();
-    console.log(active);
     return (
       <>
         <Sustain active={active} />

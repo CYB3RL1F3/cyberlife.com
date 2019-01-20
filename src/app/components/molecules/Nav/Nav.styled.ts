@@ -1,5 +1,5 @@
 import styled from 'app/theme';
-import { Link as BaseLink } from 'app/components/atoms';
+import { Link as BaseLink } from 'app/components/atoms/Link';
 import {
   HeaderTextStyle,
   DownTransitionDelay

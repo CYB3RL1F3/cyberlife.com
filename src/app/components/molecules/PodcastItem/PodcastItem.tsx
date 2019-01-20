@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Theme, withTheme } from 'app/theme';
-import { Tracks } from '../../../../../types/playlists';
+import { Tracks } from 'types/playlists';
 import {
   Container,
   ThumbHandler,
@@ -9,7 +9,7 @@ import {
   Description,
   Handler,
   TrackHandler,
-  Link
+  PodcastLink
 } from './PodcastItem.styled';
 import { PlayBtn, Track } from 'app/components/atoms/Player';
 import { DesktopAndTabletsMediaQuery } from 'app/components/atoms/Responsive';
@@ -45,7 +45,9 @@ export const PodcastItemComponent: React.StatelessComponent<
       </ThumbHandler>
       <InfosHandler>
         <Title>
-          <Link path={`/podcasts/${props.id}`}>{props.title}</Link>
+          <PodcastLink path={`/podcasts/${props.id}`}>
+            {props.title}
+          </PodcastLink>
         </Title>
         <Handler>
           <Description>{props.description}</Description>

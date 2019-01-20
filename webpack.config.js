@@ -1,17 +1,17 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
 // variables
-var isProduction = process.argv.indexOf('-p') >= 0;
-var sourcePath = path.join(__dirname, './src');
-var outPath = path.join(__dirname, './dist');
+const isProduction = process.argv.indexOf('-p') >= 0;
+const sourcePath = path.join(__dirname, './src');
+const outPath = path.join(__dirname, './dist');
 const mode = isProduction ? 'production' : 'development';
 // plugins
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
-var RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
-var SitemapWebpackPlugin = require('sitemap-webpack-plugin').default;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
+const SitemapWebpackPlugin = require('sitemap-webpack-plugin').default;
 
 const domain = process.env.domain || 'localhost:3000';
 
@@ -150,7 +150,7 @@ module.exports = {
         }
       }
     },
-    runtimeChunk: false
+    runtimeChunk: true
   },
   plugins: [
     new WebpackCleanupPlugin(),

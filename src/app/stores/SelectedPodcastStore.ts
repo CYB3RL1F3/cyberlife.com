@@ -19,7 +19,6 @@ export class SelectedPodcastStore implements InitializableStore {
   constructor(router: RouterStore, podcastStore: PodcastStore) {
     this.router = router;
     this.podcastStore = podcastStore;
-    console.log(this);
   }
 
   getPodcastFromStore = (id): TrackModel | null =>
