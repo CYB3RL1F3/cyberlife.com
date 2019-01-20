@@ -1,15 +1,18 @@
 import * as React from 'react';
+import * as Sentry from '@sentry/browser';
 import { ContactForm } from 'app/components/organisms/ContactForm';
 import { sendMail } from 'app/actions';
 import { ContactSuccess } from 'app/components/organisms/ContactSuccess';
 
 interface ContactState {
   sent: boolean;
+  failed: boolean;
 }
 
 export class Contact extends React.Component<{}, ContactState> {
   state = {
-    sent: false
+    sent: false,
+    failed: false
   };
 
   reset = (e: React.MouseEvent) => {
@@ -23,20 +26,32 @@ export class Contact extends React.Component<{}, ContactState> {
     //process form submission here
     //done submitting, set submitting to false
     setSubmitting(true);
-    sendMail(values).then((response) => {
-      if (response.status === 200) {
+    this.setState({
+      sent: false,
+      failed: false
+    });
+    sendMail(values)
+      .then((response) => {
+        if (response.status === 200) {
+          setSubmitting(false);
+          this.setState({
+            sent: true
+          });
+        }
+      })
+      .catch((error) => {
         setSubmitting(false);
         this.setState({
-          sent: true
+          failed: true
         });
-      }
-    });
+        Sentry.captureException(error);
+      });
     return;
   };
 
   render() {
     return !this.state.sent ? (
-      <ContactForm onSubmit={this.onSubmit} />
+      <ContactForm onSubmit={this.onSubmit} hasFailed={this.state.failed} />
     ) : (
       <ContactSuccess returnAction={this.reset} />
     );

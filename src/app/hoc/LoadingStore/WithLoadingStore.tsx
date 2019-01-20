@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Sentry from '@sentry/browser';
 import { inject, observer } from 'mobx-react';
 import { Loading, Error } from 'app/components/atoms';
 import { STORE_ROUTER } from 'app/constants/stores';
@@ -14,14 +15,26 @@ export const withLoadingStore = (storeName: string) => (
       const store: InitializableStore = this.props[storeName];
       store.init();
     }
-    componentDidCatch(e) {
-      console.log(e);
+
+    componentDidCatch(error, errorInfo) {
+      this.fail(error, errorInfo);
     }
+
+    fail = (error, errorInfo) => {
+      console.log(error);
+      Sentry.withScope((scope) => {
+        Object.keys(errorInfo).forEach((key) => {
+          scope.setExtra(key, errorInfo[key]);
+        });
+        Sentry.captureException(error);
+      });
+    };
     render() {
       const { init, loading, error } = this.props[storeName];
       if (loading) {
         return <Loading />;
       } else if (error) {
+        this.fail(error, {});
         return (
           <Error
             init={init}

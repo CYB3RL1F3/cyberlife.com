@@ -16,6 +16,7 @@ import Captcha from 'react-recaptcha';
 
 interface ContactFormProps {
   onSubmit: any;
+  hasFailed: boolean;
 }
 
 interface ContactFormState {
@@ -68,7 +69,7 @@ export class ContactForm extends React.Component<
   };
 
   render() {
-    const { onSubmit } = this.props;
+    const { onSubmit, hasFailed } = this.props;
     return (
       <Formik
         initialValues={initialValues}
@@ -147,6 +148,8 @@ export class ContactForm extends React.Component<
               </CaptchaHandler>
               <Bottom index={5}>
                 <ErrorField>
+                  {hasFailed &&
+                    "Une erreur s'est produite... Veuillez ressayer."}
                   {Object.keys(errors).map(
                     (error: string) =>
                       touched[error] && (

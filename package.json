@@ -45,6 +45,7 @@
     "webpack-hot-middleware": "^2.21.1"
   },
   "dependencies": {
+    "@sentry/browser": "^4.5.2",
     "axios": "^0.18.0",
     "babel-plugin-styled-components": "^1.10.0",
     "classnames": "^2.2.5",

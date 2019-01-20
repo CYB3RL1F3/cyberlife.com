@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as Sentry from '@sentry/browser';
+
 import { getMessagesAccordingToLoadingState } from 'app/utils/messageManager';
 import { PixelTracker } from 'app/components/atoms';
 import {
@@ -52,6 +54,13 @@ export class AppLoader extends React.Component<AppLoaderProps> {
       appStore,
       this.stateMessages
     );
+    const { error } = appStore;
+    if (error) {
+      Sentry.withScope((scope) => {
+        scope.setExtra('loading', error);
+        Sentry.captureException(error);
+      });
+    }
     return isIe() ? (
       <IE />
     ) : (
