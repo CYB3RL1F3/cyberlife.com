@@ -12,7 +12,6 @@ import { DesktopAndTabletsMediaQuery } from 'app/components/atoms/Responsive';
 export class Infos extends React.Component {
   render() {
     const infosStore: InfosStore = this.props[STORE_INFOS] as InfosStore;
-    const discogs = `https://discogs.com/artist/${infosStore.data.discogs}`;
     return (
       <InfosBox>
         <DesktopAndTabletsMediaQuery>
@@ -23,7 +22,7 @@ export class Infos extends React.Component {
               <A href={infosStore.data.facebook}>Facebook</A> -&nbsp;
               <A href={infosStore.data.twitter}>Twitter</A> -&nbsp;
               <A href={infosStore.data.soundcloud}>Soundcloud</A> -&nbsp;
-              <A href={discogs}>Discogs</A> -&nbsp;
+              <A href={infosStore.data.discogs}>Discogs</A> -&nbsp;
               <A href={infosStore.data.RA}>Resident Advisor</A>
             </Paragraph>
             <MiniPlayer />
