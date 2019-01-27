@@ -12,8 +12,12 @@ const options = {
   cert: fs.readFileSync('./server.crt')
 };
 
+const hasGzip = (fileName) => {
+  return fs.existsSync(`../dist${fileName}.gz`);
+};
+
 const gzip = (req, res, next) => {
-  if (req.url.indexOf('bundle.js') === -1) {
+  if (hasGzip(req.url)) {
     req.url = req.url + '.gz';
     res.set('Content-Encoding', 'gzip');
     next();
