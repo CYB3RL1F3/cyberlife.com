@@ -14,7 +14,7 @@ import {
   TrackHandler,
   P,
   Description,
-  Hashtag,
+  GoBack,
   Tag
 } from './PodcastDetails.styled';
 import { ThumbHandler } from 'app/components/molecules/PodcastItem/PodcastItem.styled';
@@ -66,14 +66,12 @@ export class PodcastDetailsComponent extends React.Component<
         artwork,
         playing,
         date,
-        genre,
         waveform,
         loaded,
         seek,
         duration,
         taglist,
         download,
-        soundcloud,
         description
       } = data;
       const descriptionHtml = description.replace(/(\n)/g, '<br />');
@@ -81,7 +79,7 @@ export class PodcastDetailsComponent extends React.Component<
         <Container>
           <TitleHandler>
             <Title>{title}</Title>
-            <Hashtag>#{genre}</Hashtag>
+            <GoBack path="/">&lt; Back</GoBack>
           </TitleHandler>
           <DataContainer>
             <ThumbHandler>
@@ -90,11 +88,7 @@ export class PodcastDetailsComponent extends React.Component<
                 playing={playing}
                 onClick={this.play}
               />
-              {download && soundcloud && (
-                <DownloadBtn href={soundcloud} target="_blank">
-                  Download
-                </DownloadBtn>
-              )}
+              {download && <DownloadBtn href={download}>Download</DownloadBtn>}
             </ThumbHandler>
             <TextHandler>
               <P>Released on {format(new Date(date), 'DD/MM/YYYY')}</P>

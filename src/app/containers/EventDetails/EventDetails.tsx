@@ -15,7 +15,8 @@ import {
   LineupLine,
   Section,
   H3,
-  MapboxHandler
+  MapboxHandler,
+  GoBack
 } from './EventDetails.styled';
 import {
   DesktopMediaQuery,
@@ -39,6 +40,7 @@ export class EventDetailsComponent extends React.Component<EventDetailsProps> {
         <Container>
           <TitleHandler>
             <Title>{data.title}</Title>
+            <GoBack path="/events">&lt; Back</GoBack>
           </TitleHandler>
           <Content>
             <ContentHandler>

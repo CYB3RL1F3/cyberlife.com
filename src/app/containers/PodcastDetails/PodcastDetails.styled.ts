@@ -1,5 +1,6 @@
 import styled from 'app/theme';
 import { TextStyle } from 'app/components/atoms/SharedStyled';
+import { Link } from 'app/components/atoms/Link';
 
 export const Container = styled.div`
   flex: 1;
@@ -26,13 +27,15 @@ export const Title = styled.h3`
   flex: 0.7;
 `;
 
-export const Hashtag = styled.h4`
+export const GoBack = styled(Link)`
   ${TextStyle};
   flex: 0.3;
   text-align: right;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 13pt;
+  text-decoration: underline;
+  min-width: 4rem;
 `;
 
 export const Section = styled.section`

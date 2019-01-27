@@ -3,7 +3,8 @@ import axios, { AxiosPromise } from 'axios';
 const ID = '045af2a3';
 
 const instance = axios.create({
-  baseURL: `https://profilart.fr/`,
+  // baseURL: `https://profilart.fr/`,
+  baseURL: `http://localhost:8888/`,
   timeout: 10000
 });
 

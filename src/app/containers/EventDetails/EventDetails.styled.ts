@@ -1,5 +1,6 @@
 import styled from 'app/theme';
 import { TextStyle } from 'app/components/atoms/SharedStyled';
+import { Link } from 'app/components/atoms/Link';
 
 export const Container = styled.div`
   flex: 1;
@@ -45,6 +46,7 @@ export const TitleHandler = styled.div`
   flex: 0.1;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const Title = styled.h3`
@@ -97,4 +99,15 @@ export const H3 = styled.h3`
   ${({ theme }) => theme.media.mobile`
     font-size: 12pt;
   `}
+`;
+
+export const GoBack = styled(Link)`
+  ${TextStyle};
+  flex: 0.3;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13pt;
+  text-decoration: underline;
+  min-width: 4rem;
 `;

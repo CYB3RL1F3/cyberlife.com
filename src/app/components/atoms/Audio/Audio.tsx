@@ -3,6 +3,7 @@ import ReactAudioPlayer from 'react-audio-player';
 import { inject, observer } from 'mobx-react';
 import { STORE_PLAYER } from 'app/constants/stores';
 import { PlayerStore } from 'app/stores';
+import { debounce } from 'app/utils/debounce';
 
 export interface AudioProps {}
 
@@ -47,7 +48,7 @@ export class Audio extends React.Component<AudioProps> {
             withRef
             src={url}
             listenInterval={100}
-            onListen={this.onListen}
+            onListen={debounce(this.onListen, 200)}
             controls={false}
             autoPlay
             volume={volume}

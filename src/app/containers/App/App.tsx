@@ -13,6 +13,15 @@ require('assets/main.css');
 @inject(STORE_PLAYER)
 @observer
 export class App extends React.Component {
+  shouldComponentUpdate(nextProps) {
+    return (
+      (nextProps[STORE_PLAYER].currentTrack &&
+        nextProps[STORE_PLAYER].currentTrack.playing) !==
+      (this.props[STORE_PLAYER].currentTrack &&
+        this.props[STORE_PLAYER].currentTrack.playing)
+    );
+  }
+
   render() {
     console.log(
       '%cYou look \nlike being \na curious nerd!',
