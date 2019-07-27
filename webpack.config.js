@@ -130,6 +130,14 @@ module.exports = {
       { test: /\.jpg$/, use: 'file-loader' },
       { test: /\.svg$/, use: 'file-loader' },
       {
+        test: /\.mp4$/,
+        use: 'file-loader?name=videos/[name].[ext]'
+      },
+      {
+        test: /\.webm$/,
+        use: 'file-loader?name=videos/[name].[ext]'
+      },
+      {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: ['file-loader']
       }

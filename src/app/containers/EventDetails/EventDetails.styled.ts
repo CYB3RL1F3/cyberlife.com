@@ -58,7 +58,7 @@ export const Title = styled.h3`
 
 export const Info = styled.p`
   ${TextStyle}
-  font-size: 10pt;
+  font-size: ${({ theme }) => theme.fontSizes.average};
   width: 95%;
   ${({ theme }) => theme.media.mobile`
     font-size: 12pt;
@@ -73,7 +73,7 @@ export const Lineup = styled.ul`
 export const LineupLine = styled.li`
   list-style: none;
   ${TextStyle};
-  font-size: 10pt;
+  font-size: ${({ theme }) => theme.fontSizes.average};
   ${({ theme }) => theme.media.mobile`
     font-size: 12pt;
   `}
@@ -90,7 +90,7 @@ export const Section = styled.section`
 
 export const H3 = styled.h3`
   ${TextStyle};
-  font-size: 10pt;
+  font-size: ${({ theme }) => theme.fontSizes.average};
   font-weight: normal;
   line-height: 14pt;
   padding-bottom: 0.1rem;

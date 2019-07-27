@@ -4,13 +4,13 @@ import TrackModel from 'app/models/TrackModel';
 export class PlayerStore {
   @observable public currentTrack: TrackModel;
   @observable public volume: number = 1;
-  @observable public jumpTo: number = 0;
+  @observable public seekPosition: number = 0;
 
   @action
   play = (track: TrackModel) => {
     this.pause();
     track.play();
-    this.jumpTo = track.seek || 0;
+    this.seekPosition = track.seek || 0;
     this.currentTrack = track;
   };
 
@@ -18,13 +18,13 @@ export class PlayerStore {
   pause = () => {
     if (this.currentTrack && this.currentTrack.playing)
       this.currentTrack.playing = false;
-    this.jumpTo = 0;
+    this.seekPosition = 0;
   };
 
   @action
-  onSeek = (seek: number, jump: boolean) => {
-    if (jump) {
-      this.jumpTo = seek;
+  onSeek = (seek: number, toMoveSeekPosition: boolean) => {
+    if (toMoveSeekPosition) {
+      this.seekPosition = seek;
     } else if (this.currentTrack) this.currentTrack.seek = seek;
   };
 
@@ -34,8 +34,8 @@ export class PlayerStore {
       this.currentTrack.loaded = this.currentTrack.getPosition(pct);
   };
 
-  @action clearJump = () => {
-    this.jumpTo = 0;
+  @action clearSeek = () => {
+    this.seekPosition = 0;
   };
 
   @computed

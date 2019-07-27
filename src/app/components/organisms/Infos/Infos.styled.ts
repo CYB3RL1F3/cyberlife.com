@@ -40,12 +40,12 @@ export const InfosContainer = styled.article`
 `;
 
 export const Paragraph = styled.p`
-  font-size: 8pt;
+  font-size: ${({ theme }) => theme.fontSizes.average};
   ${TextStyle};
 `;
 
 export const A = styled.a`
-  font-size: 8pt;
+  font-size: inherit;
   ${TextStyle};
   text-decoration: underline;
 `;

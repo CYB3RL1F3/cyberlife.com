@@ -29,12 +29,14 @@ const config = merge(common, {
           test: /[\\/]node_modules[\\/]mapbox-gl[\\/]/
         },
         node_modules: {
+          /*
           name(module) {
             const packageName = module.context.match(
               /[\\/]node_modules[\\/](.*?)([\\/]|$)/
             )[1];
             return packageName && `npm.${packageName.replace('@', '')}`;
-          },
+          },*/
+          name: 'node_modules_[chunkhash]',
           chunks: 'all',
           enforce: true,
           test: /[\\/]node_modules[\\/](?!(mapbox-gl)[\\/])/

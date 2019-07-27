@@ -26,5 +26,3 @@ export const getInterpolationHue = () => {
 };
 
 export const getHue = (): string => `${getInterpolationHue()}deg`;
-
-console.log(getHue());

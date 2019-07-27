@@ -38,7 +38,7 @@ export const InfosHandler = styled.div`
 
 const style = css`
   ${TextStyle};
-  font-size: 10pt;
+  font-size: ${({ theme }) => theme.fontSizes.average};
   ${({ theme }) => theme.media.mobile`
     font-size: 11pt;
   `}
@@ -59,7 +59,7 @@ export const Description = styled.p`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   ${({ theme }) => theme.media.mobile`
-    font-size: 10pt;
+    font-size: ${({ theme }) => theme.fontSizes.average};
   `}
 `;
 

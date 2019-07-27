@@ -116,7 +116,7 @@ export const ErrorField = styled.p`
   ${TextStyle};
   font-style: normal;
   line-height: 1rem;
-  font-size: 10pt;
+  font-size: ${({ theme }) => theme.fontSizes.average};
   flex: 0.6;
   padding-top: 0.25rem;
   color: rgba(188, 11, 26, 0.8);

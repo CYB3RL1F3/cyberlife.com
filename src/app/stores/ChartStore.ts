@@ -1,17 +1,12 @@
 import { observable, action } from 'mobx';
 import { ChartModel } from 'app/models';
-import { getChart } from 'app/actions';
+import { getCharts } from 'app/actions';
 import { InitializableStore } from './stores';
 
 export class ChartStore implements InitializableStore {
   @observable public loading: boolean;
   @observable public error: string;
   @observable public data: ChartModel;
-
-  getFirstChart = (charts): ChartModel => {
-    const keys = Object.keys(charts);
-    return new ChartModel(charts[keys[0]]);
-  };
 
   @action
   init = () => !this.data && this.loadCharts();
@@ -20,7 +15,7 @@ export class ChartStore implements InitializableStore {
   loadCharts = () => {
     this.loading = true;
     this.error = null;
-    getChart()
+    getCharts()
       .then(this.onChartsLoaded)
       .catch(this.onChartsError);
   };
@@ -28,7 +23,7 @@ export class ChartStore implements InitializableStore {
   @action.bound
   onChartsLoaded = (response) => {
     try {
-      this.data = this.getFirstChart(response.data);
+      this.data = new ChartModel(response.data[0]);
       this.loading = false;
     } catch (e) {
       this.onChartsError(e);

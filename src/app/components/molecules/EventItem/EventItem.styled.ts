@@ -7,7 +7,7 @@ import { Link as BaseLink } from 'app/components/atoms/Link';
 
 const style = css`
   ${TextStyle};
-  font-size: 10pt;
+  font-size: ${({ theme }) => theme.fontSizes.average};
   ${({ theme }) => theme.media.mobile`
     font-size: 12pt;
   `}

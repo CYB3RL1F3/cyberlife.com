@@ -10,6 +10,12 @@ export interface Theme {
   fonts: {
     primary: string;
   };
+  fontSizes: {
+    small: string;
+    average: string;
+    big: string;
+    menu: string;
+  };
   background: {
     fromColor: string;
     toColor: string;
@@ -65,6 +71,12 @@ export const media = Object.keys(sizes).reduce(
 
 export const theme: Theme = {
   color: '#6ca1a6',
+  fontSizes: {
+    small: '8pt',
+    average: '10pt',
+    big: '12pt',
+    menu: '16pt'
+  },
   isAndroid: isAndroid(),
   isFirefox: isFirefox(),
   picturePlaceholder: 'rgba(42, 43, 65, 0.5)',

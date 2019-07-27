@@ -11,6 +11,7 @@ export const TextStyle = css`
   font-style: italic;
   color: ${({ theme }) => theme.color};
   font-family: ${({ theme }) => theme.fonts.primary};
+  font-size: ${({ theme }) => theme.fontSizes.average};
 `;
 
 export interface Positionnable {

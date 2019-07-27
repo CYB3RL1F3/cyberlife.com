@@ -66,18 +66,16 @@ export const TextHandler = styled.div`
 
 export const P = styled.p`
   ${TextStyle};
-  font-size: 12pt;
 `;
 
 export const A = styled.a`
   ${TextStyle};
-  font-size: 12pt;
 `;
 
 export const DownloadBtn = styled.a`
   ${TextStyle};
   display: inline-block;
-  font-size: 10pt;
+  font-size: ${({ theme }) => theme.fontSizes.average};
   width: 100%;
   height: 2rem;
   margin-top: 0.5rem;
@@ -103,7 +101,6 @@ export const Description = styled.div`
 export const DescriptionHandler = styled.p`
   margin: 1rem 0;
   ${TextStyle};
-  font-size: 12pt;
   padding-bottom: 1rem;
 `;
 
@@ -121,7 +118,7 @@ export const Tag = styled.span`
   display: inline-block;
   padding: 0.2rem 0.3rem;
   ${TextStyle}
-  font-size: 10pt;
+  font-size: ${({ theme }) => theme.fontSizes.average};
   line-height: 1rem;
   background: rgba(122, 122, 122, 0.1);
   border-radius: 3px;

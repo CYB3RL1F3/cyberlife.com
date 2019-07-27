@@ -24,10 +24,10 @@ export class Audio extends React.Component<AudioProps> {
 
   onListen = (value: number) => {
     const store: PlayerStore = this.props[STORE_PLAYER];
-    if (store.jumpTo > 0 && this.element) {
+    if (store.seekPosition > 0 && this.element) {
       this.element.currentTime =
-        (store.jumpTo / 100) * (store.currentTrack.duration / 1000);
-      store.clearJump();
+        (store.seekPosition / 100) * (store.currentTrack.duration / 1000);
+      store.clearSeek();
     } else {
       const pct = (value / (store.currentTrack.duration / 1000)) * 100;
       store.onSeek(pct, false);

@@ -28,7 +28,7 @@ const appear = keyframes`
 `;
 
 export interface Reducible {
-  toBeReduced: boolean;
+  toBeReduced?: boolean;
 }
 
 export const Container = styled.div<Reducible>`

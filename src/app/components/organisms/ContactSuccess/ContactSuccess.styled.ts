@@ -28,7 +28,7 @@ export const P = styled.p`
   font-style: normal;
   letter-spacing: 0.5px;
   ${({ theme }) => theme.media.mobile`
-    font-size: 10pt;
+    font-size: ${({ theme }) => theme.fontSizes.average};
   `}
 `;
 

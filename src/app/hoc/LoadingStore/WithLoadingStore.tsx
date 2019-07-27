@@ -10,7 +10,7 @@ export const withLoadingStore = (storeName: string) => (
 ) => (props) => {
   @inject(storeName, STORE_ROUTER)
   @observer
-  class Loadable extends React.Component {
+  class Loadable extends React.PureComponent {
     componentDidMount() {
       const store: InitializableStore = this.props[storeName];
       store.init();
