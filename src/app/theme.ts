@@ -71,26 +71,13 @@ export const media = Object.keys(sizes).reduce(
 
 export const theme: Theme = {
   color: '#6ca1a6',
-  fontSizes: {
-    small: '8pt',
-    average: '10pt',
-    big: '12pt',
-    menu: '16pt'
-  },
+  fontSizes: { small: '8pt', average: '10pt', big: '12pt', menu: '16pt' },
   isAndroid: isAndroid(),
   isFirefox: isFirefox(),
   picturePlaceholder: 'rgba(42, 43, 65, 0.5)',
-  fonts: {
-    primary: 'myriad pro'
-  },
-  background: {
-    fromColor: '#3a5c5f',
-    toColor: '#273e40'
-  },
-  player: {
-    backgroundColor: '#1c2d2f',
-    backgroundColorMini: '#457076'
-  },
+  fonts: { primary: 'myriad pro' },
+  background: { fromColor: '#324648', toColor: '#273e40' },
+  player: { backgroundColor: '#1c2d2f', backgroundColorMini: '#457076' },
   slider: {
     color: '#1c2d2f',
     focus: '#1f3a3a',

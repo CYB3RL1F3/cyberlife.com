@@ -37,15 +37,19 @@ export const Background = styled.div`
     `linear-gradient(to right, ${theme.background.fromColor}, ${
       theme.background.toColor
     });`};
+  /* disabled for performance issue
   filter: hue-rotate(${getHue()});
   animation: ${animatingBg} 86400s linear infinite;
   animation-delay: ${-getNbSeconds()}s;
+  */
 `;
 
 export const Bg = styled.div`
   ${BackgroundLayer};
   opacity: 0.5;
+  /* disabled for performance issue
   filter: brightness(0.7);
+  */
 `;
 
 export const ChildrenHandler = styled.div`

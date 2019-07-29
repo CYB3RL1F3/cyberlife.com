@@ -38,6 +38,7 @@ export class PodcastsComponent extends React.Component<PlaylistProps, {}> {
 
   render() {
     const { data } = this.props;
+    const { onSeek } = this.props[STORE_PLAYER] as PlayerStore;
     if (data) {
       return (
         <Container>
@@ -46,6 +47,7 @@ export class PodcastsComponent extends React.Component<PlaylistProps, {}> {
               return (
                 <PodcastItem
                   onPlay={this.play(index)}
+                  onSeek={onSeek}
                   index={index}
                   key={track.id}
                   {...track}

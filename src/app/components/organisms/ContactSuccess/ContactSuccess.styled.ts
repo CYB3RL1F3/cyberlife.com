@@ -23,7 +23,7 @@ export const H3 = styled.h3`
 
 export const P = styled.p`
   ${TextStyle};
-  font-size: 12pt;
+  font-size: ${({ theme }) => theme.fontSizes.big};
   text-align: center;
   font-style: normal;
   letter-spacing: 0.5px;

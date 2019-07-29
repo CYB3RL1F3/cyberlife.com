@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   min-height: 11rem;
-  margin: 1rem 0 1rem 1rem;
+  margin: 1rem 0 0 1rem;
   border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 
   ${({ theme }) => theme.media.mobile`
@@ -51,7 +51,7 @@ const style = css`
   ${TextStyle};
   font-size: ${({ theme }) => theme.fontSizes.average};
   ${({ theme }) => theme.media.mobile`
-    font-size: 12pt;
+    font-size: ${({ theme }) => theme.fontSizes.big};
   `}
 `;
 

@@ -36,7 +36,7 @@ const inputStyle = (index: number) => css`
   line-height: 2rem;
   padding-left: 1rem;
   ${TextStyle};
-  font-size: 12pt;
+  font-size: ${({ theme }) => theme.fontSizes.big};
   color: white;
   box-sizing: border-box;
   ${({ theme }) => theme.media.mobile`
@@ -44,7 +44,7 @@ const inputStyle = (index: number) => css`
     height: 2.5rem;
     line-height: 2rem;
     padding-left: 1rem;
-    font-size: 12pt;
+    font-size: ${({ theme }) => theme.fontSizes.big};
   `}
 `;
 

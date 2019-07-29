@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Paragraph, Link, Container } from './EventItem.styled';
+import { EventLink, Paragraph, Link, Container } from './EventItem.styled';
 
 interface EventProp {
   id: number;
@@ -15,7 +15,9 @@ export const EventItem: React.StatelessComponent<EventProp> = (
 ) => (
   <Container index={event.index}>
     <Link path={`/events/${event.type}/${event.id}`}>{event.date}</Link>
-    <Link path={`/events/${event.type}/${event.id}`}>{event.title}</Link>
+    <EventLink path={`/events/${event.type}/${event.id}`}>
+      {event.title}
+    </EventLink>
     <Paragraph>{event.location}</Paragraph>
   </Container>
 );

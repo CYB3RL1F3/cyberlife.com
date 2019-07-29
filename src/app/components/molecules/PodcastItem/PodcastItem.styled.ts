@@ -10,7 +10,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   min-height: 10rem;
-  margin: 1rem 0 1rem 1rem;
+  margin: 1rem 0 0 1rem;
   border-bottom: solid 1px rgba(255, 255, 255, 0.1);
   padding-bottom: 1rem;
   ${({ theme }) => theme.media.mobile`

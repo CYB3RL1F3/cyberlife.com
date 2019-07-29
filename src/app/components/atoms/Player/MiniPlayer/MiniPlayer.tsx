@@ -33,7 +33,7 @@ export class MiniPlayer extends React.Component {
   };
   render() {
     const store: PlayerStore = this.props[STORE_PLAYER] as PlayerStore;
-    const { currentTrack } = store;
+    const { currentTrack, onSeek } = store;
     const opacity = this.isEligibleRoute() ? 1 : 0;
     if (!currentTrack) return <div />;
     return (
@@ -44,7 +44,7 @@ export class MiniPlayer extends React.Component {
           </PlayBtn>
         </ButtonHandler>
         <TrackHandler>
-          <Track isMini {...currentTrack} />
+          <Track isMini {...currentTrack} onSeek={onSeek} />
         </TrackHandler>
       </Container>
     );

@@ -29,6 +29,7 @@ export interface PodcastItemProps {
   loaded: number;
   seek: number;
   onPlay: (e: React.MouseEvent) => void;
+  onSeek: (seek: number, toMoveSeekPosition: boolean) => void;
 }
 
 export const PodcastItemComponent: React.StatelessComponent<
@@ -60,6 +61,7 @@ export const PodcastItemComponent: React.StatelessComponent<
               seek={props.seek}
               duration={props.duration}
               isMini={false}
+              onSeek={props.onSeek}
             />
           </TrackHandler>
         </DesktopAndTabletsMediaQuery>

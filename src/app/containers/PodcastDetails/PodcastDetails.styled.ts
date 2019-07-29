@@ -51,7 +51,6 @@ export const DataContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin: 2rem 0 1rem 0;
-  min-height: 10rem;
 `;
 
 export const PicHandler = styled.div`

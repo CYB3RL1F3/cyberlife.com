@@ -16,6 +16,6 @@ export const Container = styled.div`
 
 export const NoPast = styled.p`
   ${TextStyle}
-  font-size: 12pt;
+  font-size: ${({ theme }) => theme.fontSizes.big};
   color: #bb1211;
 `;

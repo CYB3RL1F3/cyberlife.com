@@ -56,5 +56,5 @@ export const Title = styled.h3`
   ${TextStyle}
   font-weight: normal;
   text-transform: uppercase;
-  font-size: 12pt;
+  font-size: ${({ theme }) => theme.fontSizes.big};
 `;

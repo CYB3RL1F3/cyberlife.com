@@ -75,6 +75,7 @@ export class PodcastDetailsComponent extends React.Component<
         description
       } = data;
       const descriptionHtml = description.replace(/(\n)/g, '<br />');
+      const store: PlayerStore = this.props[STORE_PLAYER];
       return (
         <Container>
           <TitleHandler>
@@ -106,6 +107,7 @@ export class PodcastDetailsComponent extends React.Component<
               waveform={waveform}
               loaded={loaded}
               seek={seek}
+              onSeek={store.onSeek}
               duration={duration}
               isMini={false}
             />

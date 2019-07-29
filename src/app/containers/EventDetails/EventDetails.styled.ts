@@ -26,6 +26,7 @@ export const ContentHandler = styled.div`
   flex: 0.6;
   display: flex;
   flex-direction: column;
+  margin-top: 0.5rem;
 `;
 
 export const MapboxHandler = styled.div`
@@ -43,7 +44,7 @@ export const MapboxHandler = styled.div`
 `;
 
 export const TitleHandler = styled.div`
-  flex: 0.1;
+  flex: 0.075;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -51,7 +52,7 @@ export const TitleHandler = styled.div`
 
 export const Title = styled.h3`
   ${TextStyle};
-  font-size: 14pt;
+  font-size: ${({ theme }) => theme.fontSizes.big};
   line-height: 16pt;
   text-decoration: underline;
 `;
@@ -61,13 +62,13 @@ export const Info = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.average};
   width: 95%;
   ${({ theme }) => theme.media.mobile`
-    font-size: 12pt;
+    font-size: ${({ theme }) => theme.fontSizes.big};
   `}
   line-height: 12pt;
 `;
 
 export const Lineup = styled.ul`
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 `;
 
 export const LineupLine = styled.li`
@@ -75,17 +76,14 @@ export const LineupLine = styled.li`
   ${TextStyle};
   font-size: ${({ theme }) => theme.fontSizes.average};
   ${({ theme }) => theme.media.mobile`
-    font-size: 12pt;
+    font-size: ${({ theme }) => theme.fontSizes.big};
   `}
 `;
 
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
-  margin: 1rem 0;
-  ${({ theme }) => theme.media.mobile`
-    margin: 0.5rem 0;
-  `}
+  margin: 0.5rem 0;
 `;
 
 export const H3 = styled.h3`
@@ -93,11 +91,9 @@ export const H3 = styled.h3`
   font-size: ${({ theme }) => theme.fontSizes.average};
   font-weight: normal;
   line-height: 14pt;
-  padding-bottom: 0.1rem;
   text-decoration: underline;
-  margin-bottom: 0.4rem;
   ${({ theme }) => theme.media.mobile`
-    font-size: 12pt;
+    font-size: ${({ theme }) => theme.fontSizes.big};
   `}
 `;
 
@@ -107,7 +103,7 @@ export const GoBack = styled(Link)`
   text-align: right;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 13pt;
+  font-size: ${({ theme }) => theme.fontSizes.big};
   text-decoration: underline;
   min-width: 4rem;
 `;

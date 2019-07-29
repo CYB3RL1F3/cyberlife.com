@@ -9,7 +9,7 @@ const style = css`
   ${TextStyle};
   font-size: ${({ theme }) => theme.fontSizes.average};
   ${({ theme }) => theme.media.mobile`
-    font-size: 12pt;
+    font-size: ${({ theme }) => theme.fontSizes.big};
   `}
 `;
 
@@ -19,6 +19,12 @@ export const Paragraph = styled.p`
 
 export const Link = styled(BaseLink)`
   ${style};
+  text-decoration: underline;
+`;
+
+export const EventLink = styled(Link)`
+  ${style};
+  text-decoration: none;
 `;
 
 export const Container = styled.div`

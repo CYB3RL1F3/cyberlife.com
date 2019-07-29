@@ -8,14 +8,14 @@ export const Container = styled.div`
 
 export const Text = styled.p`
   ${TextStyle};
-  font-size: 12pt;
+  font-size: ${({ theme }) => theme.fontSizes.big};
   margin: 1rem 0;
   line-height: 12pt;
 `;
 
 export const Link = styled(BaseLink)`
   ${TextStyle};
-  font-size: 12pt;
+  font-size: ${({ theme }) => theme.fontSizes.big};
   line-height: 12pt;
   text-decoration: underline;
 `;

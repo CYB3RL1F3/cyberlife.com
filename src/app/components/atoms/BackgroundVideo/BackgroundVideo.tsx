@@ -4,8 +4,8 @@ const bg_mp4 = require('assets/videos/bg.mp4');
 const bg_webm = require('assets/videos/bg.webm');
 
 export const BackgroundVideo = () => (
-  <Video preload autoPlay loop muted>
-    <source src={bg_mp4} type="video/mp4" />
+  <Video autoPlay loop="loop" muted="muted">
     <source src={bg_webm} type="video/webm" />
+    <source src={bg_mp4} type="video/mp4" />
   </Video>
 );

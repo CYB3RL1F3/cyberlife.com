@@ -16,9 +16,7 @@ import { AppStore, InfosStore } from 'app/stores';
 import { isIe, isAndroid } from 'app/utils/browsers';
 import { IE } from './atoms/IE';
 
-const waveform = require('assets/images/waveform.png');
-const bg1 = require('assets/images/bg1.png');
-const bg2 = require('assets/images/bg2.png');
+const video = require('assets/videos/bg.mp4');
 
 export interface AppLoaderProps {}
 
@@ -29,6 +27,7 @@ export class AppLoader extends React.Component<AppLoaderProps> {
 
   startLoadingAsset = (name: string) => (): void => {
     const appStore: AppStore = this.props[STORE_APP] as AppStore;
+    console.log(name);
     appStore.startFetchingAsset(name);
   };
 
@@ -67,19 +66,9 @@ export class AppLoader extends React.Component<AppLoaderProps> {
       <Container>
         <PixelTrackersWrapper>
           <PixelTracker
-            src={waveform}
-            onStartLoading={this.startLoadingAsset('Waveform')}
-            onLoad={this.onLoadAsset('Waveform')}
-          />
-          <PixelTracker
-            src={bg1}
-            onStartLoading={this.startLoadingAsset('Bg')}
-            onLoad={this.onLoadAsset('Bg')}
-          />
-          <PixelTracker
-            src={bg2}
-            onStartLoading={this.startLoadingAsset('Bg2')}
-            onLoad={this.onLoadAsset('Bg2')}
+            src={video}
+            onStartLoading={this.startLoadingAsset('Background')}
+            onLoad={this.onLoadAsset('Background')}
           />
         </PixelTrackersWrapper>
         <Console>

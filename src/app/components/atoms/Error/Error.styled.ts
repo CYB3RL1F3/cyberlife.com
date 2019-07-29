@@ -17,12 +17,12 @@ export const ErrorTitle = styled.h3`
 
 export const ErrorMessage = styled.p`
   ${TextStyle};
-  font-size: 12pt;
+  font-size: ${({ theme }) => theme.fontSizes.big};
 `;
 
 export const A = styled.a`
   ${TextStyle};
-  font-size: 12pt;
+  font-size: ${({ theme }) => theme.fontSizes.big};
   text-decoration: underline;
   cursor: pointer;
 `;

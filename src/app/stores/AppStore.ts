@@ -8,13 +8,9 @@ export class AppStore {
   @observable public fetchingInfos: boolean;
   @observable public infosLoaded: boolean;
 
-  @observable public assetBgLoaded: boolean;
-  @observable public assetBg2Loaded: boolean;
-  @observable public assetWaveformLoaded: boolean;
+  @observable public assetBackgroundLoaded: boolean;
 
-  @observable public assetBgLoading: boolean;
-  @observable public assetBg2Loading: boolean;
-  @observable public assetWaveformLoading: boolean;
+  @observable public assetBackgroundLoading: boolean;
 
   isFetchingInfos = (): boolean => this.fetchingInfos;
 
@@ -22,18 +18,12 @@ export class AppStore {
 
   isDataLoading = (): boolean => this.fetchingInfos;
 
-  isAssetsReady = (): boolean =>
-    this.assetBgLoaded && this.assetBg2Loaded && this.assetWaveformLoaded;
+  isAssetsReady = (): boolean => this.assetBackgroundLoaded;
 
-  isAssetsLoading = (): boolean =>
-    this.assetBgLoading && this.assetBg2Loading && this.assetWaveformLoading;
+  isAssetsLoading = (): boolean => this.assetBackgroundLoading;
 
   isReady = (): boolean =>
-    this.infosLoaded &&
-    this.assetBg2Loaded &&
-    this.assetBgLoaded &&
-    this.assetWaveformLoaded &&
-    !this.error;
+    this.infosLoaded && this.assetBackgroundLoaded && !this.error;
 
   @action
   startFetchingData = () => {
@@ -43,6 +33,7 @@ export class AppStore {
   @action
   startFetchingAsset = (asset) => {
     const name = `asset${asset}Loading`;
+    console.log(name);
     this[name] = true;
   };
 
@@ -50,6 +41,7 @@ export class AppStore {
   validAsset = (asset: string) => {
     const assetName = `asset${asset}Loaded`;
     this[assetName] = true;
+    console.log(this.assetBackgroundLoaded);
     this.validate();
   };
 

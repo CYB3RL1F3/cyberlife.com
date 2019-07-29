@@ -9,18 +9,32 @@ export interface PixelTrackerProps {
 
 export class PixelTracker extends React.Component<PixelTrackerProps, {}> {
   componentDidMount() {
+    console.log('pass ?');
     this.props.onStartLoading();
+    if (this.videoRef && this.videoRef.current) {
+      console.log('here');
+      this.videoRef.current.addEventListener('canplay', this.props.onLoad);
+    }
   }
+  videoRef = React.createRef<HTMLVideoElement>();
   render() {
     const { src, onLoad } = this.props;
-    const Img = styled.img`
+    const Video = styled.video`
       width: 1;
       height: 1;
       opacity: 0.1;
       position: absolute;
     `;
     return (
-      <Img src={src} alt={'loading'} onLoad={onLoad} width="1" height="1" />
+      <Video
+        src={src}
+        autoPlay
+        preload="preload"
+        onLoad={onLoad}
+        width="1"
+        height="1"
+        ref={this.videoRef}
+      />
     );
   }
 }
