@@ -22,12 +22,7 @@ const BackgroundLayer = css`
   z-index: 0;
   overflow: hidden;
   ${({ theme }) => theme.media.mobile`
-    @supports (-webkit-appearance:none) {
-      ${({ theme }) =>
-        theme.isAndroid && !theme.isFirefox
-          ? 'height: calc(100vh - 56px);'
-          : ''}
-    }
+    height: 100%;
   `};
 `;
 
@@ -37,6 +32,12 @@ export const Background = styled.div`
     `linear-gradient(to right, ${theme.background.fromColor}, ${
       theme.background.toColor
     });`};
+  ${({ theme }) => theme.media.mobile`
+    align-self: flex-start;
+    flex: auto;
+    height: unset;
+    position: unset;
+  `}
   /* disabled for performance issue
   filter: hue-rotate(${getHue()});
   animation: ${animatingBg} 86400s linear infinite;
@@ -55,6 +56,10 @@ export const Bg = styled.div`
 export const ChildrenHandler = styled.div`
   ${BackgroundLayer};
   position: absolute;
+  ${({ theme }) => theme.media.mobile`
+    height: 100%;
+    position: unset;
+  `}
   z-index: 1;
   overflow-x: hidden;
   overflow-y: scroll;

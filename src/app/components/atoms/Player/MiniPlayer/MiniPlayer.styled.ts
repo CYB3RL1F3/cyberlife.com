@@ -20,6 +20,8 @@ export const Container = styled.div<Opaque>`
   opacity: ${({ opacity }) => opacity};
   ${({ theme }) => theme.media.mobile`
     opacity: 1;
+    max-height: 0;
+    margin: 0;
   `}
   transition: opacity 0.5s;
   margin: 1rem 0;
@@ -30,6 +32,7 @@ export const ButtonHandler = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 10vh;
 `;
 
 export const TrackHandler = styled.div`
@@ -50,7 +53,6 @@ export const PlayBtn = styled.div`
   height: 10vh;
   justify-content: center;
   align-items: center;
-  margin-top: 5vh;
 `;
 
 export const IconPlay = styled.div<PlayBtnProps>`

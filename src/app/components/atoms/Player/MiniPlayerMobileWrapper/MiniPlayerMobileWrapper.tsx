@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { STORE_ROUTER, STORE_PLAYER } from 'app/constants/stores';
 import { RouterStore } from 'app/stores';
 import PlayerStore from 'app/stores/PlayerStore';
-import { Sustain, Container } from './MiniPlayerMobileWrapper.styled';
+import { Container, Handler } from './MiniPlayerMobileWrapper.styled';
 import { MiniPlayer } from 'app/components/atoms/Player/MiniPlayer';
 
 export interface MiniPlayerMobileWrapperProps {}
@@ -29,12 +29,11 @@ export class MiniPlayerMobileWrapper extends React.Component<
   render() {
     const active = this.isActive();
     return (
-      <>
-        <Sustain active={active} />
+      <Handler active={active}>
         <Container active={active}>
           <MiniPlayer />
         </Container>
-      </>
+      </Handler>
     );
   }
 }

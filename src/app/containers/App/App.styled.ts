@@ -27,11 +27,7 @@ const appear = keyframes`
   }
 `;
 
-export interface Reducible {
-  toBeReduced?: boolean;
-}
-
-export const Container = styled.div<Reducible>`
+export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -39,31 +35,23 @@ export const Container = styled.div<Reducible>`
     flex-direction: column;
     justify-content: flex-start;
     height: unset;
-    min-height: 86vh;
-    @supports (-webkit-appearance:none) {
-      ${
-        theme.isAndroid && !theme.isFirefox
-          ? 'min-height: calc(86vh - 56px);'
-          : ''
-      }
-    }
-  `}
-  ${({ theme, toBeReduced }) => theme.media.mobile`
-    min-height: ${toBeReduced ? '77vh' : '86vh'};
-    transition: min-height 0.5s;
-    @supports (-webkit-appearance:none) {
-      ${
-        theme.isAndroid && !theme.isFirefox
-          ? `min-height: ${
-              toBeReduced ? 'calc(77vh - 56px)' : 'calc(86vh - 56px)'
-            };`
-          : ''
-      }
-    }
   `}
   width: 100vw;
   height: 85vh;
-  padding: 1rem 0 0 0;
+  padding: 0;
+`;
+
+export const AppContainer = styled.div`
+  ${({ theme }) => theme.media.mobile`
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    @supports (-webkit-appearance:none) {
+      ${
+        theme.isAndroid && !theme.isFirefox ? 'height: calc(100vh - 56px);' : ''
+      }
+    }
+  `}
 `;
 
 export const Content = styled.div`

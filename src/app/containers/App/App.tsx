@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Layout, Footer, MiniPlayerMobileWrapper } from 'app/components';
 import { Header } from 'app/components/organisms';
-import { Content, Container, Handler } from './App.styled';
+import { AppContainer, Content, Container, Handler } from './App.styled';
 import { Infos } from 'app/components/organisms';
 import { MobileMediaQuery } from 'app/components/atoms/Responsive';
 
@@ -14,19 +14,21 @@ export class App extends React.Component {
       'background: #120000; color: #bada55; font-size: 35px; text-transform: uppercase; margin: 1px'
     );
     return (
-      <Layout>
-        <Header />
-        <Container>
-          <Infos />
-          <Content>
-            <Handler>{this.props.children}</Handler>
-          </Content>
-        </Container>
-        <Footer />
+      <AppContainer>
+        <Layout>
+          <Header />
+          <Container>
+            <Infos />
+            <Content>
+              <Handler>{this.props.children}</Handler>
+            </Content>
+          </Container>
+          <Footer />
+        </Layout>
         <MobileMediaQuery>
           <MiniPlayerMobileWrapper />
         </MobileMediaQuery>
-      </Layout>
+      </AppContainer>
     );
   }
 }

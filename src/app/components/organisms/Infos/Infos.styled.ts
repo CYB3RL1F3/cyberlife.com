@@ -12,7 +12,7 @@ export const InfosBox = styled.div`
   ${({ theme }) => theme.media.mobile`
     max-height: 1rem;
     flex: 0;
-    margin: 0.5rem;
+    margin: 0;
   `}
 `;
 
