@@ -58,7 +58,8 @@ export const ChildrenHandler = styled.div`
   position: absolute;
   ${({ theme }) => theme.media.mobile`
     height: 100%;
-    position: unset;
+    position: relative;
+    min-height: 83vh;
   `}
   z-index: 1;
   overflow-x: hidden;
