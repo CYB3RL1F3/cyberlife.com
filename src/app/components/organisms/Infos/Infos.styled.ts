@@ -29,13 +29,14 @@ export const InfosContainer = styled.article`
   mask-type: luminance;
   overflow: hidden;
   width: 46vw;
+  height: calc(100% - 1px);
   ${({ theme }) => theme.media.tablet`
     width: 100vw;
     height: calc(100% - 1px);
     ${AlphaTransitionDelay(50)}
   `}
   height: 0;
-  animation: ${bioAnim} 0.5s ease-in-out forwards;
+  animation: ${bioAnim} 0.25s ease-in-out forwards;
   animation-delay: 1.5s;
 `;
 

@@ -35,18 +35,19 @@ export const AlphaTransitionDelay = (index: number) => css`
 
 export const downTransition = keyframes`
   from {
-    margin-top: -5rem;
+    transform: translateY(-3rem);
     opacity: 0;
   }
   to {
     opacity: 1;
-    margin-top: 0;
+    transform: translateY(0);
   }
 `;
 
 export const DownTransitionDelay = (delay: number) => css`
   opacity: 0;
-  margin-top: -5rem;
+  margin-top: 0;
+  transform: translateY(-3rem);
   animation: ${downTransition} 0.3s ease-out forwards;
   animation-delay: ${delay}s;
 `;

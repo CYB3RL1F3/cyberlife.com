@@ -2,19 +2,19 @@ import styled, { keyframes } from 'app/theme';
 
 const welcome = keyframes`
   from {
-    width: 0vw;
+    transform: translateX(50vw);
   }
   to {
-    width: 50vw;
+    transform: translateX(0vw);
   }
 `;
 
 const welcomeTabs = keyframes`
   from {
-    width: 0vw;
+    transform: translateX(100vw);
   }
   to {
-    width: 100vw;
+    transform: translateX(0vw);
   }
 `;
 
@@ -56,7 +56,8 @@ export const AppContainer = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 0;
+  width: 50vw;
+  transform: translateX(50vw);
   animation: ${welcome} 0.3s ease-in-out forwards;
   animation-delay: 1s;
   height: 85vh;
@@ -70,6 +71,8 @@ export const Content = styled.div`
   flex-direction: row;
 
   ${({ theme }) => theme.media.tablet`
+    width: 100vw;
+    transform: translateX(100vw);
     animation: ${welcomeTabs} 0.3s ease-in-out forwards;
     min-height: 68vh;
     height: unset;

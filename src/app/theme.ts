@@ -79,10 +79,10 @@ export const theme: Theme = {
   background: { fromColor: '#324648', toColor: '#273e40' },
   player: { backgroundColor: '#1c2d2f', backgroundColorMini: '#457076' },
   slider: {
-    color: '#1c2d2f',
-    focus: '#1f3a3a',
-    thumbBorder: 'rgba(0, 0, 0, 0.4)',
-    thumbShadow: 'rgba(0, 0, 0, 0.2)',
+    color: 'rgba(108,161,166, 0.5)',
+    focus: 'rgba(108,161,166, 0.6)',
+    thumbBorder: '#324648',
+    thumbShadow: 'rgba(0, 0, 0, 0.4)',
     thumbColor: 'rgba(255, 255, 255, 0.3)'
   },
   media
