@@ -12,7 +12,7 @@ export const Container = styled.div`
   border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 
   ${({ theme }) => theme.media.mobile`
-    margin: 0;
+    margin: ${({ index }) => (index === 0 ? '0' : '1rem')} 0 0 0;
   `}
 `;
 
