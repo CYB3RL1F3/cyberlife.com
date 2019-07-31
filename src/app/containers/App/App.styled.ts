@@ -46,6 +46,7 @@ export const AppContainer = styled.div`
     display: flex;
     flex-direction: column;
     height: 100vh;
+    overflow: hidden;
     @supports (-webkit-appearance:none) {
       ${
         theme.isAndroid && !theme.isFirefox ? 'height: calc(100vh - 56px);' : ''

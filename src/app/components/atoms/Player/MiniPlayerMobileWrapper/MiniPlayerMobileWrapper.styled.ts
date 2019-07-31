@@ -5,15 +5,23 @@ export interface Active {
 }
 
 export const Container = styled.div<Active>`
-  width: 100vw;
-  height: 9.5vh;
+  width: inherit;
+  height: 10vh;
   z-index: 800;
   transition: all 0.5s;
-  transform: translateY(${({ active }) => (active ? 0 : '11vh')});
 `;
 
 export const Handler = styled.div<Active>`
-  display: ${({ active }) => (active ? 'flex' : 'none')};
-  flex: ${({ active }) => (active ? '10vh' : 0)};
-  transition: flex 0.5s;
+  display: flex;
+  flex: ${({ active }) => (active ? '10vh' : '0vh')};
+  max-height: ${({ active }) => (active ? '10vh' : '0vh')};
+  transition: all 0.25s;
+  width: 100vw;
+`;
+
+export const Wrapper = styled.div`
+  height: 10vh;
+  width: inherit;
+  overflow: hidden;
+  position: relative;
 `;
