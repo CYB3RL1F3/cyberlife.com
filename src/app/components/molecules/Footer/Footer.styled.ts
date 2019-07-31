@@ -15,7 +15,9 @@ export const Container = styled.footer`
   justify-content: space-between;
   ${({ theme }) => theme.media.tablet`
     width: 100vw;
-    height: 2.8rem;
+    height: 3.5rem;
+    top: 90vh;
+    position: sticky;
   `}
 `;
 
@@ -27,11 +29,8 @@ export const FooterTxt = css`
   ${AlphaTransitionDelay(50)}
   min-height: 2.2rem;
   ${({ theme }) => theme.media.tablet`
-    height: 2.5rem;
-    line-height: 2.4rem;
-    @media (max-height: 720px) {
-      line-height: 2.5rem;
-    }
+    height: 3.5rem;
+    line-height: 3.9rem;
   `}
 `;
 
@@ -43,7 +42,7 @@ export const Text = styled.p`
   flex: 0.9;
   line-height: 2.5rem;
   ${({ theme }) => theme.media.tablet`
-    line-height: 2rem;
+    line-height: 3rem;
   `}
   ${({ theme }) => theme.media.desktop`
     margin-top: 0.4rem;

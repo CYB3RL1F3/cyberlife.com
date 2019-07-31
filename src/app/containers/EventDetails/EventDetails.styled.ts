@@ -8,7 +8,10 @@ export const Container = styled.div`
   flex-direction: column;
   margin: 2rem;
   ${({ theme }) => theme.media.mobile`
-    margin: 1rem;
+    margin: 0rem;
+    width: 100vw;
+    box-sizing: border-box;
+    padding: 1rem;
   `}
 `;
 
@@ -18,13 +21,16 @@ export const Content = styled.div`
   flex-direction: row;
   ${({ theme }) => theme.media.mobile`
     flex-direction: column-reverse;
-    flex: auto;
+    flex: 1;
   `}
 `;
 
 export const ContentHandler = styled.div`
   flex: 0.6;
   display: flex;
+  ${({ theme }) => theme.media.mobile`
+    flex: unset;
+  `}
   flex-direction: column;
   margin-top: 0.5rem;
 `;
@@ -32,9 +38,10 @@ export const ContentHandler = styled.div`
 export const MapboxHandler = styled.div`
   flex: 0.4;
   ${({ theme }) => theme.media.mobile`
-    flex: 0;
+    flex: unset;
     .mapboxgl-map {
-      margin: 1rem 0;
+      margin: 0;
+      position: relative;
     }
   `}
   margin: 1rem 0;

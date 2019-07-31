@@ -17,11 +17,19 @@ export const Container = styled.p`
 export const InputHandler = styled.span`
   width: 8rem;
   height: 4.5vh;
+  ${({ theme }) => theme.media.tablet`
+      height: 3.5rem;
+      line-height: 3.5rem;
+    `}
 `;
 
 export const IconHandler = styled.label`
   width: 2rem;
   line-height: ${({ theme }) => (theme.isFirefox ? '5.5vh' : '4vh')};
+  ${({ theme }) => theme.media.tablet`
+    line-height: 4rem;
+    padding-top: 0;
+  `}
   overflow: hidden;
   padding-top: 0.8vh;
   cursor: pointer;

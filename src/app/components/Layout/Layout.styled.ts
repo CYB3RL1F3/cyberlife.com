@@ -59,10 +59,9 @@ export const ChildrenHandler = styled.div`
   ${({ theme }) => theme.media.mobile`
     height: 100%;
     position: relative;
-    min-height: 83vh;
   `}
   z-index: 1;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: overlay;
   will-change: scroll-position;
 `;
