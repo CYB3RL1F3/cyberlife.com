@@ -26,6 +26,11 @@ export class EventsStore implements InitializableStore {
       .catch(this.onEventsFailed);
   };
 
+  @action
+  reset = () => {
+    this.data = null;
+  };
+
   @action.bound
   onEventsLoaded = (response) => {
     this.data = response.data.map((event) => new EventModel(event, this.type));

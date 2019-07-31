@@ -15,7 +15,7 @@ const rotation = keyframes`
 }
 `;
 
-export const Spinner = styled.div`
+export const Spinner = styled.span`
   animation: ${rotation} 0.25s linear infinite;
   border: solid 2px;
   border-top-color: rgba(99, 99, 99, 0.5);

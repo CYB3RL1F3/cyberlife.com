@@ -19,3 +19,13 @@ export const NoPast = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.big};
   color: #bb1211;
 `;
+
+export const Link = styled.a`
+  ${TextStyle}
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
+export const BackLinkHandler = styled.span`
+  margin: 1rem;
+`;

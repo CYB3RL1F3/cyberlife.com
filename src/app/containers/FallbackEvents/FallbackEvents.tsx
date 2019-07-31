@@ -8,6 +8,8 @@ import {
   PleaseContact,
   Link,
   Container,
+  SpinnerHandler,
+  LoadingSpinner,
   A
 } from './FallbackEvents.styled';
 import { EventsStore } from 'app/stores';
@@ -18,7 +20,9 @@ export interface FallbackEventsProps {
   asFail?: boolean;
 }
 
-export interface FallbackEventsState {}
+export interface FallbackEventsState {
+  loadingPastEvents: boolean;
+}
 
 @inject(STORE_PAST_EVENTS)
 @observer
@@ -26,15 +30,28 @@ export class FallbackEvents extends React.Component<
   FallbackEventsProps,
   FallbackEventsState
 > {
+  state = {
+    loadingPastEvents: false
+  };
   loadPastEvents = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const store: EventsStore = this.props[STORE_PAST_EVENTS];
     store.init();
+    this.setState({ loadingPastEvents: true });
+  };
+
+  renderLoadingSpinner = () => {
+    return this.state.loadingPastEvents ? (
+      <SpinnerHandler>
+        <LoadingSpinner />
+      </SpinnerHandler>
+    ) : null;
   };
 
   render() {
     const store: EventsStore = this.props[STORE_PAST_EVENTS];
+    if (store.data) this.state.loadingPastEvents = false;
     if (!store.data) {
       if (this.props.asFail) {
         return (
@@ -50,7 +67,7 @@ export class FallbackEvents extends React.Component<
               </Link>
               <br />
               <A href="/events" onClick={this.loadPastEvents}>
-                See past gigs...
+                See past gigs... {this.renderLoadingSpinner()}
               </A>
             </PleaseContact>
           </Container>
@@ -58,7 +75,7 @@ export class FallbackEvents extends React.Component<
       } else {
         return (
           <A href onClick={this.loadPastEvents}>
-            See past gigs...
+            See past gigs... {this.renderLoadingSpinner()}
           </A>
         );
       }

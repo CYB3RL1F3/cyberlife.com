@@ -1,10 +1,14 @@
 import * as React from 'react';
-import { STORE_PAST_EVENTS } from 'app/constants/stores';
+import {
+  STORE_PAST_EVENTS,
+  STORE_FORTHCOMING_EVENTS
+} from 'app/constants/stores';
 import EventModel from 'app/models/EventModel';
 import { EventsStore } from 'app/stores';
-import { Container, NoPast } from './PastEvents.styled';
+import { Container, NoPast, Link, BackLinkHandler } from './PastEvents.styled';
 import { EventItem } from 'app/components/molecules/EventItem';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
+import { inject } from 'mobx-react';
 
 export interface PastEventsProps {
   [STORE_PAST_EVENTS]: EventsStore;
@@ -12,13 +16,31 @@ export interface PastEventsProps {
   asFail?: boolean;
 }
 
+@inject(STORE_FORTHCOMING_EVENTS)
 class PastEventsComponent extends React.Component<PastEventsProps> {
+  renderBackLink = () => {
+    return (
+      <BackLinkHandler>
+        <Link onClick={this.goBack}>return to new gigs</Link>
+      </BackLinkHandler>
+    );
+  };
+
+  goBack = () => {
+    const currentStore: EventsStore = this.props[STORE_PAST_EVENTS];
+    const store: EventsStore = this.props[STORE_FORTHCOMING_EVENTS];
+    currentStore.reset();
+    store.loadEvents();
+  };
+
   render() {
     const { data, asFail } = this.props;
     if (!data) {
       return (
         <Container asFail={asFail}>
           <NoPast>None past gig to show...</NoPast>
+          <br />
+          {this.renderBackLink()}
         </Container>
       );
     } else {
@@ -37,6 +59,7 @@ class PastEventsComponent extends React.Component<PastEventsProps> {
               />
             )
           )}
+          {this.renderBackLink()}
         </Container>
       );
     }

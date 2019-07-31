@@ -5,6 +5,8 @@ import {
   AlphaTransitionDelay
 } from 'app/components/atoms/SharedStyled';
 
+import { Spinner } from 'app/components/atoms/Loading/Loading.styled';
+
 export const Container = styled.div`
   margin: 1rem;
   flex: 1;
@@ -57,4 +59,19 @@ export const Title = styled.h3`
   font-weight: normal;
   text-transform: uppercase;
   font-size: ${({ theme }) => theme.fontSizes.big};
+`;
+
+export const LoadingSpinner = styled(Spinner)`
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  position: absolute;
+  left: 1rem;
+  top: 1px;
+`;
+
+export const SpinnerHandler = styled.span`
+  height: 1rem;
+  width: 1rem;
+  position: relative;
 `;
