@@ -12,6 +12,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
 const SitemapWebpackPlugin = require('sitemap-webpack-plugin').default;
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const { InjectManifest } = require('workbox-webpack-plugin');
+const manifest = require('./manifest');
 
 const domain = process.env.domain || 'localhost:3000';
 
@@ -175,7 +179,28 @@ module.exports = {
       lastMod: true,
       changeFreq: 'monthly',
       priority: '0.5'
-    })
+    }),
+    new InjectManifest({
+      swSrc: manifest.serviceworker,
+      modifyURLPrefix: {
+        '/dist': ''
+      },
+      maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
+      globPatterns: ['*.{js,png,html,css,webm,jpg}'],
+      include: [
+        /\.html$/,
+        /\.js$/,
+        /\.css$/,
+        /\.webm$/,
+        /\.png$/,
+        /\.jpg$/,
+        /\.ttf$/
+      ]
+    }),
+    new WebpackPwaManifest(manifest),
+    new FaviconsWebpackPlugin(
+      path.resolve(__dirname, 'src/assets/pwa/favicon-96x96.png')
+    )
   ],
   devServer: {
     contentBase: sourcePath,
