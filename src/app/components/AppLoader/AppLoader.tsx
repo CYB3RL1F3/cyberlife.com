@@ -27,7 +27,6 @@ export class AppLoader extends React.Component<AppLoaderProps> {
 
   startLoadingAsset = (name: string) => (): void => {
     const appStore: AppStore = this.props[STORE_APP] as AppStore;
-    console.log(name);
     appStore.startFetchingAsset(name);
   };
 
@@ -46,6 +45,12 @@ export class AppLoader extends React.Component<AppLoaderProps> {
       document.body.classList.add(className);
     }
   }
+
+  refresh = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.reload();
+  };
 
   render() {
     const appStore: AppStore = this.props[STORE_APP] as AppStore;
@@ -85,7 +90,10 @@ export class AppLoader extends React.Component<AppLoaderProps> {
           ))}
           {appStore.error && (
             <Output>
-              please retry by <A href="/">reloading this page</A>
+              please retry by{' '}
+              <A href="/" onClick={this.refresh}>
+                reloading this page
+              </A>
             </Output>
           )}
         </Console>

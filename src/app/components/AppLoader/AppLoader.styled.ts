@@ -21,7 +21,7 @@ export const Console = styled.div`
   top: 0;
   left: 0;
   width: 99vw;
-  height: 100vh;
+  height: 95vh;
   z-index: 1;
 `;
 
@@ -42,4 +42,16 @@ export const A = styled.a`
 export const Li = styled.li`
   margin-left: 1rem;
   list-style: circle;
+`;
+
+export const LottieHandler = styled.div`
+  ${({ theme }) => theme.media.desktop`
+    display: block;
+    position: absolute;
+    bottom: 10rem;
+    right: 10rem;
+    width: 20rem;
+    height: 20rem;
+  `}
+  display: none;
 `;

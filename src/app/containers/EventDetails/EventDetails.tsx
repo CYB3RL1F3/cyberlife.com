@@ -16,7 +16,8 @@ import {
   Section,
   H3,
   MapboxHandler,
-  GoBack
+  GoBack,
+  InfoLink
 } from './EventDetails.styled';
 import {
   DesktopMediaQuery,
@@ -66,6 +67,22 @@ export class EventDetailsComponent extends React.Component<EventDetailsProps> {
                   </Lineup>
                 </Section>
               )}
+              {data.cost && (
+                <Section>
+                  <Info children={data.cost} />
+                </Section>
+              )}
+              <Section>
+                <Info>
+                  <InfoLink target="_blank" href={data.links.event}>
+                    More infos
+                  </InfoLink>
+                  {' - '}
+                  <InfoLink target="_blank" href={data.links.venue}>
+                    Promoter
+                  </InfoLink>
+                </Info>
+              </Section>
             </ContentHandler>
             {data.location.position && (
               <MapboxHandler>

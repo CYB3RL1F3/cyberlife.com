@@ -21,7 +21,6 @@ export const withLoadingStore = (storeName: string) => (
     }
 
     fail = (error, errorInfo) => {
-      console.log(error);
       Sentry.withScope((scope) => {
         Object.keys(errorInfo).forEach((key) => {
           scope.setExtra(key, errorInfo[key]);

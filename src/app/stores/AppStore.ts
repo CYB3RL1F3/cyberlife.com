@@ -33,7 +33,6 @@ export class AppStore {
   @action
   startFetchingAsset = (asset) => {
     const name = `asset${asset}Loading`;
-    console.log(name);
     this[name] = true;
   };
 
@@ -41,7 +40,6 @@ export class AppStore {
   validAsset = (asset: string) => {
     const assetName = `asset${asset}Loaded`;
     this[assetName] = true;
-    console.log(this.assetBackgroundLoaded);
     this.validate();
   };
 

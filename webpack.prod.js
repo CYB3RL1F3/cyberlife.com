@@ -28,6 +28,11 @@ const config = merge(common, {
           chunks: 'all',
           test: /[\\/]node_modules[\\/]mapbox-gl[\\/]/
         },
+        'date-fns': {
+          name: 'date-fns',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]date-fns[\\/]/
+        },
         node_modules: {
           /*
           name(module) {
@@ -63,6 +68,5 @@ const config = merge(common, {
     })
   ]
 });
-console.log(config);
 
 module.exports = config;

@@ -1,4 +1,4 @@
-import styled from 'app/theme';
+import styled, { css } from 'app/theme';
 import { TextStyle } from 'app/components/atoms/SharedStyled';
 import { Link } from 'app/components/atoms/Link';
 
@@ -13,6 +13,15 @@ export const Container = styled.div`
     box-sizing: border-box;
     padding: 1rem;
   `}
+`;
+
+export const InfoStyle = css`
+  ${TextStyle}
+  font-size: ${({ theme }) => theme.fontSizes.average};
+  ${({ theme }) => theme.media.mobile`
+    font-size: ${({ theme }) => theme.fontSizes.big};
+  `}
+  line-height: ${({ theme }) => theme.fontSizes.big};
 `;
 
 export const Content = styled.div`
@@ -65,13 +74,8 @@ export const Title = styled.h3`
 `;
 
 export const Info = styled.p`
-  ${TextStyle}
-  font-size: ${({ theme }) => theme.fontSizes.average};
+  ${InfoStyle}
   width: 95%;
-  ${({ theme }) => theme.media.mobile`
-    font-size: ${({ theme }) => theme.fontSizes.big};
-  `}
-  line-height: 12pt;
 `;
 
 export const Lineup = styled.ul`
@@ -113,4 +117,9 @@ export const GoBack = styled(Link)`
   font-size: ${({ theme }) => theme.fontSizes.big};
   text-decoration: underline;
   min-width: 4rem;
+`;
+
+export const InfoLink = styled.a`
+  ${InfoStyle}
+  text-decoration: underline;
 `;

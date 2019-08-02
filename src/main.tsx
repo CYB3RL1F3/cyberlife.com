@@ -24,7 +24,6 @@ Sentry.init({
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     const wb = new Workbox('/service_worker.js');
-    console.log(wb);
     wb.register();
   });
 }

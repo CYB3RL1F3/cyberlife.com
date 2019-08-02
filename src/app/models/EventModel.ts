@@ -15,6 +15,7 @@ export class EventModel {
   @observable public lineup: string[];
   @observable public location: Location;
   @observable public time: Time;
+  @observable public cost?: string;
   @observable public links: Links;
   public type: number;
 

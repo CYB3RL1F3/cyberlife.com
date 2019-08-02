@@ -11,12 +11,9 @@ workbox.precaching.precacheAndRoute(
   ])
 );
 
-console.log(self.__precacheManifest);
-// workbox.precaching.precacheAndRoute(self.__precacheManifest);
-
 workbox.routing.registerRoute(
   /\.(?:png|jpg|jpeg|svg|ico)$/,
-  new workbox.strategies.CacheFirst({
+  new workbox.strategies.NetworkFirst({
     cacheName: 'images',
     plugins: [
       new workbox.expiration.Plugin({
@@ -27,9 +24,10 @@ workbox.routing.registerRoute(
   }),
   'GET'
 );
+
 workbox.routing.registerRoute(
   /\.(?:webm|mp4)$/,
-  new workbox.strategies.CacheFirst({
+  new workbox.strategies.NetworkFirst({
     cacheName: 'videos',
     plugins: [
       new workbox.expiration.Plugin({
@@ -40,9 +38,10 @@ workbox.routing.registerRoute(
   }),
   'GET'
 );
+
 workbox.routing.registerRoute(
   /\.(?:ttf)$/,
-  new workbox.strategies.CacheFirst({
+  new workbox.strategies.NetworkFirst({
     cacheName: 'fonts',
     plugins: [
       new workbox.expiration.Plugin({
@@ -53,6 +52,7 @@ workbox.routing.registerRoute(
   }),
   'GET'
 );
+
 workbox.routing.registerRoute(
   /^(http|https)?.*/,
   new workbox.strategies.NetworkFirst({
@@ -70,7 +70,6 @@ workbox.routing.registerRoute(
 workbox.googleAnalytics.initialize({});
 
 workbox.routing.setCatchHandler(({ event }) => {
-  console.log(event);
   switch (event.request.destination) {
     case 'document':
       const offlineCacheKey = workbox.precaching.getCacheKeyForURL('offline');
