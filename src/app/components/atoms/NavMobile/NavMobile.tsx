@@ -3,7 +3,7 @@ import routes, { RouteType, getRouteByKey } from 'app/routes';
 import BackdropFilter from 'react-backdrop-filter';
 
 import { inject, observer } from 'mobx-react';
-import { STORE_ROUTER } from '../../../constants/stores';
+import { STORE_ROUTER } from 'app/constants/stores';
 import {
   Container,
   Menu,

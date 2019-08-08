@@ -13,4 +13,5 @@ export interface Tracks extends Array<Track> {}
 export interface Title {
   title: string;
   label: string;
+  link: string;
 }

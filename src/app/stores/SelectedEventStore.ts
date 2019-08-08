@@ -26,15 +26,24 @@ export class SelectedEventStore implements InitializableStore {
     this.forthcomingEventsStore = forthcomingEventsStore;
   }
 
-  getEventFromStore = (id, type): EventModel | null => {
+  getEventFromStore = (
+    id: string,
+    type: string | number
+  ): EventModel | null => {
     let store: EventsStore = null;
-    if (type === FORTHCOMING_EVENTS) {
-      store = this.forthcomingEventsStore;
-    } else {
+    if (parseInt(type as string, 10) === PAST_EVENTS || type === 'past') {
       store = this.pastEventsStore;
+    } else {
+      store = this.forthcomingEventsStore;
     }
     return (
-      store.data && store.data.find((event: EventModel) => event.id === id)
+      store.data &&
+      store.data.find(
+        (event: EventModel) =>
+          event.id === parseInt(id, 10) ||
+          event.title.toLocaleLowerCase() ===
+            decodeURIComponent(id).toLocaleLowerCase()
+      )
     );
   };
 
@@ -44,12 +53,12 @@ export class SelectedEventStore implements InitializableStore {
       .split('/');
     if (uri.length === 1)
       return {
-        type: PAST_EVENTS,
-        id: parseInt(uri[0], 10)
+        type: FORTHCOMING_EVENTS,
+        id: uri[0]
       };
     return {
-      type: parseInt(uri[0], 10),
-      id: parseInt(uri[1], 10)
+      type: uri[0],
+      id: uri[1]
     };
   };
 
@@ -59,7 +68,7 @@ export class SelectedEventStore implements InitializableStore {
   @action
   getEventByIdFromRouter = () => {
     const { id, type } = this.getEventInfo();
-    if (this.data && this.data.id === id) return;
+    if (this.data && this.data.id === parseInt(id, 10)) return;
     this.loading = true;
     this.error = null;
     const event: EventModel | null = this.getEventFromStore(id, type);

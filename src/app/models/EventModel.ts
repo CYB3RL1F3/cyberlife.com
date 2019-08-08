@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { observable, computed } from 'mobx';
-import { Time, Links } from '../../../types/events';
-import { Location, Coordinates } from '../../../types/location';
+import { Time, Links } from 'types/events';
+import { Location, Coordinates } from 'types/location';
 
 export class EventModel {
   readonly id: number;

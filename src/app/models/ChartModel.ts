@@ -1,5 +1,5 @@
 import { observable, computed } from 'mobx';
-import { Tracks, Track, Title } from '../../../types/charts';
+import { Tracks, Track, Title } from 'types/charts';
 
 export class ChartModel {
   readonly id: number;
@@ -23,7 +23,8 @@ export class ChartModel {
         title: `${track.artist} - ${track.title} ${
           track.remix ? `(${track.remix})` : ''
         }`,
-        label: track.label
+        label: track.label,
+        link: track.RA_link
       })
     );
   }

@@ -24,8 +24,15 @@ export const post = (endpoint: string, params = {}): AxiosPromise =>
 
 export const getEvents = (type: number): AxiosPromise =>
   fetch('events', { type });
-export const getEventById = (ID: number, type: number): AxiosPromise =>
-  fetch('event', { ID, type });
+
+export const getEventById = (
+  ID: number | string,
+  type: number | string
+): AxiosPromise =>
+  parseInt(ID as string, 10).toString() === ID
+    ? fetch('event', { ID, type })
+    : fetch('event', { name: encodeURIComponent(ID as string), type });
+
 export const getCharts = (): AxiosPromise => fetch('charts');
 export const getInfos = (): AxiosPromise => fetch('infos');
 export const getReleases = (): AxiosPromise => fetch('releases');

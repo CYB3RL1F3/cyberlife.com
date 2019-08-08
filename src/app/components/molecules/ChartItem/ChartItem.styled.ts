@@ -3,7 +3,6 @@ import {
   TextStyle,
   AlphaTransitionDelay
 } from 'app/components/atoms/SharedStyled';
-import { Link as BaseLink } from 'app/components/atoms/Link';
 
 const style = css`
   ${TextStyle};
@@ -14,7 +13,7 @@ export const Paragraph = styled.p`
   ${style};
 `;
 
-export const Link = styled(BaseLink)`
+export const Link = styled.a`
   ${style};
 `;
 
