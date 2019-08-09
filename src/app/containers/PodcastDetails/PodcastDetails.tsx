@@ -31,6 +31,7 @@ import { parseHtml } from 'app/utils/html';
 interface PodcastDetailsProps {
   data: TrackModel;
   [STORE_SELECTED_PODCAST]: SelectedPodcastStore;
+  [STORE_PLAYER]: PlayerStore;
 }
 
 @inject(STORE_PLAYER)

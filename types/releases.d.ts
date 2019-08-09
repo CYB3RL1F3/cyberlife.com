@@ -1,4 +1,4 @@
-import { Track as Stream } from './playlists';
+import Stream from 'app/models/TrackModel';
 
 export interface Artist {
   name: string;

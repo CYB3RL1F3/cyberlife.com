@@ -57,6 +57,11 @@ export const DataContainer = styled.div`
   `}
 `;
 
+export const PlayersHandler = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const PicHandler = styled.div`
   width: 10rem;
   height: 10rem;

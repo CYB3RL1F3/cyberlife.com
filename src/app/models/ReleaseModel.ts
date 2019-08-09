@@ -1,6 +1,7 @@
 import { observable, computed } from 'mobx';
 import { Tracks, Artist } from 'types/releases';
 import { format } from 'date-fns';
+import { TrackModel } from 'app/models';
 
 export class ReleaseModel {
   readonly id: number;
@@ -21,7 +22,14 @@ export class ReleaseModel {
   constructor(release: any) {
     Object.keys(release).forEach(
       (key: string): void => {
-        this[key] = release[key];
+        if (key === 'tracklist') {
+          this[key] = release[key];
+          this[key].forEach((track) => {
+            track.stream = new TrackModel(track, '');
+          });
+        } else {
+          this[key] = release[key];
+        }
       }
     );
   }
@@ -37,7 +45,7 @@ export class ReleaseModel {
   @computed
   get releaseDateFormatted() {
     const date = new Date(this.releaseDate);
-    if (date.getFullYear() === NaN) return this.releaseDate.replace(/\-/g, '/');
+    if (isNaN(date.getFullYear())) return this.releaseDate.replace(/\-/g, '/');
     return format(new Date(this.releaseDate), 'DD/MM/YYYY');
   }
 
