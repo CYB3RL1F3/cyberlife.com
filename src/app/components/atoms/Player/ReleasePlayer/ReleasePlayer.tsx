@@ -3,12 +3,16 @@ import { TrackModel } from 'app/models';
 import { STORE_PLAYER } from 'app/constants/stores';
 import { PlayerStore } from 'app/stores/PlayerStore';
 import { inject, observer } from 'mobx-react';
-import { Track } from '../Track';
-import { Container, Handler, Title } from './ReleasePlayer.styled';
+import {
+  Container,
+  Handler,
+  Track,
+  TrackHandler,
+  Title
+} from './ReleasePlayer.styled';
 
 import {
   ButtonHandler,
-  TrackHandler,
   IconPlay,
   PlayBtn
 } from '../MiniPlayer/MiniPlayer.styled';
@@ -24,9 +28,12 @@ export class ReleasePlayer extends React.Component<ReleasePlayerProps> {
   toggle = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    const store: PlayerStore = this.props[STORE_PLAYER] as PlayerStore;
+    const store: PlayerStore = this.props[STORE_PLAYER];
     if (store.playing) {
       store.pause();
+      if (store.currentTrack !== this.props.track) {
+        store.play(this.props.track);
+      }
     } else {
       store.play(this.props.track);
     }
@@ -39,7 +46,9 @@ export class ReleasePlayer extends React.Component<ReleasePlayerProps> {
     console.log(track);
     return (
       <Handler>
-        <Title>{title}</Title>
+        <Title href={track.soundcloud} target="_blank">
+          {title}
+        </Title>
         <Container opacity={opacity}>
           <ButtonHandler>
             <PlayBtn onClick={this.toggle}>

@@ -8,6 +8,7 @@ export interface TrackProps {
   onSeek: (seek: number, toMoveSeekPosition: boolean) => void;
   duration: number;
   isMini: boolean;
+  className?: string;
 }
 
 export class Track extends React.Component<TrackProps> {
@@ -17,7 +18,7 @@ export class Track extends React.Component<TrackProps> {
     const loc =
       e.clientX -
       e.currentTarget.offsetLeft -
-      e.currentTarget.offsetParent['offsetLeft'];
+      (e.currentTarget.offsetParent as HTMLDivElement).offsetLeft;
     const pct = (loc / e.currentTarget.offsetWidth) * 100;
 
     this.props.onSeek(pct, true);
@@ -26,9 +27,9 @@ export class Track extends React.Component<TrackProps> {
   trackRef = null;
 
   render() {
-    const { waveform, loaded, seek, isMini } = this.props;
+    const { waveform, className, loaded, seek, isMini } = this.props;
     return (
-      <Container isMini={isMini} onClick={this.seek}>
+      <Container className={className} isMini={isMini} onClick={this.seek}>
         <Content opacity={0.3} progression={100} />
         <Content opacity={0.6} progression={loaded} />
         <Content opacity={0.9} progression={seek} />
