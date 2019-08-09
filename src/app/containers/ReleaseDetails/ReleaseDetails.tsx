@@ -25,6 +25,7 @@ export interface ReleaseDetailsProps {
 export class ReleaseDetailsComponent extends React.Component<{}, {}> {
   render() {
     const store: SelectedReleaseStore = this.props[STORE_SELECTED_RELEASE];
+    if (!store.data) return null;
     const {
       title,
       thumb,
@@ -46,11 +47,6 @@ export class ReleaseDetailsComponent extends React.Component<{}, {}> {
             <Image src={thumb} alt={title} />
           </PicHandler>
           <TextHandler>
-            <P>
-              {label} - {cat}
-            </P>
-            <P>{styles.join(' / ')}</P>
-            <P>released on {releaseDateFormatted}</P>
             {tracks && tracks.length > 0 && (
               <Tracklist>
                 {tracks.map((track: Track) => (
@@ -58,6 +54,12 @@ export class ReleaseDetailsComponent extends React.Component<{}, {}> {
                 ))}
               </Tracklist>
             )}
+            <P>
+              {label} ({cat})
+            </P>
+            <P>Released on {releaseDateFormatted}</P>
+            <P>{styles.join(' / ')}</P>
+            <br />
             <A href={discogs} target="_blank">
               View more infos on Discogs
             </A>

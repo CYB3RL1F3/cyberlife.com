@@ -51,14 +51,22 @@ export const DataContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin: 2rem 0 1rem 0;
+  ${({ theme }) => theme.media.mobile`
+    margin: 0;
+    flex-direction: column;
+  `}
 `;
 
 export const PicHandler = styled.div`
   width: 10rem;
   height: 10rem;
+  margin-right: 1rem;
   ${({ theme }) => theme.media.mobile`
-    width: 6rem;
-    height: 6rem;
+    ${({ theme }) => theme.media.mobile`
+    width: 90vw;
+    height: 90vw;
+    margin: 1rem 0;
+  `}
   `}
 `;
 
@@ -66,8 +74,9 @@ export const Image = styled.img`
   min-width: 10rem;
   max-height: 10rem;
   ${({ theme }) => theme.media.mobile`
-    min-width: 6rem;
-    max-height: 6rem;
+    max-width: 100vw;
+    min-height: 18rem;
+    max-height: 90vw;
   `}
 `;
 
@@ -100,5 +109,5 @@ export const DescriptionHandler = styled.p`
 export const Tracklist = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem 0;
+  margin: 0 0 1rem 0;
 `;
