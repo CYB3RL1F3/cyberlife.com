@@ -25,8 +25,9 @@ export class TrackModel {
   @observable public playing: boolean = false;
   @observable public seek: number = 0;
   @observable public loaded: number = 0;
+  public source: string;
 
-  constructor(track: any, podcastArtwork) {
+  constructor(track: any, podcastArtwork, source = 'podcasts') {
     Object.keys(track).forEach(
       (key: string): void => {
         this[key] = track[key];
@@ -35,7 +36,7 @@ export class TrackModel {
     if (!track.artwork) {
       this.artwork = podcastArtwork;
     }
-    console.log(this.duration);
+    this.source = source;
   }
 
   getPosition = (pct: number): number => (pct / 100) * this.duration;

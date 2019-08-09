@@ -16,10 +16,27 @@ import { Track } from '../Track';
 @observer
 export class MiniPlayer extends React.Component {
   isEligibleRoute = () => {
-    const store: RouterStore = this.props[STORE_ROUTER] as RouterStore;
-    const isSubrouteOfPodcast = /(\/podcast)/g.test(store.location.pathname);
-    const isRoot = store.location.pathname === '/';
-    return !isRoot && !isSubrouteOfPodcast;
+    const store: RouterStore = this.props[STORE_ROUTER];
+    const playerStore: PlayerStore = this.props[STORE_PLAYER];
+    const source =
+      playerStore &&
+      playerStore.currentTrack &&
+      playerStore.currentTrack.source;
+    if (!source) return false;
+    if (source === 'podcasts') {
+      const isSubrouteOfPodcast = /(\/podcast)/g.test(store.location.pathname);
+      const isRoot = store.location.pathname === '/';
+      return !isRoot && !isSubrouteOfPodcast;
+    }
+    if (
+      source.indexOf('release') > -1 &&
+      store.location.pathname.indexOf('/releases/') > -1
+    ) {
+      const uri = store.location.pathname.replace('/releases/', '').split('/');
+      const id: string | undefined = uri[0];
+      return !id || (id.length && source !== `release_${id}`);
+    }
+    return true;
   };
   toggle = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();

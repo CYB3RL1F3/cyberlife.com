@@ -25,7 +25,11 @@ export class ReleaseModel {
         if (key === 'tracklist') {
           this.tracklist = release.tracklist.map((track: Track) => {
             if (track.stream) {
-              track.stream = new TrackModel(track.stream, '');
+              track.stream = new TrackModel(
+                track.stream,
+                '',
+                `release_${release.id}`
+              );
             } else {
               track.stream = null;
             }
