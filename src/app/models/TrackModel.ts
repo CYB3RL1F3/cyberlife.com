@@ -20,6 +20,7 @@ export class TrackModel {
   @observable public waveform: string;
   @observable public genre: string;
   @observable public stats: Stats;
+  @observable public license: string;
   @observable public taglist: string[];
 
   @observable public playing: boolean = false;

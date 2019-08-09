@@ -13,14 +13,16 @@ import {
   TextHandler,
   P,
   Tracklist,
-  A,
   PlayersHandler
 } from './ReleaseDetails.styled';
 import { withLoadingStore } from 'app/hoc';
 import { Track } from 'types/releases';
 import { inject, observer } from 'mobx-react';
 import { PlayerStore } from 'app/stores';
+import { ThumbHandler } from 'app/components/molecules/PodcastItem/PodcastItem.styled';
+
 import { ReleasePlayer } from 'app/components/atoms/Player/ReleasePlayer/ReleasePlayer';
+import { DownloadBtn } from '../PodcastDetails/PodcastDetails.styled';
 export interface ReleaseDetailsProps {
   data: ReleaseModel;
   [STORE_SELECTED_RELEASE]: SelectedReleaseStore;
@@ -49,26 +51,30 @@ export class ReleaseDetailsComponent extends React.Component<{}, {}> {
           <GoBack path="/releases">&lt; Back</GoBack>
         </TitleHandler>
         <DataContainer>
-          <PicHandler>
-            <Image src={thumb} alt={title} />
-          </PicHandler>
+          <ThumbHandler>
+            <PicHandler>
+              <Image src={thumb} alt={title} />
+            </PicHandler>
+            <DownloadBtn href={discogs} target="_blank">
+              Get Vinyl
+            </DownloadBtn>
+          </ThumbHandler>
           <TextHandler>
+            <P>Label: {label}</P>
+            <P>Cat: {cat}</P>
+            <P>Release date: {releaseDateFormatted}</P>
+            <P>{styles.join(' / ')}</P>
+            <br />
+            <P>Tracklist: </P>
             {tracks && tracks.length > 0 && (
               <Tracklist>
                 {tracks.map((track: Track) => (
-                  <P key={track.title}>{track.fullTitle}</P>
+                  <P key={track.title}>
+                    <b>-</b> {track.fullTitle}
+                  </P>
                 ))}
               </Tracklist>
             )}
-            <P>
-              {label} ({cat})
-            </P>
-            <P>Released on {releaseDateFormatted}</P>
-            <P>{styles.join(' / ')}</P>
-            <br />
-            <A href={discogs} target="_blank">
-              View more infos on Discogs
-            </A>
           </TextHandler>
         </DataContainer>
         <PlayersHandler>

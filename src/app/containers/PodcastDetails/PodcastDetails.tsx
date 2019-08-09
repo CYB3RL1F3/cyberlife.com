@@ -13,6 +13,7 @@ import {
   TextHandler,
   TrackHandler,
   P,
+  A,
   Description,
   GoBack,
   Tag
@@ -59,6 +60,11 @@ export class PodcastDetailsComponent extends React.Component<
     }
   };
 
+  computeDuration = (duration) => {
+    const d = new Date(duration);
+    return `0${d.getHours() - 1}:${d.getMinutes()}:${d.getSeconds()}`;
+  };
+
   render() {
     const { data } = this.props;
     if (data) {
@@ -70,9 +76,12 @@ export class PodcastDetailsComponent extends React.Component<
         waveform,
         loaded,
         seek,
+        soundcloud,
         duration,
         taglist,
+        genre,
         download,
+        license,
         description
       } = data;
       const descriptionHtml = description.replace(/(\n)/g, '<br />');
@@ -93,14 +102,16 @@ export class PodcastDetailsComponent extends React.Component<
               {download && <DownloadBtn href={download}>Download</DownloadBtn>}
             </ThumbHandler>
             <TextHandler>
-              <P>Released on {format(new Date(date), 'DD/MM/YYYY')}</P>
-              <TagList>
-                {taglist.map(
-                  (tag: string): JSX.Element => (
-                    <Tag key={tag}>#{tag}</Tag>
-                  )
-                )}
-              </TagList>
+              <P>Published on {format(new Date(date), 'DD/MM/YYYY')}</P>
+              <P>Duration: {this.computeDuration(duration)}</P>
+              <P>Style: {genre}</P>
+              <P>© {license.replace(/\-/g, ' ')}</P>
+              <br />
+              <P>
+                <A href={soundcloud} target="_blank">
+                  View on Soundcloud
+                </A>
+              </P>
             </TextHandler>
           </DataContainer>
           <TrackHandler opacity={playing ? 1 : 0.5}>
@@ -117,6 +128,19 @@ export class PodcastDetailsComponent extends React.Component<
             <DescriptionHandler>
               {parseHtml(descriptionHtml)}
             </DescriptionHandler>
+            <TagList>
+              {taglist.map(
+                (tag: string): JSX.Element => (
+                  <Tag
+                    href={`https://soundcloud.com/tags/${tag}`}
+                    target="_blank"
+                    key={tag}
+                  >
+                    #{tag}
+                  </Tag>
+                )
+              )}
+            </TagList>
           </Description>
         </Container>
       );

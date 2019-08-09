@@ -113,7 +113,7 @@ export const TrackHandler = styled.div<Displayable>`
   transition: opacity 0.5s;
 `;
 
-export const Tag = styled.span`
+export const Tag = styled.a`
   display: inline-block;
   padding: 0.2rem 0.3rem;
   ${TextStyle}
@@ -121,7 +121,11 @@ export const Tag = styled.span`
   line-height: 1rem;
   background: rgba(122, 122, 122, 0.1);
   border-radius: 3px;
+  text-decoration: none;
   margin: 0 0.5rem 0.5rem 0;
+  &:hover {
+    text-decoration: none;
+  }
 `;
 
 export const TagList = styled(P)`
