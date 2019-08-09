@@ -2,6 +2,7 @@ import styled, { css } from 'app/theme';
 import GracefulImage from 'react-graceful-image';
 import { TextStyle } from 'app/components/atoms/SharedStyled';
 import { AlphaTransitionDelay } from 'app/components/atoms/SharedStyled/SharedStyled';
+import { Link as BaseLink } from 'app/components/atoms/Link';
 
 export const Container = styled.div`
   ${({ index }) => AlphaTransitionDelay(index)}
@@ -59,12 +60,17 @@ export const P = styled.p`
   ${style};
 `;
 
-export const A = styled.a`
+export const A = styled(BaseLink)`
   ${style};
 `;
 
 export const Title = styled.h3`
   ${style};
+  text-transform: uppercase;
+  font-weight: normal;
+`;
+
+export const TitleLink = styled(A)`
   text-transform: uppercase;
   font-weight: normal;
 `;

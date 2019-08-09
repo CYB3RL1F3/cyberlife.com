@@ -1,3 +1,5 @@
+import { Track as Stream } from './playlists';
+
 export interface Artist {
   name: string;
   resource_url: string;
@@ -11,6 +13,8 @@ export interface Track {
   position: number;
   artists: Artist[];
   extraartists: Artist[];
+  fullTitle: string;
+  stream: Stream;
 }
 
 export interface Tracks extends Array<Track> {}

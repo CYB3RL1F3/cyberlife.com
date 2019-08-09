@@ -21,8 +21,10 @@ import {
   STORE_PODCAST,
   STORE_APP,
   STORE_PLAYER,
-  STORE_SELECTED_PODCAST
+  STORE_SELECTED_PODCAST,
+  STORE_SELECTED_RELEASE
 } from '../constants/stores';
+import SelectedReleaseStore from './SelectedReleaseStore';
 
 export function createStores(history: History) {
   const appStore: AppStore = new AppStore();
@@ -36,11 +38,19 @@ export function createStores(history: History) {
     routerStore,
     podcastStore
   );
+  const releasesStore = new ReleasesStore();
+  const selectedReleaseStore: SelectedReleaseStore = new SelectedReleaseStore(
+    routerStore,
+    releasesStore
+  );
   const selectedEventStore: SelectedEventStore = new SelectedEventStore(
     routerStore,
     pastEventsStore,
     forthcomingEventsStore
   );
+  const infosStore = new InfosStore(appStore);
+  const chartStore = new ChartStore();
+  const playerStore = new PlayerStore();
   return {
     [STORE_APP]: appStore,
     [STORE_ROUTER]: routerStore,
@@ -49,9 +59,10 @@ export function createStores(history: History) {
     [STORE_SELECTED_EVENT]: selectedEventStore,
     [STORE_PODCAST]: podcastStore,
     [STORE_SELECTED_PODCAST]: selectedPodcastStore,
-    [STORE_INFOS]: new InfosStore(appStore),
-    [STORE_RELEASES]: new ReleasesStore(),
-    [STORE_CHART]: new ChartStore(),
-    [STORE_PLAYER]: new PlayerStore()
+    [STORE_INFOS]: infosStore,
+    [STORE_RELEASES]: releasesStore,
+    [STORE_CHART]: chartStore,
+    [STORE_PLAYER]: playerStore,
+    [STORE_SELECTED_RELEASE]: selectedReleaseStore
   };
 }

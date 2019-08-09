@@ -6,6 +6,7 @@ export { Err404 } from './Err404';
 export { Podcasts } from './Podcasts';
 export { EventDetails } from './EventDetails';
 export { PodcastDetails } from './PodcastDetails';
+export { ReleaseDetails } from './ReleaseDetails';
 export { Bio } from './Bio';
 export { Charts } from './Charts';
 export { App } from './App';

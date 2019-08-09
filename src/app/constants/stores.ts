@@ -10,3 +10,4 @@ export const STORE_PODCAST = 'podcasts';
 export const STORE_SELECTED_EVENT = 'selected_event';
 export const STORE_PLAYER = 'player';
 export const STORE_SELECTED_PODCAST = 'selected_podcast';
+export const STORE_SELECTED_RELEASE = 'selected_release';

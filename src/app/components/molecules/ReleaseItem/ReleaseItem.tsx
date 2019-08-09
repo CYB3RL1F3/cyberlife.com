@@ -8,38 +8,53 @@ import {
   InfosHandler,
   Title,
   Tracklist,
-  P
+  TitleLink,
+  P,
+  A
 } from './ReleaseItem.styled';
 import { ReleaseModel } from 'app/models';
 
 export interface ReleaseProps {
   theme: Theme;
-  release: ReleaseModel;
   index: number;
+  release: ReleaseModel;
 }
 
 export const ReleaseItemComponent: React.StatelessComponent<ReleaseProps> = (
   props: ReleaseProps
 ) => {
-  const { name, cyberlifeTracks, thumb, label, releaseDate } = props.release;
+  const {
+    title,
+    id,
+    cyberlifeTracks: tracks,
+    thumb,
+    label,
+    releaseDateFormatted
+  } = props.release;
   const { picturePlaceholder } = props.theme;
+  const link = `/releases/${id}`;
   return (
     <Container index={props.index}>
       <ThumbHandler>
-        <Image
-          placeholderColor={picturePlaceholder}
-          src={thumb}
-          alt={name}
-          retry={{ count: 5, delay: 2, accumulate: 'add' }}
-        />
+        <A path={link}>
+          <Image
+            placeholderColor={picturePlaceholder}
+            src={thumb}
+            alt={title}
+            noLazyLoad={true}
+            retry={{ count: 5, delay: 2, accumulate: 'add' }}
+          />
+        </A>
       </ThumbHandler>
       <InfosHandler>
-        <Title>{name}</Title>
+        <Title>
+          <TitleLink path={link}>{title}</TitleLink>
+        </Title>
         <P>{label}</P>
-        <P>Released on {releaseDate}</P>
-        {cyberlifeTracks && cyberlifeTracks.length > 0 && (
+        <P>Released on {releaseDateFormatted}</P>
+        {tracks && tracks.length > 0 && (
           <Tracklist>
-            {cyberlifeTracks.map((track: Track) => (
+            {tracks.map((track: Track) => (
               <P key={track.title}>{track.title}</P>
             ))}
           </Tracklist>

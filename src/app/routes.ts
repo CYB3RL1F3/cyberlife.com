@@ -8,7 +8,8 @@ import {
   Releases,
   Contact,
   EventDetails,
-  PodcastDetails
+  PodcastDetails,
+  ReleaseDetails
 } from 'app/containers';
 
 export interface RouteType {
@@ -73,6 +74,13 @@ export const routes: RouteType[] = [
     path: '/podcasts/:id',
     label: '',
     key: 'podcast',
+    menu: false
+  },
+  {
+    component: ReleaseDetails,
+    path: '/releases/:id',
+    label: '',
+    key: 'release',
     menu: false
   },
   {

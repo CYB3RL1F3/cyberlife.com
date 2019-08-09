@@ -1,8 +1,8 @@
 {
-  "name": "typescript-react-mobx-boilerplate",
+  "name": "cyberlife",
   "version": "1.0.0",
   "private": true,
-  "description": "A frontend boilerplate with React, MobX and Typescript",
+  "description": "cyberlife-music.com front-end app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

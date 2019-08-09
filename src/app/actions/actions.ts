@@ -40,6 +40,10 @@ export const getPodcasts = (): AxiosPromise =>
   fetch('playlist', { name: 'dj-sets' });
 export const getPodcastById = (id: number): AxiosPromise =>
   fetch('track', { id });
+export const getReleaseById = (id: number): AxiosPromise =>
+  fetch('release', {
+    id
+  });
 
 export const sendMail = ({ name, email, subject, message }): AxiosPromise =>
   post('contact', { name, email, subject, message });

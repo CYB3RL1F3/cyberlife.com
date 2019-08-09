@@ -13,7 +13,10 @@ export class ReleaseModel {
   @observable public releaseDate: string;
   @observable public thumb: string;
   @observable public label: string;
+  @observable public cat: string;
+  @observable public discogs: string;
   @observable public images: string[];
+  @observable public styles: string[];
 
   constructor(release: any) {
     Object.keys(release).forEach(
@@ -33,6 +36,8 @@ export class ReleaseModel {
 
   @computed
   get releaseDateFormatted() {
+    const date = new Date(this.releaseDate);
+    if (date.getFullYear() === NaN) return this.releaseDate.replace(/\-/g, '/');
     return format(new Date(this.releaseDate), 'DD/MM/YYYY');
   }
 
