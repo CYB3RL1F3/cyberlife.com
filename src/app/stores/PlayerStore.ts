@@ -55,12 +55,12 @@ export class PlayerStore {
 
   @computed
   get loaded() {
-    return this.currentTrack.loaded;
+    return this.currentTrack.loaded ? this.currentTrack.loaded : 0;
   }
 
   @computed
   get playing() {
-    return this.currentTrack.playing;
+    return this.currentTrack ? this.currentTrack.playing : false;
   }
 
   @action

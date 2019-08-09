@@ -14,7 +14,7 @@ export interface Track {
   artists: Artist[];
   extraartists: Artist[];
   fullTitle: string;
-  stream: Stream;
+  stream: Stream | null;
 }
 
 export interface Tracks extends Array<Track> {}

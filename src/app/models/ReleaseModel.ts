@@ -1,5 +1,5 @@
 import { observable, computed } from 'mobx';
-import { Tracks, Artist } from 'types/releases';
+import { Tracks, Artist, Track } from 'types/releases';
 import { format } from 'date-fns';
 import { TrackModel } from 'app/models';
 
@@ -23,9 +23,13 @@ export class ReleaseModel {
     Object.keys(release).forEach(
       (key: string): void => {
         if (key === 'tracklist') {
-          this[key] = release[key];
-          this[key].forEach((track) => {
-            track.stream = new TrackModel(track, '');
+          this.tracklist = release.tracklist.map((track: Track) => {
+            if (track.stream) {
+              track.stream = new TrackModel(track.stream, '');
+            } else {
+              track.stream = null;
+            }
+            return track;
           });
         } else {
           this[key] = release[key];

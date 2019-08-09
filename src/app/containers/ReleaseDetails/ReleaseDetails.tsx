@@ -75,7 +75,11 @@ export class ReleaseDetailsComponent extends React.Component<{}, {}> {
           {tracks.map(
             (track: Track) =>
               track.stream !== null && (
-                <ReleasePlayer title={track.fullTitle} track={track.stream} />
+                <ReleasePlayer
+                  key={track.stream.id}
+                  title={track.fullTitle}
+                  track={track.stream}
+                />
               )
           )}
         </PlayersHandler>

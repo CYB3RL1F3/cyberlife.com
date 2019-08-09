@@ -14,8 +14,12 @@ export class Track extends React.Component<TrackProps> {
   seek = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    const loc = e.clientX - e.currentTarget.offsetLeft;
+    const loc =
+      e.clientX -
+      e.currentTarget.offsetLeft -
+      e.currentTarget.offsetParent['offsetLeft'];
     const pct = (loc / e.currentTarget.offsetWidth) * 100;
+
     this.props.onSeek(pct, true);
   };
 

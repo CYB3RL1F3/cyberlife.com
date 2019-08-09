@@ -35,6 +35,7 @@ export class TrackModel {
     if (!track.artwork) {
       this.artwork = podcastArtwork;
     }
+    console.log(this.duration);
   }
 
   getPosition = (pct: number): number => (pct / 100) * this.duration;

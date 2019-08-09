@@ -36,6 +36,7 @@ export class ReleasePlayer extends React.Component<ReleasePlayerProps> {
     const { track, title } = this.props;
     const store: PlayerStore = this.props[STORE_PLAYER];
     const opacity = track.playing ? 1 : 0.5;
+    console.log(track);
     return (
       <Handler>
         <Title>{title}</Title>
