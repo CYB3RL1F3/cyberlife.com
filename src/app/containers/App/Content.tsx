@@ -7,11 +7,9 @@ import { STORE_ROUTER } from 'app/constants';
 @observer
 export class Content extends React.Component {
   contentHandler: React.RefObject<HTMLDivElement> = React.createRef<any>();
-
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.contentHandler.current.scrollTop = 0;
   }
-
   render() {
     console.log(this.props[STORE_ROUTER]);
     return (
