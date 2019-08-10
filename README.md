@@ -1,12 +1,7 @@
-# Frontend Boilerplate with React, MobX & TypeScript
+# Cyberlife.com
 
-A bare minimum react-mobx-webpack-typescript boilerplate with TodoMVC example.
-
-Note that this project does not include **Server-Side Rendering**,  **Testing Frameworks** and other stuffs that makes the package unnecessarily complicated.
-
-Ideal for creating React apps from the scratch.
-
-See also: [react-redux-typescript-boilerplate](https://github.com/rokoroku/react-redux-typescript-boilerplate)
+The source code of my website, created to expose all informations about my musical world (podcasts, releases, infos like gigs, charted tracks...) is available on github as a demonstration of an application developed with Typescript + React + MobX + Styled Components.
+The website is now online and works with my profilart application for data provision.
 
 ## Contains
 
@@ -32,31 +27,10 @@ See also: [react-redux-typescript-boilerplate](https://github.com/rokoroku/react
 - [x] [ExtractText Plugin](https://github.com/webpack/extract-text-webpack-plugin)
 - [x] [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin)
 
+### Coming up next
 
-## Setup
-
-```
-$ npm install
-```
-
-## Running
-
-```
-$ npm start
-```
-
-## Build
-
-```
-$ npm run build
-```
-
-## Code Format
-
-```
-$ npm run prettier
-```
-
-# License
-
-MIT
+* Set up some unit tests with JEST
+* News feed feature (probably based on twitter or facebook)
+* Display more images on release details page (through a carousel in a popin)
+* Display flyer on event details page (with a switch between map and image)
+* Change background video
