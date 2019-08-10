@@ -48,7 +48,12 @@ export class NavMobile extends React.Component<NavMobileProps, NavMobileState> {
 
   isCurrent = (pathname: string): boolean => {
     const store: RouterStore = this.props[STORE_ROUTER];
-    return store.location.pathname === pathname;
+    if (pathname === '/')
+      return (
+        store.location.pathname === pathname ||
+        store.location.pathname.indexOf('podcasts') > -1
+      );
+    return store.location.pathname.indexOf(pathname) > -1 && pathname !== '/';
   };
 
   getRoutes = () => {

@@ -53,11 +53,14 @@ export const Description = styled.p`
   ${style};
   max-height: 3rem;
   overflow: hidden;
-  text-overflow: ellipsis;
   padding-top: 0.6rem;
-  width: 95%;
+  word-break: break-word;
+  text-overflow: ellipsis;
+  width: 96%;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
   ${({ theme }) => theme.media.mobile`
     font-size: ${({ theme }) => theme.fontSizes.average};
   `}
