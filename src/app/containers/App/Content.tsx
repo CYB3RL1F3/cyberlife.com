@@ -11,7 +11,7 @@ export class Content extends React.Component {
     this.contentHandler.current.scrollTop = 0;
   }
   render() {
-    console.log(this.props[STORE_ROUTER]);
+    console.log(this.props[STORE_ROUTER].location.pathname);
     return (
       <Container ref={this.contentHandler}>{this.props.children}</Container>
     );
