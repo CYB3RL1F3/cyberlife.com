@@ -33,7 +33,6 @@ export class MiniPlayerMobileWrapper extends React.Component<
         .replace('/releases/', '')
         .split('/');
       const idRelease: string | undefined = uri[0];
-      console.log(idRelease);
       return (
         !idRelease || (idRelease.length && source !== `release_${idRelease}`)
       );
