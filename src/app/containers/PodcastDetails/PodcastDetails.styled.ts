@@ -95,10 +95,10 @@ export const Description = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  margin: 1rem 0;
 `;
 
 export const DescriptionHandler = styled.p`
-  margin: 1rem 0;
   ${TextStyle};
   padding-bottom: 1rem;
 `;
@@ -129,5 +129,5 @@ export const Tag = styled.a`
 `;
 
 export const TagList = styled(P)`
-  margin-top: 1rem;
+  margin: 1rem 0;
 `;

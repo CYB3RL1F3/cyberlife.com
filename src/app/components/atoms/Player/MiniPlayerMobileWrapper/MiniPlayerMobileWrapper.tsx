@@ -20,10 +20,25 @@ export class MiniPlayerMobileWrapper extends React.Component<
     const routerStore: RouterStore = this.props[STORE_ROUTER];
     const playerStore: PlayerStore = this.props[STORE_PLAYER];
     const { currentTrack } = playerStore;
-    const isEligibleRoute: boolean = !/(\/podcast)/g.test(
-      routerStore.location.pathname
-    );
-    return currentTrack && isEligibleRoute;
+    if (!currentTrack) return false;
+    const { id, source } = currentTrack;
+    if (source === 'podcasts') {
+      return routerStore.location.pathname.indexOf(`podcasts/${id}`) === -1;
+    }
+    if (
+      source.indexOf('release') > -1 &&
+      routerStore.location.pathname.indexOf('/releases/') > -1
+    ) {
+      const uri = routerStore.location.pathname
+        .replace('/releases/', '')
+        .split('/');
+      const idRelease: string | undefined = uri[0];
+      console.log(idRelease);
+      return (
+        !idRelease || (idRelease.length && source !== `release_${idRelease}`)
+      );
+    }
+    return true;
   };
 
   render() {

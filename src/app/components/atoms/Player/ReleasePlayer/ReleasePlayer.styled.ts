@@ -17,6 +17,9 @@ export const Title = styled.a`
 export const Container = styled(BaseContainer)`
   margin: 0 0 1rem 0;
   min-height: 4rem;
+  ${({ theme }) => theme.media.mobile`
+    min-height: 5rem;
+  `}
 `;
 
 export const TrackHandler = styled.div`

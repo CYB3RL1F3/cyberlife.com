@@ -15,7 +15,7 @@ import { Track } from '../Track';
 @inject(STORE_PLAYER, STORE_ROUTER)
 @observer
 export class MiniPlayer extends React.Component {
-  isEligibleRoute = () => {
+  isActive = () => {
     const store: RouterStore = this.props[STORE_ROUTER];
     const playerStore: PlayerStore = this.props[STORE_PLAYER];
     const source =
@@ -51,7 +51,7 @@ export class MiniPlayer extends React.Component {
   render() {
     const store: PlayerStore = this.props[STORE_PLAYER] as PlayerStore;
     const { currentTrack, onSeek } = store;
-    const opacity = this.isEligibleRoute() ? 1 : 0;
+    const opacity = this.isActive() ? 1 : 0;
     if (!currentTrack) return <div />;
     return (
       <Container opacity={opacity}>

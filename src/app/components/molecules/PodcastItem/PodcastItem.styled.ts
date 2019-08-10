@@ -60,7 +60,6 @@ export const Description = styled.p`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   display: -webkit-box;
-}
   ${({ theme }) => theme.media.mobile`
     font-size: ${({ theme }) => theme.fontSizes.average};
   `}
