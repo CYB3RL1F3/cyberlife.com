@@ -197,11 +197,6 @@ module.exports = {
     }),
     new InjectManifest({
       swSrc: manifest.serviceworker,
-      modifyURLPrefix: {
-        '/dist': ''
-      },
-      maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
-      globPatterns: ['*.{js,png,html,css,webm,jpg}'],
       include: [
         /\.html$/,
         /\.js$/,
