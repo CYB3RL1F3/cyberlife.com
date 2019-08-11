@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { ReleasesStore } from 'app/stores';
 import { STORE_RELEASES } from 'app/constants';
-import { ReleaseModel } from 'app/models/releaseModel';
+import { ReleaseModel } from 'app/models/ReleaseModel';
 import { ReleaseItem } from 'app/components/molecules/ReleaseItem';
 import { Container } from './Releases.styled';
 import { withLoadingStore } from 'app/hoc';

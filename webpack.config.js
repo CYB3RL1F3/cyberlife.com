@@ -3,18 +3,19 @@ const path = require('path');
 
 // variables
 const isProduction = process.argv.indexOf('-p') >= 0;
-const sourcePath = path.join(__dirname, './src');
-const outPath = path.join(__dirname, './dist');
+const sourcePath = path.resolve(__dirname, 'src');
+const outPath = path.resolve(__dirname, 'dist');
 const mode = isProduction ? 'production' : 'development';
 // plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+// const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 const SitemapWebpackPlugin = require('sitemap-webpack-plugin').default;
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const { InjectManifest } = require('workbox-webpack-plugin');
+const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
 const manifest = require('./manifest');
 
 const domain = process.env.domain || 'localhost:3000';
@@ -180,7 +181,8 @@ module.exports = {
     runtimeChunk: true
   },
   plugins: [
-    new WebpackCleanupPlugin(),
+    new ForceCaseSensitivityPlugin(),
+    // new WebpackCleanupPlugin(),
     new ExtractTextPlugin({
       filename: 'styles.css',
       disable: !isProduction
