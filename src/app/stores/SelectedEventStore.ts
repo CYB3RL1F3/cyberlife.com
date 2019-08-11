@@ -84,7 +84,7 @@ export class SelectedEventStore implements InitializableStore {
 
   @action.bound
   onEventLoaded = (type) =>
-    action.bound((response: AxiosResponse) => {
+    action((response: AxiosResponse) => {
       this.loading = true;
       this.error = null;
       try {

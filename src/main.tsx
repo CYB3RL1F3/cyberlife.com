@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/browser';
-import { useStrict } from 'mobx';
+import { configure } from 'mobx';
 import { Provider } from 'mobx-react';
 import { createBrowserHistory } from 'history';
 import { createStores } from 'app/stores';
@@ -9,7 +9,10 @@ import { App } from 'app';
 import { Workbox } from 'workbox-window';
 
 // enable MobX strict mode
-useStrict(true);
+
+configure({
+  enforceActions: 'observed'
+});
 
 // prepare MobX stores
 const history = createBrowserHistory();

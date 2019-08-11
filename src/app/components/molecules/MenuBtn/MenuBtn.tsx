@@ -5,7 +5,7 @@ import { NavMobile } from 'app/components/atoms/NavMobile';
 export class MenuBtn extends React.Component<{}, {}> {
   nav: React.RefObject<any> = React.createRef();
   toggle = () => {
-    this.nav && this.nav.current.wrappedInstance.toggle();
+    this.nav.current && this.nav.current.toggle();
   };
   render() {
     return (

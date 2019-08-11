@@ -10,7 +10,7 @@ const mode = isProduction ? 'production' : 'development';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
-const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
+const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 const SitemapWebpackPlugin = require('sitemap-webpack-plugin').default;
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
@@ -92,8 +92,16 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: isProduction
-          ? 'ts-loader'
-          : ['babel-loader?plugins=react-hot-loader/babel', 'ts-loader']
+          ? ['ts-loader']
+          : [
+              {
+                loader: 'babel-loader',
+                options: {
+                  plugins: ['react-hot-loader/babel']
+                }
+              },
+              'ts-loader'
+            ]
       },
       // css
       {
@@ -104,10 +112,11 @@ module.exports = {
             {
               loader: 'css-loader',
               query: {
-                modules: true,
+                modules: {
+                  localIdentName: '[local]__[hash:base64:5]'
+                },
                 sourceMap: !isProduction,
-                importLoaders: 1,
-                localIdentName: '[local]__[hash:base64:5]'
+                importLoaders: 1
               }
             },
             {
@@ -134,16 +143,22 @@ module.exports = {
       { test: /\.jpg$/, use: 'file-loader' },
       { test: /\.svg$/, use: 'file-loader' },
       {
-        test: /\.mp4$/,
-        use: 'file-loader?name=videos/[name].[ext]'
-      },
-      {
-        test: /\.webm$/,
-        use: 'file-loader?name=videos/[name].[ext]'
+        test: /\.(webm|mp4)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'videos/[name].[ext]'
+          }
+        }
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ['file-loader']
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'fonts/[name].[ext]'
+          }
+        }
       }
     ]
   },

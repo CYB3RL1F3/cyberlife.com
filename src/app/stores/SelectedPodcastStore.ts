@@ -53,7 +53,7 @@ export class SelectedPodcastStore implements InitializableStore {
       if (!artwork) {
         getPodcasts()
           .then(
-            action.bound((res: AxiosResponse) => {
+            action((res: AxiosResponse) => {
               this.podcastStore.data = new PodcastModel(res.data);
               this.data = this.getPodcastFromStore(id);
               this.loading = false;
