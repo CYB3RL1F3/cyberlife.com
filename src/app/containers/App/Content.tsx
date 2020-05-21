@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Content as Container } from './App.styled';
 import { inject, observer } from 'mobx-react';
 import { STORE_ROUTER } from 'app/constants';

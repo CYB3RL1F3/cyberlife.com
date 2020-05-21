@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { STORE_SELECTED_EVENT } from 'app/constants/stores';
 import { EventModel } from 'app/models/EventModel';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';

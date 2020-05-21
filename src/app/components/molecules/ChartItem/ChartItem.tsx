@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Paragraph, Container, Link } from './ChartItem.styled';
 
 interface ChartProp {

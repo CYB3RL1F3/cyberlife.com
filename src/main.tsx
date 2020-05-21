@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/browser';
 import { configure } from 'mobx';
 import { Provider } from 'mobx-react';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import PlaylistModel from 'app/models/PodcastModel';
 import { STORE_PLAYER, STORE_PODCAST } from 'app/constants/stores';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';

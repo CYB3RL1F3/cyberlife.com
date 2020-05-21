@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { STORE_ROUTER, STORE_PLAYER } from 'app/constants/stores';
 import { RouterStore } from 'app/stores';

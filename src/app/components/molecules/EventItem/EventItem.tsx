@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { EventLink, Paragraph, Link, Container } from './EventItem.styled';
 import { getEventLink } from 'app/utils/event';
 

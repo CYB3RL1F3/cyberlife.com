@@ -11,3 +11,18 @@ export const STORE_SELECTED_EVENT = 'selected_event';
 export const STORE_PLAYER = 'player';
 export const STORE_SELECTED_PODCAST = 'selected_podcast';
 export const STORE_SELECTED_RELEASE = 'selected_release';
+
+export enum Stores {
+  router = 'router',
+  past_events = 'past_events',
+  forthcoming_events = 'forthcoming_events',
+  releases = 'releases',
+  chart = 'chart',
+  infos = 'infos',
+  app = 'app',
+  podcasts = 'podcasts',
+  selected_event = 'selected_event',
+  player = 'player',
+  selected_podcast = 'selected_podcast',
+  selected_release = 'selected_release'
+}

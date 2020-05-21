@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { STORE_SELECTED_PODCAST, STORE_PLAYER } from 'app/constants/stores';
 import { TrackModel } from 'app/models/TrackModel';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
@@ -102,7 +102,7 @@ export class PodcastDetailsComponent extends React.Component<
               {download && <DownloadBtn href={download}>Download</DownloadBtn>}
             </ThumbHandler>
             <TextHandler>
-              <P>Published on {format(new Date(date), 'DD/MM/YYYY')}</P>
+              <P>Published on {format(new Date(date), 'dd/mm/yyyy')}</P>
               <P>Duration: {this.computeDuration(duration)}</P>
               <P>Style: {genre}</P>
               <P>© {license.replace(/\-/g, ' ')}</P>

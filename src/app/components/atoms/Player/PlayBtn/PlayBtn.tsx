@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { PlayBtnProps, Container, Cover, IconPlay } from './PlayBtn.styled';
 
 export class PlayBtn extends React.Component<PlayBtnProps> {

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Container, Console, Output } from '../AppLoader.styled';
 import { WebbrowserList } from './WebBrowsersList';
 

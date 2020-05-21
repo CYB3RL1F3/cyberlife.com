@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Layout, Footer, MiniPlayerMobileWrapper } from 'app/components';
 import { Header, Infos } from 'app/components/organisms';
 import { AppContainer, Container, Handler } from './App.styled';

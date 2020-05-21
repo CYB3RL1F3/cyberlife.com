@@ -1,17 +1,20 @@
-import * as React from 'react';
+import React from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { inject, observer } from 'mobx-react';
 import { STORE_PLAYER } from 'app/constants/stores';
 import { PlayerStore } from 'app/stores';
 import { debounce } from 'app/utils/debounce';
 
+interface AudioElement {
+  current: HTMLAudioElement;
+}
 export interface AudioProps {}
 
 @inject(STORE_PLAYER)
 @observer
 export class Audio extends React.Component<AudioProps> {
   player: ReactAudioPlayer = null;
-  element: HTMLAudioElement = null;
+  element: AudioElement = null;
 
   refer = (ref) => {
     this.player = ref;
@@ -19,13 +22,15 @@ export class Audio extends React.Component<AudioProps> {
   };
 
   seekTo = (value: number) => {
-    if (this.element) this.element.currentTime = value;
+    if (this.element && this.element.current) this.element.current.currentTime = value;
   };
 
   onListen = (value: number) => {
     const store: PlayerStore = this.props[STORE_PLAYER];
-    if (store.seekPosition > 0 && this.element) {
-      this.element.currentTime =
+    console.log(this.element);
+    if (store.seekPosition > 0 && this.element && this.element.current) {
+      
+      this.element.current.currentTime =
         (store.seekPosition / 100) * (store.currentTrack.duration / 1000);
       store.clearSeek();
     } else {

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { STORE_PLAYER, STORE_ROUTER } from 'app/constants/stores';
 import RouterStore from 'app/stores/RouterStore';
@@ -38,6 +38,7 @@ export class MiniPlayer extends React.Component {
     }
     return true;
   };
+
   toggle = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -48,6 +49,7 @@ export class MiniPlayer extends React.Component {
       store.play(store.currentTrack);
     }
   };
+
   render() {
     const store: PlayerStore = this.props[STORE_PLAYER] as PlayerStore;
     const { currentTrack, onSeek } = store;

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Slider } from 'app/components/atoms/Slider';
 import { inject, observer } from 'mobx-react';
 import { STORE_PLAYER } from 'app/constants/stores';
@@ -53,7 +53,7 @@ export class Volume extends React.Component<VolumeProps> {
   };
 
   getEmoji = (volume) =>
-    require(`assets/images/volume/${this.getEmojiValue(volume)}.svg`);
+    require(`assets/images/volume/${this.getEmojiValue(volume)}.svg`).default;
 
   render() {
     const store: PlayerStore = this.props[STORE_PLAYER] as PlayerStore;

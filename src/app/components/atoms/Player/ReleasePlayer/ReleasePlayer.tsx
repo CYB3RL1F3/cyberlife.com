@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { TrackModel } from 'app/models';
 import { STORE_PLAYER } from 'app/constants/stores';
 import { PlayerStore } from 'app/stores/PlayerStore';

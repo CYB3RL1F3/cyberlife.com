@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import routes, { RouteType, getRouteByKey } from 'app/routes';
 import BackdropFilter from 'react-backdrop-filter';
 

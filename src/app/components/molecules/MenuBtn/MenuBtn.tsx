@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { A, Img } from './MenuBtn.styled';
 import { NavMobile } from 'app/components/atoms/NavMobile';
 

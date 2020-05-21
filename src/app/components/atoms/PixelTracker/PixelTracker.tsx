@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'app/theme';
 
 export interface PixelTrackerProps {
@@ -11,7 +11,11 @@ export class PixelTracker extends React.Component<PixelTrackerProps, {}> {
   componentDidMount() {
     this.props.onStartLoading();
     if (this.videoRef && this.videoRef.current) {
-      this.videoRef.current.addEventListener('canplay', this.props.onLoad);
+      console.log('PASS?');
+      this.videoRef.current.addEventListener('canplay', () => {
+        console.log('laura marmonier');
+         this.props.onLoad()
+      });
     }
   }
   videoRef = React.createRef<HTMLVideoElement>();
@@ -29,8 +33,8 @@ export class PixelTracker extends React.Component<PixelTrackerProps, {}> {
         autoPlay
         preload="preload"
         onLoad={onLoad}
-        width="1"
-        height="1"
+        width="100"
+        height="100"
         ref={this.videoRef}
       />
     );

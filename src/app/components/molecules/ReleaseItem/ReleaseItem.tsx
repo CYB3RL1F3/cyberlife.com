@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Theme, withTheme } from 'app/theme';
 import { Track } from 'types/releases';
 import {

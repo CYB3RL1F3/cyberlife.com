@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { EventsStore } from 'app/stores';
 import { STORE_FORTHCOMING_EVENTS } from 'app/constants';

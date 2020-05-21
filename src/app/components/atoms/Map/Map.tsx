@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 
 export type Coordinates = [number, number];

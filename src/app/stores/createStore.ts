@@ -1,6 +1,5 @@
 import { History } from 'history';
 import { RouterStore } from './RouterStore';
-import { STORE_ROUTER } from 'app/constants';
 import EventsStore from './EventsStore';
 import { FORTHCOMING_EVENTS, PAST_EVENTS } from '../constants/events';
 import InfosStore from './InfosStore';
@@ -12,17 +11,7 @@ import SelectedEventStore from './SelectedEventStore';
 import PlayerStore from './PlayerStore';
 import SelectedPodcastStore from './SelectedPodcastStore';
 import {
-  STORE_FORTHCOMING_EVENTS,
-  STORE_PAST_EVENTS,
-  STORE_SELECTED_EVENT,
-  STORE_INFOS,
-  STORE_RELEASES,
-  STORE_CHART,
-  STORE_PODCAST,
-  STORE_APP,
-  STORE_PLAYER,
-  STORE_SELECTED_PODCAST,
-  STORE_SELECTED_RELEASE
+  Stores
 } from '../constants/stores';
 import SelectedReleaseStore from './SelectedReleaseStore';
 
@@ -52,17 +41,17 @@ export function createStores(history: History) {
   const chartStore = new ChartStore();
   const playerStore = new PlayerStore();
   return {
-    [STORE_APP]: appStore,
-    [STORE_ROUTER]: routerStore,
-    [STORE_FORTHCOMING_EVENTS]: forthcomingEventsStore,
-    [STORE_PAST_EVENTS]: pastEventsStore,
-    [STORE_SELECTED_EVENT]: selectedEventStore,
-    [STORE_PODCAST]: podcastStore,
-    [STORE_SELECTED_PODCAST]: selectedPodcastStore,
-    [STORE_INFOS]: infosStore,
-    [STORE_RELEASES]: releasesStore,
-    [STORE_CHART]: chartStore,
-    [STORE_PLAYER]: playerStore,
-    [STORE_SELECTED_RELEASE]: selectedReleaseStore
+    [Stores.app]: appStore,
+    [Stores.router]: routerStore,
+    [Stores.forthcoming_events]: forthcomingEventsStore,
+    [Stores.past_events]: pastEventsStore,
+    [Stores.selected_event]: selectedEventStore,
+    [Stores.podcasts]: podcastStore,
+    [Stores.selected_podcast]: selectedPodcastStore,
+    [Stores.infos]: infosStore,
+    [Stores.releases]: releasesStore,
+    [Stores.chart]: chartStore,
+    [Stores.player]: playerStore,
+    [Stores.selected_release]: selectedReleaseStore
   };
 }

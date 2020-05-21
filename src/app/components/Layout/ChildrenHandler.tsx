@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ChildrenHandler as Container } from './Layout.styled';
 import { inject, observer } from 'mobx-react';
 import { STORE_ROUTER } from 'app/constants';

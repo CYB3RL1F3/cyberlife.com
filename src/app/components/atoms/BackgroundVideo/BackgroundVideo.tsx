@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { Video, VideoHandler } from './BackgroundVideo.styled';
-const bg_mp4 = require('assets/videos/bg.mp4');
-const bg_webm = require('assets/videos/bg.webm');
+const bg_mp4 = require('assets/videos/bg.mp4').default;
+const bg_webm = require('assets/videos/bg.webm').default;
 
 type BackgroundVideoState = {
   videoLoading: boolean;

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as Sentry from '@sentry/browser';
 
 import { getMessagesAccordingToLoadingState } from 'app/utils/messageManager';
@@ -16,7 +16,7 @@ import { AppStore, InfosStore } from 'app/stores';
 import { isIe, isAndroid } from 'app/utils/browsers';
 import { IE } from './atoms/IE';
 
-const video = require('assets/videos/bg.mp4');
+const video = require('assets/videos/bg.mp4').default;
 
 export interface AppLoaderProps {}
 

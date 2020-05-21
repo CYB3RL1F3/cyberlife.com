@@ -30,7 +30,7 @@ export class EventModel {
 
   @computed
   get formattedDate() {
-    return format(new Date(this.date), 'DD/MM/YYYY');
+    return format(new Date(this.date), 'dd/mm/yyyy');
   }
 
   @computed

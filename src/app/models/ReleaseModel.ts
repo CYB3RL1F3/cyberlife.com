@@ -54,7 +54,7 @@ export class ReleaseModel {
   get releaseDateFormatted() {
     const date = new Date(this.releaseDate);
     if (isNaN(date.getFullYear())) return this.releaseDate.replace(/\-/g, '/');
-    return format(new Date(this.releaseDate), 'DD/MM/YYYY');
+    return format(new Date(this.releaseDate), 'dd/mm/yyyy');
   }
 
   matchArtist = (artist: Artist): boolean =>

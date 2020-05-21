@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Lottie from 'react-lottie';
 import { Container, H3, P, LottieHandler, A } from './ContactSuccess.styled';
 

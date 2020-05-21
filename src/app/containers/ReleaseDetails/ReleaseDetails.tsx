@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ReleaseModel } from 'app/models';
 import { STORE_SELECTED_RELEASE, STORE_PLAYER } from 'app/constants';
 import SelectedReleaseStore from 'app/stores/SelectedReleaseStore';

@@ -197,6 +197,7 @@ module.exports = {
       changeFreq: 'monthly',
       priority: '0.5'
     }),
+    /*
     new InjectManifest({
       swSrc: manifest.serviceworker,
       include: [
@@ -208,7 +209,7 @@ module.exports = {
         /\.jpg$/,
         /\.ttf$/
       ]
-    }),
+    }),*/
     new WebpackPwaManifest(manifest),
     new FaviconsWebpackPlugin(
       path.resolve(__dirname, 'src/assets/pwa/favicon-96x96.png')
