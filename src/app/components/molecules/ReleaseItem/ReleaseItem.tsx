@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Theme, withTheme } from 'app/theme';
 import { Track } from 'types/releases';
 import {
@@ -13,6 +13,7 @@ import {
   A
 } from './ReleaseItem.styled';
 import { ReleaseModel } from 'app/models';
+import { paths, resolvePath } from "app/paths";
 
 export interface ReleaseProps {
   theme: Theme;
@@ -20,7 +21,7 @@ export interface ReleaseProps {
   release: ReleaseModel;
 }
 
-export const ReleaseItemComponent: React.StatelessComponent<ReleaseProps> = (
+export const ReleaseItemComponent: FC<ReleaseProps> = (
   props: ReleaseProps
 ) => {
   const {
@@ -32,7 +33,7 @@ export const ReleaseItemComponent: React.StatelessComponent<ReleaseProps> = (
     releaseDateFormatted
   } = props.release;
   const { picturePlaceholder } = props.theme;
-  const link = `/releases/${id}`;
+  const link = resolvePath(paths.releaseDetails, id);
   return (
     <Container index={props.index}>
       <ThumbHandler>

@@ -11,10 +11,8 @@ export class PixelTracker extends React.Component<PixelTrackerProps, {}> {
   componentDidMount() {
     this.props.onStartLoading();
     if (this.videoRef && this.videoRef.current) {
-      console.log('PASS?');
       this.videoRef.current.addEventListener('canplay', () => {
-        console.log('laura marmonier');
-         this.props.onLoad()
+        this.props.onLoad()
       });
     }
   }

@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Container, Cyberlife, Link } from './Header.styled';
 import { Nav, MenuBtn } from 'app/components/molecules';
 import {
   DesktopAndTabletsMediaQuery,
   MobileMediaQuery
 } from 'app/components/atoms/Responsive';
+import { paths } from "app/paths";
 
 type HeaderProps = {};
 
-export const Header: React.StatelessComponent<
+export const Header: FC<
   HeaderProps
 > = (): JSX.Element => (
   <Container>
     <Cyberlife>
-      <Link path="/">CYBERLIFE</Link>
+      <Link path={paths.podcasts}>CYBERLIFE</Link>
     </Cyberlife>
     <DesktopAndTabletsMediaQuery>
       <Nav />

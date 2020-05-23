@@ -9,16 +9,24 @@ const mode = isProduction ? 'production' : 'development';
 // plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 const SitemapWebpackPlugin = require('sitemap-webpack-plugin').default;
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const { InjectManifest } = require('workbox-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
+const dotenv = require('dotenv');
 const manifest = require('./manifest');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const domain = process.env.domain || 'localhost:3000';
+const env = dotenv.config().parsed;
+const configFromEnv = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
+console.log(configFromEnv);
 
 const robotsOptions = {
   policy: [
@@ -182,7 +190,7 @@ module.exports = {
   },
   plugins: [
     new ForceCaseSensitivityPlugin(),
-    // new WebpackCleanupPlugin(),
+    new WebpackCleanupPlugin(),
     new ExtractTextPlugin({
       filename: 'styles.css',
       disable: !isProduction
@@ -197,19 +205,21 @@ module.exports = {
       changeFreq: 'monthly',
       priority: '0.5'
     }),
-    /*
-    new InjectManifest({
-      swSrc: manifest.serviceworker,
-      include: [
-        /\.html$/,
-        /\.js$/,
-        /\.css$/,
-        /\.webm$/,
-        /\.png$/,
-        /\.jpg$/,
-        /\.ttf$/
-      ]
-    }),*/
+    new webpack.DefinePlugin(
+      configFromEnv
+    ),
+    
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'assets/pwa/manifest.json', to: 'pwa/manifest.json' },
+        { from: 'assets/pwa/**/*', to: '[name].[ext]' },
+        
+      ],
+    }),
     new WebpackPwaManifest(manifest),
     new FaviconsWebpackPlugin(
       path.resolve(__dirname, 'src/assets/pwa/favicon-96x96.png')

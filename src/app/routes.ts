@@ -1,4 +1,5 @@
 import React from 'react';
+import { paths } from './paths';
 
 import {
   Bio,
@@ -19,73 +20,74 @@ export interface RouteType {
   key: string;
   menu: boolean;
 }
+
 export const routes: RouteType[] = [
   {
     component: Podcasts,
-    path: '/',
+    path: paths.podcasts,
     label: 'Podcasts',
     key: 'podcasts',
     menu: true
   },
   {
     component: Events,
-    path: '/events',
+    path: paths.events,
     label: 'Gigs',
     key: 'gigs',
     menu: true
   },
   {
     component: Releases,
-    path: '/releases',
+    path: paths.releases,
     label: 'Releases',
     key: 'releases',
     menu: true
   },
   {
     component: Charts,
-    path: '/charts',
+    path: paths.charts,
     label: 'Charts',
     key: 'charts',
     menu: true
   },
   {
     component: Contact,
-    path: '/contact',
+    path: paths.contact,
     label: 'Contact',
     key: 'contact',
     menu: true
   },
   {
     component: EventDetails,
-    path: '/events/:id',
+    path: paths.eventDetailsDefault,
     label: '',
     key: 'event',
     menu: false
   },
   {
     component: EventDetails,
-    path: '/events/:type/:id',
+    path: paths.eventDetails,
     label: '',
     key: 'eventTyped',
     menu: false
   },
   {
     component: PodcastDetails,
-    path: '/podcasts/:id',
+    path: paths.podcastDetails,
     label: '',
     key: 'podcast',
     menu: false
   },
   {
     component: ReleaseDetails,
-    path: '/releases/:id',
+    path: paths.releaseDetails,
     label: '',
     key: 'release',
     menu: false
   },
   {
     component: Bio,
-    path: '/biography',
+    path: paths.bio,
     label: 'Biography',
     key: 'bio',
     menu: false

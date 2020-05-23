@@ -1,5 +1,5 @@
 import React from 'react';
-import { STORE_SELECTED_EVENT } from 'app/constants/stores';
+import { Stores } from 'app/constants/stores';
 import { EventModel } from 'app/models/EventModel';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
 import { Map } from 'app/components/atoms/Map';
@@ -17,17 +17,19 @@ import {
   H3,
   MapboxHandler,
   GoBack,
-  InfoLink
+  InfoLink,
+  Flyer
 } from './EventDetails.styled';
 import {
   DesktopMediaQuery,
   MobileMediaQuery,
   TabletMediaQuery
 } from 'app/components/atoms/Responsive';
+import { paths } from "app/paths";
 
 interface EventDetailsProps {
   data: EventModel;
-  [STORE_SELECTED_EVENT]: SelectedEventStore;
+  [Stores.selected_event]: SelectedEventStore;
 }
 
 export class EventDetailsComponent extends React.Component<EventDetailsProps> {
@@ -41,7 +43,7 @@ export class EventDetailsComponent extends React.Component<EventDetailsProps> {
         <Container>
           <TitleHandler>
             <Title>{data.title}</Title>
-            <GoBack path="/events">&lt; Back</GoBack>
+            <GoBack path={paths.events}>&lt; Back</GoBack>
           </TitleHandler>
           <Content>
             <ContentHandler>
@@ -57,6 +59,11 @@ export class EventDetailsComponent extends React.Component<EventDetailsProps> {
                   {data.area}, {data.country}
                 </Info>
               </Section>
+              {data.flyer.front && (
+                <Section>
+                  <Flyer src={data.flyer.front} alt={data.title} />
+                </Section>
+              )}
               {data.lineup && data.lineup.length > 0 && (
                 <Section>
                   <H3>Lineup : </H3>
@@ -116,6 +123,6 @@ export class EventDetailsComponent extends React.Component<EventDetailsProps> {
   }
 }
 
-export const EventDetails = withLoadingStore(STORE_SELECTED_EVENT)(
+export const EventDetails = withLoadingStore(Stores.selected_event)(
   EventDetailsComponent
 );

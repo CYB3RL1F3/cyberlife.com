@@ -2,6 +2,7 @@ import { observable, action } from 'mobx';
 import { getInfos } from 'app/actions';
 import { InfosModel } from 'app/models';
 import AppStore from './AppStore';
+import { captureException } from '@sentry/browser';
 
 export class InfosStore {
   private appStore: AppStore;
@@ -37,7 +38,7 @@ export class InfosStore {
 
   @action.bound
   onInfosFailed = (e) => {
-    console.log(e);
+    captureException(e);
     this.error = e;
     this.loading = false;
     this.appStore.fail(e);

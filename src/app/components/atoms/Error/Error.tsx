@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Container, ErrorTitle, ErrorMessage, A } from './Error.styled';
 
 interface ErrorProps {
@@ -6,7 +6,7 @@ interface ErrorProps {
   init: () => void;
 }
 
-export const Error: React.StatelessComponent<ErrorProps> = ({
+export const Error: FC<ErrorProps> = ({
   message,
   init
 }) => (

@@ -2,7 +2,7 @@ import { observable, action } from 'mobx';
 import { getEvents } from 'app/actions';
 import { EventModel } from 'app/models';
 import { InitializableStore } from './stores';
-
+import { captureException } from '@sentry/browser';
 export class EventsStore implements InitializableStore {
   public type: number;
   @observable public loading: boolean;
@@ -39,7 +39,7 @@ export class EventsStore implements InitializableStore {
 
   @action.bound
   onEventsFailed = (e) => {
-    console.log(e);
+    captureException(e);
     this.error = e;
     this.loading = false;
   };

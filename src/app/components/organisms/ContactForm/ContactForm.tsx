@@ -149,7 +149,7 @@ export class ContactForm extends React.Component<
               <Bottom index={5}>
                 <ErrorField>
                   {hasFailed &&
-                    "Une erreur s'est produite... Veuillez ressayer."}
+                    "An error occured... Please retry!"}
                   {Object.keys(errors).map(
                     (error: string) =>
                       touched[error] && (

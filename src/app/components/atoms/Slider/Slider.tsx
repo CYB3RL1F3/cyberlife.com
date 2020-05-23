@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { SliderInput } from './Slider.styled';
 
 export interface SliderProps {
@@ -10,6 +10,6 @@ export interface SliderProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void | any;
 }
 
-export const Slider: React.StatelessComponent<SliderProps> = (props) => (
+export const Slider: FC<SliderProps> = (props) => (
   <SliderInput type="range" {...props} />
 );

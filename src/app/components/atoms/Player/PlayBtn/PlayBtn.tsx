@@ -1,20 +1,10 @@
-import React from 'react';
+import React, { FC, memo } from 'react';
 import { PlayBtnProps, Container, Cover, IconPlay } from './PlayBtn.styled';
 
-export class PlayBtn extends React.Component<PlayBtnProps> {
-  shouldComponentUpdate(nextProps: PlayBtnProps) {
-    return (
-      this.props.backgroundImage !== nextProps.backgroundImage ||
-      nextProps.playing !== this.props.playing
-    );
-  }
-  render() {
-    return (
-      <Container {...this.props}>
-        <Cover>
-          <IconPlay {...this.props} />
-        </Cover>
-      </Container>
-    );
-  }
-}
+export const PlayBtn: FC<PlayBtnProps> = memo((props) => (
+  <Container {...props}>
+    <Cover>
+      <IconPlay {...props} />
+    </Cover>
+  </Container>
+)); 

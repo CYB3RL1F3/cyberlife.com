@@ -123,3 +123,10 @@ export const InfoLink = styled.a`
   ${InfoStyle}
   text-decoration: underline;
 `;
+
+export const Flyer = styled.img`
+  width: 90%;
+  ${({ theme }) => theme.media.mobile`
+    width: 80vw;
+  `}
+`;

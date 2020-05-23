@@ -15,7 +15,22 @@ import {
 } from '../constants/stores';
 import SelectedReleaseStore from './SelectedReleaseStore';
 
-export function createStores(history: History) {
+export interface IStores {
+  [Stores.app]: AppStore;
+  [Stores.router]: RouterStore;
+  [Stores.forthcoming_events]: EventsStore;
+  [Stores.past_events]: EventsStore;
+  [Stores.selected_event]: SelectedEventStore;
+  [Stores.podcasts]: PodcastStore;
+  [Stores.selected_podcast]: SelectedPodcastStore;
+  [Stores.infos]: InfosStore;
+  [Stores.releases]: ReleasesStore;
+  [Stores.chart]: ChartStore;
+  [Stores.player]: PlayerStore;
+  [Stores.selected_release]: SelectedReleaseStore;
+}
+
+export function createStores(history: History): IStores {
   const appStore: AppStore = new AppStore();
   const forthcomingEventsStore: EventsStore = new EventsStore(
     FORTHCOMING_EVENTS

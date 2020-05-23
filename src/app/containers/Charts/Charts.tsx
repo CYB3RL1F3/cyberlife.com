@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { ChartStore } from 'app/stores';
-import { STORE_CHART } from 'app/constants';
+import { Stores } from 'app/constants';
 import { ChartItem } from 'app/components/molecules/ChartItem';
 import { Container } from './Charts.styled';
 import ChartModel from 'app/models/ChartModel';
@@ -10,7 +10,7 @@ import { Title } from 'types/charts';
 
 export interface ChartProps extends RouteComponentProps<any> {
   /** MobX Stores will be injected via @inject() **/
-  [STORE_CHART]: ChartStore;
+  [Stores.chart]: ChartStore;
   data: ChartModel;
 }
 
@@ -45,4 +45,4 @@ export class ChartsComponent extends React.Component<ChartProps, chartState> {
   }
 }
 
-export const Charts = withLoadingStore(STORE_CHART)(ChartsComponent);
+export const Charts = withLoadingStore(Stores.chart)(ChartsComponent);

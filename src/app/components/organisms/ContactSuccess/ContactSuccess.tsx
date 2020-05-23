@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Lottie from 'react-lottie';
 import { Container, H3, P, LottieHandler, A } from './ContactSuccess.styled';
 
@@ -8,7 +8,7 @@ interface ContactSuccessProps {
   returnAction: (e: React.MouseEvent) => void;
 }
 
-export const ContactSuccess: React.StatelessComponent<ContactSuccessProps> = ({
+export const ContactSuccess: FC<ContactSuccessProps> = ({
   returnAction
 }) => {
   const config = {

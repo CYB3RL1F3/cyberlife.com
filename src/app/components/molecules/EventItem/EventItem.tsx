@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { EventLink, Paragraph, Link, Container } from './EventItem.styled';
 import { getEventLink } from 'app/utils/event';
 
@@ -11,7 +11,7 @@ interface EventProp {
   type: number;
 }
 
-export const EventItem: React.StatelessComponent<EventProp> = (
+export const EventItem: FC<EventProp> = (
   event: EventProp
 ) => {
   const link = getEventLink(event);

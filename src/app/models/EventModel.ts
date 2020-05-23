@@ -1,7 +1,8 @@
 import { format } from 'date-fns';
 import { observable, computed } from 'mobx';
-import { Time, Links } from 'types/events';
+import { Time, Links, Flyer } from 'types/events';
 import { Location, Coordinates } from 'types/location';
+
 
 export class EventModel {
   readonly id: number;
@@ -11,7 +12,7 @@ export class EventModel {
   @observable public area: string;
   @observable public title: string;
   @observable public address: string;
-  @observable public flyer: string;
+  @observable public flyer: Flyer;
   @observable public lineup: string[];
   @observable public location: Location;
   @observable public time: Time;
@@ -30,7 +31,7 @@ export class EventModel {
 
   @computed
   get formattedDate() {
-    return format(new Date(this.date), 'dd/mm/yyyy');
+    return format(new Date(this.date), 'dd/MM/yyyy');
   }
 
   @computed

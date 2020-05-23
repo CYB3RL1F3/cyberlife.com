@@ -1,16 +1,17 @@
-workbox.setConfig({ debug: false });
+
+workbox.setConfig({ debug: true });
 workbox.core.skipWaiting();
 workbox.core.clientsClaim();
 workbox.precaching.cleanupOutdatedCaches();
 
 workbox.precaching.precacheAndRoute(
-  self.__precacheManifest.concat([
+  __WB_MANIFEST.concat([
     {
       url: 'offline',
       revision: 1
     }
   ])
-);
+)
 
 workbox.routing.registerRoute(
   /\.(?:png|jpg|jpeg|svg|ico)$/,
@@ -60,7 +61,7 @@ workbox.routing.registerRoute(
     cacheName: 'offlineCache',
     plugins: [
       new workbox.expiration.Plugin({
-        maxEntries: 200,
+        maxEntries: 100,
         purgeOnQuotaError: false
       })
     ]
@@ -70,8 +71,8 @@ workbox.routing.registerRoute(
 
 workbox.googleAnalytics.initialize({});
 
-workbox.routing.setCatchHandler(({ event }) => {
-  switch (event.request.destination) {
+workbox.routing.setCatchHandler((t) => {
+  switch (t.event.request.destination) {
     case 'document':
       const offlineCacheKey = workbox.precaching.getCacheKeyForURL('offline');
       return caches.match(offlineCacheKey);
@@ -86,7 +87,6 @@ workbox.routing.setCatchHandler(({ event }) => {
       return caches.match('videos');
 
     default:
-      // If we don't have a fallback, just return an error response.
       return Response.error();
   }
 });

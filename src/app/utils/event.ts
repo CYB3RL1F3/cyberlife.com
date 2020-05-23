@@ -1,3 +1,6 @@
+
+import { paths, resolvePath } from "app/paths";
+
 export const bindTypes = (type) => {
   switch (type.toString()) {
     case '1':
@@ -11,5 +14,5 @@ export const bindTypes = (type) => {
 
 export const getEventLink = (event) => {
   const type = bindTypes(event.type);
-  return `/events/${type}/${event.id}`;
+  return resolvePath(paths.eventDetails, event.id, type);
 };

@@ -1,6 +1,6 @@
-import React from 'react';
-import * as Sentry from '@sentry/browser';
-
+import React, { FC, useCallback, useEffect } from 'react';
+import { captureException, withScope } from '@sentry/browser';
+import { useAppStore, useInfosStore } from "app/hooks/stores";
 import { getMessagesAccordingToLoadingState } from 'app/utils/messageManager';
 import { PixelTracker } from 'app/components/atoms';
 import {
@@ -8,35 +8,51 @@ import {
   Output,
   Console,
   Container,
-  A
+  A,
+  LottieHandler,
+  LoadingSpinner
 } from './AppLoader.styled';
-import { observer, inject } from 'mobx-react';
-import { STORE_APP, STORE_INFOS } from 'app/constants/stores';
-import { AppStore, InfosStore } from 'app/stores';
+import { paths } from "app/paths";
+import { observer } from 'mobx-react';
 import { isIe, isAndroid } from 'app/utils/browsers';
 import { IE } from './atoms/IE';
+import { Background } from '../Layout/Layout.styled';
 
 const video = require('assets/videos/bg.mp4').default;
 
 export interface AppLoaderProps {}
 
-@inject(STORE_APP, STORE_INFOS)
-@observer
-export class AppLoader extends React.Component<AppLoaderProps> {
-  stateMessages: string[] = [];
+let stateMessages: string[] = [];
+export const AppLoader: FC = observer(() => {
+  const infosStore = useInfosStore();
+  const appStore = useAppStore();
+  const startLoadingBackgroundAsset = useCallback((): void => {
+    appStore.startFetchingAsset("Background");
+  }, []);
 
-  startLoadingAsset = (name: string) => (): void => {
-    const appStore: AppStore = this.props[STORE_APP] as AppStore;
-    appStore.startFetchingAsset(name);
-  };
+  stateMessages = getMessagesAccordingToLoadingState(
+    appStore,
+    stateMessages
+  );
+  const { error } = appStore;
+  if (error) {
+    withScope((scope) => {
+      scope.setExtra('loading', error);
+      captureException(error);
+    });
+  }
 
-  onLoadAsset = (name: string) => (): void => {
-    const appStore: AppStore = this.props[STORE_APP] as AppStore;
-    appStore.validAsset(name);
-  };
+  const onBackgroundAssetLoaded = useCallback((): void => {
+    appStore.validAsset("Background");
+  }, []);
 
-  componentDidMount() {
-    const infosStore: InfosStore = this.props[STORE_INFOS] as InfosStore;
+  const refresh = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.reload();
+  }, []);
+
+  useEffect(() => {
     infosStore.loadInfos();
     if (isAndroid()) {
       const className = 'android';
@@ -44,36 +60,18 @@ export class AppLoader extends React.Component<AppLoaderProps> {
       root.classList.add(className);
       document.body.classList.add(className);
     }
-  }
+  }, []);
 
-  refresh = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    window.location.reload();
-  };
-
-  render() {
-    const appStore: AppStore = this.props[STORE_APP] as AppStore;
-    this.stateMessages = getMessagesAccordingToLoadingState(
-      appStore,
-      this.stateMessages
-    );
-    const { error } = appStore;
-    if (error) {
-      Sentry.withScope((scope) => {
-        scope.setExtra('loading', error);
-        Sentry.captureException(error);
-      });
-    }
-    return isIe() ? (
-      <IE />
-    ) : (
+  return isIe() ? (
+    <IE />
+  ) : (
+    <Background>
       <Container>
         <PixelTrackersWrapper>
           <PixelTracker
             src={video}
-            onStartLoading={this.startLoadingAsset('Background')}
-            onLoad={this.onLoadAsset('Background')}
+            onStartLoading={startLoadingBackgroundAsset}
+            onLoad={onBackgroundAssetLoaded}
           />
         </PixelTrackersWrapper>
         <Console>
@@ -83,7 +81,7 @@ export class AppLoader extends React.Component<AppLoaderProps> {
             </strong>
           </Output>
           <br />
-          {this.stateMessages.map((message: string) => (
+          {stateMessages.map((message: string) => (
             <Output key={message}>
               {message !== 'EMPTY' ? message : <span>&nbsp;</span>}
             </Output>
@@ -91,13 +89,19 @@ export class AppLoader extends React.Component<AppLoaderProps> {
           {appStore.error && (
             <Output>
               please retry by{' '}
-              <A href="/" onClick={this.refresh}>
+              <A href={paths.podcasts} onClick={refresh}>
                 reloading this page
               </A>
             </Output>
           )}
+          <LottieHandler>
+            <LoadingSpinner />
+          </LottieHandler>
+
         </Console>
       </Container>
-    );
-  }
-}
+    </Background>
+  );
+})
+
+export default AppLoader;

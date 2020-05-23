@@ -2,6 +2,7 @@ import { observable, action } from 'mobx';
 import { getReleases } from 'app/actions';
 import { ReleaseModel } from 'app/models';
 import { InitializableStore } from './stores';
+import { captureException } from '@sentry/browser';
 
 export class ReleasesStore implements InitializableStore {
   @observable public loading: boolean;
@@ -32,6 +33,7 @@ export class ReleasesStore implements InitializableStore {
 
   @action.bound
   onReleasesFailed = (e) => {
+    captureException(e);
     this.error = e;
     this.loading = false;
   };

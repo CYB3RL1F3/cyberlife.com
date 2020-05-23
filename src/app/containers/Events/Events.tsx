@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { EventsStore } from 'app/stores';
-import { STORE_FORTHCOMING_EVENTS } from 'app/constants';
+import { Stores } from 'app/constants';
 import EventModel from 'app/models/EventModel';
 import { EventItem } from 'app/components/molecules/EventItem';
 import { Container } from './Events.styled';
@@ -9,7 +9,7 @@ import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
 import { FallbackEvents } from 'app/containers/FallbackEvents';
 
 export interface EventsProps extends RouteComponentProps<any> {
-  [STORE_FORTHCOMING_EVENTS]: EventsStore;
+  [Stores.forthcoming_events]: EventsStore;
   data: EventModel[];
 }
 
@@ -48,6 +48,6 @@ export class EventsComponent extends React.Component<EventsProps, EventsState> {
   }
 }
 
-export const Events = withLoadingStore(STORE_FORTHCOMING_EVENTS)(
+export const Events = withLoadingStore(Stores.forthcoming_events)(
   EventsComponent
 );

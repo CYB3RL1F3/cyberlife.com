@@ -27,7 +27,6 @@ export class Audio extends React.Component<AudioProps> {
 
   onListen = (value: number) => {
     const store: PlayerStore = this.props[STORE_PLAYER];
-    console.log(this.element);
     if (store.seekPosition > 0 && this.element && this.element.current) {
       
       this.element.current.currentTime =

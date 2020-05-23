@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
   Container,
   ErrorTitle,
@@ -6,13 +6,14 @@ import {
   GetBack,
   ErrorHandler
 } from './Err404.styled';
+import { paths } from "app/paths";
 
-export const Err404: React.StatelessComponent = () => (
+export const Err404: FC = () => (
   <Container>
     <ErrorTitle>404</ErrorTitle>
     <ErrorMessage>Nothing here...</ErrorMessage>
     <ErrorHandler>
-      <GetBack path="/">Follow the right path</GetBack>
+      <GetBack path={paths.podcasts}>Follow the right path</GetBack>
     </ErrorHandler>
   </Container>
 );

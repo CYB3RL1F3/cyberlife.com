@@ -19,6 +19,7 @@ export interface Theme {
   background: {
     fromColor: string;
     toColor: string;
+    color: string;
   };
   player: {
     backgroundColor: string;
@@ -69,6 +70,8 @@ export const media = Object.keys(sizes).reduce(
   }
 );
 
+
+
 export const theme: Theme = {
   color: '#6ca1a6',
   fontSizes: { small: '8pt', average: '10pt', big: '12pt', menu: '16pt' },
@@ -76,7 +79,11 @@ export const theme: Theme = {
   isFirefox: isFirefox(),
   picturePlaceholder: 'rgba(42, 43, 65, 0.5)',
   fonts: { primary: 'myriad pro' },
-  background: { fromColor: '#324648', toColor: '#273e40' },
+  background: { 
+    fromColor: '#1B292C', 
+    toColor: '#273e40',
+    color: '#1D3D46'
+  },
   player: { backgroundColor: '#1c2d2f', backgroundColorMini: '#457076' },
   slider: {
     color: 'rgba(108,161,166, 0.5)',

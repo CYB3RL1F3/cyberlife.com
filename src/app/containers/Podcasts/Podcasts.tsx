@@ -1,6 +1,6 @@
 import React from 'react';
 import PlaylistModel from 'app/models/PodcastModel';
-import { STORE_PLAYER, STORE_PODCAST } from 'app/constants/stores';
+import { Stores } from 'app/constants/stores';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
 import { PodcastItem } from 'app/components/molecules/PodcastItem';
 import { Container } from './Podcasts.styled';
@@ -10,10 +10,10 @@ import { PlayerStore } from 'app/stores';
 
 export interface PlaylistProps {
   data: PlaylistModel;
-  [STORE_PLAYER]: PlayerStore;
+  [Stores.player]: PlayerStore;
 }
 
-@inject(STORE_PLAYER)
+@inject(Stores.player)
 @observer
 export class PodcastsComponent extends React.Component<PlaylistProps, {}> {
   constructor(props: PlaylistProps, context: any) {
@@ -23,7 +23,7 @@ export class PodcastsComponent extends React.Component<PlaylistProps, {}> {
   play = (index: number) => (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    const store: PlayerStore = this.props[STORE_PLAYER];
+    const store: PlayerStore = this.props[Stores.player];
     const track = this.props.data.tracks[index];
     if (
       !store.currentTrack ||
@@ -38,7 +38,7 @@ export class PodcastsComponent extends React.Component<PlaylistProps, {}> {
 
   render() {
     const { data } = this.props;
-    const { onSeek } = this.props[STORE_PLAYER] as PlayerStore;
+    const { onSeek } = this.props[Stores.player] as PlayerStore;
     if (data) {
       return (
         <Container>
@@ -62,4 +62,4 @@ export class PodcastsComponent extends React.Component<PlaylistProps, {}> {
     }
   }
 }
-export const Podcasts = withLoadingStore(STORE_PODCAST)(PodcastsComponent);
+export const Podcasts = withLoadingStore(Stores.podcasts)(PodcastsComponent);

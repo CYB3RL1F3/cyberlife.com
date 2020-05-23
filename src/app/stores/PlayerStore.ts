@@ -9,9 +9,12 @@ export class PlayerStore {
   @action
   play = (track: TrackModel) => {
     this.pause();
-    track.play();
-    this.seekPosition = track.seek || 0;
-    this.currentTrack = track;
+    if (track) {
+       track.play();
+      this.seekPosition = track.seek || 0;
+      this.currentTrack = track;
+    }
+   
   };
 
   @action

@@ -6,6 +6,7 @@ import { PAST_EVENTS, FORTHCOMING_EVENTS } from 'app/constants/events';
 import { getEventById } from 'app/actions';
 import EventsStore from './EventsStore';
 import { AxiosResponse } from 'axios';
+import { captureException } from '@sentry/browser';
 
 export class SelectedEventStore implements InitializableStore {
   @observable public loading: boolean;
@@ -98,6 +99,7 @@ export class SelectedEventStore implements InitializableStore {
 
   @action.bound
   onEventFailed = (e: Error) => {
+    captureException(e);
     this.loading = true;
     this.error = e.message;
     this.data = null;

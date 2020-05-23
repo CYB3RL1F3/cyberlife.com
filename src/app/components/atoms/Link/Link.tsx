@@ -1,47 +1,41 @@
-import React from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 
-import { inject, observer } from 'mobx-react';
-import { STORE_ROUTER } from 'app/constants/stores';
-import { RouterStore } from 'app/stores';
+import { observer } from 'mobx-react';
 import { A } from './Link.styled';
+import { useRouterStore } from 'app/hooks/stores';
+import { paths } from "app/paths";
 
 interface LinkProps {
   path: string;
-  router?: RouterStore;
   className?: string;
   underlineCurrent?: boolean;
   children: React.ReactChild;
   onClick?: () => any;
 }
 
-@inject(STORE_ROUTER)
-@observer
-export class Link extends React.Component<LinkProps> {
-  onClick = (path: string) => (e: React.MouseEvent) => {
+export const Link: FC<LinkProps> = observer(({ className, underlineCurrent, children, path, onClick }) => {
+  const router = useRouterStore();
+  const click = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
-    this.props.router.push(path);
-    this.props.onClick && this.props.onClick();
-  };
-  isCurrent = (pathname: string): boolean => {
-    const store: RouterStore = this.props[STORE_ROUTER];
-    if (pathname === '/')
+    router.push(path);
+    onClick && onClick();
+  }, [path, router, onClick]);
+  const isCurrent = useMemo((): boolean => {
+    if (path === paths.podcasts)
       return (
-        store.location.pathname === pathname ||
-        store.location.pathname.indexOf('podcasts') > -1
+        router.location.pathname === path ||
+        router.location.pathname.indexOf('podcasts') > -1
       );
-    return store.location.pathname.indexOf(pathname) > -1 && pathname !== '/';
-  };
-  render() {
-    const { className, path, children, underlineCurrent } = this.props;
-    return (
-      <A
-        active={underlineCurrent && this.isCurrent(path)}
-        className={className}
-        href={path}
-        onClick={this.onClick(path)}
-      >
-        {children}
-      </A>
-    );
-  }
-}
+    return router.location.pathname.indexOf(path) > -1 && path !== '/';
+  }, [router.location.pathname, path]);
+  return (
+    <A
+      active={underlineCurrent && isCurrent}
+      className={className}
+      href={path}
+      onClick={click}
+    >
+      {children}
+    </A>
+  );
+});

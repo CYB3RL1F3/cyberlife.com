@@ -5,6 +5,7 @@ import { getReleaseById } from 'app/actions';
 import ReleaseStore from './ReleasesStore';
 import { AxiosResponse } from 'axios';
 import ReleaseModel from 'app/models/ReleaseModel';
+import { captureException } from '@sentry/browser';
 
 export class SelectedReleaseStore implements InitializableStore {
   @observable public loading: boolean;
@@ -60,7 +61,6 @@ export class SelectedReleaseStore implements InitializableStore {
       this.data = new ReleaseModel(response.data);
       this.loading = false;
     } catch (e) {
-      console.log(e);
       this.onReleaseFailed(e);
     }
   };
@@ -71,6 +71,7 @@ export class SelectedReleaseStore implements InitializableStore {
     this.error = e.message;
     this.data = null;
     this.loading = false;
+    captureException(e);
   };
 }
 

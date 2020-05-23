@@ -2,6 +2,7 @@ import { observable, action } from 'mobx';
 import { ChartModel } from 'app/models';
 import { getCharts } from 'app/actions';
 import { InitializableStore } from './stores';
+import { captureException } from '@sentry/browser';
 
 export class ChartStore implements InitializableStore {
   @observable public loading: boolean;
@@ -32,6 +33,7 @@ export class ChartStore implements InitializableStore {
 
   @action.bound
   onChartsError = (e) => {
+    captureException(e);
     this.error = e.toString();
     this.loading = false;
   };

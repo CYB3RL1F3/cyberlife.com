@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Paragraph, Container, Link } from './ChartItem.styled';
 
 interface ChartProp {
@@ -8,7 +8,7 @@ interface ChartProp {
   link: string;
 }
 
-export const ChartItem: React.StatelessComponent<ChartProp> = (
+export const ChartItem: FC<ChartProp> = (
   chart: ChartProp
 ) => (
   <Container index={chart.index}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Layout, Footer, MiniPlayerMobileWrapper } from 'app/components';
 import { Header, Infos } from 'app/components/organisms';
 import { AppContainer, Container, Handler } from './App.styled';
@@ -12,24 +12,20 @@ console.log(
 
 require('assets/main.css');
 
-export class App extends React.Component {
-  render() {
-    return (
-      <AppContainer>
-        <Layout>
-          <Header />
-          <Container>
-            <Infos />
-            <Content>
-              <Handler>{this.props.children}</Handler>
-            </Content>
-          </Container>
-          <Footer />
-        </Layout>
-        <MobileMediaQuery>
-          <MiniPlayerMobileWrapper />
-        </MobileMediaQuery>
-      </AppContainer>
-    );
-  }
-}
+export const App: FC = ({ children }) => (
+  <AppContainer>
+    <Layout>
+      <Header />
+      <Container>
+        <Infos />
+        <Content>
+          <Handler>{children}</Handler>
+        </Content>
+      </Container>
+      <Footer />
+    </Layout>
+    <MobileMediaQuery>
+      <MiniPlayerMobileWrapper />
+    </MobileMediaQuery>
+  </AppContainer>
+);

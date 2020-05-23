@@ -6,7 +6,6 @@ import { Provider } from 'mobx-react';
 import { createBrowserHistory } from 'history';
 import { createStores } from 'app/stores';
 import { App } from 'app';
-import { Workbox } from 'workbox-window';
 
 // enable MobX strict mode
 
@@ -26,8 +25,12 @@ Sentry.init({
 // init PWA service worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    const wb = new Workbox('/service_worker.js');
-    wb.register();
+    navigator.serviceWorker.register('/service-worker.js')
+   .then(registration => {
+      console.log('SW registered: ', registration);
+    }).catch(registrationError => {
+      console.log('SW registration failed: ', registrationError);
+    });
   });
 }
 

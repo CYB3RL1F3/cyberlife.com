@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Container, Spinner } from './Loading.styled';
 
-export const Loading: React.StatelessComponent = () => (
+export const Loading: FC = () => (
   <Container>
     <Spinner />
   </Container>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { STORE_SELECTED_PODCAST, STORE_PLAYER } from 'app/constants/stores';
+import { Stores } from 'app/constants/stores';
 import { TrackModel } from 'app/models/TrackModel';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
 import { SelectedPodcastStore } from 'app/stores/SelectedPodcastStore';
@@ -28,14 +28,15 @@ import {
   DownloadBtn
 } from './PodcastDetails.styled';
 import { parseHtml } from 'app/utils/html';
+import { paths } from "app/paths";
 
 interface PodcastDetailsProps {
   data: TrackModel;
-  [STORE_SELECTED_PODCAST]: SelectedPodcastStore;
-  [STORE_PLAYER]: PlayerStore;
+  [Stores.selected_podcast]: SelectedPodcastStore;
+  [Stores.player]: PlayerStore;
 }
 
-@inject(STORE_PLAYER)
+@inject(Stores.player)
 @observer
 export class PodcastDetailsComponent extends React.Component<
   PodcastDetailsProps
@@ -47,7 +48,7 @@ export class PodcastDetailsComponent extends React.Component<
   play = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    const store: PlayerStore = this.props[STORE_PLAYER];
+    const store: PlayerStore = this.props[Stores.player];
     if (
       !store.currentTrack ||
       (store.currentTrack &&
@@ -85,12 +86,12 @@ export class PodcastDetailsComponent extends React.Component<
         description
       } = data;
       const descriptionHtml = description.replace(/(\n)/g, '<br />');
-      const store: PlayerStore = this.props[STORE_PLAYER];
+      const store: PlayerStore = this.props[Stores.player];
       return (
         <Container>
           <TitleHandler>
             <Title>{title}</Title>
-            <GoBack path="/">&lt; Back</GoBack>
+            <GoBack path={paths.podcasts}>&lt; Back</GoBack>
           </TitleHandler>
           <DataContainer>
             <ThumbHandler>
@@ -102,7 +103,7 @@ export class PodcastDetailsComponent extends React.Component<
               {download && <DownloadBtn href={download}>Download</DownloadBtn>}
             </ThumbHandler>
             <TextHandler>
-              <P>Published on {format(new Date(date), 'dd/mm/yyyy')}</P>
+              <P>Published on {format(new Date(date), 'dd/MM/yyyy')}</P>
               <P>Duration: {this.computeDuration(duration)}</P>
               <P>Style: {genre}</P>
               <P>© {license.replace(/\-/g, ' ')}</P>
@@ -148,6 +149,6 @@ export class PodcastDetailsComponent extends React.Component<
   }
 }
 
-export const PodcastDetails = withLoadingStore(STORE_SELECTED_PODCAST)(
+export const PodcastDetails = withLoadingStore(Stores.selected_podcast)(
   PodcastDetailsComponent
 );

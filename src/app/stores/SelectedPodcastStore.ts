@@ -7,6 +7,7 @@ import { AxiosResponse } from 'axios';
 import TrackModel from 'app/models/TrackModel';
 import { getPodcasts } from '../actions/actions';
 import { PodcastModel } from 'app/models';
+import { captureException } from '@sentry/browser';
 
 export class SelectedPodcastStore implements InitializableStore {
   @observable public loading: boolean;
@@ -28,7 +29,7 @@ export class SelectedPodcastStore implements InitializableStore {
 
   getPodcastInfo = () => {
     const uri = this.router.location.pathname
-      .replace('/podcasts/', '')
+      .replace('/podcast/', '')
       .split('/');
     return {
       id: parseInt(uri[0], 10)
@@ -84,6 +85,7 @@ export class SelectedPodcastStore implements InitializableStore {
 
   @action.bound
   onPodcastFailed = (e: Error) => {
+    captureException(e);
     this.loading = true;
     this.error = e.message;
     this.data = null;

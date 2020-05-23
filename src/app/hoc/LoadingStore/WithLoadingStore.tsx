@@ -1,16 +1,18 @@
-import * as React from 'react';
+
+
+import React, { PureComponent, ComponentType } from 'react';
 import * as Sentry from '@sentry/browser';
-import { inject, observer } from 'mobx-react';
-import { Loading, Error } from 'app/components/atoms';
-import { STORE_ROUTER } from 'app/constants/stores';
+import { observer, inject } from 'mobx-react';
+import { Loading, Error as ErrorComponent } from 'app/components/atoms';
 import { InitializableStore } from 'app/stores/stores';
+import { Stores } from "app/constants/stores";
 
 export const withLoadingStore = (storeName: string) => (
-  WrappedComponent: React.ComponentType
+  WrappedComponent: ComponentType
 ) => (props) => {
-  @inject(storeName, STORE_ROUTER)
+  @inject(storeName, Stores.router)
   @observer
-  class Loadable extends React.Component {
+  class WithLoadingStoreComponent extends PureComponent {
     componentDidMount() {
       const store: InitializableStore = this.props[storeName];
       store.init();
@@ -35,7 +37,7 @@ export const withLoadingStore = (storeName: string) => (
       } else if (error) {
         this.fail(error, {});
         return (
-          <Error
+          <ErrorComponent
             init={init}
             message={
               'Impossible to load content. Seems to meet a problem with the data provider.'
@@ -54,5 +56,5 @@ export const withLoadingStore = (storeName: string) => (
     }
   }
 
-  return <Loadable />;
+  return <WithLoadingStoreComponent />;
 };

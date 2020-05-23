@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import routes, { RouteType } from 'app/routes';
 import { Dash, NavContainer, Link } from './Nav.styled';
 
-export const Nav: React.StatelessComponent = () => (
+export const Nav: FC = () => (
   <NavContainer>
     {routes.map(
       (route: RouteType, index: number): JSX.Element =>

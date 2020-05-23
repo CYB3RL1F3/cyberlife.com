@@ -1,21 +1,16 @@
 import axios, { AxiosPromise } from 'axios';
-
-const ID = '045af2a3';
+import config from 'app/config';
 
 const instance = axios.create({
-  baseURL: 'https://profilart.fr/',
-  // baseURL: `http://localhost:8888/`,
-  timeout: 10000
+  baseURL: config.api,
+  timeout: 20000
 });
 
-export const getFinalEndPoint = (endpoint: string): string =>
-  `${ID}/${endpoint}`;
-
 export const fetch = (endpoint: string, params = {}): AxiosPromise =>
-  instance.get(getFinalEndPoint(endpoint), { params });
+  instance.get(endpoint, { params });
 
 export const post = (endpoint: string, params = {}): AxiosPromise =>
-  instance.post(getFinalEndPoint(endpoint), {
+  instance.post(endpoint, {
     params,
     headers: {
       'Content-Type': 'multipart/form-data'

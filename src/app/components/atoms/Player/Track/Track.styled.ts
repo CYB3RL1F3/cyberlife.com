@@ -42,12 +42,15 @@ export const Container = styled.div<MiniContext>`
   margin: 0;
 `;
 
-export const Content = styled.div<Trackline>`
-  width: ${({ progression }) => `${progression}`}%;
+export const Content = styled.div.attrs(({ progression, opacity }) => ({
+  style: {
+    width: `${parseFloat(progression) || 0}%`,
+    opacity
+  }
+}))<Trackline>`
   height: ${height - 0.2}vh;
   top: 2.6vh;
   background-color: white;
-  opacity: ${({ opacity }) => opacity};
   overflow: hidden;
   position: absolute;
   margin: auto 0;

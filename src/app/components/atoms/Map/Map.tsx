@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import config from 'app/config';
 
 export type Coordinates = [number, number];
 
@@ -9,9 +10,9 @@ interface MapProps {
   height: string;
 }
 
-const accessToken =
-  'pk.eyJ1IjoiY3liZXJsaWZlIiwiYSI6ImNqbHh3aXI4bTFjd2UzcGxpb2NyZmN2cHgifQ.SlBnqRlqv0oeUGoX1T3U3w';
-const url = 'mapbox://styles/cyberlife/cjq9kpl33b01d2smvny3ciast';
+const { accessToken, url } = config.mapbox;
+  // 'pk.eyJ1IjoiY3liZXJsaWZlIiwiYSI6ImNqbHh3aXI4bTFjd2UzcGxpb2NyZmN2cHgifQ.SlBnqRlqv0oeUGoX1T3U3w';
+// const url = 'mapbox://styles/cyberlife/cjq9kpl33b01d2smvny3ciast';
 const Mapbox = ReactMapboxGl({
   attributionControl: false,
   accessToken

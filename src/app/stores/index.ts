@@ -5,6 +5,7 @@ export * from './ReleasesStore';
 export * from './AppStore';
 export * from './SelectedEventStore';
 export * from './SelectedPodcastStore';
+export * from './SelectedReleaseStore';
 export * from './PodcastStore';
 export * from './PlayerStore';
 

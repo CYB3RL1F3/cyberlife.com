@@ -1,29 +1,25 @@
-import React from 'react';
-import { inject, observer } from 'mobx-react';
-import { STORE_INFOS } from 'app/constants/stores';
-import InfosStore from 'app/stores/InfosStore';
+import React, { FC } from 'react';
+import { observer } from 'mobx-react';
 import { Container, Text, Link } from './Bio.styled';
+import { useInfosStore } from 'app/hooks/stores';
+import { paths } from "app/paths";
 
-@inject(STORE_INFOS)
-@observer
-export class Bio extends React.Component {
-  render() {
-    const store: InfosStore = this.props[STORE_INFOS];
-    const {
-      bio: { intro, content }
-    } = store.data;
+export const Bio: FC = observer(() => {
+  const infosStore = useInfosStore();
+  const {
+    bio: { intro, content }
+  } = infosStore.data;
 
-    return (
-      <Container>
-        <Text>{intro}</Text>
-        <Text>{content}</Text>
-        <Text>
-          Contact / booking :{' '}
-          <Link path="/contact">
-            cyberlife<span>@</span>gmail.com
-          </Link>
-        </Text>
-      </Container>
-    );
-  }
-}
+  return (
+    <Container>
+      <Text>{intro}</Text>
+      <Text>{content}</Text>
+      <Text>
+        Contact / booking :{' '}
+        <Link path={paths.contact}>
+          cyberlife<span>@</span>gmail.com
+        </Link>
+      </Text>
+    </Container>
+  );
+});

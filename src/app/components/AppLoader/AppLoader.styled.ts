@@ -1,4 +1,5 @@
 import styled, { css } from 'app/theme';
+import { Spinner } from 'app/components/atoms/Loading/Loading.styled';
 
 export const Container = styled.div`
   position: relative;
@@ -15,7 +16,6 @@ export const PixelTrackersWrapper = styled.div`
 `;
 
 export const Console = styled.div`
-  background: black;
   margin: 1rem;
   position: absolute;
   top: 0;
@@ -45,13 +45,19 @@ export const Li = styled.li`
 `;
 
 export const LottieHandler = styled.div`
-  ${({ theme }) => theme.media.desktop`
-    display: block;
-    position: absolute;
-    bottom: 10rem;
-    right: 10rem;
-    width: 20rem;
-    height: 20rem;
-  `}
-  display: none;
+  display: block;
+  position: absolute;
+  bottom: 7.5rem;
+  right: calc(50% - 7.5rem);
+  width: 14rem;
+  height: 14rem;
+`;
+
+export const LoadingSpinner = styled(Spinner)`
+  width: 14rem;
+  height: 14rem;
+  margin: 0;
+  position: absolute;
+  left: 1rem;
+  top: 1px;
 `;

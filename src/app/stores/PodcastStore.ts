@@ -2,6 +2,7 @@ import { observable, action } from 'mobx';
 import { PodcastModel } from 'app/models';
 import { InitializableStore } from './stores';
 import { getPodcasts } from 'app/actions/actions';
+import { captureException } from '@sentry/browser';
 
 export class PodcastStore implements InitializableStore {
   @observable public loading: boolean;
@@ -32,6 +33,7 @@ export class PodcastStore implements InitializableStore {
 
   @action.bound
   onPodcastFailed = (e) => {
+    captureException(e);
     this.error = e;
     this.loading = false;
   };
