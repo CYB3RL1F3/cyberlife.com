@@ -58,9 +58,11 @@ export const FallbackEvents: FC<FallbackEventsProps> = observer(({ asFail }) => 
       );
     } else {
       return (
-        <A href onClick={loadPastEvents}>
-          See past gigs... {loadingSpinner}
-        </A>
+        <Container>
+          <A href onClick={loadPastEvents}>
+            See past gigs... {loadingSpinner}
+          </A>
+        </Container>
       );
     }
   } else {

@@ -91,6 +91,6 @@ export const validate = (values) => {
   if (message) errors.message = message;
   if (!values.captcha)
     errors.captcha =
-      "Please prove you're a human being or from smarter species";
+      "Please prove you're a human being or smarter species";
   return errors;
 };

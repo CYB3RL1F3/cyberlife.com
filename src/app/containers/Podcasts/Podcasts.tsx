@@ -1,65 +1,59 @@
-import React from 'react';
+import React, { FC, useCallback, MouseEvent } from 'react';
 import PlaylistModel from 'app/models/PodcastModel';
 import { Stores } from 'app/constants/stores';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
 import { PodcastItem } from 'app/components/molecules/PodcastItem';
-import { Container } from './Podcasts.styled';
+import { Container, Unavailable } from './Podcasts.styled';
 import { TrackModel } from 'app/models';
-import { inject, observer } from 'mobx-react';
-import { PlayerStore } from 'app/stores';
+import { observer } from 'mobx-react';
+import { usePlayerStore } from 'app/hooks/stores';
 
 export interface PlaylistProps {
   data: PlaylistModel;
-  [Stores.player]: PlayerStore;
 }
 
-@inject(Stores.player)
-@observer
-export class PodcastsComponent extends React.Component<PlaylistProps, {}> {
-  constructor(props: PlaylistProps, context: any) {
-    super(props, context);
-  }
-
-  play = (index: number) => (e: React.MouseEvent) => {
+export const PodcastsComponent: FC<PlaylistProps> = observer(({ data }) => {
+  const store = usePlayerStore();
+  const { currentTrack, play, pause, onSeek } = store;
+  const onPlay = useCallback((e: MouseEvent, index: number) => {
     e.preventDefault();
     e.stopPropagation();
-    const store: PlayerStore = this.props[Stores.player];
-    const track = this.props.data.tracks[index];
+    const track = data.tracks[index];
     if (
-      !store.currentTrack ||
-      (store.currentTrack && store.currentTrack.title !== track.title) ||
-      (store.currentTrack && !store.currentTrack.playing)
+      !currentTrack ||
+      (currentTrack && currentTrack.title !== track.title) ||
+      (currentTrack && !currentTrack.playing)
     ) {
-      store.play(track);
+      play(track);
     } else {
-      store.pause();
+      pause();
     }
-  };
-
-  render() {
-    const { data } = this.props;
-    const { onSeek } = this.props[Stores.player] as PlayerStore;
-    if (data) {
-      return (
-        <Container>
-          {data.tracks.map(
-            (track: TrackModel, index: number): JSX.Element => {
-              return (
-                <PodcastItem
-                  onPlay={this.play(index)}
-                  onSeek={onSeek}
-                  index={index}
-                  key={track.id}
-                  {...track}
-                />
-              );
-            }
-          )}
-        </Container>
-      );
-    } else {
-      return <div />;
-    }
+  }, [currentTrack, data, play, pause]);
+  if (data && data.tracks && data.tracks.length) {
+    return (
+      <Container>
+        {data.tracks.map(
+          (track: TrackModel, index: number): JSX.Element => {
+            return (
+              <PodcastItem
+                onPlay={onPlay}
+                onSeek={onSeek}
+                index={index}
+                key={track.id}
+                {...track}
+              />
+            );
+          }
+        )}
+      </Container>
+    );
+  } else {
+    return (
+      <Container>
+        <Unavailable>There is no Cyberlife's podcasts available right now... :(</Unavailable>
+      </Container>
+    )
   }
-}
+});
+
 export const Podcasts = withLoadingStore(Stores.podcasts)(PodcastsComponent);

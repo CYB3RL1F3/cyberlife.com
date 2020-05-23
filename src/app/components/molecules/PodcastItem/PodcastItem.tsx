@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback, MouseEvent } from 'react';
 import { Theme, withTheme } from 'app/theme';
 import { Tracks } from 'types/playlists';
 import {
@@ -29,42 +29,60 @@ export interface PodcastItemProps {
   waveform: string;
   loaded: number;
   seek: number;
-  onPlay: (e: React.MouseEvent) => void;
+  onPlay: (e: React.MouseEvent, index: number) => void;
   onSeek: (seek: number, toMoveSeekPosition: boolean) => void;
 }
 
-export const PodcastItemComponent: FC<PodcastItemProps> = (props: PodcastItemProps) => (
-  <Container index={props.index}>
-    <ThumbHandler>
-      <PlayBtn
-        backgroundImage={props.artwork}
-        playing={props.playing}
-        onClick={props.onPlay}
-      />
-    </ThumbHandler>
-    <InfosHandler>
-      <Title>
-        <PodcastLink path={resolvePath(paths.podcastDetails, props.id)}>
-          {props.title}
-        </PodcastLink>
-      </Title>
-      <Handler>
-        <Description>{props.description}</Description>
-      </Handler>
-      <DesktopAndTabletsMediaQuery>
-        <TrackHandler opacity={props.playing ? 1 : 0.5}>
-          <Track
-            waveform={props.waveform}
-            loaded={props.loaded}
-            seek={props.seek}
-            duration={props.duration}
-            isMini={false}
-            onSeek={props.onSeek}
-          />
-        </TrackHandler>
-      </DesktopAndTabletsMediaQuery>
-    </InfosHandler>
-  </Container>
-);
+export const PodcastItemComponent: FC<PodcastItemProps> = (
+  {
+    onPlay,
+    index,
+    artwork,
+    playing,
+    title,
+    id,
+    description,
+    waveform,
+    loaded,
+    seek,
+    duration,
+    onSeek
+  }
+) => {
+  const play = useCallback((e: MouseEvent) => onPlay(e, index), [onPlay, index]);
+  return (
+    <Container index={index}>
+      <ThumbHandler>
+        <PlayBtn
+          backgroundImage={artwork}
+          playing={playing}
+          onClick={play}
+        />
+      </ThumbHandler>
+      <InfosHandler>
+        <Title>
+          <PodcastLink path={resolvePath(paths.podcastDetails, id)}>
+            {title}
+          </PodcastLink>
+        </Title>
+        <Handler>
+          <Description>{description}</Description>
+        </Handler>
+        <DesktopAndTabletsMediaQuery>
+          <TrackHandler opacity={playing ? 1 : 0.5}>
+            <Track
+              waveform={waveform}
+              loaded={loaded}
+              seek={seek}
+              duration={duration}
+              isMini={false}
+              onSeek={onSeek}
+            />
+          </TrackHandler>
+        </DesktopAndTabletsMediaQuery>
+      </InfosHandler>
+    </Container>
+  )
+};
 
 export const PodcastItem = withTheme(PodcastItemComponent);

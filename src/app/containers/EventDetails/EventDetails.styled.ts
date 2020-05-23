@@ -130,3 +130,11 @@ export const Flyer = styled.img`
     width: 80vw;
   `}
 `;
+
+export const Unavailable = styled.p`
+  font-size: 15px;
+  text-align: center;
+  width: 100%;
+  font-family: ${({ theme }) => theme.fonts.primary};
+  color: ${({ theme }) => theme.color};
+`;

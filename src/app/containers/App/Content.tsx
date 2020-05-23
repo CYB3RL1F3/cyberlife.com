@@ -3,6 +3,7 @@ import { Content as Container } from './App.styled';
 import { observer } from 'mobx-react';
 import { sizes } from 'app/theme';
 import { useRouterStore } from 'app/hooks/stores';
+import { useUnmount } from 'app/hooks/effects';
 
 export const Content: FC = observer(({ children }) => {
   const contentHandler = useRef(null);
@@ -14,6 +15,11 @@ export const Content: FC = observer(({ children }) => {
   }, [isTabletOrDesktop, contentHandler.current, routerStore.location.pathname]);
   if (isTabletOrDesktop())
     console.log('navigate to ', routerStore.location.pathname);
+
+  useUnmount(() => {
+    contentHandler.current = false;
+  });
+
   return (
     <Container ref={contentHandler}>{children}</Container>
   );

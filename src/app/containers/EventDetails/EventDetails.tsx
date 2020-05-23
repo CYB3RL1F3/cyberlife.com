@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Stores } from 'app/constants/stores';
 import { EventModel } from 'app/models/EventModel';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
 import { Map } from 'app/components/atoms/Map';
-import { SelectedEventStore } from 'app/stores/SelectedEventStore';
 import {
   Container,
   TitleHandler,
@@ -18,7 +17,8 @@ import {
   MapboxHandler,
   GoBack,
   InfoLink,
-  Flyer
+  Flyer,
+  Unavailable
 } from './EventDetails.styled';
 import {
   DesktopMediaQuery,
@@ -29,97 +29,96 @@ import { paths } from "app/paths";
 
 interface EventDetailsProps {
   data: EventModel;
-  [Stores.selected_event]: SelectedEventStore;
 }
 
-export class EventDetailsComponent extends React.Component<EventDetailsProps> {
-  constructor(props, context) {
-    super(props, context);
-  }
-  render() {
-    const { data } = this.props;
-    if (data) {
-      return (
-        <Container>
-          <TitleHandler>
-            <Title>{data.title}</Title>
-            <GoBack path={paths.events}>&lt; Back</GoBack>
-          </TitleHandler>
-          <Content>
-            <ContentHandler>
+export const EventDetailsComponent: FC<EventDetailsProps> = ({ data }) => {
+  if (data) {
+    return (
+      <Container>
+        <TitleHandler>
+          <Title>{data.title}</Title>
+          <GoBack path={paths.events}>&lt; Back</GoBack>
+        </TitleHandler>
+        <Content>
+          <ContentHandler>
+            <Section>
+              <Info>{data.formattedDate}</Info>
+              <Info>
+                {data.time.begin} {data.time.end ? `- ${data.time.end}` : ''}
+              </Info>
+            </Section>
+            <Section>
+              <Info>{data.address}</Info>
+              <Info>
+                {data.area}, {data.country}
+              </Info>
+            </Section>
+            {data.flyer.front && (
               <Section>
-                <Info>{data.formattedDate}</Info>
-                <Info>
-                  {data.time.begin} {data.time.end ? `- ${data.time.end}` : ''}
-                </Info>
+                <Flyer src={data.flyer.front} alt={data.title} />
               </Section>
-              <Section>
-                <Info>{data.address}</Info>
-                <Info>
-                  {data.area}, {data.country}
-                </Info>
-              </Section>
-              {data.flyer.front && (
-                <Section>
-                  <Flyer src={data.flyer.front} alt={data.title} />
-                </Section>
-              )}
-              {data.lineup && data.lineup.length > 0 && (
-                <Section>
-                  <H3>Lineup : </H3>
-                  <Lineup>
-                    {data.lineup.map((artist: string) => (
-                      <LineupLine key={artist}>{artist}</LineupLine>
-                    ))}
-                  </Lineup>
-                </Section>
-              )}
-              {data.cost && (
-                <Section>
-                  <Info children={data.cost} />
-                </Section>
-              )}
-              <Section>
-                <Info>
-                  <InfoLink target="_blank" href={data.links.event}>
-                    More infos
-                  </InfoLink>
-                  {' - '}
-                  <InfoLink target="_blank" href={data.links.venue}>
-                    Promoter
-                  </InfoLink>
-                </Info>
-              </Section>
-            </ContentHandler>
-            {data.location.position && (
-              <MapboxHandler>
-                <DesktopMediaQuery>
-                  <Map
-                    width="20vw"
-                    height="50vh"
-                    coordinates={data.coordinates}
-                  />
-                </DesktopMediaQuery>
-                <TabletMediaQuery>
-                  <Map
-                    width="35vw"
-                    height="50vh"
-                    coordinates={data.coordinates}
-                  />
-                </TabletMediaQuery>
-                <MobileMediaQuery>
-                  <Map
-                    width="100%"
-                    height="25vh"
-                    coordinates={data.coordinates}
-                  />
-                </MobileMediaQuery>
-              </MapboxHandler>
             )}
-          </Content>
-        </Container>
-      );
-    } else return <div />;
+            {data.lineup && data.lineup.length > 0 && (
+              <Section>
+                <H3>Lineup : </H3>
+                <Lineup>
+                  {data.lineup.map((artist: string) => (
+                    <LineupLine key={artist}>{artist}</LineupLine>
+                  ))}
+                </Lineup>
+              </Section>
+            )}
+            {data.cost && (
+              <Section>
+                <Info children={data.cost} />
+              </Section>
+            )}
+            <Section>
+              <Info>
+                <InfoLink target="_blank" href={data.links.event}>
+                  More infos
+                </InfoLink>
+                {' - '}
+                <InfoLink target="_blank" href={data.links.venue}>
+                  Promoter
+                </InfoLink>
+              </Info>
+            </Section>
+          </ContentHandler>
+          {data.location.position && (
+            <MapboxHandler>
+              <DesktopMediaQuery>
+                <Map
+                  width="20vw"
+                  height="50vh"
+                  coordinates={data.coordinates}
+                />
+              </DesktopMediaQuery>
+              <TabletMediaQuery>
+                <Map
+                  width="35vw"
+                  height="50vh"
+                  coordinates={data.coordinates}
+                />
+              </TabletMediaQuery>
+              <MobileMediaQuery>
+                <Map
+                  width="100%"
+                  height="25vh"
+                  coordinates={data.coordinates}
+                />
+              </MobileMediaQuery>
+            </MapboxHandler>
+          )}
+        </Content>
+      </Container>
+    );
+  } else {
+    return (
+      <Container>
+        <Unavailable>This event doesn't exists or can't be loaded properly...</Unavailable>
+      </Container>
+    )
   }
 }
 

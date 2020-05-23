@@ -5,3 +5,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const Unavailable = styled.p`
+  font-size: 15px;
+  text-align: center;
+  width: 100%;
+  font-family: ${({ theme }) => theme.fonts.primary};
+  color: ${({ theme }) => theme.color};
+`;
