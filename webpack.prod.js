@@ -2,14 +2,31 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 const common = require('./webpack.config.js');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 const CompressionPlugin = require('compression-webpack-plugin');
 
 const uglify = new UglifyJsPlugin({
   parallel: true,
   sourceMap: true,
   cache: true,
-  extractComments: true
+  extractComments: true,
+  uglifyOptions: {
+    toplevel: true,
+    warnings: false,
+    parse: {},
+    compress: {},
+    mangle: true, // Note `mangle.properties` is `false` by default.
+    output: {
+      beautify: false,
+      preamble: "/* UGL1F13D CYB3RL1F3 */"
+    },
+    nameCache: null,
+    ie8: false,
+    keep_fnames: false,
+    
+  },
 });
+
 
 const config = merge(common, {
   mode: 'production',
@@ -23,6 +40,21 @@ const config = merge(common, {
       minSize: 0,
       name: true,
       cacheGroups: {
+        'react': {
+          name: 'react',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]react[\\/]/
+        },
+        'mobx': {
+          name: 'mobx',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]mobx[\\/]/
+        },
+        '@sentry/browser': {
+          name: '@sentry/browser',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]@sentry\/browser[\\/]/
+        },
         'mapbox-gl': {
           name: 'mapbox-gl',
           chunks: 'all',
@@ -44,7 +76,7 @@ const config = merge(common, {
           name: 'node_modules_[chunkhash]',
           chunks: 'all',
           enforce: true,
-          test: /[\\/]node_modules[\\/](?!(mapbox-gl)[\\/])/
+          test: /[\\/]node_modules[\\/](?!(mapbox-gl|date-fns|react|mobx|@sentry\/browser)[\\/])/
         }
       }
     }

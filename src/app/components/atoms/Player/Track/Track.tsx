@@ -26,7 +26,7 @@ export const Track: FC<TrackProps> = ({ waveform, className, loaded, seek, isMin
   return (
     <Container className={className} isMini={isMini} onClick={moveSeek}>
       <Content opacity={0.3} progression={100} />
-      <Content opacity={0.6} progression={loaded} />
+      <Content opacity={0.2} progression={loaded} />
       <Content opacity={0.9} progression={seek} />
       <Waveform isMini={isMini} backgroundImage={waveform} />
     </Container>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'app/theme';
 
 export interface PixelTrackerProps {
@@ -7,7 +7,7 @@ export interface PixelTrackerProps {
   src: string;
 }
 
-export class PixelTracker extends React.Component<PixelTrackerProps, {}> {
+export class PixelTracker extends PureComponent<PixelTrackerProps, {}> {
   componentDidMount() {
     this.props.onStartLoading();
     if (this.videoRef && this.videoRef.current) {

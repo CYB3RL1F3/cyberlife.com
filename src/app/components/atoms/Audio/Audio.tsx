@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { inject, observer } from 'mobx-react';
 import { STORE_PLAYER } from 'app/constants/stores';
@@ -12,7 +12,7 @@ export interface AudioProps {}
 
 @inject(STORE_PLAYER)
 @observer
-export class Audio extends React.Component<AudioProps> {
+export class Audio extends PureComponent<AudioProps> {
   player: ReactAudioPlayer = null;
   element: AudioElement = null;
 
@@ -27,8 +27,14 @@ export class Audio extends React.Component<AudioProps> {
 
   onListen = (value: number) => {
     const store: PlayerStore = this.props[STORE_PLAYER];
+    if (this.element && this.element.current) {
+      const { buffered } = this.element.current;
+      if (buffered) {
+        const pctLoaded = 100 * buffered.end(0) / store.currentTrack.duration;
+        store.onLoaded(pctLoaded);
+      }
+    }
     if (store.seekPosition > 0 && this.element && this.element.current) {
-      
       this.element.current.currentTime =
         (store.seekPosition / 100) * (store.currentTrack.duration / 1000);
       store.clearSeek();
@@ -37,6 +43,11 @@ export class Audio extends React.Component<AudioProps> {
       store.onSeek(pct, false);
     }
   };
+
+  componentWillUnmount = () => {
+    this.player = null;
+    this.element = null;
+  }
 
   render() {
     const store: PlayerStore = this.props[STORE_PLAYER] as PlayerStore;
@@ -51,7 +62,7 @@ export class Audio extends React.Component<AudioProps> {
             ref={this.refer}
             withRef
             src={url}
-            listenInterval={100}
+            listenInterval={200}
             onListen={debounce(this.onListen, 200)}
             controls={false}
             autoPlay
