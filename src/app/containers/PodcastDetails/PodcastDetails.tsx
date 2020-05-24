@@ -24,10 +24,11 @@ import { usePlayerStore } from 'app/hooks/stores';
 import {
   DescriptionHandler,
   TagList,
-  DownloadBtn
 } from './PodcastDetails.styled';
 import { parseHtml } from 'app/utils/html';
 import { paths } from "app/paths";
+import { numToZeroString } from 'app/utils/numbers';
+import { Button } from 'app/components/atoms/Button';
 
 interface PodcastDetailsProps {
   data: TrackModel;
@@ -52,10 +53,11 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(({ data
   }, [data, currentTrack, play, pause]);
 
   const computedDuration = useMemo(() => {
-    if (!data.duration) return null;
+    if (!data || data && !data.duration) return null;
     const d = new Date(data.duration);
-    return `0${d.getHours() - 1}:${d.getMinutes()}:${d.getSeconds()}`;
-  }, [data.duration]);
+    console.log(d);
+    return `${numToZeroString(d.getHours() - 1)}:${numToZeroString(d.getMinutes())}:${numToZeroString(d.getSeconds())}`;
+  }, [data]);
 
   if (data) {
     const {
@@ -88,7 +90,7 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(({ data
               playing={playing}
               onClick={onPlay}
             />
-            {download && <DownloadBtn href={download}>Download</DownloadBtn>}
+            {download && <Button href={download}>Download</Button>}
           </ThumbHandler>
           <TextHandler>
             <P>Published on {format(new Date(date), 'dd/MM/yyyy')}</P>

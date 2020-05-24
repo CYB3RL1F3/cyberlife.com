@@ -12,14 +12,15 @@ import {
   TextHandler,
   P,
   Tracklist,
+  ThumbHandler,
   PlayersHandler
 } from './ReleaseDetails.styled';
 import { withLoadingStore } from 'app/hoc';
 import { Track } from 'types/releases';
-import { ThumbHandler } from 'app/components/molecules/PodcastItem/PodcastItem.styled';
 
 import { ReleasePlayer } from 'app/components/atoms/Player/ReleasePlayer/ReleasePlayer';
-import { DownloadBtn } from '../PodcastDetails/PodcastDetails.styled';
+
+import { Button } from 'app/components/atoms/Button';
 import { paths } from "app/paths";
 export interface ReleaseDetailsProps {
   data: ReleaseModel;
@@ -48,9 +49,9 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
           <PicHandler>
             <Image src={thumb} alt={title} />
           </PicHandler>
-          <DownloadBtn href={discogs} target="_blank">
+          <Button href={discogs} target="_blank">
             Get Vinyl
-          </DownloadBtn>
+          </Button>
         </ThumbHandler>
         <TextHandler>
           <P>Label: {label}</P>

@@ -70,7 +70,7 @@ export const PicHandler = styled.div`
     ${({ theme }) => theme.media.mobile`
     width: 90vw;
     height: 90vw;
-    margin: 1rem 0;
+    margin: 1rem 0 0 0;
   `}
   `}
 `;
@@ -82,6 +82,18 @@ export const Image = styled.img`
     max-width: 100vw;
     min-height: 18rem;
     max-height: 90vw;
+  `}
+`;
+
+export const ThumbHandler = styled.div`
+  display: flex;
+  width: 10rem;
+  flex-direction: column;
+  margin-right: 2rem;
+  ${({ theme }) => theme.media.mobile`
+    width: 96%;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
   `}
 `;
 
