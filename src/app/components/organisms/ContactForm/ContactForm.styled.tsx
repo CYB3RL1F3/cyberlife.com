@@ -117,10 +117,7 @@ export const Loading = styled(Spinner)`
   height: 1rem;
   position: absolute;
   bottom: 0.6rem;
-  right: 4.5rem;
-  ${({ theme }) => theme.media.mobile`
-    right: 44vw;
-  `}
+  right: calc(50% - 0.5rem);
 `;
 
 export const ErrorField = styled.p`
