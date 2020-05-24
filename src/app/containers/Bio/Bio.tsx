@@ -23,3 +23,5 @@ export const Bio: FC = observer(() => {
     </Container>
   );
 });
+
+export default Bio;

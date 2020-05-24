@@ -32,3 +32,5 @@ export const Track: FC<TrackProps> = ({ waveform, className, loaded, seek, isMin
     </Container>
   );
 }
+
+export default Track;

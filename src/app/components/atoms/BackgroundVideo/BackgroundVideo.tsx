@@ -21,3 +21,5 @@ export const BackgroundVideo: FC = () => {
       </VideoHandler>
     );
 }
+
+export default BackgroundVideo;

@@ -31,3 +31,5 @@ export const ReleasesComponent: FC<ReleasesProps> = ({ data }) => {
 }
 
 export const Releases = withLoadingStore(Stores.releases)(ReleasesComponent);
+
+export default Releases;

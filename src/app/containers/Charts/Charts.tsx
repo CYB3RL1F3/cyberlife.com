@@ -38,3 +38,5 @@ export const ChartsComponent: FC<ChartProps> = ({ data }) => {
 }
 
 export const Charts = withLoadingStore(Stores.chart)(ChartsComponent);
+
+export default Charts;

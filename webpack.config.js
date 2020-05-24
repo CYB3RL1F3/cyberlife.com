@@ -26,6 +26,7 @@ const configFromEnv = Object.keys(env).reduce((prev, next) => {
   prev[`process.env.${next}`] = JSON.stringify(env[next]);
   return prev;
 }, {});
+configFromEnv['process.env.MODE'] = JSON.stringify(mode);
 console.log(configFromEnv);
 
 const robotsOptions = {
@@ -186,7 +187,6 @@ module.exports = {
         }
       }
     },
-    runtimeChunk: true
   },
   plugins: [
     new ForceCaseSensitivityPlugin(),

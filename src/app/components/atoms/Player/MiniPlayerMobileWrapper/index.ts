@@ -1,1 +1,1 @@
-export * from './MiniPlayerMobileWrapper';
+export { default } from './MiniPlayerMobileWrapper';

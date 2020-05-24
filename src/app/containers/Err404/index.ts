@@ -1,1 +1,1 @@
-export * from './Err404';
+export { default } from './Err404';

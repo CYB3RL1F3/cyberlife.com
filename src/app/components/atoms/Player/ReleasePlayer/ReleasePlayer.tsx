@@ -55,3 +55,5 @@ export const ReleasePlayer: FC<ReleasePlayerProps> = observer(({ track, title })
     </Handler>
   );
 });
+
+export default ReleasePlayer;

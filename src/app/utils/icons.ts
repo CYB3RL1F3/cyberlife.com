@@ -17,10 +17,11 @@ export const getVolumeEmojiValue = (volume: number | null) => {
     case 1:
       return 3;
     default:
-      return null;
+      return 0;
   }
 };
 
-export const getVolumeEmoji = (volume) =>
-    require(`assets/images/volume/${getVolumeEmojiValue(volume)}.svg`).default;
+const volumeEmojis = Array(4).fill(null).map((v, volume) => require(`assets/images/volume/${volume}.svg`).default)
+
+export const getVolumeEmoji = (volume = 0) => volumeEmojis[getVolumeEmojiValue(volume)]
 

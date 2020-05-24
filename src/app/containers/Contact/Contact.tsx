@@ -35,3 +35,5 @@ export const Contact: FC = () => {
       <ContactSuccess returnAction={reset} />
     );
 }
+
+export default Contact;

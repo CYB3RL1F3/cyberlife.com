@@ -3,7 +3,7 @@
     "sourceMap": true,
     "target": "es5",
     "jsx": "react",
-    "module": "es6",
+    "module": "ESNext",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -15,7 +15,7 @@
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": false,
     "outDir": "build",
-    "lib": ["es6", "es7", "dom"],
+    "lib": ["es6", "es7", "ESNext", "dom"],
     "baseUrl": "./src",
     "paths": {
       "app/*": ["./app/*"],

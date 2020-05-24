@@ -1,1 +1,1 @@
-export * from './ReleaseDetails';
+export { default } from './ReleaseDetails';

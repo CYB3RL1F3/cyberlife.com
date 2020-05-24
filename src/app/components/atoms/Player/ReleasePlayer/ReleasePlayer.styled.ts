@@ -1,7 +1,7 @@
 import styled from 'app/theme';
 import { TextStyle } from 'app/components/atoms/SharedStyled';
 import { Container as BaseContainer } from '../MiniPlayer/MiniPlayer.styled';
-import { Track as BaseTrack } from '../Track';
+import BaseTrack from '../Track';
 
 export const Handler = styled.div`
   display: flex;

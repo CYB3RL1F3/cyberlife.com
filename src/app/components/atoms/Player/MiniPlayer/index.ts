@@ -1,1 +1,1 @@
-export * from './MiniPlayer';
+export { default } from './MiniPlayer';

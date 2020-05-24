@@ -90,3 +90,5 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
 export const ReleaseDetails = withLoadingStore(Stores.selected_release)(
   ReleaseDetailsComponent
 );
+
+export default ReleaseDetails;

@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useCallback, useEffect, useMemo } from 'react';
 import { Slider } from 'app/components/atoms/Slider';
 import { observer } from 'mobx-react';
 import { Container, InputHandler, IconHandler, Icon } from './Volume.styled';
@@ -32,10 +32,12 @@ export const Volume: FC = observer(() => {
     }
   }, [volume, setVolume]);
 
+  const volumeEmoji = useMemo(() => getVolumeEmoji(volume), [volume]);
+
   return (
     <Container>
       <IconHandler htmlFor="volume" onClick={toggleMute}>
-        <Icon src={getVolumeEmoji(volume)} alt={`volume ${volume * 100}%`} />
+        <Icon src={volumeEmoji} alt={`volume ${volume * 100}%`} />
       </IconHandler>
       <InputHandler>
         <Slider
@@ -51,3 +53,5 @@ export const Volume: FC = observer(() => {
   );
 
 })
+
+export default Volume;

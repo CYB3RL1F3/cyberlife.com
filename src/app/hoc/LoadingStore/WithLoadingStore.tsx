@@ -1,6 +1,6 @@
 
 
-import React, { PureComponent, ComponentType } from 'react';
+import React, { PureComponent, ComponentType, Suspense } from 'react';
 import * as Sentry from '@sentry/browser';
 import { observer, inject } from 'mobx-react';
 import { Loading, Error as ErrorComponent } from 'app/components/atoms';
@@ -46,11 +46,13 @@ export const withLoadingStore = (storeName: string) => (
         );
       } else {
         return (
-          <WrappedComponent
-            {...props}
-            {...this.props}
-            {...this.props[storeName]}
-          />
+          <Suspense fallback={<Loading />}>
+            <WrappedComponent
+              {...props}
+              {...this.props}
+              {...this.props[storeName]}
+            />
+          </Suspense>
         );
       }
     }

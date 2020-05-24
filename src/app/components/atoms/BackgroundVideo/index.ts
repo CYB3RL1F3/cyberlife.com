@@ -1,1 +1,1 @@
-export { BackgroundVideo } from './BackgroundVideo';
+export { default } from './BackgroundVideo';

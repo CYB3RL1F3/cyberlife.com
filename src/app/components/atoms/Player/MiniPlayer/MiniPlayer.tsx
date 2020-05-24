@@ -7,7 +7,7 @@ import {
   PlayBtn
 } from './MiniPlayer.styled';
 import { TrackHandler } from 'app/components/molecules/PodcastItem/PodcastItem.styled';
-import { Track } from '../Track';
+import Track from '../Track';
 import { useRouterStore, usePlayerStore } from 'app/hooks/stores';
 
 export const MiniPlayer: FC = observer(() => {
@@ -60,3 +60,5 @@ export const MiniPlayer: FC = observer(() => {
     </Container>
   );
 });
+
+export default MiniPlayer;

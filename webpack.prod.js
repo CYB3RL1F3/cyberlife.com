@@ -34,6 +34,8 @@ const config = merge(common, {
     runtimeChunk: 'single',
     minimize: true,
     minimizer: [uglify],
+    flagIncludedChunks: true,
+    mergeDuplicateChunks: true,
     splitChunks: {
       chunks: 'all',
       maxInitialRequests: Infinity,

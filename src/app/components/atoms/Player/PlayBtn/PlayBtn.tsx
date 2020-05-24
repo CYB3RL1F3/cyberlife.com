@@ -8,3 +8,5 @@ export const PlayBtn: FC<PlayBtnProps> = memo((props) => (
     </Cover>
   </Container>
 )); 
+
+export default PlayBtn;

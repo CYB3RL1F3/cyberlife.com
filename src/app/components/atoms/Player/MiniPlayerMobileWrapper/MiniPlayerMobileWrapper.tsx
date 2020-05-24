@@ -1,8 +1,9 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, lazy, Suspense } from 'react';
 import { observer } from 'mobx-react';
 import { Container, Handler, Wrapper } from './MiniPlayerMobileWrapper.styled';
-import { MiniPlayer } from 'app/components/atoms/Player/MiniPlayer';
 import { useRouterStore, usePlayerStore } from 'app/hooks/stores';
+// import MiniPlayer from 'app/components/atoms/Player/MiniPlayer';
+const MiniPlayer = lazy(() => import('../MiniPlayer'));
 
 export const MiniPlayerMobileWrapper: FC = observer(() => {
   const routerStore = useRouterStore();
@@ -33,9 +34,13 @@ export const MiniPlayerMobileWrapper: FC = observer(() => {
     <Handler active={active}>
       <Wrapper>
         <Container active={active}>
-          <MiniPlayer />
+          <Suspense fallback={<div />}>
+            <MiniPlayer />
+          </Suspense>
         </Container>
       </Wrapper>
     </Handler>
   );
 });
+
+export default MiniPlayerMobileWrapper;

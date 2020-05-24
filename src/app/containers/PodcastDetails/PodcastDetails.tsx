@@ -141,3 +141,5 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(({ data
 export const PodcastDetails = withLoadingStore(Stores.selected_podcast)(
   PodcastDetailsComponent
 );
+
+export default PodcastDetails;

@@ -74,3 +74,5 @@ export class Audio extends PureComponent<AudioProps> {
     return <div />;
   }
 }
+
+export default Audio;

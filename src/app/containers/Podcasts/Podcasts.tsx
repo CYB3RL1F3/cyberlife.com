@@ -57,3 +57,5 @@ export const PodcastsComponent: FC<PlaylistProps> = observer(({ data }) => {
 });
 
 export const Podcasts = withLoadingStore(Stores.podcasts)(PodcastsComponent);
+
+export default Podcasts;

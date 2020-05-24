@@ -1,18 +1,15 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { paths } from './paths';
 
-import {
-  Bio,
-  Podcasts,
-  Events,
-  Charts,
-  Releases,
-  Contact,
-  EventDetails,
-  PodcastDetails,
-  ReleaseDetails
-} from 'app/containers';
-
+const Bio = lazy(() => import('app/containers/Bio'));
+const Podcasts = lazy(() => import('app/containers/Podcasts'));
+const Events = lazy(() => import('app/containers/Events'));
+const Charts = lazy(() => import('app/containers/Charts'));
+const Releases = lazy(() => import('app/containers/Releases'));
+const Contact = lazy(() => import('app/containers/Contact'));
+const EventDetails = lazy(() => import('app/containers/EventDetails'));
+const PodcastDetails = lazy(() => import('app/containers/PodcastDetails'));
+const ReleaseDetails = lazy(() => import('app/containers/ReleaseDetails'));
 export interface RouteType {
   component: React.ComponentType<any>;
   path: string;

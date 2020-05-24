@@ -125,3 +125,5 @@ export const EventDetailsComponent: FC<EventDetailsProps> = ({ data }) => {
 export const EventDetails = withLoadingStore(Stores.selected_event)(
   EventDetailsComponent
 );
+
+export default EventDetails;

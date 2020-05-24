@@ -69,3 +69,5 @@ export const FallbackEvents: FC<FallbackEventsProps> = observer(({ asFail }) => 
     return <PastEvents asFail={asFail} />;
   }
 });
+
+export default FallbackEvents;

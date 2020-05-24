@@ -5,7 +5,7 @@ import EventModel from 'app/models/EventModel';
 import { EventItem } from 'app/components/molecules/EventItem';
 import { Container } from './Events.styled';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
-import { FallbackEvents } from 'app/containers/FallbackEvents';
+import FallbackEvents from 'app/containers/FallbackEvents';
 
 export interface EventsProps extends RouteComponentProps<any> {
   data: EventModel[];
@@ -39,3 +39,5 @@ export const EventsComponent: FC<EventsProps> = ({ data }) => {
 export const Events = withLoadingStore(Stores.forthcoming_events)(
   EventsComponent
 );
+
+export default Events;

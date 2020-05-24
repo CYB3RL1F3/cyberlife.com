@@ -1,1 +1,1 @@
-export * from './FallbackEvents';
+export { default } from './FallbackEvents';

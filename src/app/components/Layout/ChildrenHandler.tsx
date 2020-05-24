@@ -15,3 +15,5 @@ export const ChildrenHandler: FC = observer(({ children }) => {
     <Container ref={contentHandler} children={children} />
   );
 });
+
+export default ChildrenHandler;

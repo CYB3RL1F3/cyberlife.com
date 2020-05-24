@@ -29,3 +29,5 @@ export const App: FC = ({ children }) => (
     </MobileMediaQuery>
   </AppContainer>
 );
+
+export default App;

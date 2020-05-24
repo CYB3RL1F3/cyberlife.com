@@ -17,3 +17,5 @@ export const Err404: FC = () => (
     </ErrorHandler>
   </Container>
 );
+
+export default Err404;

@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, Suspense, lazy } from 'react';
 import { format } from 'date-fns';
 import { Container, Text, VolumeContainer, A } from './Footer.styled';
-import { Volume } from 'app/components/atoms/Player/Volume/Volume';
+const Volume = lazy(() => import('app/components/atoms/Player/Volume'));
 
 export const Footer: FC = () => (
   <Container>
@@ -10,7 +10,9 @@ export const Footer: FC = () => (
       {format(new Date(), 'yyyy')}
     </Text>
     <VolumeContainer>
-      <Volume />
+      <Suspense fallback={<div />}>
+        <Volume />
+      </Suspense>
     </VolumeContainer>
   </Container>
 );

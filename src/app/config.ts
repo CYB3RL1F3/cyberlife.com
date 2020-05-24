@@ -1,4 +1,5 @@
 export const config = {
+  mode: process.env.MODE,
   api: process.env.API_URL,
   mapbox: {
     url: process.env.MAPBOX_URL,
@@ -9,5 +10,7 @@ export const config = {
     siteKey: process.env.CAPTCHA_SITEKEY
   }
 }
+
+export const isProduction = () => config.mode === "production";
 
 export default config;
