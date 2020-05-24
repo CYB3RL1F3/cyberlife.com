@@ -33,6 +33,7 @@ const inputStyle = (index: number) => css`
   width: 100%;
   margin: 0.25rem 0;
   height: 2.5rem;
+  min-height: 2.5rem;
   line-height: 2rem;
   padding-left: 1rem;
   ${TextStyle};
@@ -61,10 +62,13 @@ export const Input = styled<InputProps, {}>(Field)`
 export const Textarea = styled<InputProps, {}>(Field)`
   ${({ index }) => inputStyle(index)};
   height: 10rem;
+  min-height: 3rem;
   ${({ theme }) => theme.media.mobile`
     height: 14rem;
   `}
   resize: vertical;
+  padding: 0.5rem 1rem;
+  max-height: 50vh;
   background: ${({ haserror }) =>
     haserror === 'true' ? 'rgba(244, 12, 26, 0.3)' : 'rgba(6, 11, 11, 0.57)'};
 `;
@@ -101,6 +105,7 @@ export const Submit = styled.button`
   text-transform: uppercase;
   font-weight: normal;
   cursor: pointer;
+  position: relative;
   ${({ theme }) => theme.media.mobile`
     line-height: 2rem;
     padding-left: 0;
@@ -108,8 +113,14 @@ export const Submit = styled.button`
 `;
 
 export const Loading = styled(Spinner)`
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  bottom: 0.6rem;
+  right: 4.5rem;
+  ${({ theme }) => theme.media.mobile`
+    right: 44vw;
+  `}
 `;
 
 export const ErrorField = styled.p`

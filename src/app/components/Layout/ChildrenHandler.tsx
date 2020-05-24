@@ -1,25 +1,17 @@
-import React from 'react';
+import React, { FC, useLayoutEffect, useMemo, useRef } from 'react';
 import { ChildrenHandler as Container } from './Layout.styled';
-import { inject, observer } from 'mobx-react';
-import { STORE_ROUTER } from 'app/constants';
+import { observer } from 'mobx-react';
 import { sizes } from 'app/theme';
 
-@inject(STORE_ROUTER)
-@observer
-export class ChildrenHandler extends React.Component {
-  contentHandler: React.RefObject<HTMLDivElement> = React.createRef<any>();
-  componentDidUpdate() {
-    if (this.isMobile()) this.contentHandler.current.scrollTop = 0;
-  }
-
-  isMobile = (): boolean =>
-    window && window.document.body.clientWidth <= sizes.mobile;
-
-  render() {
-    if (this.isMobile())
-      console.log('navigate to ', this.props[STORE_ROUTER].location.pathname);
-    return (
-      <Container ref={this.contentHandler}>{this.props.children}</Container>
-    );
-  }
-}
+export const ChildrenHandler: FC = observer(({ children }) => {
+  const contentHandler = useRef<HTMLDivElement>();
+  
+  const isMobile = useMemo((): boolean =>
+    window && window.document.body.clientWidth <= sizes.mobile, []);
+  useLayoutEffect(() => {
+    if (isMobile) contentHandler.current.scrollTop = 0
+  }, [isMobile, contentHandler.current]);
+  return (
+    <Container ref={contentHandler} children={children} />
+  );
+});
