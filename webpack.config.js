@@ -19,6 +19,9 @@ const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugi
 const dotenv = require('dotenv');
 const manifest = require('./manifest');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
+
+
 
 const domain = process.env.domain || 'localhost:3000';
 const env = dotenv.config().parsed;
@@ -189,6 +192,7 @@ module.exports = {
     },
   },
   plugins: [
+    new FixStyleOnlyEntriesPlugin(),
     new ForceCaseSensitivityPlugin(),
     new WebpackCleanupPlugin(),
     new ExtractTextPlugin({

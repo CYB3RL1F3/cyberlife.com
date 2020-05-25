@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { Theme, withTheme } from 'app/theme';
 import { Track } from 'types/releases';
 import {
@@ -65,4 +65,4 @@ export const ReleaseItemComponent: FC<ReleaseProps> = (
   );
 };
 
-export const ReleaseItem = withTheme(ReleaseItemComponent);
+export const ReleaseItem = memo(withTheme(ReleaseItemComponent));

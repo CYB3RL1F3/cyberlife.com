@@ -1,8 +1,9 @@
+import { MouseEvent } from "react";
 import styled, { css } from 'app/theme';
 export interface PlayBtnProps {
   backgroundImage: string;
   playing: boolean;
-  onClick: (e: React.MouseEvent) => void;
+  onClick: (e: MouseEvent) => void;
 }
 
 export interface Opaque {

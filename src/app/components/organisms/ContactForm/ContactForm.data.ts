@@ -1,4 +1,5 @@
-import * as sanitizeHtml from 'sanitize-html';
+import { getSanitizedHtml } from "app/utils/html";
+
 interface Schema {
   name?: string;
   email?: string;
@@ -40,7 +41,7 @@ export const hasInsults = (message: string): boolean =>
   );
 
 export const hasXss = (message: string): boolean =>
-  message !== sanitizeHtml(message);
+  message !== getSanitizedHtml(message);
 
 export const validateSubject = (subject: string): string | null => {
   if (required('subject', subject)) return 'Subject required';

@@ -2,11 +2,11 @@ import React, { FC, useCallback, MouseEvent } from 'react';
 import PlaylistModel from 'app/models/PodcastModel';
 import { Stores } from 'app/constants/stores';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
-import { PodcastItem } from 'app/components/molecules/PodcastItem';
 import { Container, Unavailable } from './Podcasts.styled';
 import { TrackModel } from 'app/models';
 import { observer } from 'mobx-react';
 import { usePlayerStore } from 'app/hooks/stores';
+import { PodcastItem } from 'app/components/molecules/PodcastItem';
 
 export interface PlaylistProps {
   data: PlaylistModel;

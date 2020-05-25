@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo, ChangeEvent } from 'react';
 import { SliderInput } from './Slider.styled';
 
 export interface SliderProps {
@@ -7,9 +7,9 @@ export interface SliderProps {
   value: number;
   step: number;
   id: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void | any;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void | any;
 }
 
-export const Slider: FC<SliderProps> = (props) => (
+export const Slider: FC<SliderProps> = memo((props) => (
   <SliderInput type="range" {...props} />
-);
+));

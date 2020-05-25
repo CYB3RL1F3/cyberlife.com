@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState, useCallback } from 'react';
 import { Video, VideoHandler } from './BackgroundVideo.styled';
-const bg_mp4 = require('assets/videos/bg.mp4').default;
-const bg_webm = require('assets/videos/bg.webm').default;
+const bg_mp4 = "https://res.cloudinary.com/hiilqldcr/video/upload/v1590399039/bg.mp4";
+const bg_webm = "https://res.cloudinary.com/hiilqldcr/video/upload/v1590399050/bg_webm.webm";
 
 export const BackgroundVideo: FC = () => {
   const [videoLoading, setVideoLoading] = useState<boolean>(true);

@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, memo, MouseEvent } from 'react';
 import { Container, Waveform, Content } from './Track.styled';
 
 export interface TrackProps {
@@ -11,8 +11,8 @@ export interface TrackProps {
   className?: string;
 }
 
-export const Track: FC<TrackProps> = ({ waveform, className, loaded, seek, isMini, onSeek }) => {
-  const moveSeek = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+export const Track: FC<TrackProps> = memo(({ waveform, className, loaded, seek, isMini, onSeek }) => {
+  const moveSeek = useCallback((e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const loc =
@@ -31,6 +31,6 @@ export const Track: FC<TrackProps> = ({ waveform, className, loaded, seek, isMin
       <Waveform isMini={isMini} backgroundImage={waveform} />
     </Container>
   );
-}
+});
 
 export default Track;

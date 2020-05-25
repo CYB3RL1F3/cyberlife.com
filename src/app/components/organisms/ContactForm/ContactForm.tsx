@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback, useEffect } from 'react';
+import React, { FC, useState, useCallback, useEffect, memo, Fragment } from 'react';
 import { Formik } from 'formik';
 import {
   Form,
@@ -20,7 +20,7 @@ interface ContactFormProps {
   hasFailed: boolean;
 }
 
-export const ContactForm: FC<ContactFormProps> = ({ onSubmit, hasFailed }) => {
+export const ContactForm: FC<ContactFormProps> = memo(({ onSubmit, hasFailed }) => {
   const [vibrated, setVibrated] = useState<boolean>(false);
   const [captcha, setCaptcha] = useState<Captcha>(null);
 
@@ -141,9 +141,9 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, hasFailed }) => {
                 {Object.keys(errors).map(
                   (error: string) =>
                     touched[error] && (
-                      <React.Fragment key={error}>
+                      <Fragment key={error}>
                         {errors[error]} <br />
-                      </React.Fragment>
+                      </Fragment>
                     )
                 )}
               </ErrorField>
@@ -158,4 +158,4 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, hasFailed }) => {
       }}
     </Formik>
   );
-}
+});

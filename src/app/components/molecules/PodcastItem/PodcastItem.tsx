@@ -1,4 +1,4 @@
-import React, { FC, useCallback, MouseEvent } from 'react';
+import React, { FC, useCallback, MouseEvent, memo } from 'react';
 import { Theme, withTheme } from 'app/theme';
 import { Tracks } from 'types/playlists';
 import {
@@ -22,21 +22,22 @@ export interface PodcastItemProps {
   artwork: string;
   theme: Theme;
   tracks: Tracks;
-  index: number;
   date: number;
   playing: boolean;
   duration: number;
   waveform: string;
   loaded: number;
   seek: number;
-  onPlay: (e: React.MouseEvent, index: number) => void;
+  index: number;
+  onPlay: (e: MouseEvent, index: number) => void;
   onSeek: (seek: number, toMoveSeekPosition: boolean) => void;
 }
 
 export const PodcastItemComponent: FC<PodcastItemProps> = (
   {
-    onPlay,
     index,
+    onPlay,
+    onSeek,
     artwork,
     playing,
     title,
@@ -45,8 +46,7 @@ export const PodcastItemComponent: FC<PodcastItemProps> = (
     waveform,
     loaded,
     seek,
-    duration,
-    onSeek
+    duration
   }
 ) => {
   const play = useCallback((e: MouseEvent) => onPlay(e, index), [onPlay, index]);
@@ -85,4 +85,6 @@ export const PodcastItemComponent: FC<PodcastItemProps> = (
   )
 };
 
-export const PodcastItem = withTheme(PodcastItemComponent);
+export const PodcastItem = memo(withTheme(PodcastItemComponent));
+
+export default PodcastItem;

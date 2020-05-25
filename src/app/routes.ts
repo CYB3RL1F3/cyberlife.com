@@ -1,17 +1,36 @@
-import React, { lazy } from 'react';
+import { lazy, ComponentType } from 'react';
 import { paths } from './paths';
 
-const Bio = lazy(() => import('app/containers/Bio'));
-const Podcasts = lazy(() => import('app/containers/Podcasts'));
-const Events = lazy(() => import('app/containers/Events'));
-const Charts = lazy(() => import('app/containers/Charts'));
-const Releases = lazy(() => import('app/containers/Releases'));
-const Contact = lazy(() => import('app/containers/Contact'));
-const EventDetails = lazy(() => import('app/containers/EventDetails'));
-const PodcastDetails = lazy(() => import('app/containers/PodcastDetails'));
-const ReleaseDetails = lazy(() => import('app/containers/ReleaseDetails'));
+const BioPromise = import('app/containers/Bio');
+const Bio = lazy(() => BioPromise);
+
+const PodcastsPromise = import('app/containers/Podcasts');
+const Podcasts = lazy(() => PodcastsPromise);
+
+const EventsPromise = import('app/containers/Events');
+const Events = lazy(() => EventsPromise);
+
+const ChartsPromise = import('app/containers/Charts');
+const Charts = lazy(() => ChartsPromise);
+
+const ReleasesPromise = import('app/containers/Releases');
+const Releases = lazy(() => ReleasesPromise);
+
+const ContactPromise = import('app/containers/Contact');
+const Contact = lazy(() => ContactPromise);
+
+
+const EventDetailsPromise = import('app/containers/EventDetails');
+const EventDetails = lazy(() => EventDetailsPromise);
+
+const PodcastDetailsPromise = import('app/containers/PodcastDetails');
+const PodcastDetails = lazy(() => PodcastDetailsPromise);
+
+const ReleaseDetailsPromise = import('app/containers/ReleaseDetails');
+const ReleaseDetails = lazy(() => ReleaseDetailsPromise);
+
 export interface RouteType {
-  component: React.ComponentType<any>;
+  component: ComponentType<any>;
   path: string;
   label: string;
   key: string;

@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, useCallback, useMemo, MouseEvent } from 'react';
 import { observer } from 'mobx-react';
 import {
   NoGigsHandler,
@@ -22,7 +22,7 @@ export interface FallbackEventsProps {
 
 export const FallbackEvents: FC<FallbackEventsProps> = observer(({ asFail }) => {
   const store = usePastEventStore();
-  const loadPastEvents = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+  const loadPastEvents = useCallback((e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     e.stopPropagation();
     store.init();

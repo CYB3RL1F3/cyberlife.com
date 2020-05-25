@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useCallback, useEffect, MouseEvent } from 'react';
 import { captureException, withScope } from '@sentry/browser';
 import { useAppStore, useInfosStore } from "app/hooks/stores";
 import { getMessagesAccordingToLoadingState } from 'app/utils/messageManager';
@@ -17,8 +17,6 @@ import { observer } from 'mobx-react';
 import { isIe, isAndroid } from 'app/utils/browsers';
 import { IE } from './atoms/IE';
 import { Background } from '../Layout/Layout.styled';
-
-const video = require('assets/videos/bg.mp4').default;
 
 export interface AppLoaderProps {}
 
@@ -46,7 +44,7 @@ export const AppLoader: FC = observer(() => {
     appStore.validAsset("Background");
   }, []);
 
-  const refresh = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+  const refresh = useCallback((e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     e.stopPropagation();
     window.location.reload();
@@ -69,7 +67,6 @@ export const AppLoader: FC = observer(() => {
       <Container>
         <PixelTrackersWrapper>
           <PixelTracker
-            src={video}
             onStartLoading={startLoadingBackgroundAsset}
             onLoad={onBackgroundAssetLoaded}
           />

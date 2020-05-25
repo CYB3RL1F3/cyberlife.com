@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, useCallback, useMemo, ReactChild, MouseEvent } from 'react';
 
 import { observer } from 'mobx-react';
 import { A } from './Link.styled';
@@ -9,13 +9,13 @@ interface LinkProps {
   path: string;
   className?: string;
   underlineCurrent?: boolean;
-  children: React.ReactChild;
+  children: ReactChild;
   onClick?: () => any;
 }
 
 export const Link: FC<LinkProps> = observer(({ className, underlineCurrent, children, path, onClick }) => {
   const router = useRouterStore();
-  const click = useCallback((e: React.MouseEvent) => {
+  const click = useCallback((e: MouseEvent) => {
     e.preventDefault();
     router.push(path);
     onClick && onClick();

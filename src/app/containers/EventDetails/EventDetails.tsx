@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, lazy, Suspense } from 'react';
 import { Stores } from 'app/constants/stores';
 import { EventModel } from 'app/models/EventModel';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
-import { Map } from 'app/components/atoms/Map';
 import {
   Container,
   TitleHandler,
@@ -26,6 +25,8 @@ import {
   TabletMediaQuery
 } from 'app/components/atoms/Responsive';
 import { paths } from "app/paths";
+
+const Map = lazy(() => import('app/components/atoms/Map'));
 
 interface EventDetailsProps {
   data: EventModel;
@@ -86,29 +87,31 @@ export const EventDetailsComponent: FC<EventDetailsProps> = ({ data }) => {
             </Section>
           </ContentHandler>
           {data.location.position && (
-            <MapboxHandler>
-              <DesktopMediaQuery>
-                <Map
-                  width="20vw"
-                  height="50vh"
-                  coordinates={data.coordinates}
-                />
-              </DesktopMediaQuery>
-              <TabletMediaQuery>
-                <Map
-                  width="35vw"
-                  height="50vh"
-                  coordinates={data.coordinates}
-                />
-              </TabletMediaQuery>
-              <MobileMediaQuery>
-                <Map
-                  width="100%"
-                  height="25vh"
-                  coordinates={data.coordinates}
-                />
-              </MobileMediaQuery>
-            </MapboxHandler>
+            <Suspense fallback={<MapboxHandler />}>
+              <MapboxHandler>
+                <DesktopMediaQuery>
+                  <Map
+                    width="20vw"
+                    height="50vh"
+                    coordinates={data.coordinates}
+                  />
+                </DesktopMediaQuery>
+                <TabletMediaQuery>
+                  <Map
+                    width="35vw"
+                    height="50vh"
+                    coordinates={data.coordinates}
+                  />
+                </TabletMediaQuery>
+                <MobileMediaQuery>
+                  <Map
+                    width="100%"
+                    height="25vh"
+                    coordinates={data.coordinates}
+                  />
+                </MobileMediaQuery>
+              </MapboxHandler>
+            </Suspense>
           )}
         </Content>
       </Container>

@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useCallback } from 'react';
+import React, { FC, useMemo, useCallback, MouseEvent } from 'react';
 import { observer } from 'mobx-react';
 import {
   Container,
@@ -34,7 +34,7 @@ export const MiniPlayer: FC = observer(() => {
     return true;
   }, [currentTrack, location.pathname]);
 
-  const toggle = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+  const toggle = useCallback((e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     if (playing) {

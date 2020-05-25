@@ -1,11 +1,12 @@
 import styled, { css } from 'app/theme';
+import { MouseEvent } from "react";
 
 const borderColor = (alpha) => `rgba(222, 222, 222, ${alpha});`;
 
 export interface PlayBtnProps {
   backgroundImage: string;
   playing: boolean;
-  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onClick: (e: MouseEvent<HTMLDivElement>) => void;
 }
 
 export const Container = styled.div<PlayBtnProps>`

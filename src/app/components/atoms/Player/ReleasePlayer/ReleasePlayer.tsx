@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, useCallback, useMemo, MouseEvent } from 'react';
 import { TrackModel } from 'app/models';
 import { observer } from 'mobx-react';
 import {
@@ -24,7 +24,7 @@ type ReleasePlayerProps = {
 export const ReleasePlayer: FC<ReleasePlayerProps> = observer(({ track, title }) => {
   const store = usePlayerStore();
   const { onSeek, play, pause, playing, currentTrack } = store;
-  const toggle = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+  const toggle = useCallback((e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     if (playing) {

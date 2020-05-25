@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { EventLink, Paragraph, Link, Container } from './EventItem.styled';
 import { getEventLink } from 'app/utils/event';
 
@@ -11,7 +11,7 @@ interface EventProp {
   type: number;
 }
 
-export const EventItem: FC<EventProp> = (
+export const EventItem: FC<EventProp> = memo((
   event: EventProp
 ) => {
   const link = getEventLink(event);
@@ -22,4 +22,4 @@ export const EventItem: FC<EventProp> = (
       <Paragraph>{event.location}</Paragraph>
     </Container>
   );
-};
+});

@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useMemo } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, ChangeEvent } from 'react';
 import { Slider } from 'app/components/atoms/Slider';
 import { observer } from 'mobx-react';
 import { Container, InputHandler, IconHandler, Icon } from './Volume.styled';
@@ -16,7 +16,7 @@ export const Volume: FC = observer(() => {
     currentVolume = volume || 1;
   }, []);
   
-  const onVolumeChanged = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const onVolumeChanged = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const newVolume: number = parseFloat(e.currentTarget.value);

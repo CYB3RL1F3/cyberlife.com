@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC, memo, MouseEvent } from 'react';
 import Lottie from 'react-lottie';
 import { Container, H3, P, LottieHandler, A } from './ContactSuccess.styled';
 
 const animationData = require('assets/lotties/mail.json');
 
 interface ContactSuccessProps {
-  returnAction: (e: React.MouseEvent) => void;
+  returnAction: (e: MouseEvent) => void;
 }
 
-export const ContactSuccess: FC<ContactSuccessProps> = ({
+export const ContactSuccess: FC<ContactSuccessProps> = memo(({
   returnAction
 }) => {
   const config = {
@@ -35,4 +35,4 @@ export const ContactSuccess: FC<ContactSuccessProps> = ({
       </P>
     </Container>
   );
-};
+});

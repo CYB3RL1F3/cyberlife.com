@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { useContext, Context } from "react";
 import { MobXProviderContext } from 'mobx-react'
 import { Stores } from 'app/constants/stores';
 import { EventsStore, RouterStore, ChartStore, ReleasesStore, PlayerStore, AppStore, InfosStore, PodcastStore, SelectedReleaseStore, SelectedPodcastStore, SelectedEventStore, IStores } from "app/stores";
-export const useStores = (): React.Context<Record<string, IStores>> => useContext<any>(MobXProviderContext);
+export const useStores = (): Context<Record<string, IStores>> => useContext<any>(MobXProviderContext);
 
 export const useStore = <T>(storeName: Stores): T => {
   const stores = useStores();

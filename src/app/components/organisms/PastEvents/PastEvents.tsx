@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useCallback } from 'react';
+import React, { FC, useMemo, useCallback, memo } from 'react';
 import {
   Stores
 } from 'app/constants/stores';
@@ -14,7 +14,7 @@ export interface PastEventsProps {
   asFail?: boolean;
 }
 
-const PastEventsComponent: FC<PastEventsProps> = ({ data, asFail }) => {
+const PastEventsComponent: FC<PastEventsProps> = memo(({ data, asFail }) => {
   const currentStore: EventsStore = usePastEventStore();
   const store: EventsStore = useForthcomingEventStore();
     
@@ -57,7 +57,7 @@ const PastEventsComponent: FC<PastEventsProps> = ({ data, asFail }) => {
       </Container>
     );
   }
-}
+});
 
 export const PastEvents = withLoadingStore(Stores.past_events)(
   PastEventsComponent

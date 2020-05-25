@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { Container, ErrorTitle, ErrorMessage, A } from './Error.styled';
 
 interface ErrorProps {
@@ -6,7 +6,7 @@ interface ErrorProps {
   init: () => void;
 }
 
-export const Error: FC<ErrorProps> = ({
+export const Error: FC<ErrorProps> = memo(({
   message,
   init
 }) => (
@@ -17,4 +17,4 @@ export const Error: FC<ErrorProps> = ({
       You can still <A onClick={init}>retry to load content.</A>
     </ErrorMessage>
   </Container>
-);
+));

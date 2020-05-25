@@ -1,10 +1,13 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, createRef } from 'react';
 import styled from 'app/theme';
+
+// const video = require('assets/videos/bg.mp4').default;
+const src = "https://res.cloudinary.com/hiilqldcr/video/upload/v1590399050/bg_webm.webm";
+
 
 export interface PixelTrackerProps {
   onLoad: () => void;
   onStartLoading: () => void;
-  src: string;
 }
 
 export class PixelTracker extends PureComponent<PixelTrackerProps, {}> {
@@ -16,15 +19,17 @@ export class PixelTracker extends PureComponent<PixelTrackerProps, {}> {
       });
     }
   }
-  videoRef = React.createRef<HTMLVideoElement>();
+  videoRef = createRef<HTMLVideoElement>();
   render() {
-    const { src, onLoad } = this.props;
+    const { onLoad } = this.props;
+    
     const Video = styled.video`
       width: 1;
       height: 1;
       opacity: 0.1;
       position: absolute;
     `;
+    
     return (
       <Video
         src={src}

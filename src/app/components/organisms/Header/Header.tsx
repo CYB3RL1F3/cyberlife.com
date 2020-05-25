@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { Container, Cyberlife, Link } from './Header.styled';
 import { Nav, MenuBtn } from 'app/components/molecules';
 import {
@@ -11,7 +11,7 @@ type HeaderProps = {};
 
 export const Header: FC<
   HeaderProps
-> = (): JSX.Element => (
+> = memo((): JSX.Element => (
   <Container>
     <Cyberlife>
       <Link path={paths.podcasts}>CYBERLIFE</Link>
@@ -23,4 +23,4 @@ export const Header: FC<
       <MenuBtn />
     </MobileMediaQuery>
   </Container>
-);
+));
