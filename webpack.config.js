@@ -21,10 +21,9 @@ const manifest = require('./manifest');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
-
-
 const domain = process.env.domain || 'localhost:3000';
-const env = dotenv.config().parsed;
+let env = dotenv.config().parsed;
+if (!env) env = process.env;
 const configFromEnv = Object.keys(env).reduce((prev, next) => {
   prev[`process.env.${next}`] = JSON.stringify(env[next]);
   return prev;
