@@ -18,7 +18,6 @@
       crossorigin
     />
     <link rel="manifest" href="/pwa/manifest.json" />
-    <link rel="apple-touch-icon" href="/apple-icon-180x180.png">
     <link ref="dns-prefetch" href="https://profilart.fr" />
     <link rel="dns-prefetch" href="https://i1.sndcdn.com" />
     <link rel="dns-prefetch" href="https://storage.googleapis.com" />
@@ -32,33 +31,6 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimal-ui"
-    />
-    
-    <meta
-      name="description"
-      content="Inspired by a wide range of electronic genres, between dub techno, IDM, drum and bass, dubstep, tribalistic world music, ambient, trip hop, psychedelic rock & goa trance, Cyberlife, who got rooted years ago in the techno culture, brings the ambition to shape a very personal style, surfing on forward thinking, psychedelic, hypnotic and melancholic vibes. By applying layers of effects on stretched field recordings or destructured analog synths jams on a large scale of tempos, the exploration of the meanders of the matrix of electronic music defines his director line, with an aim to find transcendance and reveal a futuristic and organic universe. As both DJ and producer, he gets a natural attraction for modern and organic sounds, mixing with old school influences. Don't look for the nerd behind this name, keep the mystery and unpredictability, and share a musical mindtrip."
-    />
-    <meta property="og:title" content="Cyberlife" />
-    <meta
-      property="og:description"
-      content="Inspired by a wide range of electronic genres, between dub techno, IDM, drum and bass, dubstep, tribalistic world music, ambient, trip hop, psychedelic rock & goa trance, Cyberlife, who got rooted years ago in the techno culture, brings the ambition to shape a very personal style, surfing on forward thinking, psychedelic, hypnotic and melancholic vibes. By applying layers of effects on stretched field recordings or destructured analog synths jams on a large scale of tempos, the exploration of the meanders of the matrix of electronic music defines his director line, with an aim to find transcendance and reveal a futuristic and organic universe. As both DJ and producer, he gets a natural attraction for modern and organic sounds, mixing with old school influences. Don't look for the nerd behind this name, keep the mystery and unpredictability, and share a musical mindtrip."
-    />
-    <meta property="og:url" content="https://cyberlife-music.com/" />
-    <meta
-      property="og:image"
-      content="https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/25396214_732178463652854_278218222177645579_n.png?_nc_cat=105&_nc_ht=scontent-cdt1-1.xx&oh=5da5c1ef60f97b1162a42f75f0c96f45&oe=5CC89199"
-    />
-    <meta property="og:locale" content="en_US" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Cyberlife" />
-    <meta name="twitter:url" content="https://cyberlife-music.com" />
-    <meta
-      name="twitter:description"
-      content="Inspired by a wide range of electronic genres, between dub techno, IDM, drum and bass, dubstep, tribalistic world music, ambient, trip hop, psychedelic rock & goa trance, Cyberlife, who got rooted years ago in the techno culture, brings the ambition to shape a very personal style, surfing on forward thinking, psychedelic, hypnotic and melancholic vibes. By applying layers of effects on stretched field recordings or destructured analog synths jams on a large scale of tempos, the exploration of the meanders of the matrix of electronic music defines his director line, with an aim to find transcendance and reveal a futuristic and organic universe. As both DJ and producer, he gets a natural attraction for modern and organic sounds, mixing with old school influences. Don't look for the nerd behind this name, keep the mystery and unpredictability, and share a musical mindtrip."
-    />
-    <meta
-      name="twitter:image"
-      content="https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/25396214_732178463652854_278218222177645579_n.png?_nc_cat=105&_nc_ht=scontent-cdt1-1.xx&oh=5da5c1ef60f97b1162a42f75f0c96f45&oe=5CC89199"
     />
     <title>Cyberlife</title>
     <style>
@@ -96,6 +68,8 @@
         padding: 0;
       }
     </style>
+    <script src="https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js"></script>
+
     <!-- Google Tag Manager -->
     <script>
       (function(w, d, s, l, i) {
@@ -124,7 +98,6 @@
       gtag('js', new Date());
       gtag('config', 'UA-145409801-1');
     </script>
-
     <!-- End Google Tag Manager -->
   </head>
   <body>
@@ -143,6 +116,7 @@
       ></iframe>
     </noscript>
     <div id="root">Initializing...</div>
-    <script src="https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js"></script>
+    <script async src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
+
   </body>
 </html>

@@ -22,6 +22,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
 const domain = process.env.domain || 'localhost:3000';
+
+const cyberlife = {
+  description: "Inspired by a wide range of electronic genres, between dub techno, IDM, drum and bass, dubstep, tribalistic world music, ambient, trip hop, psychedelic rock & goa trance, Cyberlife, who got rooted years ago in the techno culture, brings the ambition to shape a very personal style, surfing on forward thinking, psychedelic, hypnotic and melancholic vibes. By applying layers of effects on stretched field recordings or destructured analog synths jams on a large scale of tempos, the exploration of the meanders of the matrix of electronic music defines his director line, with an aim to find transcendance and reveal a futuristic and organic universe. As both DJ and producer, he gets a natural attraction for modern and organic sounds, mixing with old school influences. Don't look for the nerd behind this name, keep the mystery and unpredictability, and share a musical mindtrip.",
+  title: "Cyberlife",
+  url: `https://${domain}`,
+  image: "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/25396214_732178463652854_278218222177645579_n.png?_nc_cat=105&_nc_ht=scontent-cdt1-1.xx&oh=5da5c1ef60f97b1162a42f75f0c96f45&oe=5CC89199"
+}
+
 let env = dotenv.config().parsed;
 if (!env) env = process.env;
 const configFromEnv = Object.keys(env).reduce((prev, next) => {
@@ -29,6 +37,46 @@ const configFromEnv = Object.keys(env).reduce((prev, next) => {
   return prev;
 }, {});
 configFromEnv['process.env.MODE'] = JSON.stringify(mode);
+
+const index = {
+  template: 'assets/index.html',
+  inject: "body",
+  scriptLoading: "defer",
+  hash: true,
+  cache: true,
+  title: 'Cyberlife',
+  links: {
+    api: env.API_URL,
+    infos: `${env.API_URL}/infos`,
+    playlist: `${env.API_URL}/playlist?name=dj-sets`,
+    url: cyberlife.url
+  },
+  meta: {
+    robots: 'all',
+    'theme-color': '#36595C',
+    'Content-Type': 'text/html; charset=utf-8',
+    viewport: 'width=device-width, initial-scale=1.0, minimal-ui',
+    description: cyberlife.description,
+    'og:title': cyberlife.title,
+    'og:description': cyberlife.description,
+    'og:url': cyberlife.url,
+    'og:image': cyberlife.image,
+    'og:locale': 'en_US',
+    'twitter:card': 'summary',
+    'twitter:title': cyberlife.title,
+    'twitter:description': cyberlife.description,
+    'twitter:url': cyberlife.url,
+    'twitter:image': cyberlife.image
+  },
+  minify: {
+    collapseWhitespace: true,
+    removeComments: true,
+    removeRedundantAttributes: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true,
+    useShortDoctype: true
+  }
+};
 console.log(configFromEnv);
 
 const robotsOptions = {
@@ -198,9 +246,7 @@ module.exports = {
       filename: 'styles.css',
       disable: !isProduction
     }),
-    new HtmlWebpackPlugin({
-      template: 'assets/index.html'
-    }),
+    new HtmlWebpackPlugin(index),
     new RobotstxtPlugin(robotsOptions),
     new SitemapWebpackPlugin('http:' + domain, paths, {
       fileName: 'sitemap.xml',

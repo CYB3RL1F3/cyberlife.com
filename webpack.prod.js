@@ -26,7 +26,6 @@ const uglify = new UglifyJsPlugin({
     nameCache: null,
     ie8: false,
     keep_fnames: false,
-    
   },
 });
 
@@ -67,6 +66,9 @@ const terser = new TerserPlugin({
 
 const config = merge(common, {
   mode: 'production',
+  externals: {
+    "mapbox-gl": "mapboxgl"
+  },
   optimization: {
     minimizer: [terser],
     runtimeChunk: 'single',
@@ -86,7 +88,7 @@ const config = merge(common, {
       cacheGroups: {
         'react': {
           name: 'react',
-          chunks: 'all',
+          chunks: 'initial',
           test: /[\\/]node_modules[\\/]react[\\/]/
         },
         'react-lottie': {
@@ -121,33 +123,33 @@ const config = merge(common, {
         },
         '@sentry': {
           name: '@sentry',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]@sentry[\\/]/
         },
         '@sentry/hub': {
           name: '@sentry/hub',
-          chunks: 'all',
+          chunks: 'async',
           minChunks: 2,
           test: /[\\/]node_modules[\\/]@sentry\/hub[\\/]/
         },
         '@sentry/minimal': {
           name: '@sentry/minimal',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]@sentry\/minimal[\\/]/
         },
         '@sentry/types': {
           name: '@sentry/types',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]@sentry\/types[\\/]/
         },
         '@sentry/utils': {
           name: '@sentry/utils',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]@sentry\/utils[\\/]/
         },
         'react-mapbox-gl': {
           name: 'react-mapbox-gl',
-          chunks: 'all',
+          chunks: 'async',
           enforce: true,
           test: /[\\/]node_modules[\\/]react-mapbox-gl[\\/]/
         },
@@ -163,7 +165,7 @@ const config = merge(common, {
         },
         'formik': {
           name: 'formik',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]formik[\\/]/
         },
         'lottie-web': {
@@ -183,21 +185,14 @@ const config = merge(common, {
         },
         'react-backdrop-filter': {
           name: 'react-backdrop-filter',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]react-backdrop-filter[\\/]/
         },
         node_modules: {
-          /*
-          name(module) {
-            const packageName = module.context.match(
-              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-            )[1];
-            return packageName && `npm.${packageName.replace('@', '')}`;
-          },*/
           name: 'node_modules',
           chunks: 'all',
           enforce: true,
-          test: /[\\/]node_modules[\\/](?!(@mapbox|react-mapbox-gl|formik|date-fns|react|react-lottie|lottie-web|mobx-react-router|react-mobx|mobx|sanitize-html|react-backdrop-filter|@sentry|@sentry\/core|@sentry\/hub|@sentry\/minimal|@sentry\/browser)[\\/])/
+          test: /[\\/]node_modules[\\/](?!(@mapbox|mapbox-gl|react-mapbox-gl|formik|date-fns|react|react-lottie|lottie-web|mobx-react-router|react-mobx|mobx|sanitize-html|react-backdrop-filter|@sentry|@sentry\/core|@sentry\/hub|@sentry\/minimal|@sentry\/browser)[\\/])/
         }
       }
     }
@@ -205,7 +200,6 @@ const config = merge(common, {
   plugins: [
     terser,
     new webpack.optimize.OccurrenceOrderPlugin(),
-    // new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DefinePlugin({
       'babel-plugin-styled-components': {
         pure: true
@@ -223,8 +217,7 @@ const config = merge(common, {
       filename: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$|\.ts$|\.tsx$|\.css$|\.html$/,
-      threshold: 100,
-      minRatio: 0.9
+      minRatio: 1
     })
   ]
 });
