@@ -55,7 +55,6 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(({ data
   const computedDuration = useMemo(() => {
     if (!data || data && !data.duration) return null;
     const d = new Date(data.duration);
-    console.log(d);
     return `${numToZeroString(d.getHours() - 1)}:${numToZeroString(d.getMinutes())}:${numToZeroString(d.getSeconds())}`;
   }, [data]);
 

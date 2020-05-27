@@ -12,7 +12,7 @@ export interface PlaylistProps {
   data: PlaylistModel;
 }
 
-export const PodcastsComponent: FC<PlaylistProps> = observer(({ data }) => {
+const PodcastsComponent: FC<PlaylistProps> = observer(({ data }) => {
   const store = usePlayerStore();
   const { currentTrack, play, pause, onSeek } = store;
   const onPlay = useCallback((e: MouseEvent, index: number) => {
@@ -29,10 +29,10 @@ export const PodcastsComponent: FC<PlaylistProps> = observer(({ data }) => {
       pause();
     }
   }, [currentTrack, data, play, pause]);
-  if (data && data.tracks && data.tracks.length) {
-    return (
-      <Container>
-        {data.tracks.map(
+  return (
+    <Container>
+      {data && data.tracks && data.tracks.length ? 
+        data.tracks.map(
           (track: TrackModel, index: number): JSX.Element => {
             return (
               <PodcastItem
@@ -44,18 +44,13 @@ export const PodcastsComponent: FC<PlaylistProps> = observer(({ data }) => {
               />
             );
           }
+        ) : (
+          <Unavailable>There is no Cyberlife's podcasts available right now... :(</Unavailable>
         )}
-      </Container>
-    );
-  } else {
-    return (
-      <Container>
-        <Unavailable>There is no Cyberlife's podcasts available right now... :(</Unavailable>
-      </Container>
-    )
-  }
+    </Container>
+  );
 });
 
-export const Podcasts = withLoadingStore(Stores.podcasts)(PodcastsComponent);
+const Podcasts = withLoadingStore(Stores.podcasts)(PodcastsComponent);
 
 export default Podcasts;

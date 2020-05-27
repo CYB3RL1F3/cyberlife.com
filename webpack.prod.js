@@ -1,35 +1,11 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const common = require('./webpack.config.js');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const CompressionPlugin = require('compression-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin'); 
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-
-const uglify = new UglifyJsPlugin({
-  parallel: true,
-  sourceMap: true,
-  cache: true,
-  extractComments: true,
-  uglifyOptions: {
-    toplevel: true,
-    warnings: false,
-    parse: {},
-    compress: {},
-    mangle: true, // Note `mangle.properties` is `false` by default.
-    output: {
-      beautify: false,
-      preamble: "/* UGL1F13D CYB3RL1F3 */"
-    },
-    nameCache: null,
-    ie8: false,
-    keep_fnames: false,
-  },
-});
-
-const optimizeCss = new OptimizeCSSAssetsPlugin({})
 
 const terser = new TerserPlugin({
   parallel: true,
@@ -86,29 +62,47 @@ const config = merge(common, {
       minSize: 0,
       name: true,
       cacheGroups: {
+        common: {
+          chunks: 'async'
+        },
         'react': {
           name: 'react',
           chunks: 'initial',
           test: /[\\/]node_modules[\\/]react[\\/]/
         },
+        'react-audio-player': {
+          name: 'react-audio-player',
+          chunks: 'async',
+          test: /[\\/]node_modules[\\/]react\-audio-player[\\/]/
+        },
+        'react-responsive': {
+          name: 'react-responsive',
+          chunks: 'async',
+          test: /[\\/]node_modules[\\/]react\-responsive[\\/]/
+        },
+        'react-router': {
+          name: 'react-router',
+          chunks: 'async',
+          test: /[\\/]node_modules[\\/]react\-router[\\/]/
+        },
         'react-lottie': {
           name: 'react-lottie',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]react\-lottie[\\/]/
         },
         'mobx-react-router': {
           name: 'mobx-react-router',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]mobx-react-router[\\/]/
         },
         'mobx-react': {
           name: 'mobx-react',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]mobx-react[\\/]/
         },
         'mobx': {
           name: 'mobx',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]mobx[\\/]/
         },
         '@sentry/browser': {
@@ -155,7 +149,7 @@ const config = merge(common, {
         },
         'date-fns': {
           name: 'date-fns',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]date-fns[\\/]/
         },
         '@sentry/core': {
@@ -170,13 +164,8 @@ const config = merge(common, {
         },
         'lottie-web': {
           name: 'lottie-web',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]lottie-web[\\/]/
-        },
-        'sanitize-html': {
-          name: 'sanitize-html',
-          chunks: 'all',
-          test: /[\\/]node_modules[\\/]sanitize-html[\\/]/
         },
         'react-dom': {
           name: 'react-dom',
@@ -188,11 +177,21 @@ const config = merge(common, {
           chunks: 'async',
           test: /[\\/]node_modules[\\/]react-backdrop-filter[\\/]/
         },
+        'styled-components': {
+          name: 'styled-components',
+          chunks: 'async',
+          test: /[\\/]node_modules[\\/]styled-components[\\/]/
+        },
+        'react-html-parser': {
+          name: 'react-html-parser',
+          chunks: 'async',
+          test: /[\\/]node_modules[\\/]react-html-parser[\\/]/
+        },
         node_modules: {
           name: 'node_modules',
-          chunks: 'all',
+          chunks: 'async',
           enforce: true,
-          test: /[\\/]node_modules[\\/](?!(@mapbox|mapbox-gl|react-mapbox-gl|formik|date-fns|react|react-lottie|lottie-web|mobx-react-router|react-mobx|mobx|sanitize-html|react-backdrop-filter|@sentry|@sentry\/core|@sentry\/hub|@sentry\/minimal|@sentry\/browser)[\\/])/
+          test: /[\\/]node_modules[\\/](?!(@mapbox|mapbox-gl|react-responsive|react-mapbox-gl|react-audio-player|react-html-parser|formik|date-fns|react|react-lottie|lottie-web|mobx-react-router|react-mobx|mobx|sanitize-html|react-backdrop-filter|@sentry|@sentry\/core|@sentry\/hub|@sentry\/minimal|@sentry\/browser)[\\/])/
         }
       }
     }

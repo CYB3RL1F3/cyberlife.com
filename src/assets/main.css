@@ -40,3 +40,7 @@ a,
 span {
   font-family: 'myriad-pro';
 }
+
+.mapboxgl-map {
+  outline: none;
+}

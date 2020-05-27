@@ -1,9 +1,9 @@
 import ReactHtmlParser from 'react-html-parser';
-import * as sanitizeHtml from 'sanitize-html';
+import DOMPurify from 'dompurify';
 
-export const getSanitizedHtml = (html: string): string =>
-  sanitizeHtml(html, {
-    allowedTags: [
+export const getSanitizedHtml = (html: string, strict: boolean = false): string =>
+  DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: [
       'h1',
       'h2',
       'h3',
@@ -12,7 +12,7 @@ export const getSanitizedHtml = (html: string): string =>
       'h6',
       'blockquote',
       'p',
-      'a',
+      !strict ? 'a' : null,
       'ul',
       'ol',
       'nl',
@@ -35,11 +35,11 @@ export const getSanitizedHtml = (html: string): string =>
       'td',
       'pre',
       'cite',
-      'video',
-      'source',
-      'img'
-    ],
-    allowedAttributes: {
+      strict ? 'video' : null,
+      strict ? 'source' : null,
+      strict ? 'img' : null
+    ].filter(d => !!d),
+    ALLOWED_ATTR: {
       a: ['href', 'name', 'target', 'style'],
       img: ['src', 'alt', 'width', 'height', 'style'],
       video: ['src', 'controls', 'width', 'height', 'muted', 'style'],

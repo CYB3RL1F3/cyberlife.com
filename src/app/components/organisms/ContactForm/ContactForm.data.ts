@@ -36,12 +36,12 @@ const validateEmail = (email: string): string | null => {
 };
 
 export const hasInsults = (message: string): boolean =>
-  /(.*)(fils de pute|nique ta mère|connard|petite merde|grosse merde|\schiasse|fuck you|hijo de puta|salope|\spute|encul|de la merde|salaud|merdasse|tapette|tafiolle|\sdumb|stupid|crétin|looser|babtou|négro|nigga|dumbass|bougnoule|bâtard|batard|\sPD)/gi.test(
+  /(.*)(f[i]+ls de p[u, \*]+te|n[i, \*]+qu[e, é]+[r\s, \s]+t[a, on]+ [m, p]+[è, e, \*]+[re]+|c[o, \*]+nn[a, \*]+[r]+[d]+|e[m]+[e]+[r]+[d]+e|pet[i]+te m[e, é, \*]+rde|gr[o]+sse m[e, è, \*]+[r]+[d]+[e]+|\schi[a]+sse\s|\sf[u]+ck yo|[\s]h[i, \*]+jo de p[u]+t[a]+|\ss[a]+l[o]+[p]+e|\sp[u, \*]+te|enc[u, \*]+l|[\s, em]+m[e, \*]+[r, \*]+[d, \*]+[e]+\s|\ss[a]+l[a]+[u]+d\s|m[e]+rd[a]+sse|t[a]+p[e]+[t]+e|t[a]+fi[o]+[l]+e|\sd[u]+[m]+[b]+|st[u]+p[i]+d|cr[é, e]+t[i]+n|l[o]+ser|b[a]+bt[o]+u|\sn[é, e]+gro|\sj[e]+rk\s|\sc[a, \*]+[z, \*]+[o, \*]+\s|enf[a]+nt de p[u]+tain|nig[g]+a|\sc[u]+nt\s|\sdumbass\s|\ssc[u]+[m]+\s|\sp[u, \*]+ssy\s|\sf[a]+g\s|[\s]w[a]+nk[e]+r|b[o+]ugn[o]+ule|d[i]+ckh[e, \*]+[a, \*]+d|\spr[i, \*]+ck|b[a, \*, â]+t[a, \*]+rd|\sPD\s|e[m]+[e, \*]rde)/gim.test(
     message
   );
 
 export const hasXss = (message: string): boolean =>
-  message !== getSanitizedHtml(message);
+  message !== getSanitizedHtml(message, true);
 
 export const validateSubject = (subject: string): string | null => {
   if (required('subject', subject)) return 'Subject required';
@@ -76,7 +76,7 @@ export const validateMessage = (message) => {
     return 'Message contains forbidden XSS injections';
   }
   if (hasInsults(message))
-    return `Your message contains insults and can't be sent. Please be polite.`;
+    return `Your message contains insults and can't be sent. Please be polite!`;
   return undefined;
 };
 

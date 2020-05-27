@@ -1,14 +1,14 @@
 import React, { FC, lazy, Suspense } from 'react';
 import { theme, ThemeProvider } from 'app/theme';
-import { observer } from 'mobx-react';
+// import { observer } from 'mobx-react';
 import { AppLoader } from 'app/components';
 // import { useAppStore } from 'app/hooks/stores';
 const AppPromise = import('app/containers/App');
 const App = lazy(() => AppPromise);
 
-require('assets/main.css');
+setTimeout(() => require('assets/main.css'), 0);
 
-export const Root: FC = observer(({ children }) => {
+export const Root: FC = ({ children }) => {
   // const { loaded } = useAppStore();
   return (
     <ThemeProvider theme={theme}>
@@ -18,4 +18,4 @@ export const Root: FC = observer(({ children }) => {
       </Suspense>
     </ThemeProvider>
   );
-});
+};

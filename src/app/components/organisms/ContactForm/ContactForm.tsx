@@ -136,8 +136,7 @@ export const ContactForm: FC<ContactFormProps> = memo(({ onSubmit, hasFailed }) 
             </CaptchaHandler>
             <Bottom index={5}>
               <ErrorField>
-                {hasFailed &&
-                  "An error occured... Please retry!"}
+                {hasFailed && "An error occured... Please retry!"}
                 {Object.keys(errors).map(
                   (error: string) =>
                     touched[error] && (

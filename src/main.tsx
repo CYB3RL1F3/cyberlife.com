@@ -22,6 +22,15 @@ Sentry.init({
   dsn: 'https://031c29848d5e44f5a74b1ddd12cfd235@sentry.io/1375502'
 });
 
+// render react DOM
+ReactDOM.render(
+  <Provider {...rootStore}>
+    <App history={history} />
+  </Provider>,
+  document.getElementById('root')
+);
+
+
 // init PWA service worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -33,11 +42,3 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
-
-// render react DOM
-ReactDOM.render(
-  <Provider {...rootStore}>
-    <App history={history} />
-  </Provider>,
-  document.getElementById('root')
-);

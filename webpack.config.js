@@ -52,11 +52,11 @@ const index = {
     url: cyberlife.url
   },
   meta: {
-    robots: 'all',
+    'robots': 'all',
     'theme-color': '#36595C',
     'Content-Type': 'text/html; charset=utf-8',
-    viewport: 'width=device-width, initial-scale=1.0, minimal-ui',
-    description: cyberlife.description,
+    'viewport': 'width=device-width, initial-scale=1.0, minimal-ui',
+    'description': cyberlife.description,
     'og:title': cyberlife.title,
     'og:description': cyberlife.description,
     'og:url': cyberlife.url,
