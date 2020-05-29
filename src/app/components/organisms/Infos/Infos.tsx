@@ -5,14 +5,14 @@ import Audio from 'app/components/atoms/Audio';
 import { DesktopAndTabletsMediaQuery } from 'app/components/atoms/Responsive';
 import { useInfosStore } from 'app/hooks/stores';
 import { Loading } from 'app/components/atoms';
-const MiniPlayer = lazy(() => import('app/components/atoms/Player/MiniPlayer'));
+const MiniPlayer = lazy(() => import('app/components/molecules/MiniPlayer'));
 
 export const Infos: FC = observer(() => {
   const infosStore = useInfosStore();
   const { data } = infosStore;
-  if (data && data.bio) {
-    return (
-      <InfosBox>
+  return (
+    <InfosBox>
+      {data && data.bio ? (
         <DesktopAndTabletsMediaQuery>
           <InfosContainer>
             <Paragraph>{data.bio.content}</Paragraph>
@@ -29,15 +29,11 @@ export const Infos: FC = observer(() => {
             </Suspense>
           </InfosContainer>
         </DesktopAndTabletsMediaQuery>
-        <Audio />
-      </InfosBox>
-    );
-  } else {
-    return (
-      <InfosBox>
+      ) : (
         <Loading />
-      </InfosBox>
-    )
-  }
+      )}
+      <Audio />
+    </InfosBox>
+  );
   
 });

@@ -18,7 +18,8 @@ import {
   Tag
 } from './PodcastDetails.styled';
 import { ThumbHandler } from 'app/components/molecules/PodcastItem/PodcastItem.styled';
-import { PlayBtn, Track } from 'app/components/atoms/Player';
+import PlayBtn from 'app/components/atoms/PlayBtn';
+import Track from 'app/components/atoms/Track';
 import { observer } from 'mobx-react';
 import { usePlayerStore } from 'app/hooks/stores';
 import {

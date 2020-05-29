@@ -2,7 +2,7 @@ import React, { FC, useMemo, lazy, Suspense } from 'react';
 import { observer } from 'mobx-react';
 import { Container, Handler, Wrapper } from './MiniPlayerMobileWrapper.styled';
 import { useRouterStore, usePlayerStore } from 'app/hooks/stores';
-const MiniPlayer = lazy(() => import('../MiniPlayer'));
+const MiniPlayer = lazy(() => import('app/components/molecules/MiniPlayer'));
 
 export const MiniPlayerMobileWrapper: FC = observer(() => {
   const routerStore = useRouterStore();

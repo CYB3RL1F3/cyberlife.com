@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { Layout, Footer, MiniPlayerMobileWrapper } from 'app/components';
-import { Header, Infos } from 'app/components/organisms';
+import { Layout, Footer } from 'app/components';
+import { Header, Infos, MiniPlayerMobileWrapper } from 'app/components/organisms';
 import { AppContainer, Container, Handler } from './App.styled';
 import { MobileMediaQuery } from 'app/components/atoms/Responsive';
 import { Content } from './Content';

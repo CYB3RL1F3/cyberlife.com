@@ -13,7 +13,7 @@ import {
   ButtonHandler
 } from '../MiniPlayer/MiniPlayer.styled';
 import { usePlayerStore } from "app/hooks/stores";
-import PlayBtn from '../PlayBtn';
+import { PlayBtn } from 'app/components/atoms';
 
 type ReleasePlayerProps = {
   track: TrackModel;

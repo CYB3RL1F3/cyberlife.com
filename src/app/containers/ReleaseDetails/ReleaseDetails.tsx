@@ -18,7 +18,7 @@ import {
 import { withLoadingStore } from 'app/hoc';
 import { Track } from 'types/releases';
 
-import { ReleasePlayer } from 'app/components/atoms/Player/ReleasePlayer/ReleasePlayer';
+import { ReleasePlayer } from 'app/components/molecules';
 
 import { Button } from 'app/components/atoms/Button';
 import { paths } from "app/paths";

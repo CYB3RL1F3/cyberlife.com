@@ -11,7 +11,7 @@ import {
   TrackHandler,
   PodcastLink
 } from './PodcastItem.styled';
-import { PlayBtn, Track } from 'app/components/atoms/Player';
+import { PlayBtn, Track } from 'app/components/atoms';
 import { DesktopAndTabletsMediaQuery } from 'app/components/atoms/Responsive';
 import { paths, resolvePath } from 'app/paths';
 

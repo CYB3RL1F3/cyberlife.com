@@ -5,9 +5,8 @@ import {
   ButtonHandler
 } from './MiniPlayer.styled';
 import { TrackHandler } from 'app/components/molecules/PodcastItem/PodcastItem.styled';
-import Track from '../Track';
 import { useRouterStore, usePlayerStore } from 'app/hooks/stores';
-import PlayBtn from '../PlayBtn';
+import { PlayBtn, Track } from 'app/components/atoms';
 
 export const MiniPlayer: FC = observer(() => {
   const routerStore = useRouterStore();
