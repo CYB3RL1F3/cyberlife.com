@@ -1,7 +1,7 @@
 import React, { FC, lazy, Suspense } from 'react';
 import { theme, ThemeProvider } from 'app/theme';
 // import { observer } from 'mobx-react';
-import { AppLoader } from 'app/components';
+import { AppLoader } from 'app/components/organisms';
 // import { useAppStore } from 'app/hooks/stores';
 const AppPromise = import('app/containers/App');
 const App = lazy(() => AppPromise);

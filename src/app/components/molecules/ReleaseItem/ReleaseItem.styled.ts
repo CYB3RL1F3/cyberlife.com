@@ -1,7 +1,7 @@
 import styled, { css } from 'app/theme';
 import GracefulImage from 'react-graceful-image';
-import { TextStyle } from 'app/components/atoms/SharedStyled';
-import { AlphaTransitionDelay } from 'app/components/atoms/SharedStyled/SharedStyled';
+import { TextStyle } from 'app/components/SharedStyled';
+import { AlphaTransitionDelay } from 'app/components/SharedStyled/SharedStyled';
 import { Link as BaseLink } from 'app/components/atoms/Link';
 
 export const Container = styled.div`

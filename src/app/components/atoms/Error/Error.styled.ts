@@ -1,5 +1,5 @@
 import styled from 'app/theme';
-import { TextStyle } from '../SharedStyled';
+import { TextStyle } from 'app/components/SharedStyled';
 
 export const Container = styled.div`
   display: flex;

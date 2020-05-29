@@ -3,7 +3,7 @@ import {
   TextStyle,
   AlphaTransitionDelay,
   Positionnable
-} from 'app/components/atoms/SharedStyled';
+} from 'app/components/SharedStyled';
 import { Spinner } from 'app/components/atoms/Loading/Loading.styled';
 import { Field } from 'formik';
 

@@ -3,7 +3,7 @@ import { Link as BaseLink } from 'app/components/atoms/Link';
 import {
   HeaderTextStyle,
   DownTransitionDelay
-} from 'app/components/atoms/SharedStyled';
+} from 'app/components/SharedStyled';
 
 export const NavContainer = styled.nav`
   display: flex;

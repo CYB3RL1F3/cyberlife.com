@@ -10,11 +10,10 @@ import {
 } from './ReleasePlayer.styled';
 
 import {
-  ButtonHandler,
-  IconPlay,
-  PlayBtn
+  ButtonHandler
 } from '../MiniPlayer/MiniPlayer.styled';
 import { usePlayerStore } from "app/hooks/stores";
+import PlayBtn from '../PlayBtn';
 
 type ReleasePlayerProps = {
   track: TrackModel;
@@ -44,9 +43,7 @@ export const ReleasePlayer: FC<ReleasePlayerProps> = observer(({ track, title })
       </Title>
       <Container opacity={opacity}>
         <ButtonHandler>
-          <PlayBtn onClick={toggle}>
-            <IconPlay playing={track.playing} />
-          </PlayBtn>
+          <PlayBtn playing={track.playing} onClick={toggle} />
         </ButtonHandler>
         <TrackHandler>
           <Track isMini={false} {...track} onSeek={onSeek} />

@@ -2,13 +2,12 @@ import React, { FC, useMemo, useCallback, MouseEvent } from 'react';
 import { observer } from 'mobx-react';
 import {
   Container,
-  ButtonHandler,
-  IconPlay,
-  PlayBtn
+  ButtonHandler
 } from './MiniPlayer.styled';
 import { TrackHandler } from 'app/components/molecules/PodcastItem/PodcastItem.styled';
 import Track from '../Track';
 import { useRouterStore, usePlayerStore } from 'app/hooks/stores';
+import PlayBtn from '../PlayBtn';
 
 export const MiniPlayer: FC = observer(() => {
   const routerStore = useRouterStore();
@@ -50,9 +49,7 @@ export const MiniPlayer: FC = observer(() => {
   return (
     <Container opacity={opacity}>
       <ButtonHandler>
-        <PlayBtn onClick={toggle}>
-          <IconPlay playing={playing} />
-        </PlayBtn>
+        <PlayBtn playing={currentTrack.playing} mini onClick={toggle} />
       </ButtonHandler>
       <TrackHandler>
         <Track isMini {...currentTrack} onSeek={onSeek} />

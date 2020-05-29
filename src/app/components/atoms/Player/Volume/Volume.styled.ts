@@ -1,5 +1,5 @@
 import styled from 'app/theme';
-import { AlphaTransitionDelay } from 'app/components/atoms/SharedStyled';
+import { AlphaTransitionDelay } from 'app/components/SharedStyled';
 
 export const Container = styled.p`
   width: 10rem;

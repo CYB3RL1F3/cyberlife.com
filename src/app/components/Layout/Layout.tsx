@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, memo } from 'react';
-import { Background, Bg } from './Layout.styled';
+import { Bg } from './Layout.styled';
+import { Background } from 'app/components/SharedStyled';
 
 const BackgroundVideo = lazy(() => import('app/components/atoms/BackgroundVideo'));
 const ChildrenHandler = lazy(() => import('./ChildrenHandler'));

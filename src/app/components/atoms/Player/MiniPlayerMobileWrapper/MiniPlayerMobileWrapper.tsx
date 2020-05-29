@@ -2,7 +2,6 @@ import React, { FC, useMemo, lazy, Suspense } from 'react';
 import { observer } from 'mobx-react';
 import { Container, Handler, Wrapper } from './MiniPlayerMobileWrapper.styled';
 import { useRouterStore, usePlayerStore } from 'app/hooks/stores';
-// import MiniPlayer from 'app/components/atoms/Player/MiniPlayer';
 const MiniPlayer = lazy(() => import('../MiniPlayer'));
 
 export const MiniPlayerMobileWrapper: FC = observer(() => {
@@ -14,7 +13,7 @@ export const MiniPlayerMobileWrapper: FC = observer(() => {
     if (!currentTrack) return false;
     const { id, source } = currentTrack;
     if (source === 'podcasts') {
-      return location.pathname.indexOf(`podcasts/${id}`) === -1;
+      return location.pathname.indexOf(`podcast/${id}`) === -1;
     }
     if (
       source.indexOf('release') > -1 &&

@@ -1,5 +1,5 @@
 import styled from 'app/theme';
-import { TextStyle } from 'app/components/atoms/SharedStyled';
+import { TextStyle } from 'app/components/SharedStyled';
 import { Container as BaseContainer } from '../MiniPlayer/MiniPlayer.styled';
 import BaseTrack from '../Track';
 

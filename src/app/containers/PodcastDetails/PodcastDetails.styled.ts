@@ -1,5 +1,5 @@
 import styled from 'app/theme';
-import { TextStyle } from 'app/components/atoms/SharedStyled';
+import { TextStyle } from 'app/components/SharedStyled';
 import { Link } from 'app/components/atoms/Link';
 
 export const Container = styled.div`

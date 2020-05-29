@@ -2,7 +2,7 @@ import styled, { keyframes } from 'app/theme';
 import {
   TextStyle,
   AlphaTransitionDelay
-} from 'app/components/atoms/SharedStyled';
+} from 'app/components/SharedStyled';
 
 export const InfosBox = styled.div`
   display: flex;

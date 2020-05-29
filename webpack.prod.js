@@ -172,6 +172,11 @@ const config = merge(common, {
           chunks: 'all',
           test: /[\\/]node_modules[\\/]react-dom[\\/]/
         },
+        'dompurify': {
+          name: 'dompurify',
+          chunks: 'async',
+          test: /[\\/]node_modules[\\/]dompurify[\\/]/
+        },
         'react-backdrop-filter': {
           name: 'react-backdrop-filter',
           chunks: 'async',
@@ -191,7 +196,7 @@ const config = merge(common, {
           name: 'node_modules',
           chunks: 'async',
           enforce: true,
-          test: /[\\/]node_modules[\\/](?!(@mapbox|mapbox-gl|react-responsive|react-mapbox-gl|react-audio-player|react-html-parser|formik|date-fns|react|react-lottie|lottie-web|mobx-react-router|react-mobx|mobx|sanitize-html|react-backdrop-filter|@sentry|@sentry\/core|@sentry\/hub|@sentry\/minimal|@sentry\/browser)[\\/])/
+          test: /[\\/]node_modules[\\/](?!(@mapbox|mapbox-gl|dompurify|react-responsive|react-mapbox-gl|react-audio-player|react-html-parser|formik|date-fns|react|react-lottie|lottie-web|mobx-react-router|react-mobx|mobx|sanitize-html|react-backdrop-filter|@sentry|@sentry\/core|@sentry\/hub|@sentry\/minimal|@sentry\/browser)[\\/])/
         }
       }
     }

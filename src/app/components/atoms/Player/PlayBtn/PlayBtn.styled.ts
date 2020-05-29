@@ -4,31 +4,53 @@ import { MouseEvent } from "react";
 const borderColor = (alpha) => `rgba(222, 222, 222, ${alpha});`;
 
 export interface PlayBtnProps {
-  backgroundImage: string;
+  backgroundImage?: string;
   playing: boolean;
   onClick: (e: MouseEvent<HTMLDivElement>) => void;
+  mini?: boolean;
+  hasBackground?: boolean;
 }
 
 export const Container = styled.div<PlayBtnProps>`
-  display: flex;
-  width: 10rem;
-  height: 10rem;
-  background-size: cover;
-  background-image: url(${({ backgroundImage }) => backgroundImage});
-  ${({ theme }) => theme.media.mobile`
-    width: 6rem;
-    height: 6rem;
+  ${({ theme, backgroundImage }) => typeof backgroundImage === "string" ? `
+    display: flex;
+    width: 10rem;
+    height: 10rem;
+    background-size: cover;
+    background-image: url(${backgroundImage});
+    ${theme.media.mobile`
+      width: 6rem;
+      height: 6rem;
+    `}
+  ` : `
+    display: flex;
+    background-color: ${theme.player.backgroundColorMini};
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.1);
+      ${theme.media.mobile`
+        background-color: ${theme.player.backgroundColorMini};
+      `}
+    }
+    width: 10vh;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
   `}
 `;
 
-export const Cover = styled.div`
+interface HasBackground {
+  hasBackground: boolean;
+}
+
+export const Cover = styled.div<HasBackground>`
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: ${({ hasBackground }) => hasBackground ? 'none' : 'rgba(0, 0, 0, 0.2)'};
   &:hover {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: ${({ hasBackground }) => hasBackground ? 'none' : 'rgba(0, 0, 0, 0.4)'};
     cursor: pointer;
   }
 `;
@@ -43,11 +65,11 @@ export const IconPlay = styled.div<PlayBtnProps>`
       ? css`
           width: 6px;
           height: 22px;
-          border-left-width: 5px;
+          border-left-width: ${({ mini  }) => mini ? 4 : 5}px;
           border-right-color: ${borderColor(0.8)};
           border-top-color: transparent;
           border-bottom-color: transparent;
-          border-right-width: 5px;
+          border-right-width: ${({ mini  }) => mini ? 4 : 5}px;
           border-top-width: 0;
           border-bottom-width: 0;
           margin-left: 0;
@@ -60,8 +82,8 @@ export const IconPlay = styled.div<PlayBtnProps>`
           border-top-color: transparent;
           border-bottom-color: transparent;
           border-right-width: 12px;
-          border-top-width: 14px;
-          border-bottom-width: 14px;
-          margin-left: 22px;
+          border-top-width: ${({ mini }) => mini ? 12 : 14}px;
+          border-bottom-width: ${({ mini }) => mini ? 12 : 14}px;
+          margin-left: ${({ mini }) => mini ? 16 : 22}px
         `}
 `;

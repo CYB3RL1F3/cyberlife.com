@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Console, Output, Li, A } from '../AppLoader.styled';
+import { Container, Console, Output, Li, A } from './AppLoader.styled';
 interface Browser {
   href: string;
   title: string;

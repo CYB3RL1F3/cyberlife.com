@@ -1,7 +1,8 @@
-import styled, { css, keyframes } from 'app/theme';
-import { range, getHue, getNbSeconds } from 'app/utils/hue';
+import styled, { keyframes } from 'app/theme';
+import { range } from 'app/utils/hue';
+import { BackgroundLayer } from 'app/components/SharedStyled';
 
-const animatingBg = keyframes`
+export const animatingBg = keyframes`
   0% {
     filter: hue-rotate(${range}deg);
   }
@@ -11,38 +12,6 @@ const animatingBg = keyframes`
   100% {
     filter: hue-rotate(${range}deg);
   }
-`;
-
-const BackgroundLayer = css`
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  z-index: 0;
-  overflow: hidden;
-  ${({ theme }) => theme.media.mobile`
-    height: 100%;
-  `};
-`;
-
-export const Background = styled.div`
-  ${BackgroundLayer};
-  background-image: ${({ theme }) =>
-    `linear-gradient(to right, ${theme.background.fromColor}, ${
-      theme.background.toColor
-    });`};
-  ${({ theme }) => theme.media.mobile`
-    align-self: flex-start;
-    flex: auto;
-    height: unset;
-    position: unset;
-  `}
-  /* disabled for performance issue
-  filter: hue-rotate(${getHue()});
-  animation: ${animatingBg} 86400s linear infinite;
-  animation-delay: ${-getNbSeconds()}s;
-  */
 `;
 
 export const Bg = styled.div`

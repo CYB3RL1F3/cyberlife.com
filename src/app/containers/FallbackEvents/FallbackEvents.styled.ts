@@ -3,7 +3,7 @@ import { Link as BaseLink } from 'app/components/atoms/Link';
 import {
   TextStyle,
   AlphaTransitionDelay
-} from 'app/components/atoms/SharedStyled';
+} from 'app/components/SharedStyled';
 
 import { Spinner } from 'app/components/atoms/Loading/Loading.styled';
 

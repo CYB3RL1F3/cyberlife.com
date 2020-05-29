@@ -1,4 +1,4 @@
-import { css, keyframes } from 'app/theme';
+import styled, { css, keyframes } from 'app/theme';
 
 export const HeaderTextStyle = css`
   font-family: ${({ theme }) => theme.fonts.primary};
@@ -52,3 +52,29 @@ export const DownTransitionDelay = (delay: number) => css`
   animation-delay: ${delay}s;
 `;
 
+export const BackgroundLayer = css`
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 0;
+  overflow: hidden;
+  ${({ theme }) => theme.media.mobile`
+    height: 100%;
+  `};
+`;
+
+export const Background = styled.div`
+  ${BackgroundLayer};
+  background-image: ${({ theme }) =>
+    `linear-gradient(to right, ${theme.background.fromColor}, ${
+      theme.background.toColor
+    });`};
+  ${({ theme }) => theme.media.mobile`
+    align-self: flex-start;
+    flex: auto;
+    height: unset;
+    position: unset;
+  `}
+`;

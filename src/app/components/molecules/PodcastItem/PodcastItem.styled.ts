@@ -2,7 +2,7 @@ import styled, { css } from 'app/theme';
 import {
   TextStyle,
   AlphaTransitionDelay
-} from 'app/components/atoms/SharedStyled';
+} from 'app/components/SharedStyled';
 import { Link } from 'app/components/atoms/Link';
 
 export const Container = styled.div`

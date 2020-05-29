@@ -1,9 +1,9 @@
 import React, { FC, memo } from 'react';
-import { PlayBtnProps, Container, Cover, IconPlay } from './PlayBtn.styled';
+import { Container, Cover, PlayBtnProps, IconPlay } from './PlayBtn.styled';
 
 export const PlayBtn: FC<PlayBtnProps> = memo((props) => (
   <Container {...props}>
-    <Cover>
+    <Cover hasBackground={typeof props.backgroundImage !== "string"}>
       <IconPlay {...props} />
     </Cover>
   </Container>

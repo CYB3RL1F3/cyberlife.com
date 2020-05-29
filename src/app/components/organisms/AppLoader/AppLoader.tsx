@@ -15,8 +15,8 @@ import {
 import { paths } from "app/paths";
 import { observer } from 'mobx-react';
 import { isIe, isAndroid } from 'app/utils/browsers';
-import { IE } from './atoms/IE';
-import { Background } from '../Layout/Layout.styled';
+import { IE } from './IE';
+import { Background } from 'app/components/SharedStyled';
 
 export interface AppLoaderProps {}
 
