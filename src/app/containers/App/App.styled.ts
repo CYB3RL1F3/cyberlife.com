@@ -37,7 +37,7 @@ export const Container = styled.div`
     height: unset;
   `}
   ${({ theme }) => theme.media.mobile`
-    min-height: 85vh;
+    min-height: 75vh;
 
     @media(max-height: 700px) {
       min-height: 74vh;
