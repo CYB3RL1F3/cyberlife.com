@@ -36,6 +36,16 @@ export const Container = styled.div`
     justify-content: flex-start;
     height: unset;
   `}
+  ${({ theme }) => theme.media.mobile`
+    min-height: 85vh;
+
+    @media(max-height: 700px) {
+      min-height: 74vh;
+    }
+    @media(max-height: 680px) {
+      min-height: 72vh;
+    }
+  `}
   width: 100vw;
   height: 85vh;
   padding: 0;
@@ -50,6 +60,9 @@ export const AppContainer = styled.div`
     @supports (-webkit-appearance:none) {
       ${
         theme.isAndroid && !theme.isFirefox ? 'height: calc(100vh - 56px);' : ''
+      }
+      @media all and (display-mode: standalone) {
+        height: 100vh;
       }
     }
   `}

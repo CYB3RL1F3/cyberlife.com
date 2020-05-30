@@ -53,7 +53,7 @@ export class ReleaseModel {
   @computed
   get releaseDateFormatted() {
     const date = new Date(this.releaseDate);
-    if (isNaN(date.getFullYear())) return this.releaseDate.replace(/\-/g, '/');
+    if (isNaN(date.getFullYear())) return this.releaseDate.replace('-00', '-01').split('-').reverse().join('/');
     return format(new Date(this.releaseDate), 'dd/MM/yyyy');
   }
 

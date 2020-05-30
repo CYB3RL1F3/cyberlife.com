@@ -3,17 +3,22 @@ import { observer } from 'mobx-react';
 import { Container, Text, Link } from './Bio.styled';
 import { useInfosStore } from 'app/hooks/stores';
 import { paths } from "app/paths";
+import { Loading } from 'app/components/atoms';
 
 export const Bio: FC = observer(() => {
   const infosStore = useInfosStore();
-  const {
-    bio: { intro, content }
-  } = infosStore.data;
 
   return (
     <Container>
-      <Text>{intro}</Text>
-      <Text>{content}</Text>
+      {infosStore.data && infosStore.data.bio && infosStore.data.bio.intro ? (
+        <>
+          <Text>{infosStore.data.bio.intro}</Text>
+          <Text>{infosStore.data.bio.content}</Text>
+        </>
+      ) : (
+        <Loading />
+      )}
+      
       <Text>
         Contact / booking :{' '}
         <Link path={paths.contact}>

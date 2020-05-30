@@ -4,6 +4,8 @@ import { inject, observer } from 'mobx-react';
 import { STORE_PLAYER } from 'app/constants/stores';
 import { PlayerStore } from 'app/stores';
 import { debounce } from 'app/utils/debounce';
+import { captureException, withScope } from '@sentry/browser';
+
 
 interface AudioElement {
   current: HTMLAudioElement;
@@ -43,6 +45,19 @@ export class Audio extends PureComponent<AudioProps> {
       store.onSeek(pct, false);
     }
   };
+
+  fail = (error, errorInfo) => {
+    withScope((scope) => {
+      Object.keys(errorInfo).forEach((key) => {
+        scope.setExtra(key, errorInfo[key]);
+      });
+      captureException(error);
+    });
+  };
+
+  componentDidCatch(error, errorInfo) {
+    this.fail(error, errorInfo);
+  }
 
   componentWillUnmount = () => {
     this.player = null;

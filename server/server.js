@@ -72,14 +72,15 @@ const ddos = new Ddos({
   }
 });
 
-
 app.use(ddos.express);
 app.get('*.js', gzip);
 app.get('*.css', gzip);
 app.get('*.eot', gzip);
 app.get('*.ttf', gzip);
 
-app.use(compression());
+app.use(compression({
+  level: 9
+}));
 
 app.use(serveStatic(path.join(__dirname, '../dist')));
 

@@ -1,7 +1,7 @@
 
 
 import React, { PureComponent, ComponentType, Suspense } from 'react';
-import * as Sentry from '@sentry/browser';
+import { captureException, withScope } from '@sentry/browser';
 import { observer, inject } from 'mobx-react';
 import { Loading, Error as ErrorComponent } from 'app/components/atoms';
 import { InitializableStore } from 'app/stores/stores';
@@ -23,11 +23,11 @@ export const withLoadingStore = (storeName: string) => (
     }
 
     fail = (error, errorInfo) => {
-      Sentry.withScope((scope) => {
+      withScope((scope) => {
         Object.keys(errorInfo).forEach((key) => {
           scope.setExtra(key, errorInfo[key]);
         });
-        Sentry.captureException(error);
+        captureException(error);
       });
     };
     render() {

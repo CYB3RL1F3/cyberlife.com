@@ -27,7 +27,10 @@ const terser = new TerserPlugin({
       reduce_vars: true,
       evaluate: true
     },
-    mangle: true,
+    mangle: {
+      toplevel: true,
+      module: true
+    },
     output: {
       beautify: false,
       // code: false,
@@ -67,7 +70,7 @@ const config = merge(common, {
         },
         'react': {
           name: 'react',
-          chunks: 'initial',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/]react[\\/]/
         },
         'react-audio-player': {

@@ -11,17 +11,15 @@ export interface PlayBtnProps {
   hasBackground?: boolean;
 }
 
-export const Container = styled.div<PlayBtnProps>`
+export const Container = styled.div.attrs({
+  className:"container"
+})<PlayBtnProps>`
   ${({ theme, backgroundImage }) => typeof backgroundImage === "string" ? `
     display: flex;
     width: 10rem;
     height: 10rem;
     background-size: cover;
     background-image: url(${backgroundImage});
-    ${theme.media.mobile`
-      width: 6rem;
-      height: 6rem;
-    `}
   ` : `
     display: flex;
     background-color: ${theme.player.backgroundColorMini};
@@ -37,13 +35,22 @@ export const Container = styled.div<PlayBtnProps>`
     justify-content: center;
     align-items: center;
   `}
+  ${({ theme, backgroundImage }) => theme.media.mobile`
+    width: ${!!backgroundImage ? '6rem': '10vh'};
+    height: ${!!backgroundImage ? '6rem': '10vh'};
+    &:hover {
+      background-color: ${theme.player.backgroundColorMini};
+    }
+  `}
 `;
 
 interface HasBackground {
   hasBackground: boolean;
 }
 
-export const Cover = styled.div<HasBackground>`
+export const Cover = styled.div.attrs({
+  className: "cover"
+})<HasBackground>`
   flex: 1;
   display: flex;
   justify-content: center;

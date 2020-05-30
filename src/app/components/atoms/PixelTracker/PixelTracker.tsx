@@ -1,9 +1,7 @@
 import React, { PureComponent, createRef } from 'react';
 import styled from 'app/theme';
 
-// const video = require('assets/videos/bg.mp4').default;
 const src = "https://res.cloudinary.com/hiilqldcr/video/upload/v1590399050/bg_webm.webm";
-
 
 export interface PixelTrackerProps {
   onLoad: () => void;
@@ -19,6 +17,7 @@ export class PixelTracker extends PureComponent<PixelTrackerProps, {}> {
       });
     }
   }
+  
   videoRef = createRef<HTMLVideoElement>();
   render() {
     const { onLoad } = this.props;
