@@ -23,7 +23,7 @@ interface NavMobileProps {
   opened: boolean;
 }
 
-export const NavMobile: FC<NavMobileProps> = observer(({ opened, onClose }) => {
+const NavMobile: FC<NavMobileProps> = observer(({ opened, onClose }) => {
   const router = useRouterStore();
   const [blurred, blur] = useState<boolean>(false);
   const onBlurred = useCallback(() => blur(true), [blur]);
@@ -84,3 +84,5 @@ export const NavMobile: FC<NavMobileProps> = observer(({ opened, onClose }) => {
       </Menu>
     );
 });
+
+export default NavMobile;

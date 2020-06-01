@@ -6,7 +6,7 @@ import { Container, Unavailable } from './Podcasts.styled';
 import { TrackModel } from 'app/models';
 import { observer } from 'mobx-react';
 import { usePlayerStore } from 'app/hooks/stores';
-import { PodcastItem } from 'app/components/molecules/PodcastItem';
+import { PodcastItem } from 'app/components/molecules';
 
 export interface PlaylistProps {
   data: PlaylistModel;

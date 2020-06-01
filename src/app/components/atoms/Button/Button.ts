@@ -1,7 +1,7 @@
 import styled from "app/theme";
 import { TextStyle } from "app/components/SharedStyled";
 
-export const Button = styled.a`
+const Button = styled.a`
   ${TextStyle};
   display: inline-block;
   font-size: ${({ theme }) => theme.fontSizes.average};
@@ -20,3 +20,5 @@ export const Button = styled.a`
     background-color: #182729;
   }
 `;
+
+export default Button;

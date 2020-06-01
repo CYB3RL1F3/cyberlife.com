@@ -1,1 +1,1 @@
-export { PodcastItem } from './PodcastItem';
+export { default } from './PodcastItem';

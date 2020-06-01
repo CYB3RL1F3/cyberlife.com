@@ -57,6 +57,7 @@ const config = merge(common, {
     concatenateModules: true,
     flagIncludedChunks: true,
     mergeDuplicateChunks: true,
+    removeEmptyChunks: true,
     namedModules: true,
     namedChunks: true,
     splitChunks: {
@@ -68,6 +69,68 @@ const config = merge(common, {
         common: {
           chunks: 'async'
         },
+        
+        'app/containers/App': {
+          name: 'app/containers/App',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]App[\\/]/
+        },
+        'app/containers/Bio': {
+          name: 'app/containers/Bio',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]Bio[\\/]/
+        },
+        'app/containers/Charts': {
+          name: 'app/containers/Charts',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]Charts[\\/]/
+        },
+        'app/containers/Contact': {
+          name: 'app/containers/Contact',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]Contact[\\/]/
+        },
+        'app/containers/Err404': {
+          name: 'app/containers/Err404',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]Err404[\\/]/
+        },
+        'app/containers/EventDetails': {
+          name: 'app/containers/EventDetails',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]EventDetails[\\/]/
+        },
+        'app/containers/Events': {
+          name: 'app/containers/Events',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]Events[\\/]/
+        },
+        'app/containers/FallbackEvents': {
+          name: 'app/containers/FallbackEvents',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]FallbackEvents[\\/]/
+        },
+        'app/containers/PodcastDetails': {
+          name: 'app/containers/PodcastDetails',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]PodcastDetails[\\/]/
+        },
+        'app/containers/Podcasts': {
+          name: 'app/containers/Podcasts',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]Podcasts[\\/]/
+        },
+        'app/containers/ReleaseDetails': {
+          name: 'app/containers/ReleaseDetails',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]ReleaseDetails[\\/]/
+        },
+        'app/containers/Releases': {
+          name: 'app/containers/Releases',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]Releases[\\/]/
+        },
+
         'react': {
           name: 'react',
           chunks: 'async',
@@ -212,6 +275,7 @@ const config = merge(common, {
         pure: true
       }
     }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.HashedModuleIdsPlugin(),
     /*
     new BundleAnalyzerPlugin({
@@ -219,7 +283,7 @@ const config = merge(common, {
     }),
     */
     new LodashModuleReplacementPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
+    // new webpack.optimize.AggressiveMergingPlugin(),
     new CompressionPlugin({
       filename: '[path].gz[query]',
       algorithm: 'gzip',

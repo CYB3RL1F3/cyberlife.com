@@ -47,8 +47,8 @@ export const Li = styled.li`
 export const LottieHandler = styled.div`
   display: block;
   position: absolute;
-  bottom: 7.5rem;
-  right: calc(50% - 7.5rem);
+  bottom: 6rem;
+  right: calc(50% - 6rem);
   width: 14rem;
   height: 14rem;
 `;

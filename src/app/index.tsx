@@ -1,9 +1,11 @@
-import React, { Suspense, createElement } from 'react';
+import React, { Suspense, createElement, lazy } from 'react';
 import { hot } from 'react-hot-loader';
 import { Router, Route, Switch } from 'react-router';
 import { Root } from 'app/Root';
 import routes, { RouteType } from './routes';
 import Err404 from './containers/Err404';
+
+export const getComponent = (component: string) => lazy(() => import(`app/containers/${component}`))
 
 export const RouteComponent = ({ exact = false, path, component }) => (
   <Suspense fallback={<div />}>
@@ -25,7 +27,7 @@ export const App = hot(module)(({ history }) => (
               key={`route__${route.key}`}
               exact
               path={route.path}
-              component={route.component}
+              component={getComponent(route.component)}
             />
           )
         )}

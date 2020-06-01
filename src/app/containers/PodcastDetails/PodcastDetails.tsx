@@ -29,7 +29,7 @@ import {
 import { parseHtml } from 'app/utils/html';
 import { paths } from "app/paths";
 import { numToZeroString } from 'app/utils/numbers';
-import { Button } from 'app/components/atoms/Button';
+import Button from 'app/components/atoms/Button';
 
 interface PodcastDetailsProps {
   data: TrackModel;

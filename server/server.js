@@ -77,6 +77,7 @@ app.get('*.js', gzip);
 app.get('*.css', gzip);
 app.get('*.eot', gzip);
 app.get('*.ttf', gzip);
+app.get('*.json', gzip);
 
 app.use(compression({
   level: 9
