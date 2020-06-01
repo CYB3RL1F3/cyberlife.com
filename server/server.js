@@ -1,4 +1,4 @@
-const port = 3443;
+const port = process.env.PORT || 3443;
 const spdy = require('spdy');
 const express = require('express');
 const fs = require('fs');
