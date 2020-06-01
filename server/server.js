@@ -1,4 +1,5 @@
 const port = process.env.PORT || 3443;
+const http = require('http');
 const spdy = require('spdy');
 const express = require('express');
 const fs = require('fs');
@@ -95,7 +96,8 @@ app.get('*', (req,res) => {
     res.status(404).sendFile(appFile);
 });
 
-spdy.createServer(options, app).listen(port, (error) => {
+const { createServer } = port === 3443 ? spdy : http;
+createServer(options, app).listen(port, (error) => {
   if (error) {
     console.error(error);
     return process.exit(1);
