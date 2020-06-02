@@ -57,8 +57,8 @@ if (process.env.NODE_ENV === 'production') {
 
 // DDOS protection
 const ddos = new Ddos({
-  burst: 30,
-  limit: 90,
+  burst: 900,
+  limit: 1000,
   maxexpiry: 60,
   trustProxy: true,
   onDenial: (req) => {
