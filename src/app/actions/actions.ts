@@ -21,12 +21,12 @@ export const getEvents = (type: number): AxiosPromise =>
   fetch('events', { type });
 
 export const getEventById = (
-  ID: number | string,
+  eventId: number | string,
   type: number | string
 ): AxiosPromise =>
-  parseInt(ID as string, 10).toString() === ID
-    ? fetch('event', { ID, type })
-    : fetch('event', { name: encodeURIComponent(ID as string), type });
+  parseInt(eventId as string, 10).toString() === eventId
+    ? fetch('event', { eventId, type })
+    : fetch('event', { name: encodeURIComponent(eventId as string), type });
 
 export const getCharts = (): AxiosPromise => fetch('charts');
 export const getInfos = (): AxiosPromise => fetch('infos');
