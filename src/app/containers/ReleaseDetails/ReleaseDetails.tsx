@@ -46,7 +46,7 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
       </TitleHandler>
       <DataContainer>
         <ThumbHandler>
-          <PicHandler>
+          <PicHandler picture={thumb}>
             <Image src={thumb} alt={title} />
           </PicHandler>
           <Button href={discogs} target="_blank">

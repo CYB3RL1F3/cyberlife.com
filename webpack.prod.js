@@ -139,22 +139,22 @@ const config = merge(common, {
         'react-audio-player': {
           name: 'react-audio-player',
           chunks: 'async',
-          test: /[\\/]node_modules[\\/]react\-audio-player[\\/]/
+          test: /[\\/]node_modules[\\/]react-audio-player[\\/]/
         },
         'react-responsive': {
           name: 'react-responsive',
           chunks: 'async',
-          test: /[\\/]node_modules[\\/]react\-responsive[\\/]/
+          test: /[\\/]node_modules[\\/]react-responsive[\\/]/
         },
         'react-router': {
           name: 'react-router',
           chunks: 'async',
-          test: /[\\/]node_modules[\\/]react\-router[\\/]/
+          test: /[\\/]node_modules[\\/]react-router[\\/]/
         },
         'react-lottie': {
           name: 'react-lottie',
           chunks: 'async',
-          test: /[\\/]node_modules[\\/]react\-lottie[\\/]/
+          test: /[\\/]node_modules[\\/]react-lottie[\\/]/
         },
         'mobx-react-router': {
           name: 'mobx-react-router',
@@ -165,6 +165,11 @@ const config = merge(common, {
           name: 'mobx-react',
           chunks: 'async',
           test: /[\\/]node_modules[\\/]mobx-react[\\/]/
+        },
+        'react-popupbox': {
+          name: 'react-popupbox',
+          chunks: 'async',
+          test: /[\\/]node_modules[\\/]react-popupbox[\\/]/
         },
         'mobx': {
           name: 'mobx',
@@ -262,7 +267,7 @@ const config = merge(common, {
           name: 'node_modules',
           chunks: 'async',
           enforce: true,
-          test: /[\\/]node_modules[\\/](?!(@mapbox|mapbox-gl|dompurify|react-responsive|react-mapbox-gl|react-audio-player|react-html-parser|formik|date-fns|react|react-lottie|lottie-web|mobx-react-router|react-mobx|mobx|sanitize-html|react-backdrop-filter|@sentry|@sentry\/core|@sentry\/hub|@sentry\/minimal|@sentry\/browser)[\\/])/
+          test: /[\\/]node_modules[\\/](?!(@mapbox|mapbox-gl|styled-components|react-popupbox|dompurify|react-responsive|react-mapbox-gl|react-audio-player|react-html-parser|formik|date-fns|react|react-lottie|lottie-web|mobx-react|mobx-react-router|react-router|react-mobx|mobx|sanitize-html|react-backdrop-filter|@sentry|@sentry\/core|@sentry\/hub|@sentry\/minimal|@sentry\/browser)[\\/])/
         }
       }
     }

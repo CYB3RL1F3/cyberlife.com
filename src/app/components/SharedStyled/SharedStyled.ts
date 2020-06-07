@@ -65,7 +65,12 @@ export const BackgroundLayer = css`
   `};
 `;
 
-export const Background = styled.div`
+
+interface Blurrable {
+  isBlurred: boolean;
+}
+
+export const Background = styled.div<Blurrable>`
   ${BackgroundLayer};
   background-image: ${({ theme }) =>
     `linear-gradient(to right, ${theme.background.fromColor}, ${
@@ -77,4 +82,6 @@ export const Background = styled.div`
     height: unset;
     position: unset;
   `}
+  transition: filter 0.25s;
+  filter: blur(${({ isBlurred }) => isBlurred ? '3px' : '0'});
 `;

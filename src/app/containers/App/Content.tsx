@@ -21,6 +21,6 @@ export const Content: FC = observer(({ children }) => {
   });
 
   return (
-    <Container ref={contentHandler}>{children}</Container>
+    <Container id="pageContainer" ref={contentHandler}>{children}</Container>
   );
 });

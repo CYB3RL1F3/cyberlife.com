@@ -1,6 +1,7 @@
 import styled from 'app/theme';
 import { TextStyle } from 'app/components/SharedStyled';
 import { Link } from 'app/components/atoms/Link';
+import ExtensiblePic from 'app/components/molecules/ExtensiblePic';
 
 export const Container = styled.div`
   flex: 1;
@@ -62,10 +63,16 @@ export const PlayersHandler = styled.div`
   flex-direction: column;
 `;
 
-export const PicHandler = styled.div`
+export const PicHandler = styled(ExtensiblePic).attrs({
+  width: '10rem',
+  height: '10rem',
+  targetWidth: '600px',
+  targetHeight: '600px'
+})`
   width: 10rem;
   height: 10rem;
   margin-right: 1rem;
+  cursor: pointer;
   ${({ theme }) => theme.media.mobile`
     ${({ theme }) => theme.media.mobile`
     width: 90vw;
