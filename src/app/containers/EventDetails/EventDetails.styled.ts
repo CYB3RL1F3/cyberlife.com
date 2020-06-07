@@ -1,6 +1,7 @@
 import styled, { css } from 'app/theme';
 import { TextStyle } from 'app/components/SharedStyled';
 import { Link } from 'app/components/atoms/Link';
+import ExtensiblePic from 'app/components/molecules/ExtensiblePic';
 
 export const Container = styled.div`
   flex: 1;
@@ -137,4 +138,17 @@ export const Unavailable = styled.p`
   width: 100%;
   font-family: ${({ theme }) => theme.fonts.primary};
   color: ${({ theme }) => theme.color};
+`;
+
+export const PicHandler = styled(ExtensiblePic)`
+  width: 100%;
+  height: inherit;
+  margin-right: 1rem;
+  cursor: pointer;
+  ${({ theme }) => theme.media.mobile`
+    ${({ theme }) => theme.media.mobile`
+    width: 90vw;
+    margin: 1rem 0 0 0;
+  `}
+  `}
 `;

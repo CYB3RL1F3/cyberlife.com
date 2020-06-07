@@ -63,12 +63,7 @@ export const PlayersHandler = styled.div`
   flex-direction: column;
 `;
 
-export const PicHandler = styled(ExtensiblePic).attrs({
-  width: '10rem',
-  height: '10rem',
-  targetWidth: '600px',
-  targetHeight: '600px'
-})`
+export const PicHandler = styled(ExtensiblePic)`
   width: 10rem;
   height: 10rem;
   margin-right: 1rem;

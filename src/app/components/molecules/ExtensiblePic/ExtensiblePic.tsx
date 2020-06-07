@@ -1,6 +1,7 @@
 import React, { FC, useContext, useCallback, useEffect, useRef } from 'react';
 import { useUnmount } from 'app/hooks/effects';
 import { ModalContext } from 'app/contexts/ModalContext';
+import { getHomotheticDimensions, toPixel } from 'app/utils/images';
 
 interface ExtensiblePicProps {
   picture: string;
@@ -11,7 +12,7 @@ interface ExtensiblePicProps {
   className: string;
 }
 
-const ExtensiblePic: FC<ExtensiblePicProps> = ({ children, className, picture, width, height, targetWidth, targetHeight }) => {
+const ExtensiblePic: FC<ExtensiblePicProps> = ({ children, className, picture }) => {
   const picHandlerRef = useRef<HTMLDivElement>(null);
   const { dispatch } = useContext(ModalContext);
   const open = useCallback(() => {
@@ -21,23 +22,26 @@ const ExtensiblePic: FC<ExtensiblePicProps> = ({ children, className, picture, w
   }, [dispatch]);
 
   const defineModaleClickableZone = useCallback(() => {
-    console.log('mouseenter');
     const rect = picHandlerRef.current.getBoundingClientRect();
+    const pics = picHandlerRef.current.getElementsByTagName('img');
+    if (!pics.length) return;
+    const pic = pics[0];
+    const { picWidth, picHeight } = getHomotheticDimensions(pic, 0.9);
     dispatch({
       type: "create",
       payload: {
         picture,
         initialStyle: {
-          width,
-          height,
-          top: `${rect.top}px`,
-          left: `${rect.left}px`
+          width: toPixel(pic.width),
+          height: toPixel(pic.height),
+          top: toPixel(rect.top),
+          left: toPixel(rect.left)
         },
         finalStyle: {
-          width: targetWidth,
-          height: targetHeight,
+          width: toPixel(picWidth),
+          height:toPixel(picHeight),
           top: "5vh",
-          left: `calc(50vw - ${parseInt(targetWidth) / 2}px)`
+          left: `calc(50vw - ${picWidth / 2}px)`
         }
       }
     });

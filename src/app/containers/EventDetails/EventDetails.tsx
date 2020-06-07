@@ -17,7 +17,8 @@ import {
   GoBack,
   InfoLink,
   Flyer,
-  Unavailable
+  Unavailable,
+  PicHandler
 } from './EventDetails.styled';
 import {
   DesktopMediaQuery,
@@ -56,7 +57,10 @@ export const EventDetailsComponent: FC<EventDetailsProps> = ({ data }) => {
             </Section>
             {data.flyer.front && (
               <Section>
-                <Flyer src={data.flyer.front} alt={data.title} />
+                <PicHandler picture={data.flyer.front}>
+                  <Flyer src={data.flyer.front} alt={data.title} />
+                </PicHandler>
+
               </Section>
             )}
             {data.lineup && data.lineup.length > 0 && (
