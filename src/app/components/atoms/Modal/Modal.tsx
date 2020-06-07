@@ -16,11 +16,11 @@ const Modal: FC = () => {
       type: "open"
     });
   }, [dispatch]);
-  console.log("MNTD => ", mounted);
+  
   if (!mounted) return null;
   return (
     <ModalWrapper opened={opened && mounted}>
-      <ModalClickable id="zou" opened={mounted && opened} onClick={close} />
+      <ModalClickable opened={mounted && opened} onClick={close} />
       <ModalContent
         onClick={open}
         opened={opened} 

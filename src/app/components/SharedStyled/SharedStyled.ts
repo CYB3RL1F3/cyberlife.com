@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'app/theme';
+import { isFirefox } from 'app/utils/browsers';
 
 export const HeaderTextStyle = css`
   font-family: ${({ theme }) => theme.fonts.primary};
@@ -83,5 +84,5 @@ export const Background = styled.div<Blurrable>`
     position: unset;
   `}
   transition: filter 0.25s;
-  filter: blur(${({ isBlurred }) => isBlurred ? '3px' : '0'});
+  filter: blur(${({ isBlurred }) => isBlurred && !isFirefox() ? '3px' : '0'});
 `;

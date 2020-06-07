@@ -58,6 +58,12 @@ export const ModalContent = styled.div<ModalContentProps>`
     box-shadow: 0px 0px rgba(0, 0, 0, 0), 0 0 0px rgba(0, 0, 0, 0);
     cursor: pointer;
   `}
+  ${({ opened, theme, initialStyle }) => theme.media.mobile`
+    top: ${opened ? '10vh' : initialStyle.top};
+    left: ${opened ? '1rem' : initialStyle.left};
+    width: ${opened ? "calc(100vw - 2rem)" : "90vw"};
+    height: ${opened ? "calc(100vw - 2rem)" : "90vw"};
+  `}
 `;
 
 export const ModalClose = styled.a`
