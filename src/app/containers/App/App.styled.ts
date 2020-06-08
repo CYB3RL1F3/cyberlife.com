@@ -74,6 +74,7 @@ export const Content = styled.div`
   animation: ${welcome} 0.3s ease-in-out forwards;
   animation-delay: 1s;
   height: 85vh;
+  position: relative;
   overflow-y: overlay;
   will-change: scroll-position;
   overflow-x: hidden;

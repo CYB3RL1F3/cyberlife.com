@@ -10,8 +10,8 @@ export const Layout = memo(({ children }): JSX.Element => {
   const { state } = useContext(ModalContext);
   return (
   <Suspense fallback={<Background />}>
-    <Background isBlurred={state.opened && state.mounted}>
-        <Bg children={<BackgroundVideo />} />
+    <Background mounted={state.mounted} isBlurred={state.opened && state.mounted}>
+      <Bg children={<BackgroundVideo />} />
       <ChildrenHandler children={children} />
     </Background>
   </Suspense>

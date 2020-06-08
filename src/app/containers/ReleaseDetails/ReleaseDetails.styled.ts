@@ -69,11 +69,9 @@ export const PicHandler = styled(ExtensiblePic)`
   margin-right: 1rem;
   cursor: pointer;
   ${({ theme }) => theme.media.mobile`
-    ${({ theme }) => theme.media.mobile`
     width: 90vw;
     height: 90vw;
     margin: 1rem 0 0 0;
-  `}
   `}
 `;
 

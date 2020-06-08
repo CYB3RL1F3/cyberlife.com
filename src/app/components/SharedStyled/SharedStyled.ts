@@ -30,8 +30,8 @@ export const alphaTransition = keyframes`
 
 export const AlphaTransitionDelay = (index: number) => css`
   opacity: 0;
-  animation: ${alphaTransition} 0.15s linear forwards;
-  animation-delay: ${index * 0.025}s;
+  animation: ${alphaTransition} 0.25s linear forwards;
+  animation-delay: ${index * 0.03}s;
 `;
 
 export const downTransition = keyframes`
@@ -51,6 +51,7 @@ export const DownTransitionDelay = (delay: number) => css`
   transform: translateY(-3rem);
   animation: ${downTransition} 0.3s ease-out forwards;
   animation-delay: ${delay}s;
+  transform: translateZ(0);
 `;
 
 export const BackgroundLayer = css`
@@ -69,6 +70,7 @@ export const BackgroundLayer = css`
 
 interface Blurrable {
   isBlurred: boolean;
+  mounted: boolean;
 }
 
 export const Background = styled.div<Blurrable>`
@@ -83,6 +85,13 @@ export const Background = styled.div<Blurrable>`
     height: unset;
     position: unset;
   `}
-  transition: filter 0.25s;
-  filter: blur(${({ isBlurred }) => isBlurred && !isFirefox() ? '3px' : '0'});
+  transform: translateZ(0);
+  ${({ isBlurred, mounted }) => mounted && !isFirefox() ? `
+    transition: filter 0.25s;
+    filter: blur(${isBlurred ? '3px' : '0'});
+  ` : ''}
+  ${({ isBlurred, mounted }) => mounted && isFirefox() ? `
+    transition: background 0.25s;
+    background: ${isBlurred ? 'rgba(122, 122, 144, 0.8)' : 'rgba(0, 0, 0, 0)'};
+  ` : ''}
 `;
