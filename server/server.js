@@ -31,6 +31,7 @@ const options = {
 };
 
 const hasGzip = (fileName) => {
+  if (fileName.indexOf('service-worker') > -1 || fileName.indexOf('service_worker') > -1) return false;
   return fs.existsSync(path.resolve(__dirname, `../dist${fileName}.gz`));
 };
 
