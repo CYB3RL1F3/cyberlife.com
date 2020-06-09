@@ -10,7 +10,7 @@ const serveStatic = require('serve-static');
 
 const routes = {
   podcasts: "/",
-  podcastDetails: "/podcast/:id",
+  podcastDetails: "/podcasts/:id",
   events: "/events",
   eventDetails: "/events/:type/:id",
   eventDetailsDefault: "/events/:id",
@@ -18,7 +18,8 @@ const routes = {
   releases: "/releases",
   releaseDetails: "/releases/:id",
   bio: '/biography',
-  contact: '/contact'
+  contact: '/contact',
+  about: '/about'
 }
 
 const appFile = path.join(__dirname, '../dist', 'index.html');
@@ -30,7 +31,7 @@ const options = {
 };
 
 const hasGzip = (fileName) => {
-  return fs.existsSync(`../dist${fileName}.gz`);
+  return fs.existsSync(path.resolve(__dirname, `../dist${fileName}.gz`));
 };
 
 const gzip = (req, res, next) => {

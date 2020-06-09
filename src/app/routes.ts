@@ -77,6 +77,13 @@ export const routes: RouteType[] = [
     label: 'Biography',
     key: 'bio',
     menu: false
+  },
+  {
+    component: 'About',
+    path: paths.about,
+    label: 'about',
+    key: 'about',
+    menu: false
   }
 ];
 

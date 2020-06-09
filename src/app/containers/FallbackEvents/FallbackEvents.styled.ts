@@ -18,6 +18,7 @@ export const NoGigsHandler = styled.div`
   align-items: center;
   ${AlphaTransitionDelay(1)};
   margin-bottom: 2rem;
+  margin-left: 1rem;
 `;
 
 export const NoGigsText = styled.h3`
@@ -42,6 +43,12 @@ export const PleaseContactStyle = css`
 export const PleaseContact = styled.p`
   ${PleaseContactStyle};
   ${AlphaTransitionDelay(3)}
+  margin: 0 1rem;
+  height: 3rem;
+  border-bottom: solid 1px;
+  ${({ theme }) => theme.media.mobile`
+    height: 5rem;
+  `};
 `;
 
 export const Link = styled(BaseLink)`
@@ -49,9 +56,12 @@ export const Link = styled(BaseLink)`
   text-decoration: underline;
 `;
 
-export const A = styled.a`
+export const SeePastLink = styled.h3`
   ${PleaseContactStyle};
-  line-height: 4rem;
+  ${AlphaTransitionDelay(4)}
+  margin: 2rem 1rem 0 1rem;
+  font-size: ${({ theme }) => theme.fontSizes.average};
+  line-height: 2rem;
 `;
 
 export const Title = styled.h3`

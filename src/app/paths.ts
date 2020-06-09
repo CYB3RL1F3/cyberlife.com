@@ -1,6 +1,6 @@
 export enum paths {
   podcasts = "/",
-  podcastDetails = "/podcast/:id",
+  podcastDetails = "/podcasts/:id",
   events = "/events",
   eventDetails = "/events/:type/:id",
   eventDetailsDefault = "/events/:id",
@@ -8,7 +8,8 @@ export enum paths {
   releases = "/releases",
   releaseDetails = "/releases/:id",
   bio = '/biography',
-  contact = '/contact'
+  contact = '/contact',
+  about = '/about'
 }
 
 export const resolvePath = (path: paths, id: string | number = '', type: string = '') =>

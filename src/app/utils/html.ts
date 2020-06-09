@@ -19,6 +19,7 @@ export const getSanitizedHtml = (html: string, strict: boolean = false): string 
       'li',
       'b',
       'i',
+      'u',
       'strong',
       'em',
       'strike',
@@ -30,21 +31,19 @@ export const getSanitizedHtml = (html: string, strict: boolean = false): string 
       'thead',
       'caption',
       'tbody',
+      'article',
+      'section',
+      'aside',
       'tr',
       'th',
       'td',
       'pre',
       'cite',
-      strict ? 'video' : null,
-      strict ? 'source' : null,
-      strict ? 'img' : null
+      !strict ? 'video' : null,
+      !strict ? 'source' : null,
+      !strict ? 'img' : null
     ].filter(d => !!d),
-    ALLOWED_ATTR: {
-      a: ['href', 'name', 'target', 'style'],
-      img: ['src', 'alt', 'width', 'height', 'style'],
-      video: ['src', 'controls', 'width', 'height', 'muted', 'style'],
-      source: ['src', 'type']
-    },
+    ALLOWED_ATTR: strict ? ['style'] : ['href', 'name', 'target', 'rel', 'cite', 'type', 'src', 'alt', 'width', 'height', 'style', 'controls', 'muted'],
     allowedSchemesAppliedToAttributes: ['href', 'src', 'cite'],
     allowedSchemes: ['http', 'https', 'ftp', 'mailto']
   });

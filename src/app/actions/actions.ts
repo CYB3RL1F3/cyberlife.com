@@ -31,6 +31,7 @@ export const getEventById = (
 export const getCharts = (): AxiosPromise => fetch('charts');
 export const getInfos = (): AxiosPromise => fetch('infos');
 export const getReleases = (): AxiosPromise => fetch('releases');
+export const getPosts = (): AxiosPromise => fetch('posts');
 export const getPodcasts = (): AxiosPromise =>
   fetch('playlist', { name: 'dj-sets' });
 export const getPodcastById = (id: number): AxiosPromise =>

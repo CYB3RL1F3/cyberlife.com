@@ -3,6 +3,7 @@ import {
   TextStyle,
   AlphaTransitionDelay
 } from 'app/components/SharedStyled';
+import { Link as BaseLink } from 'app/components/atoms/Link';
 
 const height = '4vh';
 
@@ -47,6 +48,11 @@ export const Text = styled.p`
   ${({ theme }) => theme.media.desktop`
     margin-top: 0.4rem;
   `}
+`;
+
+export const Link = styled(BaseLink)`
+  ${FooterTxt};
+  text-decoration: underline;
 `;
 
 export const A = styled.a`

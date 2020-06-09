@@ -7,7 +7,8 @@ export const getHomotheticDimensions = (pic: HTMLImageElement, homothetie: numbe
     const ratio = h / picHeight;
     picHeight *= ratio;
     picWidth *= ratio;
-  } else if (picWidth > w) {
+  }
+  if (picWidth > w) {
     const ratio = w / picWidth;
     picHeight *= ratio;
     picWidth *= ratio;

@@ -14,6 +14,7 @@ import {
   Stores
 } from '../constants/stores';
 import SelectedReleaseStore from './SelectedReleaseStore';
+import { AboutStore } from './AboutStore';
 
 export interface IStores {
   [Stores.app]: AppStore;
@@ -28,6 +29,7 @@ export interface IStores {
   [Stores.chart]: ChartStore;
   [Stores.player]: PlayerStore;
   [Stores.selected_release]: SelectedReleaseStore;
+  [Stores.about]: AboutStore;
 }
 
 export function createStores(history: History): IStores {
@@ -55,6 +57,7 @@ export function createStores(history: History): IStores {
   const infosStore = new InfosStore(appStore);
   const chartStore = new ChartStore();
   const playerStore = new PlayerStore();
+  const aboutStore = new AboutStore();
   return {
     [Stores.app]: appStore,
     [Stores.router]: routerStore,
@@ -67,6 +70,7 @@ export function createStores(history: History): IStores {
     [Stores.releases]: releasesStore,
     [Stores.chart]: chartStore,
     [Stores.player]: playerStore,
-    [Stores.selected_release]: selectedReleaseStore
+    [Stores.selected_release]: selectedReleaseStore,
+    [Stores.about]: aboutStore
   };
 }

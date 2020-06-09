@@ -1,5 +1,5 @@
-import React, { FC, useCallback, useMemo, MouseEvent } from 'react';
-import { observer } from 'mobx-react';
+import React, { FC, useMemo, useEffect } from 'react';
+
 import {
   NoGigsHandler,
   NoGigsText,
@@ -9,24 +9,21 @@ import {
   Container,
   SpinnerHandler,
   LoadingSpinner,
-  A
+  SeePastLink
 } from './FallbackEvents.styled';
-import { PastEvents } from 'app/components/organisms/PastEvents';
 import { usePastEventStore } from 'app/hooks/stores';
 
 import { paths } from "app/paths";
+import { EventModel } from 'app/models';
+import { EventItem } from 'app/components';
 
-export interface FallbackEventsProps {
-  asFail?: boolean;
-}
 
-export const FallbackEvents: FC<FallbackEventsProps> = observer(({ asFail }) => {
+export const FallbackEvents: FC = () => {
   const store = usePastEventStore();
-  const loadPastEvents = useCallback((e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
+
+  useEffect(() => {
     store.init();
-  }, [store.init]);
+  });
 
   const loadingSpinner = useMemo(() => {
     return store.loading ? (
@@ -36,38 +33,46 @@ export const FallbackEvents: FC<FallbackEventsProps> = observer(({ asFail }) => 
     ) : null;
   }, [store.loading]);
 
-  if (!store.data) {
-    if (asFail) {
-      return (
-        <Container>
-          <NoGigsHandler>
-            <NoGigsText>No gigs to come...</NoGigsText>
-            <NoGigsSmiley>:(</NoGigsSmiley>
-          </NoGigsHandler>
-          <PleaseContact>
-            Contact / booking :{' '}
-            <Link path={paths.contact}>
-              cyberlife.music<span>@</span>gmail.com
-            </Link>
-            <br />
-            <A href={paths.events} onClick={loadPastEvents}>
-              See past gigs... {loadingSpinner}
-            </A>
-          </PleaseContact>
-        </Container>
-      );
-    } else {
-      return (
-        <Container>
-          <A href onClick={loadPastEvents}>
-            See past gigs... {loadingSpinner}
-          </A>
-        </Container>
-      );
+  return (
+    <Container>
+      <NoGigsHandler>
+        <NoGigsText>No gigs to come...</NoGigsText>
+        <NoGigsSmiley>:(</NoGigsSmiley>
+      </NoGigsHandler>
+      <PleaseContact>
+        Contact / booking :{' '}
+        <Link path={paths.contact}>
+          cyberlife.music<span>@</span>gmail.com
+        </Link>
+        <br />
+      </PleaseContact>
+      {store.loading || !!store.data ? (
+        <>
+          <SeePastLink>
+            Some past gigs:
+          </SeePastLink>
+          {store.data ? store.data.map(
+            (event: EventModel, index: number) => (
+              <EventItem
+                index={index}
+                key={event.id}
+                id={event.id}
+                title={event.title}
+                location={event.address}
+                type={event.type}
+                date={event.formattedDate}
+              />
+            )
+          ) : store.loading && (
+            {loadingSpinner}
+          )}
+        </>
+      ) : (
+        null
+      )
     }
-  } else {
-    return <PastEvents asFail={asFail} />;
-  }
-});
+    </Container>
+  )
+};
 
 export default FallbackEvents;

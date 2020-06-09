@@ -13,7 +13,7 @@ export const MiniPlayerMobileWrapper: FC = observer(() => {
     if (!currentTrack) return false;
     const { id, source } = currentTrack;
     if (source === 'podcasts') {
-      return location.pathname.indexOf(`podcast/${id}`) === -1;
+      return location.pathname.indexOf(`podcasts/${id}`) === -1;
     }
     if (
       source.indexOf('release') > -1 &&

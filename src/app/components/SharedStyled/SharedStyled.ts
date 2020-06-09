@@ -92,6 +92,7 @@ export const Background = styled.div<Blurrable>`
   ` : ''}
   ${({ isBlurred, mounted }) => mounted && isFirefox() ? `
     transition: background 0.25s;
-    background: ${isBlurred ? 'rgba(122, 122, 144, 0.8)' : 'rgba(0, 0, 0, 0)'};
+    background: ${isBlurred ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0)'};
+    background-repeat: repeat;
   ` : ''}
 `;

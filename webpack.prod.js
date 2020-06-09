@@ -130,6 +130,11 @@ const config = merge(common, {
           chunks: 'async',
           test: /[\\/]src[\\/]app[\\/]containers[\\/]Releases[\\/]/
         },
+        'app/containers/About': {
+          name: 'app/containers/About',
+          chunks: 'async',
+          test: /[\\/]src[\\/]app[\\/]containers[\\/]About[\\/]/
+        },
 
         'react': {
           name: 'react',

@@ -29,7 +29,7 @@ export class SelectedPodcastStore implements InitializableStore {
 
   getPodcastInfo = () => {
     const uri = this.router.location.pathname
-      .replace('/podcast/', '')
+      .replace('/podcasts/', '')
       .split('/');
     return {
       id: parseInt(uri[0], 10)

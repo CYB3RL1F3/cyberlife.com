@@ -24,5 +24,6 @@ export enum Stores {
   selected_event = 'selected_event',
   player = 'player',
   selected_podcast = 'selected_podcast',
-  selected_release = 'selected_release'
+  selected_release = 'selected_release',
+  about = 'about'
 }
