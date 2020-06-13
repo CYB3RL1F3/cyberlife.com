@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "app/theme";
 import { Spinner } from '../Loading/Loading.styled';
 
 export interface Sizable {

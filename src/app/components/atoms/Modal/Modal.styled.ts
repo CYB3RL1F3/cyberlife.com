@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "app/theme";
 import { ModalStyle } from "app/contexts/ModalContext";
 
 export interface ModalWrapperProps {

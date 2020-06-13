@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "app/theme";
 import ExtensiblePic from 'app/components/molecules/ExtensiblePic';
 
 export const Container = styled.section`
