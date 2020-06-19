@@ -257,12 +257,13 @@ module.exports = {
     new webpack.DefinePlugin(
       configFromEnv
     ),
-    
+    /*
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
       maximumFileSizeToCacheInBytes: 20 * 1024 * 1024
     }),
+    */
     new CopyWebpackPlugin({
       patterns: [
         { from: 'assets/pwa/manifest.json', to: 'pwa/manifest.json' },
@@ -271,6 +272,10 @@ module.exports = {
       ],
     }),
     new WebpackPwaManifest(manifest),
+    new WorkboxPlugin.InjectManifest({
+      swSrc: manifest.serviceworker, // './assets/pwa/service_worker.js',
+      swDest: 'service-worker.js'
+    }),
     new FaviconsWebpackPlugin(
       path.resolve(__dirname, 'src/assets/pwa/favicon-96x96.png')
     )

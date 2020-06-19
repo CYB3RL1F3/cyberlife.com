@@ -6,6 +6,8 @@ import { Provider } from 'mobx-react';
 import { createBrowserHistory } from 'history';
 import { createStores } from 'app/stores';
 import { App } from 'app';
+import { subscribe } from './app/utils/browsers';
+import { updateSubscriptionOnServer } from 'app/actions';
 
 // enable MobX strict mode
 
@@ -32,13 +34,31 @@ ReactDOM.render(
 
 
 // init PWA service worker
-if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator && 'PushManager' in window) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/service-worker.js')
-   .then(registration => {
+   .then(async registration => {
       console.log('SW registered: ', registration);
-    }).catch(registrationError => {
-      console.log('SW registration failed: ', registrationError);
+      const permission = await window.Notification.requestPermission();
+      if (permission) {
+        const s = await subscribe(registration);
+        console.log(s);
+        registration.pushManager.getSubscription()
+          .then((subscription) => {
+            const isSubscribed = !(subscription === null);
+            console.log(subscription);
+
+            updateSubscriptionOnServer(subscription);
+            
+            if (isSubscribed) {
+              console.log('User IS subscribed.');
+            } else {
+              console.log('User is NOT subscribed.');
+            }
+          }).catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      }
     });
   });
 }

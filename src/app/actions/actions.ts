@@ -1,5 +1,6 @@
 import axios, { AxiosPromise } from 'axios';
 import config from 'app/config';
+import { getKey } from 'app/utils/browsers';
 
 const instance = axios.create({
   baseURL: config.api,
@@ -43,3 +44,13 @@ export const getReleaseById = (id: number): AxiosPromise =>
 
 export const sendMail = ({ name, email, subject, message }): AxiosPromise =>
   post('contact', { name, email, subject, message });
+
+export const updateSubscriptionOnServer = (subscription) => {
+  console.log(subscription);
+  post('subscribe', {
+    id: config.notifications.pool,
+    endpoint: subscription.endpoint,
+    auth: getKey(subscription, 'auth'),
+    p256dh: getKey(subscription, 'p256dh')
+  });
+}

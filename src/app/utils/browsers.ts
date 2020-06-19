@@ -1,3 +1,5 @@
+import config from "app/config";
+
 export const isIe = (): boolean => {
   var sAgent = window.navigator.userAgent;
   var Idx = sAgent.indexOf('MSIE');
@@ -18,3 +20,39 @@ export const isFirefox = (): boolean => {
   const ua = navigator.userAgent.toLowerCase();
   return ua.indexOf('firefox') > -1;
 };
+
+export const urlB64ToUint8Array = (base64String) => {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
+export const subscribe = async (registration) => {
+  const applicationServerKey = urlB64ToUint8Array(config.notifications.applicationServerPublicKey);
+  try {
+    const currentSubscription = await registration.pushManager.getSubscription();
+    await currentSubscription.unsubscribe();
+  } catch(e) {
+    console.log(e);
+  }
+  const subscription = await registration.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey
+  });
+  return subscription;
+}
+
+export const getKey = (subscription, key: 'auth' | 'p256dh') => {
+  if (!subscription.getKey) return '';
+  const rawKey = subscription.getKey(key);
+  return btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey)));
+}

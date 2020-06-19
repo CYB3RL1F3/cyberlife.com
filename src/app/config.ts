@@ -8,6 +8,10 @@ export const config = {
   captcha: {
     url: process.env.CAPTCHA_URL,
     siteKey: process.env.CAPTCHA_SITEKEY
+  },
+  notifications: {
+    applicationServerPublicKey: process.env.APPLICATION_SERVER_PUBLIC_KEY,
+    pool: process.env.NOTIFICATION_POOL
   }
 }
 
