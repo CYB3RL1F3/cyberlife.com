@@ -43,7 +43,7 @@
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
     "webpack-cleanup-plugin": "^0.5.1",
-    "webpack-cli": "^3.3.11",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-hot-middleware": "^2.25.0"
   },
@@ -91,7 +91,7 @@
     "sitemap-webpack-plugin": "^0.8.0",
     "spdy": "^4.0.2",
     "styled-components": "^5.1.1",
-    "terser-webpack-plugin": "^3.0.5",
+    "terser-webpack-plugin": "^3.0.6",
     "transform-loader": "^0.2.4",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack-bundle-analyzer": "^3.8.0",
