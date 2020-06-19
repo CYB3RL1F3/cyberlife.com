@@ -1,4 +1,5 @@
 import config from "app/config";
+import { withScope, captureException } from "@sentry/browser";
 
 export const isIe = (): boolean => {
   var sAgent = window.navigator.userAgent;
@@ -36,19 +37,29 @@ export const urlB64ToUint8Array = (base64String) => {
   return outputArray;
 }
 
-export const subscribe = async (registration) => {
+export const unsubscribe = async (registration) => {
+  const currentSubscription = await registration.pushManager.getSubscription();
+  if (currentSubscription) await currentSubscription.unsubscribe();
+}
+
+export const subscribe = async (registration, alreadyTried = false) => {
   const applicationServerKey = urlB64ToUint8Array(config.notifications.applicationServerPublicKey);
   try {
-    const currentSubscription = await registration.pushManager.getSubscription();
-    await currentSubscription.unsubscribe();
+    const subscription = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey
+    });
+    return subscription;
   } catch(e) {
-    console.log(e);
+    await unsubscribe(registration);
+    if (!alreadyTried) subscribe(registration, true);
+    if (alreadyTried) {
+      withScope((scope) => {
+        scope.setExtra("An error occured while trying to subscribe to notifications", e);
+        captureException(e);
+      });
+    }
   }
-  const subscription = await registration.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey
-  });
-  return subscription;
 }
 
 export const getKey = (subscription, key: 'auth' | 'p256dh') => {

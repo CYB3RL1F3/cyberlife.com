@@ -78,7 +78,9 @@ export const theme: Theme = {
   isAndroid: isAndroid(),
   isFirefox: isFirefox(),
   picturePlaceholder: 'rgba(42, 43, 65, 0.5)',
-  fonts: { primary: 'myriad pro' },
+  fonts: { 
+    primary: 'myriad pro' 
+  },
   background: { 
     fromColor: '#1B292C', 
     toColor: '#273e40',

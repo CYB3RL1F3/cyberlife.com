@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import {
   NoGigsHandler,
@@ -16,22 +16,15 @@ import { usePastEventStore } from 'app/hooks/stores';
 import { paths } from "app/paths";
 import { EventModel } from 'app/models';
 import { EventItem } from 'app/components';
+import { observer } from 'mobx-react';
 
 
-export const FallbackEvents: FC = () => {
+export const FallbackEvents: FC = observer(() => {
   const store = usePastEventStore();
 
   useEffect(() => {
     store.init();
-  });
-
-  const loadingSpinner = useMemo(() => {
-    return store.loading ? (
-      <SpinnerHandler>
-        <LoadingSpinner />
-      </SpinnerHandler>
-    ) : null;
-  }, [store.loading]);
+  }, []);
 
   return (
     <Container>
@@ -51,7 +44,7 @@ export const FallbackEvents: FC = () => {
           <SeePastLink>
             Some past gigs:
           </SeePastLink>
-          {store.data ? store.data.map(
+          {store.data && !store.loading ? store.data.map(
             (event: EventModel, index: number) => (
               <EventItem
                 index={index}
@@ -64,7 +57,9 @@ export const FallbackEvents: FC = () => {
               />
             )
           ) : store.loading && (
-            {loadingSpinner}
+            <SpinnerHandler>
+              <LoadingSpinner />
+            </SpinnerHandler>
           )}
         </>
       ) : (
@@ -73,6 +68,6 @@ export const FallbackEvents: FC = () => {
     }
     </Container>
   )
-};
+});
 
 export default FallbackEvents;

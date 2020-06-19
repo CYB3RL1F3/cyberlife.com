@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo, MouseEvent } from 'react';
+import React, { FC, useCallback, MouseEvent } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Stores } from 'app/constants';
 import EventModel from 'app/models/EventModel';
@@ -23,13 +23,6 @@ export const EventsComponent: FC<EventsProps> = observer(({ data, loading, error
     pastEventStore.init();
   }, [pastEventStore.init]);
 
-  const loadingSpinner = useMemo(() => {
-    return pastEventStore.loading ? (
-      <SpinnerHandler>
-        <LoadingSpinner />
-      </SpinnerHandler>
-    ) : null;
-  }, [pastEventStore.loading]);
   if (!!data && data.length > 0 && !loading && !error) {
     return (
       <Container>
@@ -48,7 +41,13 @@ export const EventsComponent: FC<EventsProps> = observer(({ data, loading, error
         )}
         {(!pastEventStore.data || pastEventStore.loading) && (
           <A href={paths.events} onClick={loadPastEvents}>
-            See past gigs... {loadingSpinner}
+            See past gigs... {
+              pastEventStore.loading ? (
+                <SpinnerHandler>
+                  <LoadingSpinner />
+                </SpinnerHandler>
+              ) : null
+            }
           </A>
         )}
         {pastEventStore.data && pastEventStore.data.map(

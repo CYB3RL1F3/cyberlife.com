@@ -32,32 +32,31 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-
 // init PWA service worker
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-   .then(async registration => {
+    navigator.serviceWorker.register('/service-worker.js').then(async registration => {
       console.log('SW registered: ', registration);
-      const permission = await window.Notification.requestPermission();
-      if (permission) {
-        const s = await subscribe(registration);
-        console.log(s);
-        registration.pushManager.getSubscription()
-          .then((subscription) => {
-            const isSubscribed = !(subscription === null);
-            console.log(subscription);
+      window["registration"] = registration;
+      if ('Notification' in window) {
+        const permission = await window.Notification.requestPermission();
+        if (permission === "granted") {
+          await subscribe(registration);
+          registration.pushManager.getSubscription()
+            .then((subscription) => {
+              const isSubscribed = !(subscription === null);
 
-            updateSubscriptionOnServer(subscription);
-            
-            if (isSubscribed) {
-              console.log('User IS subscribed.');
-            } else {
-              console.log('User is NOT subscribed.');
-            }
-          }).catch(registrationError => {
-            console.log('SW registration failed: ', registrationError);
-          });
+              updateSubscriptionOnServer(subscription);
+              
+              if (isSubscribed) {
+                console.log('User IS subscribed to notifications.');
+              } else {
+                console.log('User is NOT subscribed to notifications.');
+              }
+            }).catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        }
       }
     });
   });
