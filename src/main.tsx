@@ -37,7 +37,6 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/service-worker.js').then(async registration => {
       console.log('SW registered: ', registration);
-      window["registration"] = registration;
       if ('Notification' in window) {
         const permission = await window.Notification.requestPermission();
         if (permission === "granted") {

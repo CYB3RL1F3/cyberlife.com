@@ -32,7 +32,7 @@ self.addEventListener('notificationclick', event => {
 workbox.precaching.precacheAndRoute(
   self.__WB_MANIFEST.concat([
     {
-      url: 'offline',
+      url: '/',
       revision: 1
     }
   ])
