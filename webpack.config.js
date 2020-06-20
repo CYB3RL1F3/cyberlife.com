@@ -268,6 +268,8 @@ module.exports = {
       patterns: [
         { from: 'assets/pwa/manifest.json', to: 'pwa/manifest.json' },
         { from: 'assets/pwa/**/*', to: '[name].[ext]' },
+        { from: 'assets/main.css', to: 'main.css' },
+        { from: 'assets/fonts/**.*', to: 'fonts/[name].[ext]' },
         
       ],
     }),
