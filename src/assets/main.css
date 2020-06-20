@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'myriad-pro';
-  src: url('fonts/MyriadPro.ttf') format('ttf');
+  src: url('/fonts/MyriadPro.ttf') format('ttf');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: 'myriad-pro';
-  src: url('fonts/MyriadProItalic.ttf') format('ttf');
+  src: url('/fonts/MyriadProItalic.ttf') format('ttf');
   font-weight: 600;
   font-style: italic;
   font-display: swap;
