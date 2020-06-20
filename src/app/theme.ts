@@ -97,6 +97,24 @@ export const theme: Theme = {
   media
 };
 
+
+export const GlobalStyle = styledComponents.createGlobalStyle`  
+  @font-face {
+    font-family: 'myriad-pro';
+    src: url('https://res.cloudinary.com/hw2jydiif/raw/upload/v1592659302/MyriadPro_vuyw2y.ttf') format('ttf');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'myriad-pro';
+    src: url('https://res.cloudinary.com/hw2jydiif/raw/upload/v1592659318/MyriadProItalic_ygc6sw.ttf') format('ttf');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+  }
+`;
+
 export interface WithThemeProps {
   theme: Theme;
 }
