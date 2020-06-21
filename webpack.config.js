@@ -244,7 +244,7 @@ module.exports = {
     new ForceCaseSensitivityPlugin(),
     new WebpackCleanupPlugin(),
     new ExtractTextPlugin({
-      filename: 'styles.css',
+      filename: 'styles.[hash].css',
       disable: !isProduction
     }),
     new HtmlWebpackPlugin(index),

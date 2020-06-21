@@ -5,11 +5,21 @@ import { ModalContext } from 'app/contexts/ModalContext';
 const Modal: FC = () => {
   const { state, dispatch } = useContext(ModalContext);
   const { picture, initialStyle, finalStyle, onClose, opened, mounted } = state;
+
+
+  const kill = useCallback(() => {
+    if (!opened) 
+    dispatch({
+      type: "unmount"
+    })
+  }, [dispatch, opened]);
+  
   const close = useCallback(() => {
     onClose();
     dispatch({
       type: "close"
     });
+    setTimeout(kill, 800);
   }, [onClose, dispatch]);
   const open = useCallback(() => {
     dispatch({
@@ -23,6 +33,7 @@ const Modal: FC = () => {
       <ModalClickable opened={mounted && opened} onClick={close} />
       <ModalContent
         onClick={open}
+        onmouseleave={kill}
         opened={opened} 
         initialStyle={initialStyle} 
         finalStyle={finalStyle}

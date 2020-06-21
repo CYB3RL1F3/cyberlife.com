@@ -45,7 +45,7 @@ workbox.routing.registerRoute(
     plugins: [
       new workbox.expiration.ExpirationPlugin({
         maxEntries: 100,
-        purgeOnQuotaError: false
+        purgeOnQuotaError: true
       })
     ]
   }),
@@ -59,7 +59,7 @@ workbox.routing.registerRoute(
     plugins: [
       new workbox.expiration.ExpirationPlugin({
         maxEntries: 100,
-        purgeOnQuotaError: false
+        purgeOnQuotaError: true
       })
     ]
   }),
@@ -73,7 +73,7 @@ workbox.routing.registerRoute(
     plugins: [
       new workbox.expiration.ExpirationPlugin({
         maxEntries: 100,
-        purgeOnQuotaError: false
+        purgeOnQuotaError: true
       })
     ]
   }),
@@ -87,7 +87,7 @@ workbox.routing.registerRoute(
     plugins: [
       new workbox.expiration.ExpirationPlugin({
         maxEntries: 100,
-        purgeOnQuotaError: false
+        purgeOnQuotaError: true
       })
     ]
   }),
