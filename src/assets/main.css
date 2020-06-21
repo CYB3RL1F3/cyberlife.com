@@ -1,18 +1,30 @@
 @font-face {
-  font-family: 'myriad-pro';
-  src: url('./fonts/MyriadPro.ttf') format('ttf');
+  font-family: "myriad-pro";
+  src: url("./fonts/MyriadPro.eot"); /* IE9 Compat Modes */
+  src: url("./fonts/MyriadPro.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("./fonts/MyriadPro.otf") format("opentype"), /* Open Type Font */
+    url("./fonts/MyriadPro.svg") format("svg"), /* Legacy iOS */
+    url("./fonts/MyriadPro.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("./fonts/MyriadPro.woff") format("woff"), /* Modern Browsers */
+    url("./fonts/MyriadPro.woff2") format("woff2"); /* Modern Browsers */
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
 }
 
+/* font converted using font-converter.net. thank you! */
 @font-face {
-  font-family: 'myriad-pro';
-  src: url('./fonts/MyriadProItalic.ttf') format('ttf');
+  font-family: "myriad-pro";
+  src: url("./fonts/MyriadProItalic.eot"); /* IE9 Compat Modes */
+  src: url("./fonts/MyriadProItalic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("./fonts/MyriadProItalic.otf") format("opentype"), /* Open Type Font */
+    url("./fonts/MyriadProItalic.svg") format("svg"), /* Legacy iOS */
+    url("./fonts/MyriadProItalic.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("./fonts/MyriadProItalic.woff") format("woff"), /* Modern Browsers */
+    url("./fonts/MyriadProItalic.woff2") format("woff2"); /* Modern Browsers */
   font-weight: 600;
   font-style: italic;
-  font-display: swap;
 }
+
 
 html {
   min-width: 100vw;

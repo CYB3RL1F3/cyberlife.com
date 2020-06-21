@@ -5,7 +5,6 @@ import { Root } from 'app/Root';
 import routes, { RouteType } from './routes';
 import Err404 from './containers/Err404';
 
-import { GlobalStyle } from './theme';
 export const getComponent = (component: string) => lazy(() => import(`app/containers/${component}`))
 
 export const RouteComponent = ({ exact = false, path, component }) => (
@@ -20,7 +19,6 @@ export const RouteComponent = ({ exact = false, path, component }) => (
 // render react DOM
 export const App = hot(module)(({ history }) => (
   <Root>
-    <GlobalStyle />
     <Router history={history}>
       <Switch>
         {routes.map(
