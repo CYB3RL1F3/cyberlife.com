@@ -78,8 +78,8 @@ const ddos = new Ddos({
 app.use(ddos.express);
 app.get('*.js', gzip);
 app.get('*.css', gzip);
-app.get('*.eot', gzip);
-app.get('*.ttf', gzip);
+// app.get('*.eot', gzip);
+// app.get('*.ttf', gzip);
 app.get('*.json', gzip);
 
 app.use(compression({
@@ -93,6 +93,18 @@ Object.keys(routes).forEach((r) => {
     res.status(200).sendFile(appFile);
   });
 });
+
+
+/*
+svg   as "image/svg+xml"                  (W3C: August 2011)
+ttf   as "application/x-font-ttf"         (IANA: March 2013)
+      or "application/x-font-truetype"
+otf   as "application/x-font-opentype"    (IANA: March 2013)
+woff  as "application/font-woff"          (IANA: January 2013)
+woff2 as "application/font-woff2"         (W3C W./E.Draft: May 2014/March 2016)
+eot   as "application/vnd.ms-fontobject"  (IANA: December 2005)
+sfnt  as "application/font-sfnt"          (IANA: March 2013) 
+*/
 
 app.get('*', (req,res) => {
     res.status(404).sendFile(appFile);

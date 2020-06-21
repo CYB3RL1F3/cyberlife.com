@@ -1,6 +1,19 @@
 import * as styledComponents from 'styled-components';
 import { ThemedStyledComponentsModule } from 'styled-components';
 import { isAndroid, isFirefox } from './utils/browsers';
+import myriadProEot from "../assets/fonts/MyriadPro.eot";
+import myriadProOtf from "../assets/fonts/MyriadPro.otf";
+import myriadProTtf from "../assets/fonts/MyriadPro.ttf";
+import myriadProWoff from "../assets/fonts/MyriadPro.woff";
+import myriadProWoff2 from "../assets/fonts/MyriadPro.woff2";
+import myriadProSvg from "../assets/fonts/MyriadPro.svg";
+import myriadProEotItalic from "../assets/fonts/MyriadProItalic.eot";
+import myriadProOtfItalic from "../assets/fonts/MyriadProItalic.otf";
+import myriadProTtfItalic from "../assets/fonts/MyriadProItalic.ttf";
+import myriadProWoffItalic from "../assets/fonts/MyriadProItalic.woff";
+import myriadProWoff2Italic from "../assets/fonts/MyriadProItalic.woff2";
+import myriadProSvgItalic from "../assets/fonts/MyriadProItalic.svg";
+
 
 export interface Theme {
   color: string;
@@ -96,6 +109,35 @@ export const theme: Theme = {
   },
   media
 };
+
+
+export const GlobalStyle = styledComponents.createGlobalStyle`
+@font-face {
+  font-family: "myriad-pro";
+  src: url(${myriadProEot}); /* IE9 Compat Modes */
+  src: url("./fonts/MyriadPro.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url(${myriadProOtf}) format("opentype"), /* Open Type Font */
+    url(${myriadProSvg}) format("svg"), /* Legacy iOS */
+    url(${myriadProTtf}) format("truetype"), /* Safari, Android, iOS */
+    url(${myriadProWoff}) format("woff"), /* Modern Browsers */
+    url(${myriadProWoff2}) format("woff2"); /* Modern Browsers */
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myriad-pro";
+  src: url(${myriadProEotItalic});
+  src: url("./fonts/MyriadProItalic.eot?#iefix") format("embedded-opentype"),
+    url(${myriadProOtfItalic}) format("opentype"), 
+    url(${myriadProSvgItalic}) format("svg"), 
+    url(${myriadProTtfItalic}) format("truetype"),
+    url(${myriadProWoffItalic}) format("woff"),
+    url(${myriadProWoff2Italic}) format("woff2");
+  font-weight: 600;
+  font-style: italic;
+}
+`;
 
 export interface WithThemeProps {
   theme: Theme;
