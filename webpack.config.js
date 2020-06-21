@@ -26,8 +26,8 @@ const domain = process.env.domain || 'localhost:3000';
 const cyberlife = {
   description: "Inspired by a wide range of electronic genres, between dub techno, IDM, drum and bass, dubstep, tribalistic world music, ambient, trip hop, psychedelic rock & goa trance, Cyberlife, who got rooted years ago in the techno culture, brings the ambition to shape a very personal style, surfing on forward thinking, psychedelic, hypnotic and melancholic vibes. By applying layers of effects on stretched field recordings or destructured analog synths jams on a large scale of tempos, the exploration of the meanders of the matrix of electronic music defines his director line, with an aim to find transcendance and reveal a futuristic and organic universe. As both DJ and producer, he gets a natural attraction for modern and organic sounds, mixing with old school influences. Don't look for the nerd behind this name, keep the mystery and unpredictability, and share a musical mindtrip.",
   title: "Cyberlife",
-  url: `https://${domain}`,
-  image: "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/25396214_732178463652854_278218222177645579_n.png?_nc_cat=105&_nc_ht=scontent-cdt1-1.xx&oh=5da5c1ef60f97b1162a42f75f0c96f45&oe=5CC89199"
+  url: `https://cyberlife-music.com`,
+  image: "https://res.cloudinary.com/hw2jydiif/image/upload/v1592758419/android-icon-512x512_rd0xq8.png"
 }
 
 let env = dotenv.config().parsed;
