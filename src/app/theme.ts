@@ -92,7 +92,7 @@ export const theme: Theme = {
   isFirefox: isFirefox(),
   picturePlaceholder: 'rgba(42, 43, 65, 0.5)',
   fonts: { 
-    primary: 'myriad pro' 
+    primary: 'myriad-pro' 
   },
   background: { 
     fromColor: '#1B292C', 

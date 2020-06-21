@@ -8,6 +8,7 @@ import { createStores } from 'app/stores';
 import { App } from 'app';
 import { subscribe } from './app/utils/browsers';
 import { updateSubscriptionOnServer } from 'app/actions';
+import { GlobalStyle } from 'app/theme';
 
 // enable MobX strict mode
 
@@ -27,6 +28,7 @@ Sentry.init({
 // render react DOM
 ReactDOM.render(
   <Provider {...rootStore}>
+    <GlobalStyle />
     <App history={history} />
   </Provider>,
   document.getElementById('root')
