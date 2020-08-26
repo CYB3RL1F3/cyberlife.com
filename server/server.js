@@ -7,6 +7,7 @@ const path = require('path');
 const compression = require('compression');
 const Ddos = require('ddos');
 const serveStatic = require('serve-static');
+const player = require('./player');
 
 const routes = {
   podcasts: "/",
@@ -88,8 +89,24 @@ app.use(compression({
 
 app.use(serveStatic(path.join(__dirname, '../dist')));
 
+// app routes...
 Object.keys(routes).forEach((r) => {
   app.get(routes[r], (req,res) => {
+
+  // FB audio player
+    ua = req.headers['user-agent'];
+    console.log('QUERY RCEIVED');
+    console.log(ua);
+    console.log(req.path);
+    if (/(podcasts)\/[0-9]/gmi.test(req.path)) {
+      console.log('HEEEERREEEE');
+      if (/^(facebookexternalhit|twitterbot)/gmi.test(ua)) {
+        console.log('ALLL VALIID');
+        return player(req, res);
+      }
+    }
+    
+    // Classic route
     res.status(200).sendFile(appFile);
   });
 });
