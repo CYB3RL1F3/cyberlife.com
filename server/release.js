@@ -20,7 +20,7 @@ const releaseDetails = async (req, res, appFile) => {
     });
     if (!data) throw new Error('release not found');
     const title = data.title;
-    const description = data.info;
+    const description = `released on ${data.releaseDate}`;
     const image = data.thumb;
     const meta = {
       'charset': 'utf-8',
@@ -41,12 +41,8 @@ const releaseDetails = async (req, res, appFile) => {
       'og:site_name': "Cyberlife music",
       'fb:app_id': process.env.FB_APP_ID,
     }
-    const name = `<title>Cyberlife - ${title}</title>`
-    const heads = Object.keys(meta).map(((k) => `    <meta name="${k}" content="${meta[k]}" data-react-helmet="true" />`)).join('\n');
-    const html = await fileReplace(appFile, title, {
-      '<title>Cyberlife</title>': `${heads} ${name}`
-    });
-    console.log(html);
+    const name = `Cyberlife - ${title}`
+    const html = await fileReplace(appFile, name, meta);
     return res.status(200).send(html);
     /*
     return readFile(appFile, {

@@ -35,9 +35,12 @@ export const Heads: FC<HeadsProps> = ({ title, description, url, image, conglome
   return (
     <Helmet>
       <title>{finalTitle}</title>
-      {Object.keys(meta).map(m => (
-        <meta name={m} content={meta[m]} data-react-helmet="true" />
-      ))}
+      {Object.keys(meta).map(name => {
+        const content = meta[name];
+        if (name.indexOf('og:') > -1) return <meta property={name} content={content} data-react-helmet="true" />;
+        if (name === "Content-Type") return <meta http-equiv={name} content={content} data-react-helmet="true" />;
+        return <meta name={name} content={content} data-react-helmet="true" />
+      })}
     </Helmet>
   )
 } 

@@ -43,12 +43,10 @@ const eventDetails = async (req, res, appFile) => {
       'og:site_name': "Cyberlife music",
       'fb:app_id': process.env.FB_APP_ID,
     }
-    const newTitle = `<title>Cyberlife @${title} - ${data.date}</title>`;
+    const newTitle = `Cyberlife @${title} - ${data.date}`;
 
     const heads = Object.keys(meta).map(((k) => `    <meta name="${k}" content="${meta[k]}" data-react-helmet="true" />`)).join('\n');
-    const html = await fileReplace(appFile, title, {
-      '<title>Cyberlife</title>': `${newTitle} ${heads}`
-    });
+    const html = await fileReplace(appFile, newTitle, meta);
     return res.status(200).send(html);
   } catch(e) {
     console.log(e);

@@ -45,11 +45,8 @@ const player = async (req, res, appFile) => {
       'music:musician': "https://www.facebook.com/cyberlife.music",
       'music:duration': track.duration
     }
-    const title = `<title>Cyberlife - ${track.title}</title>`;
-    const heads = Object.keys(meta).map(((k) => `    <meta name="${k}" content="${meta[k]}" data-react-helmet="true" />`)).join('\n');
-    const html = await fileReplace(appFile, track.title, {
-      '<title>Cyberlife</title>': `${title} ${heads}`
-    });
+    const title = `Cyberlife - ${track.title}`;
+    const html = await fileReplace(appFile, title, meta);
     return res.status(200).send(html);
     /*
     return readFile(appFile, {

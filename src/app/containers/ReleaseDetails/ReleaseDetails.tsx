@@ -33,14 +33,15 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
     title,
     thumb,
     tracklist: tracks,
+    releaseDate,
     releaseDateFormatted,
     cat,
     label,
     discogs,
-    styles,
-    info
+    styles
   } = data;
   const url = window.document.location.href;
+  const info = `released on ${releaseDate}`
   return (
     <Container>
       <Heads title={title} description={info} image={thumb} url={url} />
