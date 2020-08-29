@@ -7,49 +7,46 @@ const instance = axios.create({
   timeout: 20000
 });
 
-const player = async (req, res, appFile) => {
+const releaseDetails = async (req, res, appFile) => {
   const id = req.params.id;
   try {
-    const { data } = await instance.get('playlist', {
+    const { data } = await instance.get('release', {
       params: {
-        name: 'dj-sets'
+        id
       },
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     });
-    if (!data || !data.tracks) throw new Error('track not found');
-    const track = data.tracks.find(t => t.id === parseInt(id));
-    if (!track) throw new Error('track not found');
+    if (!data) throw new Error('release not found');
+    const title = data.title;
+    const description = data.info;
+    const image = data.thumb;
     const meta = {
       'charset': 'utf-8',
       'robots': 'all',
       'theme-color': '#36595C',
       'viewport': 'width=device-width, initial-scale=1.0, minimal-ui',
-      'description': track.description,
-      'og:description': track.description,
-      'twitter:description': track.description,
-      'title': track.title,
-      'og:title': track.title,
-      'twitter:title': track.title,
-      'og:type': 'music.song',
-      'Content-Type': 'text/html',
+      'description': description,
+      'og:description': description,
+      'twitter:description': description,
+      'title': title,
+      'og:title': title,
+      'twitter:title': title,
+      'og:type': 'article',
       'og:url': `https://cyberlife-music.com/${req.path}`,
-      'og:audio': track.url,
-      'og:audio:type': 'audio/vnd.facebook.bridge',
-      'og:image': track.artwork,
-      'image': track.artwork,
-      'twitter:card': track.artwork,
+      'og:image': image,
+      'image': image,
+      'twitter:card': image,
       'og:site_name': "Cyberlife music",
       'fb:app_id': process.env.FB_APP_ID,
-      'music:musician': "https://www.facebook.com/cyberlife.music",
-      'music:duration': track.duration
     }
-    const title = `<title>Cyberlife - ${track.title}</title>`;
+    const name = `<title>Cyberlife - ${title}</title>`
     const heads = Object.keys(meta).map(((k) => `    <meta name="${k}" content="${meta[k]}" />`)).join('\n');
-    const html = await fileReplace(appFile, track.title, {
-      '<title>Cyberlife</title>': `${title} ${heads}`
+    const html = await fileReplace(appFile, title, {
+      '<title>Cyberlife</title>': `${heads} ${name}`
     });
+    console.log(html);
     return res.status(200).send(html);
     /*
     return readFile(appFile, {
@@ -68,4 +65,4 @@ const player = async (req, res, appFile) => {
   }
 }
 
-module.exports = player;
+module.exports = releaseDetails;

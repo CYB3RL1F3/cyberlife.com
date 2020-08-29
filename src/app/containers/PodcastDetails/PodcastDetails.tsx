@@ -35,6 +35,8 @@ interface PodcastDetailsProps {
   data: TrackModel;
 }
 
+// http://connect.facebook.net/en_US/vb.js
+
 export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(({ data }) => {
   const store = usePlayerStore();
   const { currentTrack, play, pause } = store;

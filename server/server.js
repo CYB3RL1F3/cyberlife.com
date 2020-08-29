@@ -8,6 +8,9 @@ const compression = require('compression');
 const Ddos = require('ddos');
 const serveStatic = require('serve-static');
 const player = require('./player');
+const releaseDetails = require('./release');
+const eventDetails = require('./event');
+const fileReplace = require('./file');
 
 const routes = {
   podcasts: "/",
@@ -89,22 +92,79 @@ app.use(compression({
 
 app.use(serveStatic(path.join(__dirname, '../dist')));
 
+const cyberlife = (title) => ({
+  description: "Inspired by a wide range of electronic genres, between dub techno, IDM, drum and bass, dubstep, tribalistic world music, ambient, trip hop, psychedelic rock & goa trance, Cyberlife, who got rooted years ago in the techno culture, brings the ambition to shape a very personal style, surfing on forward thinking, psychedelic, hypnotic and melancholic vibes. By applying layers of effects on stretched field recordings or destructured analog synths jams on a large scale of tempos, the exploration of the meanders of the matrix of electronic music defines his director line, with an aim to find transcendance and reveal a futuristic and organic universe. As both DJ and producer, he gets a natural attraction for modern and organic sounds, mixing with old school influences. Don't look for the nerd behind this name, keep the mystery and unpredictability, and share a musical mindtrip.",
+  title: `Cyberlife - ${title}`,
+  url: `https://cyberlife-music.com`,
+  image: "https://res.cloudinary.com/hw2jydiif/image/upload/v1592758419/android-icon-512x512_rd0xq8.png"
+});
+
+const meta = (name, req) => {
+  const { title, description, url, image } = cyberlife(name);
+  return {
+    'charset': 'utf-8',
+    'robots': 'all',
+    'theme-color': '#36595C',
+    'viewport': 'width=device-width, initial-scale=1.0, minimal-ui',
+    'description': description,
+    'og:description': description,
+    'twitter:description': description,
+    'title': title,
+    'og:title': title,
+    'twitter:title': title,
+    'og:type': 'article',
+    'og:url': `${url}/${req.path}`,
+    'og:image': image,
+    'image': image,
+    'twitter:card': image,
+    'og:site_name': "Cyberlife music",
+    'fb:app_id': process.env.FB_APP_ID,
+    }
+}
+
+const getTitle = (req) => {
+  switch(true) {
+    case /events/gmi.test(req.path):
+      return 'Events'
+    case /releases/gmi.test(req.path):
+      return 'Releases'
+    case /charts/gmi.test(req.path):
+      return 'Charts'
+    case /contact/gmi.test(req.path):
+      return 'Contact'
+    case /about/gmi.test(req.path):
+      return 'About this website'
+    default:
+      return null;
+  }
+}
+
 // app routes...
 Object.keys(routes).forEach((r) => {
-  app.get(routes[r], (req,res) => {
+  app.get(routes[r], async (req,res) => {
 
   // FB audio player
     ua = req.headers['user-agent'];
     console.log('QUERY RCEIVED');
     console.log(ua);
     console.log(req.path);
-    if (/(podcasts)\/[0-9]/gmi.test(req.path)) {
-      console.log('HEEEERREEEE');
-      if (/^(facebookexternalhit|twitterbot)/gmi.test(ua)) {
-        console.log('ALLL VALIID');
-        return player(req, res);
+    // if (/^(facebookexternalhit|twitterbot)/gmi.test(ua)) {
+      if (/(podcasts)\/[0-9]/gmi.test(req.path)) {
+        return player(req, res, appFile);
+      } else if (/(releases)\/[0-9]/gmi.test(req.path)) {
+        return releaseDetails(req, res, appFile);
+      } else if (/(events)\/[a-zA-Z0-9]*/gmi.test(req.path)) {
+        return eventDetails(req, res, appFile);
+      } else {
+        const title = getTitle(req);
+        const data = meta(title, req);
+        const heads = Object.keys(data).map(((k) => `    <meta name="${k}" content="${data[k]}" />`)).join('\n');
+        const html = await fileReplace(appFile, title, {
+          '<title>Cyberlife</title>': `${heads} <title>Cyberlife - ${title}</title>`
+        });
+        return res.status(200).send(html); 
       }
-    }
+    // }
     
     // Classic route
     res.status(200).sendFile(appFile);

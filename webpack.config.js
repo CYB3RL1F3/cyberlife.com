@@ -56,6 +56,7 @@ const index = {
     'theme-color': '#36595C',
     'Content-Type': 'text/html; charset=utf-8',
     'viewport': 'width=device-width, initial-scale=1.0, minimal-ui',
+    /*
     'description': cyberlife.description,
     'og:title': cyberlife.title,
     'og:description': cyberlife.description,
@@ -67,6 +68,7 @@ const index = {
     'twitter:description': cyberlife.description,
     'twitter:url': cyberlife.url,
     'twitter:image': cyberlife.image
+    */
   },
   minify: {
     collapseWhitespace: true,

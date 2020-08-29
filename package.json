@@ -78,6 +78,7 @@
     "react-backdrop-filter": "https://github.com/CYB3RL1F3/react-backdrop-filter.git",
     "react-dom": "^16.13.1",
     "react-graceful-image": "^1.5.0",
+    "react-helmet": "^6.1.0",
     "react-html-parser": "^2.0.2",
     "react-lottie": "^1.2.3",
     "react-mapbox-gl": "^4.8.6",
