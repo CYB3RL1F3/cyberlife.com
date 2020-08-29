@@ -16,7 +16,7 @@ export class PodcastModel {
       (key: string): void => {
         if (key === 'tracks') {
           this.tracks = podcast.tracks.map(
-            (track): TrackModel => new TrackModel(track, podcast.artwork)
+            (track): TrackModel => new TrackModel(track, podcast.artwork.replace('large', 't500x500'))
           );
         } else {
           this[key] = podcast[key];

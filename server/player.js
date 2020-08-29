@@ -21,6 +21,7 @@ const player = async (req, res, appFile) => {
     if (!data || !data.tracks) throw new Error('track not found');
     const track = data.tracks.find(t => t.id === parseInt(id));
     if (!track) throw new Error('track not found');
+    const image = track.artwork && track.artwork.replace('large', 't500x500');
     const meta = {
       'charset': 'utf-8',
       'robots': 'all',
@@ -37,9 +38,9 @@ const player = async (req, res, appFile) => {
       'og:url': `https://cyberlife-music.com/${req.path}`,
       'og:audio': track.url,
       'og:audio:type': 'audio/vnd.facebook.bridge',
-      'og:image': track.artwork,
-      'image': track.artwork,
-      'twitter:card': track.artwork,
+      'og:image': image,
+      'image': image,
+      'twitter:card': image,
       'og:site_name': "Cyberlife music",
       'fb:app_id': process.env.FB_APP_ID,
       'music:musician': "https://www.facebook.com/cyberlife.music",
