@@ -2,6 +2,7 @@ const { readFile } = require('fs');
 
 const getType = (type) => {
   if (type.indexOf('og:') > -1) return 'property';
+  if (type.indexOf('fb:app_id') > -1) return 'property';
   if (type === "Content-Type") return 'http-equiv';
   return 'name';
 }

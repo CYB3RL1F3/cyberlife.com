@@ -39,12 +39,13 @@ const player = async (req, res, appFile) => {
       'og:audio': track.url,
       'og:audio:type': 'audio/vnd.facebook.bridge',
       'og:image': image,
+      'og:image:secure_url': image,
       'image': image,
       'twitter:card': image,
       'og:site_name': "Cyberlife music",
       'fb:app_id': process.env.FB_APP_ID,
-      'music:musician': "https://www.facebook.com/cyberlife.music",
-      'music:duration': track.duration
+      'og:music:musician': "https://www.facebook.com/cyberlife.music",
+      'og:music:duration': track.duration
     }
     const title = `Cyberlife - ${track.title}`;
     const html = await fileReplace(appFile, title, meta);
