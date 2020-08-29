@@ -7,6 +7,7 @@ import { TrackModel } from 'app/models';
 import { observer } from 'mobx-react';
 import { usePlayerStore } from 'app/hooks/stores';
 import { PodcastItem } from 'app/components/molecules';
+import { Heads } from 'app/components/atoms';
 
 export interface PlaylistProps {
   data: PlaylistModel;
@@ -31,6 +32,7 @@ const PodcastsComponent: FC<PlaylistProps> = observer(({ data }) => {
   }, [currentTrack, data, play, pause]);
   return (
     <Container>
+      <Heads title="Podcasts" conglomerateTitle />
       {data && data.tracks && data.tracks.length ? 
         data.tracks.map(
           (track: TrackModel, index: number): JSX.Element => {

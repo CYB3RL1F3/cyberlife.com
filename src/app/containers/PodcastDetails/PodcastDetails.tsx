@@ -20,6 +20,7 @@ import {
 import { ThumbHandler } from 'app/components/molecules/PodcastItem/PodcastItem.styled';
 import PlayBtn from 'app/components/atoms/PlayBtn';
 import Track from 'app/components/atoms/Track';
+import Heads from 'app/components/atoms/Heads';
 import { observer } from 'mobx-react';
 import { usePlayerStore } from 'app/hooks/stores';
 import {
@@ -76,11 +77,13 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(({ data
       genre,
       download,
       license,
-      description
+      description,
+      url
     } = data;
     const descriptionHtml = description.replace(/(\n)/g, '<br />');
     return (
       <Container>
+        <Heads title={title} description={description} image={artwork} url={url} />
         <TitleHandler>
           <Title>{title}</Title>
           <GoBack path={paths.podcasts}>&lt; Back</GoBack>

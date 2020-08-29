@@ -46,7 +46,7 @@ const player = async (req, res, appFile) => {
       'music:duration': track.duration
     }
     const title = `<title>Cyberlife - ${track.title}</title>`;
-    const heads = Object.keys(meta).map(((k) => `    <meta name="${k}" content="${meta[k]}" />`)).join('\n');
+    const heads = Object.keys(meta).map(((k) => `    <meta name="${k}" content="${meta[k]}" data-react-helmet="true" />`)).join('\n');
     const html = await fileReplace(appFile, track.title, {
       '<title>Cyberlife</title>': `${title} ${heads}`
     });

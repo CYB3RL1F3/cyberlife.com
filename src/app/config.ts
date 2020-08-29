@@ -12,6 +12,9 @@ export const config = {
   notifications: {
     applicationServerPublicKey: process.env.APPLICATION_SERVER_PUBLIC_KEY,
     pool: process.env.NOTIFICATION_POOL
+  },
+  fb: {
+    appId: process.env.FB_APP_ID
   }
 }
 

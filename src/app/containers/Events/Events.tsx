@@ -1,6 +1,7 @@
 import React, { FC, useCallback, MouseEvent } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Stores } from 'app/constants';
+import { Heads } from 'app/components/atoms';
 import EventModel from 'app/models/EventModel';
 import { EventItem } from 'app/components/molecules/EventItem';
 import { Container, SpinnerHandler, LoadingSpinner, A } from './Events.styled';
@@ -26,6 +27,7 @@ export const EventsComponent: FC<EventsProps> = observer(({ data, loading, error
   if (!!data && data.length > 0 && !loading && !error) {
     return (
       <Container>
+        <Heads title="Events" url={window.document.location.href} conglomerateTitle />
         {data.map(
           (event: EventModel, index: number): JSX.Element => (
             <EventItem

@@ -14,6 +14,7 @@ import {
 import { validate, initialValues } from './ContactForm.data';
 import Captcha from 'react-recaptcha';
 import config from 'app/config';
+import { Heads } from 'app/components/atoms';
 
 interface ContactFormProps {
   onSubmit: any;
@@ -84,6 +85,7 @@ export const ContactForm: FC<ContactFormProps> = memo(({ onSubmit, hasFailed }) 
       
         return (
           <Form onSubmit={handleSubmit}>
+            <Heads title="Contact" conglomerateTitle />
             <Input
               type="text"
               name="name"

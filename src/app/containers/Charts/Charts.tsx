@@ -6,6 +6,7 @@ import { Container, Unavailable } from './Charts.styled';
 import ChartModel from 'app/models/ChartModel';
 import { withLoadingStore } from 'app/hoc';
 import { Title } from 'types/charts';
+import { Heads } from 'app/components/atoms';
 
 export interface ChartProps extends RouteComponentProps<any> {
   data: ChartModel;
@@ -15,6 +16,7 @@ export const ChartsComponent: FC<ChartProps> = ({ data }) => {
   if (data) {
     return (
       <Container>
+        <Heads url={window.document.location.href} title="Charts" conglomerateTitle />
         {data.titles.map(
           (track: Title, index: number): JSX.Element => (
             <ChartItem

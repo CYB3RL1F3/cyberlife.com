@@ -21,6 +21,7 @@ import { Track } from 'types/releases';
 import { ReleasePlayer } from 'app/components/molecules';
 
 import Button from 'app/components/atoms/Button';
+import Heads from 'app/components/atoms/Heads';
 import { paths } from "app/paths";
 export interface ReleaseDetailsProps {
   data: ReleaseModel;
@@ -36,10 +37,13 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
     cat,
     label,
     discogs,
-    styles
+    styles,
+    info
   } = data;
+  const url = window.document.location.href;
   return (
     <Container>
+      <Heads title={title} description={info} image={thumb} url={url} />
       <TitleHandler>
         <Title>{title}</Title>
         <GoBack path={paths.releases}>&lt; Back</GoBack>

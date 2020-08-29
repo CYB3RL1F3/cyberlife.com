@@ -42,7 +42,7 @@ const releaseDetails = async (req, res, appFile) => {
       'fb:app_id': process.env.FB_APP_ID,
     }
     const name = `<title>Cyberlife - ${title}</title>`
-    const heads = Object.keys(meta).map(((k) => `    <meta name="${k}" content="${meta[k]}" />`)).join('\n');
+    const heads = Object.keys(meta).map(((k) => `    <meta name="${k}" content="${meta[k]}" data-react-helmet="true" />`)).join('\n');
     const html = await fileReplace(appFile, title, {
       '<title>Cyberlife</title>': `${heads} ${name}`
     });

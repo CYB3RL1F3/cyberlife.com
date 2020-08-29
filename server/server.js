@@ -158,7 +158,7 @@ Object.keys(routes).forEach((r) => {
       } else {
         const title = getTitle(req);
         const data = meta(title, req);
-        const heads = Object.keys(data).map(((k) => `    <meta name="${k}" content="${data[k]}" />`)).join('\n');
+        const heads = Object.keys(data).map(((k) => `    <meta name="${k}" content="${data[k]}" data-react-helmet="true" />`)).join('\n');
         const html = await fileReplace(appFile, title, {
           '<title>Cyberlife</title>': `${heads} <title>Cyberlife - ${title}</title>`
         });
