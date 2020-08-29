@@ -5,7 +5,7 @@ import { ReleaseModel } from 'app/models/ReleaseModel';
 import { ReleaseItem } from 'app/components/molecules/ReleaseItem';
 import { Container } from './Releases.styled';
 import { withLoadingStore } from 'app/hoc';
-import { Heads } from 'app/components/atoms';
+import Heads from 'app/components/atoms/Heads';
 
 export interface ReleasesProps extends RouteComponentProps<any> {
   data: ReleaseModel[];

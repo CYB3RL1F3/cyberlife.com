@@ -1,7 +1,7 @@
 import React, { FC, memo, MouseEvent } from 'react';
 import Lottie from 'react-lottie';
 import { Container, H3, P, LottieHandler, A } from './ContactSuccess.styled';
-import { Heads } from 'app/components/atoms';
+import Heads from 'app/components/atoms/Heads';
 
 const animationData = require('assets/lotties/mail.json');
 
@@ -23,7 +23,7 @@ export const ContactSuccess: FC<ContactSuccessProps> = memo(({
 
   return (
     <Container>
-      <Heads title="Contact" conglomerateTitle />
+      <Heads title="Contact" conglomerateTitle url={window.document.location.href} />
       <H3>Thanks for contact !</H3>
       <P>
         Your message has been <u>successfully expedied</u>. <br /> You'll get

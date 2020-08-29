@@ -6,7 +6,7 @@ import { Container, Unavailable } from './Charts.styled';
 import ChartModel from 'app/models/ChartModel';
 import { withLoadingStore } from 'app/hoc';
 import { Title } from 'types/charts';
-import { Heads } from 'app/components/atoms';
+import Heads from 'app/components/atoms/Heads';
 
 export interface ChartProps extends RouteComponentProps<any> {
   data: ChartModel;

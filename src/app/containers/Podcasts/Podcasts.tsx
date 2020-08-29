@@ -7,7 +7,7 @@ import { TrackModel } from 'app/models';
 import { observer } from 'mobx-react';
 import { usePlayerStore } from 'app/hooks/stores';
 import { PodcastItem } from 'app/components/molecules';
-import { Heads } from 'app/components/atoms';
+import Heads from 'app/components/atoms/Heads';
 
 export interface PlaylistProps {
   data: PlaylistModel;

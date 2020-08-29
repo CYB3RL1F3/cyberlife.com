@@ -4,7 +4,7 @@ import { Stores } from "app/constants";
 import { PostModel } from 'app/models/PostModel';
 import { Container, HtmlBlock, PictureHandler, Picture } from "./About.styled";
 import { parseHtml } from "app/utils/html";
-import { Heads } from 'app/components/atoms';
+import Heads from 'app/components/atoms/Heads';
 
 interface AboutComponentProps {
   data: PostModel;
