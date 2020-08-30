@@ -33,7 +33,6 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
     title,
     thumb,
     tracklist: tracks,
-    releaseDate,
     releaseDateFormatted,
     cat,
     label,
@@ -41,10 +40,10 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
     styles
   } = data;
   const url = window.document.location.href;
-  const info = `released on ${releaseDate}`
+  const description = `${label} (${cat})\nRelease date: ${releaseDateFormatted}`;
   return (
     <Container>
-      <Heads title={title} description={info} image={thumb} url={url} />
+      <Heads title={`Cyberlife - ${title}`} description={description} image={thumb} url={url} />
       <TitleHandler>
         <Title>{title}</Title>
         <GoBack path={paths.releases}>&lt; Back</GoBack>

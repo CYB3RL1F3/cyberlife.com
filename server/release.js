@@ -1,6 +1,7 @@
 const axios = require('axios');
 require('dotenv').config();
 const fileReplace = require('./file');
+const { format } = require('date-fns');
 
 const instance = axios.create({
   baseURL: process.env.API_URL,
@@ -20,7 +21,7 @@ const releaseDetails = async (req, res, appFile) => {
     });
     if (!data) throw new Error('release not found');
     const title = data.title;
-    const description = `released on ${data.releaseDate}`;
+    const description = `${data.label} (${data.cat})\nRelease date: ${format(new Date(data.releaseDate.replace(/(00)/mgi, '01')), 'dd/MM/yyyy')}`;
     const image = data.thumb;
     const meta = {
       'charset': 'utf-8',

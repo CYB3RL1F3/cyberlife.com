@@ -1,6 +1,7 @@
 const axios = require('axios');
 require('dotenv').config();
 const fileReplace = require('./file');
+const { format } = require('date-fns');
 
 const instance = axios.create({
   baseURL: process.env.API_URL,
@@ -21,8 +22,9 @@ const eventDetails = async (req, res, appFile) => {
       }
     });
     if (!data) throw new Error('event not found');
-    const title = data.title;
-    const description = `@${data.location.address} on ${data.date}`;
+    const date = format(new Date(data.date), 'dd/MM/yyyy');
+    const title = `Cyberlife @ ${data.title}`;
+    const description = `${date}, at ${data.location.address}`;
     const image = data.flyer.front;
     const meta = {
       'charset': 'utf-8',
@@ -43,10 +45,8 @@ const eventDetails = async (req, res, appFile) => {
       'og:site_name': "Cyberlife music",
       'fb:app_id': process.env.FB_APP_ID,
     }
-    const newTitle = `Cyberlife @${title} - ${data.date}`;
 
-    const heads = Object.keys(meta).map(((k) => `    <meta name="${k}" content="${meta[k]}" data-react-helmet="true" />`)).join('\n');
-    const html = await fileReplace(appFile, newTitle, meta);
+    const html = await fileReplace(appFile, title, meta);
     return res.status(200).send(html);
   } catch(e) {
     console.log(e);

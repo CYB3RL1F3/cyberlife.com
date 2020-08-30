@@ -16,8 +16,8 @@ import { usePastEventStore } from 'app/hooks/stores';
 import { paths } from "app/paths";
 import { EventModel } from 'app/models';
 import { EventItem } from 'app/components';
+import Heads from 'app/components/atoms/Heads';
 import { observer } from 'mobx-react';
-
 
 export const FallbackEvents: FC = observer(() => {
   const store = usePastEventStore();
@@ -28,6 +28,7 @@ export const FallbackEvents: FC = observer(() => {
 
   return (
     <Container>
+      <Heads title="Events" url={window.document.location.href} conglomerateTitle />
       <NoGigsHandler>
         <NoGigsText>No gigs to come...</NoGigsText>
         <NoGigsSmiley>:(</NoGigsSmiley>

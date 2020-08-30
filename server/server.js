@@ -124,15 +124,15 @@ const meta = (name, req) => {
 
 const getTitle = (req) => {
   switch(true) {
-    case /events/gmi.test(req.path):
+    case /(events)/gmi.test(req.path):
       return 'Events'
-    case /releases/gmi.test(req.path):
+    case /(releases)/gmi.test(req.path):
       return 'Releases'
-    case /charts/gmi.test(req.path):
+    case /(charts)/gmi.test(req.path):
       return 'Charts'
-    case /contact/gmi.test(req.path):
+    case /(contact)/gmi.test(req.path):
       return 'Contact'
-    case /about/gmi.test(req.path):
+    case /(about)/gmi.test(req.path):
       return 'About this website'
     default:
       return null;
