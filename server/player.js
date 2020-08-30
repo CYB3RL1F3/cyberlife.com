@@ -22,14 +22,15 @@ const player = async (req, res, appFile) => {
     const track = data.tracks.find(t => t.id === parseInt(id));
     if (!track) throw new Error('track not found');
     const image = track.artwork && track.artwork.replace('large', 't500x500');
+    const description = track.description.replace(/\"/gmi, '');
     const meta = {
       'charset': 'utf-8',
       'robots': 'all',
       'theme-color': '#36595C',
       'viewport': 'width=device-width, initial-scale=1.0, minimal-ui',
-      'description': track.description,
-      'og:description': track.description,
-      'twitter:description': track.description,
+      'description': description,
+      'og:description': description,
+      'twitter:description': description,
       'title': track.title,
       'og:title': track.title,
       'twitter:title': track.title,
