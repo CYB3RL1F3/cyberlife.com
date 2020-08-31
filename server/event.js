@@ -43,7 +43,7 @@ const eventDetails = async (req, res, appFile) => {
       'og:image': image,
       'image': image,
       'twitter:image': image,
-      'twitter:card': 'summary_large_image',
+      'twitter:card': 'summary',
       'og:site_name': "Cyberlife music",
       'twitter:site': '@cyberlife_music',
       'fb:app_id': process.env.FB_APP_ID,

@@ -40,7 +40,7 @@ const releaseDetails = async (req, res, appFile) => {
       'image': image,
       'og:image:alt': title,
       'twitter:image': image,
-      'twitter:card': 'summary_large_image',
+      'twitter:card': 'summary',
       'og:site_name': "Cyberlife music",
       'twitter:site': '@cyberlife_music',
       'fb:app_id': process.env.FB_APP_ID,
