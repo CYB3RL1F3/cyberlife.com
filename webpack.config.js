@@ -67,17 +67,20 @@ const index = {
     'viewport': 'width=device-width, initial-scale=1.0, minimal-ui',
     
     'description': meta('description', cyberlife.description),
-    'og:title': meta('og:title', cyberlife.title),
     'og:description': meta('og:description', cyberlife.description),
+    'twitter:description': meta('twitter:description', cyberlife.description),
+
+    'title': meta('title', cyberlife.title),
+    'og:title': meta('og:title', cyberlife.title),
+    'twitter:title': meta('twitter:title', cyberlife.title),
+
     'og:url': meta('og:url', cyberlife.url),
+    'twitter:image': meta('twitter:image', cyberlife.image),
     'og:image': meta('og:image', cyberlife.image),
-    'title': cyberlife.title,
+    'og:image:secure_url': meta('og:image:secure_url', cyberlife.image),
     'og:locale': meta('og:locale', 'en_US'),
     'twitter:card': meta('twitter:card', 'summary'),
-    'twitter:title': meta('twitter:title', cyberlife.title),
-    'twitter:description': meta('twitter:description', cyberlife.description),
     'twitter:url': meta('twitter:url', cyberlife.url),
-    'twitter:image': meta('twitter:image', cyberlife.image),
     'fb:app_id': meta('fb:app_id', env.FB_APP_ID),
     'fb:page_id': meta('fb:page_id', env.FB_PAGE_ID),
     'og:type': meta('og:type', 'website')
