@@ -21,7 +21,7 @@ const releaseDetails = async (req, res, appFile) => {
     });
     if (!data) throw new Error('release not found');
     const title = data.title;
-    const description = `${data.label} (${data.cat})\nRelease date: ${format(new Date(data.releaseDate.replace(/(00)/mgi, '01')), 'dd/MM/yyyy')}`;
+    const description = `${data.label} (${data.cat}) | Release date: ${format(new Date(data.releaseDate.replace(/(00)/mgi, '01')), 'dd/MM/yyyy')}`;
     const image = data.thumb;
     const meta = {
       'charset': 'utf-8',

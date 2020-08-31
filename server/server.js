@@ -99,8 +99,8 @@ const cyberlife = (title) => ({
   image: "https://res.cloudinary.com/hw2jydiif/image/upload/v1592758419/android-icon-512x512_rd0xq8.png"
 });
 
-const meta = (name, req) => {
-  const { title, description, url, image } = cyberlife(name);
+const meta = (title, path) => {
+  const { description, url, image } = cyberlife(title);
   return {
     'charset': 'utf-8',
     'robots': 'all',
@@ -113,7 +113,7 @@ const meta = (name, req) => {
     'og:title': title,
     'twitter:title': title,
     'og:type': 'article',
-    'og:url': `${url}/${req.path}`,
+    'og:url': `${url}/${path}`,
     'og:image': image,
     'image': image,
     'twitter:card': image,
@@ -122,17 +122,17 @@ const meta = (name, req) => {
     }
 }
 
-const getTitle = (req) => {
+const getTitle = (path) => {
   switch(true) {
-    case /(events)/gmi.test(req.path):
+    case /(events)/gmi.test(path):
       return 'Cyberlife - Events'
-    case /(releases)/gmi.test(req.path):
+    case /(releases)/gmi.test(path):
       return 'Cyberlife - Releases'
-    case /(charts)/gmi.test(req.path):
+    case /(charts)/gmi.test(path):
       return 'Cyberlife - Charts'
-    case /(contact)/gmi.test(req.path):
+    case /(contact)/gmi.test(path):
       return 'Cyberlife - Contact'
-    case /(about)/gmi.test(req.path):
+    case /(about)/gmi.test(path):
       return 'Cyberlife - About this website'
     default:
       return null;
@@ -150,10 +150,9 @@ Object.keys(routes).forEach((r) => {
       } else if (/(events)\/[a-zA-Z0-9]*/gmi.test(req.path)) {
         return eventDetails(req, res, appFile);
       } else {
-        const title = getTitle(req);
-        const data = meta(title, req);
-        const html = await fileReplace(appFile, title, data);
-        console.log(html);
+        const title = getTitle(req.path);
+        const metadata = meta(title, req.path);
+        const html = await fileReplace(appFile, title, metadata);
         return res.status(200).send(html); 
       }
     // }

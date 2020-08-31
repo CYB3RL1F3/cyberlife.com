@@ -16,16 +16,18 @@ const fileReplace = (appFile, title, meta) => {
         if (err || !file) throw new Error('no file');
         let html = file;
         const heads = [];
-        Object.keys(meta).forEach((k) => {
-          const type = getType(k);
-          const contentFrom = `<meta ${getType(k)}="${k}" content="`;
+        Object.keys(meta).forEach((key) => {
+          const type = getType(key);
+          const contentFrom = `<meta ${type}="${key}" content="`;
           const indexFrom = html.indexOf(contentFrom) + contentFrom.length;
           if (indexFrom > contentFrom.length -1) {
             const indexTo = html.substr(indexFrom).indexOf('"');
-            const segmentToReplace = html.substr(indexFrom, indexTo);
-            html = html.replace(segmentToReplace, meta[k]);
+            const contentToReplace = html.substr(indexFrom, indexTo);
+            const segmentToReplace = `${contentFrom}${contentToReplace}`;
+            const finalMeta = `${contentFrom}${meta[key]}`;
+            html = html.replace(segmentToReplace, finalMeta);
           } else {
-            heads.push(`<meta ${getType(k)}="${k}" content="${meta[k]}" data-react-helmet="true" />`);
+            heads.push(`<meta ${type}="${key}" content="${meta[key]}" data-react-helmet="true" />`);
           }
         });
         html = html.replace(/(<title>)[a-zA-Z0-9\s\-]*(<\/title>)/gmi, `<title>${title}</title> ${heads.join('')}`);
