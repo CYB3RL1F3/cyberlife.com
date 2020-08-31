@@ -31,6 +31,7 @@ export const Heads: FC<HeadsProps> = ({ title, description, url, image, conglome
     'twitter:card': image,
     'og:site_name': "Cyberlife music",
     'fb:app_id': config.fb.appId,
+    'fb:page_id': config.fb.pageId
   }), [finalTitle, description, image, url]);
 
   return (
@@ -38,7 +39,7 @@ export const Heads: FC<HeadsProps> = ({ title, description, url, image, conglome
       <title>{finalTitle}</title>
       {Object.keys(meta).map(name => {
         const content = meta[name];
-        if (name.indexOf('og:') > -1 || name.indexOf('fb:app_id') > -1) return <meta property={name} content={content} data-react-helmet="true" />;
+        if (name.indexOf('og:') > -1 || name.indexOf('fb:') > -1) return <meta property={name} content={content} data-react-helmet="true" />;
         if (name === "Content-Type") return <meta http-equiv={name} content={content} data-react-helmet="true" />;
         return <meta name={name} content={content} data-react-helmet="true" />
       })}

@@ -14,7 +14,8 @@ export const config = {
     pool: process.env.NOTIFICATION_POOL
   },
   fb: {
-    appId: process.env.FB_APP_ID
+    appId: process.env.FB_APP_ID,
+    pageId: process.env.FB_PAGE_ID
   }
 }
 

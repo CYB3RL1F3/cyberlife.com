@@ -41,6 +41,7 @@ const releaseDetails = async (req, res, appFile) => {
       'twitter:card': image,
       'og:site_name': "Cyberlife music",
       'fb:app_id': process.env.FB_APP_ID,
+      'fb:page_id': process.env.FB_PAGE_ID
     }
     const name = `Cyberlife - ${title}`
     const html = await fileReplace(appFile, name, meta);

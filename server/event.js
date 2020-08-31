@@ -44,6 +44,7 @@ const eventDetails = async (req, res, appFile) => {
       'twitter:card': image,
       'og:site_name': "Cyberlife music",
       'fb:app_id': process.env.FB_APP_ID,
+      'fb:page_id': process.env.FB_PAGE_ID
     }
 
     const html = await fileReplace(appFile, title, meta);
