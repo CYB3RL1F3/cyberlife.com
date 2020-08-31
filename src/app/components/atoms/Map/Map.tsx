@@ -32,7 +32,7 @@ const loadMapbox = () => new Promise((resolve, reject) => {
 
   // Catch any errors while loading the script
   script.addEventListener('error', () => {
-    reject(new Error(`${this.src} failed to load.`))
+    reject(new Error(`mapbox failed to load.`))
   })
 });
 

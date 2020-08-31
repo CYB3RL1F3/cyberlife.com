@@ -21,6 +21,7 @@ import { Track } from 'types/releases';
 import { ReleasePlayer } from 'app/components/molecules';
 
 import Button from 'app/components/atoms/Button';
+import Heads from 'app/components/atoms/Heads';
 import { paths } from "app/paths";
 export interface ReleaseDetailsProps {
   data: ReleaseModel;
@@ -38,8 +39,11 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
     discogs,
     styles
   } = data;
+  const url = window.document.location.href;
+  const description = `${label} (${cat})\nRelease date: ${releaseDateFormatted}`;
   return (
     <Container>
+      <Heads title={`Cyberlife - ${title}`} description={description} image={thumb} url={url} ogType="article" />
       <TitleHandler>
         <Title>{title}</Title>
         <GoBack path={paths.releases}>&lt; Back</GoBack>

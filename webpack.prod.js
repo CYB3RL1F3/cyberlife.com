@@ -1,4 +1,4 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const webpack = require('webpack');
 const common = require('./webpack.config.js');
 const TerserPlugin = require("terser-webpack-plugin");
@@ -8,13 +8,14 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const terser = new TerserPlugin({
-  parallel: true,
+  parallel: false,
   sourceMap: true,
-  cache: true,
+  cache: false,
   extractComments: true,
   terserOptions: {
     toplevel: true,
-    warnings: false,
+    keep_classnames: false,
+    keep_fnames: false,
     parse: {},
     compress: {
       dead_code: true,
@@ -37,8 +38,7 @@ const terser = new TerserPlugin({
       ast: true,
     },
     nameCache: null,
-    ie8: false,
-    keep_fnames: false,
+    ie8: false
   },
 });
 
@@ -170,6 +170,11 @@ const config = merge(common, {
           name: 'mobx-react',
           chunks: 'async',
           test: /[\\/]node_modules[\\/]mobx-react[\\/]/
+        },
+        'react-helmet': {
+          name: 'react-helmet',
+          chunks: 'async',
+          test: /[\\/]node_modules[\\/]react-helmet[\\/]/
         },
         'react-popupbox': {
           name: 'react-popupbox',

@@ -26,6 +26,7 @@ import {
   TabletMediaQuery
 } from 'app/components/atoms/Responsive';
 import { paths } from "app/paths";
+import Heads from 'app/components/atoms/Heads';
 
 const Map = lazy(() => import('app/components/atoms/Map'));
 
@@ -37,6 +38,7 @@ export const EventDetailsComponent: FC<EventDetailsProps> = ({ data }) => {
   if (data) {
     return (
       <Container>
+        <Heads title={`Cyberlife @ ${data.title}`} image={data.flyer.front} description={`${data.formattedDate}, at ${data.location.address}`} ogType="article" />
         <TitleHandler>
           <Title>{data.title}</Title>
           <GoBack path={paths.events}>&lt; Back</GoBack>

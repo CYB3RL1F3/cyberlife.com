@@ -36,6 +36,8 @@ export class TrackModel {
     );
     if (!track.artwork) {
       this.artwork = podcastArtwork;
+    } else {
+      this.artwork = track.artwork.replace('large', 't500x500');
     }
     this.source = source;
   }
