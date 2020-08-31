@@ -9,9 +9,10 @@ interface HeadsProps {
   image?: string;
   conglomerateTitle?: boolean;
   ogType?: string;
+  twitterCard?: string;
 }
 
-export const Heads: FC<HeadsProps> = ({ title, description, url, image, conglomerateTitle, ogType }) => {
+export const Heads: FC<HeadsProps> = ({ title, description, url, image, conglomerateTitle, ogType, twitterCard }) => {
   const finalTitle = useMemo(() => conglomerateTitle ? `Cyberlife - ${title}` : title, [conglomerateTitle, title]);
   const meta = useMemo(() => ({
     'charset': 'utf-8',
@@ -30,8 +31,10 @@ export const Heads: FC<HeadsProps> = ({ title, description, url, image, conglome
     'image': image,
     'og:image': image,
     'og:image:secure_url': image,
-    'twitter:card': image,
+    'twitter:image': image,
+    'twitter:card': twitterCard,
     'og:site_name': "Cyberlife music",
+    'twitter:site': '@cyberlife_music',
     'fb:app_id': config.fb.appId,
     'fb:page_id': config.fb.pageId
   }), [finalTitle, description, image, url]);
@@ -54,7 +57,8 @@ Heads.defaultProps = {
   url: 'https://cyberlife-music.com',
   image: "https://res.cloudinary.com/hw2jydiif/image/upload/v1592758419/android-icon-512x512_rd0xq8.png",
   description: "Inspired by a wide range of electronic genres, between dub techno, IDM, drum and bass, dubstep, tribalistic world music, ambient, trip hop, psychedelic rock & goa trance, Cyberlife, who got rooted years ago in the techno culture, brings the ambition to shape a very personal style, surfing on forward thinking, psychedelic, hypnotic and melancholic vibes. By applying layers of effects on stretched field recordings or destructured analog synths jams on a large scale of tempos, the exploration of the meanders of the matrix of electronic music defines his director line, with an aim to find transcendance and reveal a futuristic and organic universe. As both DJ and producer, he gets a natural attraction for modern and organic sounds, mixing with old school influences. Don't look for the nerd behind this name, keep the mystery and unpredictability, and share a musical mindtrip.",
-  ogType: 'website'
+  ogType: 'website',
+  twitterCard: 'summary_large_image'
 }
 
 export default memo(Heads);

@@ -42,8 +42,10 @@ const eventDetails = async (req, res, appFile) => {
       'og:url': `https://cyberlife-music.com/${req.path}`,
       'og:image': image,
       'image': image,
-      'twitter:card': image,
+      'twitter:image': image,
+      'twitter:card': 'summary_large_image',
       'og:site_name': "Cyberlife music",
+      'twitter:site': '@cyberlife_music',
       'fb:app_id': process.env.FB_APP_ID,
       'fb:page_id': process.env.FB_PAGE_ID
     }
