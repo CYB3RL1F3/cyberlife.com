@@ -79,7 +79,8 @@ const index = {
     'twitter:url': meta('twitter:url', cyberlife.url),
     'twitter:image': meta('twitter:image', cyberlife.image),
     'fb:app_id': env.FB_APP_ID,
-    'fb:page_id': env.FB_PAGE_ID
+    'fb:page_id': env.FB_PAGE_ID,
+    'og:type': meta('og:type', 'website')
   },
   minify: {
     collapseWhitespace: true,
