@@ -94,7 +94,7 @@ app.use(serveStatic(path.join(__dirname, '../dist')));
 
 const cyberlife = (title) => ({
   description: "Inspired by a wide range of electronic genres, between dub techno, IDM, drum and bass, dubstep, tribalistic world music, ambient, trip hop, psychedelic rock & goa trance, Cyberlife, who got rooted years ago in the techno culture, brings the ambition to shape a very personal style, surfing on forward thinking, psychedelic, hypnotic and melancholic vibes. By applying layers of effects on stretched field recordings or destructured analog synths jams on a large scale of tempos, the exploration of the meanders of the matrix of electronic music defines his director line, with an aim to find transcendance and reveal a futuristic and organic universe. As both DJ and producer, he gets a natural attraction for modern and organic sounds, mixing with old school influences. Don't look for the nerd behind this name, keep the mystery and unpredictability, and share a musical mindtrip.",
-  title: !!title ? `Cyberlife - ${title}` : 'Cyberlife',
+  title,
   url: `https://cyberlife-music.com`,
   image: "https://res.cloudinary.com/hw2jydiif/image/upload/v1592758419/android-icon-512x512_rd0xq8.png"
 });
@@ -125,15 +125,15 @@ const meta = (name, req) => {
 const getTitle = (req) => {
   switch(true) {
     case /(events)/gmi.test(req.path):
-      return 'Events'
+      return 'Cyberlife - Events'
     case /(releases)/gmi.test(req.path):
-      return 'Releases'
+      return 'Cyberlife - Releases'
     case /(charts)/gmi.test(req.path):
-      return 'Charts'
+      return 'Cyberlife - Charts'
     case /(contact)/gmi.test(req.path):
-      return 'Contact'
+      return 'Cyberlife - Contact'
     case /(about)/gmi.test(req.path):
-      return 'About this website'
+      return 'Cyberlife - About this website'
     default:
       return null;
   }
@@ -142,12 +142,6 @@ const getTitle = (req) => {
 // app routes...
 Object.keys(routes).forEach((r) => {
   app.get(routes[r], async (req,res) => {
-
-  // FB audio player
-    ua = req.headers['user-agent'];
-    console.log('QUERY RCEIVED');
-    console.log(ua);
-    console.log(req.path);
     // if (/^(facebookexternalhit|twitterbot)/gmi.test(ua)) {
       if (/(podcasts)\/[0-9]/gmi.test(req.path)) {
         return player(req, res, appFile);
@@ -158,7 +152,8 @@ Object.keys(routes).forEach((r) => {
       } else {
         const title = getTitle(req);
         const data = meta(title, req);
-        const html = await fileReplace(appFile, `Cyberlife - ${title}`, data);
+        const html = await fileReplace(appFile, title, data);
+        console.log(html);
         return res.status(200).send(html); 
       }
     // }

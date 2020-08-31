@@ -14,9 +14,31 @@ const fileReplace = (appFile, title, meta) => {
     }, (err, file) => {
       try {
         if (err || !file) throw new Error('no file');
-       const heads = Object.keys(meta).map(((k) => `<meta ${getType(k)}="${k}" content="${meta[k]}" data-react-helmet="true" />`)).join('');
-       const html = file.replace('<title>Cyberlife</title>', `<title>${title}</title>${heads}`);
-       resolve(html);
+        let html = file;
+        console.log(html);
+        console.log('\n==================\n')
+        const heads = [];
+        Object.keys(meta).forEach((k) => {
+          const type = getType(k);
+          const contentFrom = `<meta ${getType(k)}="${k}" content="`;
+          const indexFrom = html.indexOf(contentFrom) + contentFrom.length;
+          if (indexFrom > contentFrom.length -1) {
+            const indexTo = html.substr(indexFrom).indexOf('"');
+            const segmentToReplace = html.substr(indexFrom, indexTo);
+            html = html.replace(segmentToReplace, meta[k]);
+          } else {
+            heads.push(`<meta ${getType(k)}="${k}" content="${meta[k]}" data-react-helmet="true" />`);
+          }
+        });
+
+        console.log(title);
+
+        console.log(html);
+        html = html.replace(/(<title>)[a-zA-Z0-9\s\-]*(<\/title>)/gmi, `<title>${title}</title> ${heads.join('')}`);
+        // html = html.replace('</title>', '').replace('<title>Cyberlife', `<title>${title}</title> ${heads.join('')}`);
+        console.log(html);
+        
+        resolve(html);
       } catch(e) {
         console.log(e);
         reject(e);
