@@ -15,8 +15,6 @@ const fileReplace = (appFile, title, meta) => {
       try {
         if (err || !file) throw new Error('no file');
         let html = file;
-        console.log(html);
-        console.log('\n==================\n')
         const heads = [];
         Object.keys(meta).forEach((k) => {
           const type = getType(k);
@@ -30,13 +28,8 @@ const fileReplace = (appFile, title, meta) => {
             heads.push(`<meta ${getType(k)}="${k}" content="${meta[k]}" data-react-helmet="true" />`);
           }
         });
-
-        console.log(title);
-
-        console.log(html);
         html = html.replace(/(<title>)[a-zA-Z0-9\s\-]*(<\/title>)/gmi, `<title>${title}</title> ${heads.join('')}`);
-        // html = html.replace('</title>', '').replace('<title>Cyberlife', `<title>${title}</title> ${heads.join('')}`);
-        console.log(html);
+
         
         resolve(html);
       } catch(e) {
