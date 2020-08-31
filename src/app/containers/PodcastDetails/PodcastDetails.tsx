@@ -83,7 +83,7 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(({ data
     const descriptionHtml = description.replace(/(\n)/g, '<br />');
     return (
       <Container>
-        <Heads title={title} description={description.replace(/\"/gmi, '')} image={artwork} url={url} />
+        <Heads title={title} description={description.replace(/\"/gmi, '')} image={artwork} url={url} ogType="music.song" />
         <TitleHandler>
           <Title>{title}</Title>
           <GoBack path={paths.podcasts}>&lt; Back</GoBack>

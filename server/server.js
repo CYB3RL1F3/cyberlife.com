@@ -100,7 +100,7 @@ const cyberlife = (title) => ({
 });
 
 const meta = (title, path) => {
-  const { description, url, image } = cyberlife(title);
+  const { description, url, image, imageAlt } = cyberlife(title);
   return {
     'charset': 'utf-8',
     'robots': 'all',
@@ -112,9 +112,10 @@ const meta = (title, path) => {
     'title': title,
     'og:title': title,
     'twitter:title': title,
-    'og:type': 'article',
+    'og:type': 'website',
     'og:url': `${url}/${path}`,
     'og:image': image,
+    'og:image:alt': title,
     'image': image,
     'twitter:card': image,
     'og:site_name': "Cyberlife music",

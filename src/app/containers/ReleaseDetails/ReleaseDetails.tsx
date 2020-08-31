@@ -43,7 +43,7 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
   const description = `${label} (${cat})\nRelease date: ${releaseDateFormatted}`;
   return (
     <Container>
-      <Heads title={`Cyberlife - ${title}`} description={description} image={thumb} url={url} />
+      <Heads title={`Cyberlife - ${title}`} description={description} image={thumb} url={url} ogType="article" />
       <TitleHandler>
         <Title>{title}</Title>
         <GoBack path={paths.releases}>&lt; Back</GoBack>

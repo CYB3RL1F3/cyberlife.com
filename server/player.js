@@ -41,6 +41,7 @@ const player = async (req, res, appFile) => {
       'og:audio:type': 'audio/vnd.facebook.bridge',
       'og:image': image,
       'og:image:secure_url': image,
+      'og:image:alt': track.title,
       'image': image,
       'twitter:card': image,
       'og:site_name': "Cyberlife music",

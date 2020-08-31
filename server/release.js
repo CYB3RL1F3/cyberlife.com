@@ -38,6 +38,7 @@ const releaseDetails = async (req, res, appFile) => {
       'og:url': `https://cyberlife-music.com/${req.path}`,
       'og:image': image,
       'image': image,
+      'og:image:alt': title,
       'twitter:card': image,
       'og:site_name': "Cyberlife music",
       'fb:app_id': process.env.FB_APP_ID,

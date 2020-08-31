@@ -37,6 +37,7 @@ const eventDetails = async (req, res, appFile) => {
       'title': title,
       'og:title': title,
       'twitter:title': title,
+      'og:image:alt': title,
       'og:type': 'article',
       'og:url': `https://cyberlife-music.com/${req.path}`,
       'og:image': image,
