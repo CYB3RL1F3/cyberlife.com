@@ -78,8 +78,8 @@ const index = {
     'twitter:description': meta('twitter:description', cyberlife.description),
     'twitter:url': meta('twitter:url', cyberlife.url),
     'twitter:image': meta('twitter:image', cyberlife.image),
-    'fb:app_id': env.FB_APP_ID,
-    'fb:page_id': env.FB_PAGE_ID,
+    'fb:app_id': meta('fb:app_id', env.FB_APP_ID),
+    'fb:page_id': meta('fb:page_id', env.FB_PAGE_ID),
     'og:type': meta('og:type', 'website')
   },
   minify: {
