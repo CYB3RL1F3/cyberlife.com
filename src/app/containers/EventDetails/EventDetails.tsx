@@ -38,7 +38,7 @@ export const EventDetailsComponent: FC<EventDetailsProps> = ({ data }) => {
   if (data) {
     return (
       <Container>
-        <Heads title={`Cyberlife @ ${data.title}`} image={data.flyer.front} description={`${data.formattedDate}, at ${data.location.address}`} ogType="article" />
+        <Heads title={`Cyberlife @ ${data.title}`} image={data.flyer.front} description={`${data.formattedDate}, at ${data.location.address}`} ogType="article" twitterCard="summary_large_image" />
         <TitleHandler>
           <Title>{data.title}</Title>
           <GoBack path={paths.events}>&lt; Back</GoBack>

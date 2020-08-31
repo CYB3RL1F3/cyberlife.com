@@ -79,7 +79,7 @@ const index = {
     'og:image': meta('og:image', cyberlife.image),
     'og:image:secure_url': meta('og:image:secure_url', cyberlife.image),
     'og:locale': meta('og:locale', 'en_US'),
-    'twitter:card': meta('twitter:card', 'summary_large_image'),
+    'twitter:card': meta('twitter:card', 'summary'),
     'twitter:url': meta('twitter:url', cyberlife.url),
     'twitter:site': meta('twitter:site', '@cyberlife-music'),
     'fb:app_id': meta('fb:app_id', env.FB_APP_ID),

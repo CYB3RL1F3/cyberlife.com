@@ -118,7 +118,7 @@ const meta = (title, path) => {
     'og:image:alt': title,
     'image': image,
     'twitter:image': image,
-    'twitter:card': 'summary_large_image',
+    'twitter:card': 'summary',
     'og:site_name': "Cyberlife music",
     'twitter:site': '@cyberlife_music',
     'fb:app_id': process.env.FB_APP_ID,

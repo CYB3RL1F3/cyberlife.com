@@ -47,6 +47,8 @@ const player = async (req, res, appFile) => {
       'og:site_name': "Cyberlife music",
       'twitter:card': 'player',
       'twitter:player': track.url,
+      'twitter:player:width': 500,
+      'twitter:player:height': 250,
       'twitter:site': '@cyberlife_music',
       'fb:app_id': process.env.FB_APP_ID,
       'fb:page_id': process.env.FB_PAGE_ID,
