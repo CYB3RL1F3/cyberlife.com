@@ -34,6 +34,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+window.loaded = true;
+
 // init PWA service worker
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   window.addEventListener('load', () => {

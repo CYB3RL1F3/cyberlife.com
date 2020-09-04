@@ -64,7 +64,6 @@ const index = {
     'robots': 'all',
     'theme-color': '#36595C',
     'Content-Type': 'text/html; charset=utf-8',
-    'viewport': 'width=device-width, initial-scale=1.0, minimal-ui',
     
     'description': meta('description', cyberlife.description),
     'og:description': meta('og:description', cyberlife.description),
