@@ -52,7 +52,7 @@ const index = {
   inject: "body",
   scriptLoading: "defer",
   hash: true,
-  cache: true,
+  cache: false,
   title: 'Cyberlife',
   links: {
     api: env.API_URL,
