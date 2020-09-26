@@ -144,7 +144,7 @@ const getTitle = (path) => {
 // app routes...
 Object.keys(routes).forEach((r) => {
   app.get(routes[r], async (req,res) => {
-    res.set('Cache-control', 'public, max-age=300');
+    res.set('Cache-control', 'no-cache');
     // if (/^(facebookexternalhit|twitterbot)/gmi.test(ua)) {
       if (/(podcasts)\/[0-9]/gmi.test(req.path)) {
         return player(req, res, appFile);
