@@ -70,6 +70,7 @@ const index = {
     'twitter:description': meta('twitter:description', cyberlife.description),
 
     'title': meta('title', cyberlife.title),
+    'locale': meta('locale', 'en_US'),
     'og:title': meta('og:title', cyberlife.title),
     'twitter:title': meta('twitter:title', cyberlife.title),
 
@@ -200,16 +201,18 @@ module.exports = {
             {
               loader: 'postcss-loader',
               options: {
-                ident: 'postcss',
-                plugins: [
-                  require('postcss-import')({ addDependencyTo: webpack }),
-                  require('postcss-url')(),
-                  require('postcss-cssnext')(),
-                  require('postcss-reporter')(),
-                  require('postcss-browser-reporter')({
-                    disabled: isProduction
-                  })
-                ]
+                postcssOptions: {
+                  ident: 'postcss',
+                  plugins: [
+                    require('postcss-import')({ addDependencyTo: webpack }),
+                    require('postcss-url')(),
+                    require('postcss-cssnext')(),
+                    require('postcss-reporter')(),
+                    require('postcss-browser-reporter')({
+                      disabled: isProduction
+                    })
+                  ]
+                }
               }
             }
           ]
