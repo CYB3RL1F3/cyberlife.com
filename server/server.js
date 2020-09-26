@@ -141,10 +141,16 @@ const getTitle = (path) => {
   }
 }
 
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  next();
+});
+
 // app routes...
 Object.keys(routes).forEach((r) => {
-  app.get(routes[r], async (req,res) => {
-    res.set('Cache-control', 'no-cache');
+  app.get(routes[r], async (req, res) => {
     // if (/^(facebookexternalhit|twitterbot)/gmi.test(ua)) {
       if (/(podcasts)\/[0-9]/gmi.test(req.path)) {
         return player(req, res, appFile);
