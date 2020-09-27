@@ -29,6 +29,7 @@ const routes = {
 const appFile = path.join(__dirname, '../dist', 'index.html');
 
 const app = express();
+app.enable('etag');
 const options = {
   key: fs.readFileSync(path.resolve(__dirname, "server.key")),// fs.readFileSync('./server.key'),
   cert: fs.readFileSync(path.resolve(__dirname, "server.crt"))
@@ -184,7 +185,7 @@ app.get('*', (req,res) => {
     res.status(404).sendFile(appFile);
 });
 
-const { createServer } = port === 3443 ? spdy : http;
+const { createServer } = port === 3444 ? spdy : http;
 createServer(options, app).listen(port, (error) => {
   if (error) {
     console.error(error);

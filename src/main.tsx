@@ -34,11 +34,10 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-window.loaded = true;
-
 // init PWA service worker
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   window.addEventListener('load', () => {
+    window.loaded = true;
     navigator.serviceWorker.register('/service-worker.js').then(async registration => {
       console.log('SW registered: ', registration);
       if ('Notification' in window) {
@@ -61,6 +60,9 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
             });
         }
       }
+    });
+    navigator.serviceWorker.ready.then(function (registration) {
+      registration.update();
     });
   });
 }

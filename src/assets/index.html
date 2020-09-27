@@ -108,6 +108,18 @@
         
       }
     </style>
+    <script>
+      window.addEventListener('load', () => {
+        setTimeout(function () {
+          if (!window.loaded) {
+            caches.delete('workbox-precache-v2-' + window.location.href).then(function () {
+              window.location.reload(true);
+            });
+          }
+        }, 100);
+      });
+
+    </script>
   </head>
   <body>
     <noscript>
