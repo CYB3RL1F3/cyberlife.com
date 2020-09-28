@@ -36,7 +36,11 @@ ReactDOM.render(
 
 // init PWA service worker
 if ('serviceWorker' in navigator && 'PushManager' in window) {
-  window.addEventListener('load', () => {
+  window.addEventListener('load', async () => {
+    window.loaded = true;
+    if (window.navigator.onLine) {
+      await caches.delete('workbox-precache-v2-' + window.location.href);
+    }
     navigator.serviceWorker.register('/service-worker.js').then(async registration => {
       console.log('SW registered: ', registration);
       if ('Notification' in window) {
@@ -48,7 +52,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
               const isSubscribed = !(subscription === null);
 
               updateSubscriptionOnServer(subscription);
-              
+
               if (isSubscribed) {
                 console.log('User IS subscribed to notifications.');
               } else {
@@ -59,6 +63,9 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
             });
         }
       }
+    });
+    navigator.serviceWorker.ready.then((registration) => {
+      registration.update();
     });
   });
 }

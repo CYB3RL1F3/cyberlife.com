@@ -39,13 +39,60 @@ workbox.precaching.precacheAndRoute(
 );
 
 workbox.routing.registerRoute(
+  /^(http|https)?.*/,
+  new workbox.strategies.NetworkFirst({
+    cacheName: 'offlineCache',
+    plugins: [
+      new workbox.expiration.ExpirationPlugin({
+        maxEntries: 100,
+        maxAgeSeconds: 86400,
+        purgeOnQuotaError: false
+      })
+    ]
+  }),
+  'GET'
+);
+
+workbox.routing.registerRoute(
+  /\.(?:js)$/,
+  new workbox.strategies.NetworkFirst({
+    cacheName: 'scripts',
+    plugins: [
+      new workbox.expiration.ExpirationPlugin({
+        maxEntries: 100,
+        maxAgeSeconds: 86400,
+        purgeOnQuotaError: false
+      })
+    ]
+  }),
+  'GET'
+);
+
+workbox.routing.registerRoute(
+  /\.(?:css)$/,
+  new workbox.strategies.NetworkFirst({
+    cacheName: 'styles',
+    plugins: [
+      new workbox.expiration.ExpirationPlugin({
+        maxEntries: 100,
+        maxAgeSeconds: 86400,
+        purgeOnQuotaError: false
+      })
+    ]
+  }),
+  'GET'
+);
+
+
+workbox.routing.registerRoute(
   /\.(?:png|jpg|jpeg|svg|ico)$/,
   new workbox.strategies.NetworkFirst({
     cacheName: 'images',
     plugins: [
       new workbox.expiration.ExpirationPlugin({
         maxEntries: 100,
-        purgeOnQuotaError: true
+        maxAgeSeconds: 86400,
+        purgeOnQuotaError: false
       })
     ]
   }),
@@ -58,8 +105,9 @@ workbox.routing.registerRoute(
     cacheName: 'videos',
     plugins: [
       new workbox.expiration.ExpirationPlugin({
-        maxEntries: 100,
-        purgeOnQuotaError: true
+        maxEntries: 100, 
+        maxAgeSeconds: 86400,
+        purgeOnQuotaError: false
       })
     ]
   }),
@@ -72,22 +120,9 @@ workbox.routing.registerRoute(
     cacheName: 'fonts',
     plugins: [
       new workbox.expiration.ExpirationPlugin({
-        maxEntries: 100,
-        purgeOnQuotaError: true
-      })
-    ]
-  }),
-  'GET'
-);
-
-workbox.routing.registerRoute(
-  /^(http|https)?.*/,
-  new workbox.strategies.NetworkFirst({
-    cacheName: 'offlineCache',
-    plugins: [
-      new workbox.expiration.ExpirationPlugin({
-        maxEntries: 100,
-        purgeOnQuotaError: true
+        maxEntries: 100, 
+        maxAgeSeconds: 86400,
+        purgeOnQuotaError: false
       })
     ]
   }),
@@ -110,6 +145,12 @@ workbox.routing.setCatchHandler((t) => {
 
     case 'video':
       return caches.match('videos');
+
+    case 'script':
+      return caches.match('scripts');
+
+    case 'style':
+      return caches.match('styles');
 
     default:
       return Response.error();

@@ -52,7 +52,7 @@ const index = {
   inject: "body",
   scriptLoading: "defer",
   hash: true,
-  cache: true,
+  cache: false,
   title: 'Cyberlife',
   links: {
     api: env.API_URL,
@@ -64,13 +64,13 @@ const index = {
     'robots': 'all',
     'theme-color': '#36595C',
     'Content-Type': 'text/html; charset=utf-8',
-    'viewport': 'width=device-width, initial-scale=1.0, minimal-ui',
     
     'description': meta('description', cyberlife.description),
     'og:description': meta('og:description', cyberlife.description),
     'twitter:description': meta('twitter:description', cyberlife.description),
 
     'title': meta('title', cyberlife.title),
+    'locale': meta('locale', 'en_US'),
     'og:title': meta('og:title', cyberlife.title),
     'twitter:title': meta('twitter:title', cyberlife.title),
 
@@ -201,16 +201,18 @@ module.exports = {
             {
               loader: 'postcss-loader',
               options: {
-                ident: 'postcss',
-                plugins: [
-                  require('postcss-import')({ addDependencyTo: webpack }),
-                  require('postcss-url')(),
-                  require('postcss-cssnext')(),
-                  require('postcss-reporter')(),
-                  require('postcss-browser-reporter')({
-                    disabled: isProduction
-                  })
-                ]
+                postcssOptions: {
+                  ident: 'postcss',
+                  plugins: [
+                    require('postcss-import')({ addDependencyTo: webpack }),
+                    require('postcss-url')(),
+                    require('postcss-cssnext')(),
+                    require('postcss-reporter')(),
+                    require('postcss-browser-reporter')({
+                      disabled: isProduction
+                    })
+                  ]
+                }
               }
             }
           ]

@@ -27,7 +27,6 @@ const player = async (req, res, appFile) => {
       'charset': 'utf-8',
       'robots': 'all',
       'theme-color': '#36595C',
-      'viewport': 'width=device-width, initial-scale=1.0, minimal-ui',
       'description': description,
       'og:description': description,
       'twitter:description': description,

@@ -29,6 +29,7 @@ const routes = {
 const appFile = path.join(__dirname, '../dist', 'index.html');
 
 const app = express();
+app.enable('etag');
 const options = {
   key: fs.readFileSync(path.resolve(__dirname, "server.key")),// fs.readFileSync('./server.key'),
   cert: fs.readFileSync(path.resolve(__dirname, "server.crt"))
@@ -105,7 +106,6 @@ const meta = (title, path) => {
     'charset': 'utf-8',
     'robots': 'all',
     'theme-color': '#36595C',
-    'viewport': 'width=device-width, initial-scale=1.0, minimal-ui',
     'description': description,
     'og:description': description,
     'twitter:description': description,
@@ -142,9 +142,16 @@ const getTitle = (path) => {
   }
 }
 
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  next();
+});
+
 // app routes...
 Object.keys(routes).forEach((r) => {
-  app.get(routes[r], async (req,res) => {
+  app.get(routes[r], async (req, res) => {
     // if (/^(facebookexternalhit|twitterbot)/gmi.test(ua)) {
       if (/(podcasts)\/[0-9]/gmi.test(req.path)) {
         return player(req, res, appFile);
@@ -178,7 +185,7 @@ app.get('*', (req,res) => {
     res.status(404).sendFile(appFile);
 });
 
-const { createServer } = port === 3443 ? spdy : http;
+const { createServer } = port === 3444 ? spdy : http;
 createServer(options, app).listen(port, (error) => {
   if (error) {
     console.error(error);
