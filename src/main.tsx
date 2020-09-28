@@ -65,9 +65,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
       }
     });
     navigator.serviceWorker.ready.then((registration) => {
-      console.log(registration);
       registration.update();
-      console.log(registration);
     });
   });
 }
