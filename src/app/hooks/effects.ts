@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from 'react';
 
 export const useUnmount = (callback: () => void) => {
   useEffect(() => {
@@ -93,3 +93,20 @@ export default function useDebounce<T extends unknown[]>(
   // At the moment, we use 3 args array so that we save backward compatibility
   return [debouncedCallback, cancelDebouncedCallback, callPending];
 }
+
+export const useDelaySwitch = <T>(
+  delay: number,
+  initialState: T,
+  targetState: T
+) => {
+  const [initiated, initiate] = useState(initialState);
+  useEffect(() => {
+    setTimeout(() => {
+      initiate(targetState);
+    }, delay);
+  }, []);
+  return initiated;
+};
+
+export const useBooleanDelaySwitch = (delay: number) =>
+  useDelaySwitch<boolean>(delay, false, true);
