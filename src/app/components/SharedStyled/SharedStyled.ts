@@ -52,6 +52,11 @@ export const DownTransitionDelay = (delay: number) => css`
   animation: ${downTransition} 0.3s ease-out forwards;
   animation-delay: ${delay}s;
   transform: translateZ(0);
+  .loaded {
+    animation: none;
+    transform: translateY(0);
+    opacity: 1;
+  }
 `;
 
 export const BackgroundLayer = css`

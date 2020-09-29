@@ -73,6 +73,7 @@ export const Content = styled.div`
   transform: translateX(50vw);
   animation: ${welcome} 0.3s ease-in-out forwards;
   animation-delay: 1s;
+  animation-iteration-count: 1;
   height: 85vh;
   position: relative;
   overflow-y: overlay;
@@ -83,11 +84,19 @@ export const Content = styled.div`
   color: white;
   display: flex;
   flex-direction: row;
+  &.loaded {
+    animation: none;
+    transform: translateX(0vw);
+  }
 
   ${({ theme }) => theme.media.tablet`
     width: 100vw;
     transform: translateX(100vw);
     animation: ${welcomeTabs} 0.3s ease-in-out forwards;
+    &.loaded {
+      animation: none;
+      transform: translateX(0vw);
+    }
     min-height: 68vh;
     height: unset;
     overflow-y: visible;
