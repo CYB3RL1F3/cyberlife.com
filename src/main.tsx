@@ -71,5 +71,5 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 } else {
   window.addEventListener('load', () => {
     window.loaded = true;
-  }
+  });
 }
