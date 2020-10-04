@@ -69,7 +69,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     });
   });
 } else {
-  window.addEventListener('load', async () => {
+  window.addEventListener('load', () => {
     window.loaded = true;
   }
 }
