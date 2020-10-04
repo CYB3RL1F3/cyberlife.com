@@ -4,6 +4,10 @@
   "private": true,
   "description": "cyberlife-music.com website front-end app",
   "main": "index.js",
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.10.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./server/server.js",
