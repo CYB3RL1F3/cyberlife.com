@@ -68,4 +68,8 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
       registration.update();
     });
   });
+} else {
+  window.addEventListener('load', async () => {
+    window.loaded = true;
+  }
 }
