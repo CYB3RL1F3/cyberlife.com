@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 
 export interface Stats {
   count: number;
@@ -7,28 +7,27 @@ export interface Stats {
 }
 
 export class TrackModel {
-  readonly id: number;
-  @observable public title: string;
-  @observable public description: string;
-  @observable public date: string;
-  @observable public artwork: string;
-  @observable public download: string;
-  @observable public downloadeable: boolean;
-  @observable public url: string;
-  @observable public duration: number;
-  @observable public soundcloud: string;
-  @observable public waveform: string;
-  @observable public genre: string;
-  @observable public stats: Stats;
-  @observable public license: string;
-  @observable public taglist: string[];
+  readonly id: number = null;
+  public title: string = null;
+  public description: string = null;
+  public date: string = null;
+  public artwork: string = null;
+  public download: string = null;
+  public downloadeable: boolean = null;
+  public url: string = null;
+  public duration: number = null;
+  public soundcloud: string = null;
+  public waveform: string = null;
+  public genre: string = null;
+  public stats: Stats = null;
+  public license: string = null;
+  public taglist: string[] = null;
 
-  @observable public playing: boolean = false;
-  @observable public seek: number = 0;
-  @observable public loaded: number = 0;
-  public source: string;
+  public playing: boolean = false;
+  public seek: number = 0;
+  public loaded: number = 0;
 
-  constructor(track: any, podcastArtwork, source = 'podcasts') {
+  constructor(track: any, podcastArtwork, readonly source: string = 'podcasts') {
     Object.keys(track).forEach(
       (key: string): void => {
         this[key] = track[key];
@@ -39,33 +38,51 @@ export class TrackModel {
     } else {
       this.artwork = track.artwork.replace('large', 't500x500');
     }
-    this.source = source;
+    makeObservable(this, {
+      title: observable,
+      description: observable,
+      date: observable,
+      artwork: observable,
+      download: observable,
+      downloadeable: observable,
+      url: observable,
+      duration: observable,
+      soundcloud: observable,
+      waveform: observable,
+      genre: observable,
+      stats: observable,
+      license: observable,
+      taglist: observable.deep,
+      playing: observable,
+      seek: observable,
+      loaded: observable,
+      onSeek: action,
+      onLoaded: action,
+      play: action,
+      stop: action,
+      pause: action
+    })
   }
 
   getPosition = (pct: number): number => (pct / 100) * this.duration;
 
-  @action
   onSeek = (pct: number) => {
     this.seek = this.getPosition(pct);
   };
 
-  @action
   onLoaded = (pct: number) => {
     this.loaded = this.getPosition(pct);
   };
 
-  @action
   play = (): void => {
     this.playing = true;
   };
 
-  @action
   stop = (): void => {
     this.playing = false;
     this.seek = 0;
   };
 
-  @action
   pause = (): void => {
     this.playing = false;
   };

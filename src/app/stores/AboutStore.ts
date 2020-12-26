@@ -1,18 +1,28 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import { getPosts } from 'app/actions';
 import { InitializableStore } from './stores';
 import { captureException } from '@sentry/browser';
 import PostModel from 'app/models/PostModel';
 
 export class AboutStore implements InitializableStore {
-  @observable public loading: boolean;
-  @observable public error: string;
-  @observable public data: PostModel;
 
-  @action
+  constructor() {
+    makeObservable(this, {
+      loading: observable,
+      error: observable,
+      data: observable,
+      init: action,
+      loadPost: action,
+      onPostsLoaded: action.bound,
+      onPostsError: action.bound
+    })
+  }
+  public loading: boolean = false;
+  public error: string = null;
+  public data: PostModel = null;
+
   init = () => !this.data && this.loadPost();
 
-  @action
   loadPost = () => {
     this.loading = true;
     this.error = null;
@@ -21,7 +31,6 @@ export class AboutStore implements InitializableStore {
       .catch(this.onPostsError);
   };
 
-  @action.bound
   onPostsLoaded = (response) => {
     try {
       this.data = new PostModel(response.data[0]);
@@ -31,7 +40,6 @@ export class AboutStore implements InitializableStore {
     }
   };
 
-  @action.bound
   onPostsError = (e) => {
     captureException(e);
     this.error = e.toString();

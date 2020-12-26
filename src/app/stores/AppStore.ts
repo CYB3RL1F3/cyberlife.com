@@ -1,16 +1,16 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 
 export class AppStore {
-  @observable public loading: boolean;
-  @observable public error?: Error;
-  @observable public loaded: boolean;
+  loading: boolean = false;
+  error?: Error = null;
+  loaded: boolean = false;
 
-  @observable public fetchingInfos: boolean;
-  @observable public infosLoaded: boolean;
+  fetchingInfos: boolean = false;
+  infosLoaded: boolean = false;
 
-  @observable public assetBackgroundLoaded: boolean;
+  assetBackgroundLoaded: boolean = false;
 
-  @observable public assetBackgroundLoading: boolean;
+  assetBackgroundLoading: boolean = false;
 
   isFetchingInfos = (): boolean => this.fetchingInfos;
 
@@ -25,41 +25,53 @@ export class AppStore {
   isReady = (): boolean =>
     this.infosLoaded && this.assetBackgroundLoaded && !this.error;
 
-  @action
   startFetchingData = () => {
     this.fetchingInfos = true;
   };
 
-  @action
   startFetchingAsset = (asset) => {
     const name = `asset${asset}Loading`;
     this[name] = true;
   };
 
-  @action
   validAsset = (asset: string) => {
     const assetName = `asset${asset}Loaded`;
     this[assetName] = true;
     this.validate();
   };
 
-  @action
   validateInfos = () => {
     this.infosLoaded = true;
     this.validate();
   };
 
-  @action
   validate = () => {
     if (this.isReady()) {
       this.loaded = true;
     }
   };
 
-  @action
   fail = (e: Error) => {
     this.error = e;
   };
+
+  constructor() {
+    makeObservable(this, {
+      loading: observable,
+      loaded: observable,
+      error: observable,
+      fetchingInfos: observable,
+      infosLoaded: observable,
+      assetBackgroundLoaded: observable,
+      assetBackgroundLoading: observable,
+      startFetchingAsset: action,
+      startFetchingData: action,
+      validAsset: action,
+      validate: action,
+      validateInfos: action,
+      fail: action
+    });
+  }
 }
 
 export default AppStore;

@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import { InitializableStore } from './stores';
 import RouterStore from './RouterStore';
 import { getReleaseById } from 'app/actions';
@@ -8,16 +8,20 @@ import ReleaseModel from 'app/models/ReleaseModel';
 import { captureException } from '@sentry/browser';
 
 export class SelectedReleaseStore implements InitializableStore {
-  @observable public loading: boolean;
-  @observable public data: ReleaseModel;
-  @observable public error: string;
+  public loading: boolean = false;
+  public data: ReleaseModel = null;
+  public error: string = null;
 
-  private router: RouterStore;
-  private releaseStore: ReleaseStore;
-
-  constructor(router: RouterStore, releaseStore: ReleaseStore) {
-    this.router = router;
-    this.releaseStore = releaseStore;
+  constructor(private readonly router: RouterStore, private readonly releaseStore: ReleaseStore) {
+    makeObservable(this, {
+      loading: observable,
+      data: observable.deep,
+      error: observable,
+      init: action,
+      getReleaseByIdFromRouter: action,
+      onReleaseLoaded: action.bound,
+      onReleaseFailed: action.bound
+    });
   }
 
   getReleaseFromStore = (id): ReleaseModel | null =>
@@ -33,10 +37,8 @@ export class SelectedReleaseStore implements InitializableStore {
     };
   };
 
-  @action
   init = () => this.getReleaseByIdFromRouter();
 
-  @action
   getReleaseByIdFromRouter = () => {
     const { id } = this.getReleaseInfo();
     if (this.data && this.data.id === id) return;
@@ -53,7 +55,6 @@ export class SelectedReleaseStore implements InitializableStore {
     }
   };
 
-  @action.bound
   onReleaseLoaded = (response: AxiosResponse) => {
     this.loading = true;
     this.error = null;
@@ -65,7 +66,6 @@ export class SelectedReleaseStore implements InitializableStore {
     }
   };
 
-  @action.bound
   onReleaseFailed = (e: Error) => {
     this.loading = true;
     this.error = e.message;

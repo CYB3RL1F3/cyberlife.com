@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 
 interface Bio {
   content: string;
@@ -6,24 +6,37 @@ interface Bio {
 }
 
 export class InfosModel {
-  readonly id: number;
-  @observable public name: string;
-  @observable public bio: Bio;
-  @observable public info: string;
-  @observable public labels: string[];
-  @observable public picture: string;
-  @observable public RA: string;
-  @observable public facebook: string;
-  @observable public twitter: string;
-  @observable public discogs: string;
-  @observable public soundcloud: string;
+  readonly id: number = 0;
+  public name: string = null;
+  public bio: Bio = null;
+  public info: string = null;
+  public labels: string[] = null;
+  public picture: string = null;
+  public RA: string = null;
+  public facebook: string = null;
+  public twitter: string = null;
+  public discogs: string = null;
+  public soundcloud: string = null;
 
   constructor(infos: any) {
+    makeObservable(this, {
+      name: observable,
+      bio: observable.deep,
+      info: observable,
+      labels: observable.deep,
+      picture: observable,
+      RA: observable,
+      facebook: observable,
+      twitter: observable,
+      discogs: observable,
+      soundcloud: observable,
+    });
     Object.keys(infos).forEach(
       (key: string): void => {
         this[key] = infos[key];
       }
     );
+    
   }
 }
 

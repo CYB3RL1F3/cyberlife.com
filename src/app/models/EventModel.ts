@@ -1,24 +1,24 @@
 import { format } from 'date-fns';
-import { observable, computed } from 'mobx';
+import { observable, computed, makeObservable } from 'mobx';
 import { Time, Links, Flyer } from 'types/events';
 import { Location, Coordinates } from 'types/location';
 
 
 export class EventModel {
-  readonly id: number;
-  @observable public venueId: string;
-  @observable public date: string;
-  @observable public country: string;
-  @observable public area: string;
-  @observable public title: string;
-  @observable public address: string;
-  @observable public flyer: Flyer;
-  @observable public lineup: string[];
-  @observable public location: Location;
-  @observable public time: Time;
-  @observable public cost?: string;
-  @observable public links: Links;
-  public type: number;
+  readonly id: number = 0;
+  public venueId: string = null;
+  public date: string = null;
+  public country: string = null;
+  public area: string = null;
+  public title: string = null;
+  public address: string = null;
+  public location: Location = null;
+  public cost?: string = null;
+  public lineup: string[] = [];
+  public time: Time = null;
+  public flyer: Flyer = null;
+  public links: Links = null;
+  public type: number = null;
 
   constructor(event: any, type: number) {
     this.type = type;
@@ -27,14 +27,28 @@ export class EventModel {
         this[key] = event[key];
       }
     );
+    makeObservable(this, {
+      venueId: observable,
+      date: observable,
+      country: observable,
+      area: observable,
+      title: observable,
+      address: observable,
+      flyer: observable,
+      location: observable,
+      cost: observable,
+      lineup: observable,
+      time: observable.deep,
+      links: observable.deep,
+      formattedDate: computed,
+      coordinates: computed
+    })
   }
 
-  @computed
   get formattedDate() {
     return format(new Date(this.date), 'dd/MM/yyyy');
   }
 
-  @computed
   get coordinates(): Coordinates {
     return this.location.position.map(
       (value: string): number => parseFloat(value)

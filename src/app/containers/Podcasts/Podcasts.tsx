@@ -33,7 +33,7 @@ const PodcastsComponent: FC<PlaylistProps> = observer(({ data }) => {
   return (
     <Container>
       <Heads />
-      {data && data.tracks && data.tracks.length ? 
+      {data?.tracks?.length ? 
         data.tracks.map(
           (track: TrackModel, index: number): JSX.Element => {
             return (

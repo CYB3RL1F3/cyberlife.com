@@ -1,25 +1,43 @@
-import { observable, computed } from 'mobx';
+import { observable, computed, makeObservable } from 'mobx';
 import { Tracks, Artist, Track } from 'types/releases';
 import { format } from 'date-fns';
 import { TrackModel } from 'app/models';
 
 export class ReleaseModel {
-  readonly id: number;
-  @observable public title: string;
-  @observable public artist: string;
-  @observable public info: string;
-  @observable public tracklist: Tracks;
-  @observable public role: string;
-  @observable public year: string;
-  @observable public releaseDate: string;
-  @observable public thumb: string;
-  @observable public label: string;
-  @observable public cat: string;
-  @observable public discogs: string;
-  @observable public images: string[];
-  @observable public styles: string[];
+  readonly id: number = null;
+  public title: string = null;
+  public artist: string = null;
+  public info: string = null;
+  public tracklist: Tracks = null;
+  public role: string = null;
+  public year: string = null;
+  public releaseDate: string = null;
+  public thumb: string = null;
+  public label: string = null;
+  public cat: string = null;
+  public discogs: string = null;
+  public images: string[] = null;
+  public styles: string[] = null;
 
   constructor(release: any) {
+    makeObservable(this, {
+      title: observable,
+      artist: observable,
+      info: observable,
+      tracklist: observable,
+      role: observable,
+      year: observable,
+      releaseDate: observable,
+      thumb: observable,
+      label: observable,
+      cat: observable,
+      discogs: observable,
+      images: observable.deep,
+      styles: observable.deep,
+      name: computed,
+      releaseDateFormatted: computed,
+      cyberlifeTracks: computed
+    });
     Object.keys(release).forEach(
       (key: string): void => {
         if (key === 'tracklist') {
@@ -42,7 +60,6 @@ export class ReleaseModel {
     );
   }
 
-  @computed
   get name() {
     if (this.role.toLowerCase() === 'remix') {
       return `${this.artist} - ${this.title}`;
@@ -50,7 +67,6 @@ export class ReleaseModel {
     return this.title;
   }
 
-  @computed
   get releaseDateFormatted() {
     const date = new Date(this.releaseDate);
     if (isNaN(date.getFullYear())) return this.releaseDate.replace('-00', '-01').split('-').reverse().join('/');
@@ -60,7 +76,6 @@ export class ReleaseModel {
   matchArtist = (artist: Artist): boolean =>
     artist.name.toLocaleLowerCase().indexOf('cyberlife') > -1;
 
-  @computed
   get cyberlifeTracks(): Tracks {
     return this.tracklist.filter((track) => {
       if (track.artists && track.artists.findIndex(this.matchArtist) > -1)

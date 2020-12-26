@@ -1,13 +1,11 @@
-import { observable } from 'mobx';
-
-
+import { makeObservable, observable } from 'mobx';
 export class PostModel {
-  readonly id: number;
-  @observable public title: string;
-  @observable public illustration: string;
-  @observable public content: string;
-  @observable public subtitle: string;
-  @observable public createdAt: string;
+  readonly id: number = null;
+  public title: string = null;
+  public illustration: string = null;
+  public content: string = null;
+  public subtitle: string = null;
+  public createdAt: string = null;
 
   constructor(infos: any) {
     Object.keys(infos).forEach(
@@ -15,6 +13,13 @@ export class PostModel {
         this[key] = infos[key];
       }
     );
+    makeObservable(this, {
+      title: observable,
+      illustration: observable,
+      content: observable,
+      subtitle: observable,
+      createdAt: observable
+    });
   }
 }
 

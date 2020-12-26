@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import { InitializableStore } from './stores';
 import RouterStore from './RouterStore';
 import { getPodcastById } from 'app/actions';
@@ -10,16 +10,21 @@ import { PodcastModel } from 'app/models';
 import { captureException } from '@sentry/browser';
 
 export class SelectedPodcastStore implements InitializableStore {
-  @observable public loading: boolean;
-  @observable public data: TrackModel;
-  @observable public error: string;
+  public loading: boolean = false;
+  public data: TrackModel = null;
+  public error: string = null;
 
-  private router: RouterStore;
-  private podcastStore: PodcastStore;
 
-  constructor(router: RouterStore, podcastStore: PodcastStore) {
-    this.router = router;
-    this.podcastStore = podcastStore;
+  constructor(private readonly router: RouterStore, private readonly podcastStore: PodcastStore) {
+    makeObservable(this, {
+      loading: observable,
+      data: observable.deep,
+      error: observable,
+      init: action,
+      getPodcastByIdFromRouter: action,
+      onPodcastLoaded: action.bound,
+      onPodcastFailed: action.bound
+    });
   }
 
   getPodcastFromStore = (id): TrackModel | null =>
@@ -36,10 +41,8 @@ export class SelectedPodcastStore implements InitializableStore {
     };
   };
 
-  @action
   init = () => this.getPodcastByIdFromRouter();
 
-  @action
   getPodcastByIdFromRouter = () => {
     const { id } = this.getPodcastInfo();
     if (this.data && this.data.id === id) return;
@@ -69,7 +72,6 @@ export class SelectedPodcastStore implements InitializableStore {
     }
   };
 
-  @action.bound
   onPodcastLoaded = (response: AxiosResponse) => {
     this.loading = true;
     this.error = null;
@@ -83,7 +85,6 @@ export class SelectedPodcastStore implements InitializableStore {
     }
   };
 
-  @action.bound
   onPodcastFailed = (e: Error) => {
     captureException(e);
     this.loading = true;

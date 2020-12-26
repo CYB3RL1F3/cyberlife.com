@@ -1,62 +1,60 @@
 
 
-import React, { PureComponent, ComponentType, Suspense } from 'react';
+import React, { ComponentType, useEffect, Suspense } from 'react';
 import { captureException, withScope } from '@sentry/browser';
-import { observer, inject } from 'mobx-react';
 import { Loading, Error as ErrorComponent } from 'app/components/atoms';
 import { InitializableStore } from 'app/stores/stores';
 import { Stores } from "app/constants/stores";
+import { useStore } from 'app/hooks/stores';
+import { observer } from 'mobx-react';
 
-export const withLoadingStore = (storeName: string) => (
+interface LoadingStoreComponentProps {
+  [storeName: string]: InitializableStore;
+}
+export const withLoadingStore = (storeName: Stores) => (
   WrappedComponent: ComponentType
-) => (props) => {
-  @inject(storeName, Stores.router)
-  @observer
-  class WithLoadingStoreComponent extends PureComponent {
-    componentDidMount() {
-      const store: InitializableStore = this.props[storeName];
-      store.init();
-    }
+) => observer((props) => {
+  const WithLoadingStoreComponent: React.FC<LoadingStoreComponentProps> = observer(() => {
+    const currentStore = useStore<InitializableStore>(storeName);
+    const { init, loading, error } = currentStore;
+    useEffect(() => {
+      init();
+    }, []);
 
-    componentDidCatch(error, errorInfo) {
-      this.fail(error, errorInfo);
-    }
-
-    fail = (error, errorInfo) => {
+    const fail = (error, errorInfo) => {
       withScope((scope) => {
         Object.keys(errorInfo).forEach((key) => {
           scope.setExtra(key, errorInfo[key]);
         });
         captureException(error);
       });
+      return (
+        <ErrorComponent
+          init={init}
+          message={
+            'Impossible to load content. Seems to meet a problem with the data provider.'
+          }
+        />
+      );
     };
-    render() {
-      const { init, loading, error } = this.props[storeName];
-      if (loading) {
-        return <Loading />;
-      } else if (error) {
-        this.fail(error, {});
-        return (
-          <ErrorComponent
-            init={init}
-            message={
-              'Impossible to load content. Seems to meet a problem with the data provider.'
-            }
-          />
-        );
-      } else {
+    if (loading) {
+      return <Loading />;
+    } else if (error) {
+      return fail(error, {});
+    } else {
+      try {
         return (
           <Suspense fallback={<Loading />}>
             <WrappedComponent
               {...props}
-              {...this.props}
-              {...this.props[storeName]}
+              {...currentStore}
             />
           </Suspense>
         );
+      } catch(e) {
+        return fail(e, "error while rendering WrappedComponent");
       }
     }
-  }
-
-  return <WithLoadingStoreComponent />;
-};
+  });
+  return <WithLoadingStoreComponent />
+});

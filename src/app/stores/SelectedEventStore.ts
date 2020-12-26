@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import { EventModel } from 'app/models';
 import { InitializableStore } from './stores';
 import RouterStore from './RouterStore';
@@ -9,22 +9,24 @@ import { AxiosResponse } from 'axios';
 import { captureException } from '@sentry/browser';
 
 export class SelectedEventStore implements InitializableStore {
-  @observable public loading: boolean;
-  @observable public data: EventModel;
-  @observable public error: string;
-
-  private router: RouterStore;
-  private pastEventsStore: EventsStore;
-  private forthcomingEventsStore: EventsStore;
+  public loading: boolean = false;
+  public data: EventModel = null;
+  public error: string = null;
 
   constructor(
-    router: RouterStore,
-    pastEventsStore: EventsStore,
-    forthcomingEventsStore: EventsStore
+    private readonly router: RouterStore,
+    private readonly pastEventsStore: EventsStore,
+    private readonly forthcomingEventsStore: EventsStore
   ) {
-    this.router = router;
-    this.pastEventsStore = pastEventsStore;
-    this.forthcomingEventsStore = forthcomingEventsStore;
+    makeObservable(this, {
+      loading: observable,
+      data: observable.deep,
+      error: observable,
+      init: action,
+      getEventByIdFromRouter: action,
+      onEventLoaded: action.bound,
+      onEventFailed: action.bound
+    });
   }
 
   getEventFromStore = (
@@ -63,10 +65,8 @@ export class SelectedEventStore implements InitializableStore {
     };
   };
 
-  @action
   init = () => this.getEventByIdFromRouter();
 
-  @action
   getEventByIdFromRouter = () => {
     const { id, type } = this.getEventInfo();
     if (this.data && this.data.id === parseInt(id, 10)) return;
@@ -83,7 +83,6 @@ export class SelectedEventStore implements InitializableStore {
     }
   };
 
-  @action.bound
   onEventLoaded = (type) =>
     action((response: AxiosResponse) => {
       this.loading = true;
@@ -97,7 +96,6 @@ export class SelectedEventStore implements InitializableStore {
       }
     });
 
-  @action.bound
   onEventFailed = (e: Error) => {
     captureException(e);
     this.loading = true;

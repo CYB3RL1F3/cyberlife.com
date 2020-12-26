@@ -48,7 +48,6 @@ const ExtensiblePic: FC<ExtensiblePicProps> = ({ children, className, picture })
   }, [picHandlerRef.current, dispatch, picture]);
 
   useUnmount(() => {
-    console.log('unmount');
     picHandlerRef.current.removeEventListener('mouseenter', defineModaleClickableZone, true);
 
     dispatch({

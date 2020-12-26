@@ -44,7 +44,6 @@ const MapboxGL = lazy(() => new Promise<MapboxGLLazyComponent>(async (resolve) =
 
       const Mapbox = ReactMapboxGl({
         attributionControl: false,
-        injectCSS: false,
         accessToken
       });
       const Component: FC<MapProps> = (({ coordinates, height, width }) => (
