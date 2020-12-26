@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 // variables
-const isProduction = process.argv.indexOf('-p') >= 0;
+const isProduction = process.argv.indexOf('webpack.prod.js') >= 0;
 const sourcePath = path.resolve(__dirname, 'src');
 const outPath = path.resolve(__dirname, 'dist');
 const mode = isProduction ? 'production' : 'development';
@@ -18,7 +18,6 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const dotenv = require('dotenv');
 const manifest = require('./manifest');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const domain = process.env.domain || 'localhost:3000';
