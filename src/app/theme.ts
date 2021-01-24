@@ -33,6 +33,7 @@ export interface Theme {
     fromColor: string;
     toColor: string;
     color: string;
+    dark: string;
   };
   player: {
     backgroundColor: string;
@@ -44,6 +45,10 @@ export interface Theme {
     thumbShadow: string;
     thumbColor: string;
     focus: string;
+  };
+  errors: {
+    text: string;
+    background: string;
   };
   media: {
     desktop: () => any;
@@ -97,7 +102,8 @@ export const theme: Theme = {
   background: { 
     fromColor: '#1B292C', 
     toColor: '#273e40',
-    color: '#1D3D46'
+    color: '#1D3D46',
+    dark: 'rgba(6, 11, 11, 0.57)'
   },
   player: { backgroundColor: '#1c2d2f', backgroundColorMini: '#457076' },
   slider: {
@@ -106,6 +112,10 @@ export const theme: Theme = {
     thumbBorder: '#324648',
     thumbShadow: 'rgba(0, 0, 0, 0.4)',
     thumbColor: 'rgba(255, 255, 255, 0.3)'
+  },
+  errors: {
+    text: 'rgba(188, 11, 26, 0.8)',
+    background: 'rgba(244, 12, 26, 0.3)'
   },
   media
 };

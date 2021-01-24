@@ -35,7 +35,10 @@ export const IconHandler = styled.label`
   cursor: pointer;
 `;
 
-export const Icon = styled.img`
+export const Icon = styled.img.attrs({
+  width: "15px",
+  height: "20px"
+})`
   width: 15px;
   height: auto;
   padding-left: 5px;

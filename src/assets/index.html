@@ -99,14 +99,13 @@
   <script>
     window.addEventListener('load', () => {
       setTimeout(function () {
-        if (!window.loaded) {
+        if (!window.loaded && caches) {
           caches.delete('workbox-precache-v2-' + window.location.href).then(function () {
             window.location.reload(true);
           });
         }
-      }, 400);
+      }, 500);
     });
-
   </script>
 </head>
 

@@ -370,11 +370,6 @@ const config = merge(common, {
       }
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    /*
-    new BundleAnalyzerPlugin({
-      analyzerPort: 8886,
-    }),
-    */
     new LodashModuleReplacementPlugin(),
     // new webpack.optimize.AggressiveMergingPlugin(),
     new CompressionPlugin({

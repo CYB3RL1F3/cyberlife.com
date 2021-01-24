@@ -119,7 +119,7 @@ export const Content = styled.div`
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: rgba(16, 27, 28, 0.7);
+    background: rgba(15, 24, 25, 0.9);
   }
 
   /* Handle on hover */

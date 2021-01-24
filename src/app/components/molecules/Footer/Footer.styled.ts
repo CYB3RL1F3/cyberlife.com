@@ -17,7 +17,7 @@ export const Container = styled.footer`
   ${({ theme }) => theme.media.tablet`
     width: 100vw;
     height: 3.5rem;
-    top: 90vh;
+    top: 100vh;
     position: sticky;
   `}
 `;

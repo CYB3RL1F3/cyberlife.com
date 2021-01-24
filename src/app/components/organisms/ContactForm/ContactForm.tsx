@@ -9,6 +9,7 @@ import {
   Loading,
   ErrorField,
   Bottom,
+  Verificator,
   CaptchaHandler
 } from './ContactForm.styled';
 import { validate, initialValues } from './ContactForm.data';
@@ -24,6 +25,7 @@ interface ContactFormProps {
 export const ContactForm: FC<ContactFormProps> = memo(({ onSubmit, hasFailed }) => {
   const [vibrated, setVibrated] = useState<boolean>(false);
   const [captcha, setCaptcha] = useState<Captcha>(null);
+  const [captchaLoading, setCaptchaLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -34,7 +36,7 @@ export const ContactForm: FC<ContactFormProps> = memo(({ onSubmit, hasFailed }) 
   }, []);
 
   const onCaptchaLoaded = useCallback(() => {
-    captcha && captcha.execute && captcha.execute();
+    captcha?.execute && captcha.execute();
   }, [captcha]);
 
   const vibrate = useCallback(() => {
@@ -74,6 +76,7 @@ export const ContactForm: FC<ContactFormProps> = memo(({ onSubmit, hasFailed }) 
 
         const setValidCaptchaValue = useCallback(() => {
           setFieldValue('captcha', true);
+          setCaptchaLoading(false);
         }, [setFieldValue]);
 
         const onCaptchaReady = useCallback((c) => {
@@ -138,6 +141,12 @@ export const ContactForm: FC<ContactFormProps> = memo(({ onSubmit, hasFailed }) 
             </CaptchaHandler>
             <Bottom index={5}>
               <ErrorField>
+                {captchaLoading && (
+                  <Verificator >
+                    {`Please wait while our IA's verifying whether
+                    you're a human being or smarter specie...`}
+                  </Verificator>
+                )}
                 {hasFailed && "An error occured... Please retry!"}
                 {Object.keys(errors).map(
                   (error: string) =>
@@ -149,7 +158,7 @@ export const ContactForm: FC<ContactFormProps> = memo(({ onSubmit, hasFailed }) 
                 )}
               </ErrorField>
               <SubmitWrapper>
-                <Submit type="submit" disabled={isSubmitting}>
+                <Submit type="submit" disabled={isSubmitting || captchaLoading}>
                   {isSubmitting ? <Loading /> : 'Send'}
                 </Submit>
               </SubmitWrapper>
