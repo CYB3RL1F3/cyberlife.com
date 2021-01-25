@@ -5,7 +5,6 @@ export * from './Error';
 export * from './Map';
 export * from './Audio';
 export * from './NavMobile';
-export * from './BackgroundVideo';
 export { default as PlayBtn } from './PlayBtn';
 export { default as Track } from './Track';
 export { default as Heads } from './Heads';
