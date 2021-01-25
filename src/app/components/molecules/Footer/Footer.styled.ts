@@ -14,11 +14,20 @@ export const Container = styled.footer`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100vw;
+  position: absolute;
+  bottom: 0.5em;
   ${({ theme }) => theme.media.tablet`
     width: 100vw;
     height: 3.5rem;
     top: 100vh;
     position: sticky;
+    bottom: unset;
+  `}
+  ${({ theme }) => theme.media.mobile`
+    position: unset;
+    bottom: unset;
+    overflow: hidden;
   `}
 `;
 

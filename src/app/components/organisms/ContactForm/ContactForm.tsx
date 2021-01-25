@@ -1,5 +1,7 @@
-import React, { FC, useState, useCallback, useEffect, memo, Fragment } from 'react';
-import { Formik } from 'formik';
+import React, { FC, useState, useCallback, useEffect, memo, Fragment, lazy } from 'react';
+
+const Formik = lazy(() => import('formik').then(module => ({ default: module.Formik })));
+
 import {
   Form,
   Input,
@@ -79,9 +81,9 @@ export const ContactForm: FC<ContactFormProps> = memo(({ onSubmit, hasFailed }) 
           setCaptchaLoading(false);
         }, [setFieldValue]);
 
-        const onCaptchaReady = useCallback((c) => {
-          setCaptcha(c);
-          if (c && !values.captcha) {
+        const onCaptchaReady = useCallback((captchaInstance) => {
+          setCaptcha(captchaInstance);
+          if (captchaInstance && !values.captcha) {
             onCaptchaLoaded();
           }
         }, [onCaptchaLoaded, values]);
@@ -169,3 +171,5 @@ export const ContactForm: FC<ContactFormProps> = memo(({ onSubmit, hasFailed }) 
     </Formik>
   );
 });
+
+export default ContactForm;

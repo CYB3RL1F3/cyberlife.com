@@ -1,8 +1,8 @@
-import React, { FC, useCallback, MouseEvent, useState } from 'react';
+import React, { FC, Suspense, lazy, useCallback, MouseEvent, useState } from 'react';
 import { captureException } from '@sentry/browser';
-import { ContactForm } from 'app/components/organisms/ContactForm';
 import { sendMail } from 'app/actions';
-import { ContactSuccess } from 'app/components/organisms/ContactSuccess';
+const ContactForm = lazy(() => import('app/components/organisms/ContactForm'));
+const ContactSuccess = lazy(() => import('app/components/organisms/ContactSuccess'));
 
 export const Contact: FC = () => {
   const [sent, setSent] = useState<boolean>(false);
@@ -28,11 +28,14 @@ export const Contact: FC = () => {
         captureException(error);
       });
   }, [setSent, setFailed]);
-
   return !sent ? (
-      <ContactForm onSubmit={onSubmit} hasFailed={failed} />
+      <Suspense fallback={<div />}>
+        <ContactForm onSubmit={onSubmit} hasFailed={failed} />
+      </Suspense>
     ) : (
-      <ContactSuccess returnAction={reset} />
+      <Suspense fallback={<div />}>
+        <ContactSuccess returnAction={reset} />
+      </Suspense>
     );
 }
 

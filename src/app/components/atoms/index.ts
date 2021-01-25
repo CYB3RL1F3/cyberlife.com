@@ -3,7 +3,6 @@ export * from './PixelTracker';
 export * from './Loading';
 export * from './Error';
 export * from './Map';
-export { default as Volume } from './Volume';
 export * from './Audio';
 export * from './NavMobile';
 export * from './BackgroundVideo';

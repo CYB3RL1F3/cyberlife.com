@@ -1,8 +1,8 @@
-import React, { FC, memo, MouseEvent } from 'react';
-import Lottie from 'react-lottie';
+import React, { FC, memo, MouseEvent, lazy, Suspense } from 'react';
+
 import { Container, H3, P, LottieHandler, A } from './ContactSuccess.styled';
 import Heads from 'app/components/atoms/Heads';
-
+const Lottie = lazy(() => import('react-lottie'));
 const animationData = require('assets/lotties/mail.json');
 
 interface ContactSuccessProps {
@@ -30,7 +30,9 @@ export const ContactSuccess: FC<ContactSuccessProps> = memo(({
         replied as soon as possible.
       </P>
       <LottieHandler>
-        <Lottie options={config} height={200} width={200} />
+        <Suspense fallback={<div />}>
+          <Lottie options={config} height={200} width={200} />
+        </Suspense>   
       </LottieHandler>
       <P>
         <A onClick={returnAction}>Send another one</A>
@@ -38,3 +40,5 @@ export const ContactSuccess: FC<ContactSuccessProps> = memo(({
     </Container>
   );
 });
+
+export default ContactSuccess;

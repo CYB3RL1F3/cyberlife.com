@@ -92,7 +92,12 @@ export const media = Object.keys(sizes).reduce(
 
 export const theme: Theme = {
   color: '#6ca1a6',
-  fontSizes: { small: '8pt', average: '10pt', big: '12pt', menu: '16pt' },
+  fontSizes: { 
+    small: '8pt', 
+    average: '10pt', 
+    big: '12pt', 
+    menu: '16pt'
+  },
   isAndroid: isAndroid(),
   isFirefox: isFirefox(),
   picturePlaceholder: 'rgba(42, 43, 65, 0.5)',
@@ -105,7 +110,10 @@ export const theme: Theme = {
     color: '#1D3D46',
     dark: 'rgba(6, 11, 11, 0.57)'
   },
-  player: { backgroundColor: '#1c2d2f', backgroundColorMini: '#457076' },
+  player: { 
+    backgroundColor: '#1c2d2f', 
+    backgroundColorMini: '#457076' 
+  },
   slider: {
     color: 'rgba(108,161,166, 0.5)',
     focus: 'rgba(108,161,166, 0.6)',
