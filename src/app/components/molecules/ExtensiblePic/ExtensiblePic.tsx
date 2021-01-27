@@ -1,5 +1,4 @@
 import React, { FC, useContext, useCallback, useEffect, useRef } from 'react';
-import { useUnmount } from 'app/hooks/effects';
 import { ModalContext } from 'app/contexts/ModalContext';
 import { getHomotheticDimensions, toPixel } from 'app/utils/images';
 
@@ -47,20 +46,21 @@ const ExtensiblePic: FC<ExtensiblePicProps> = ({ children, className, picture })
     });
   }, [picHandlerRef.current, dispatch, picture]);
 
-  useUnmount(() => {
-    picHandlerRef.current.removeEventListener('mouseenter', defineModaleClickableZone, true);
-
-    dispatch({
-      type: 'unmount'
-    })
-  })
   useEffect(() => {
     if (picHandlerRef.current) {
       picHandlerRef.current.removeEventListener('mouseenter', defineModaleClickableZone, true);
       picHandlerRef.current.addEventListener('mouseenter', defineModaleClickableZone, true);
     }
+    return () => {
+      picHandlerRef.current && picHandlerRef.current.removeEventListener('mouseenter', defineModaleClickableZone, true);
+    }
   }, [picHandlerRef.current, defineModaleClickableZone, picture, dispatch]);
 
+  useEffect(() => () => {
+    dispatch({
+      type: 'unmount'
+    })
+  }, []);
   return (
     <div className={className} ref={picHandlerRef} onClick={open}>
       {children}
