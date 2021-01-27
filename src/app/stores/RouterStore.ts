@@ -1,5 +1,5 @@
 import { History } from 'history';
-import { makeAutoObservable } from 'mobx';
+import { observable, makeObservable } from 'mobx';
 import {
   RouterStore as BaseRouterStore,
   syncHistoryWithStore
@@ -12,7 +12,10 @@ export class RouterStore extends BaseRouterStore {
     if (history) {
       this.history = syncHistoryWithStore(history, this);
     }
-    makeAutoObservable(this);
+    makeObservable(this, {
+      history: observable,
+      location: observable
+    });
   }
 }
 

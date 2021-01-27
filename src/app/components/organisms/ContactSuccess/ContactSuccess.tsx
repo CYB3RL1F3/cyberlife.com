@@ -1,4 +1,4 @@
-import React, { FC, memo, MouseEvent, lazy, Suspense } from 'react';
+import React, { FC, memo, MouseEvent, lazy, useRef, Suspense, useCallback } from 'react';
 
 import { Container, H3, P, LottieHandler, A } from './ContactSuccess.styled';
 import Heads from 'app/components/atoms/Heads';
@@ -20,7 +20,13 @@ export const ContactSuccess: FC<ContactSuccessProps> = memo(({
       preserveAspectRatio: 'xMidYMid slice'
     }
   };
+  
+  const animation = useRef<any>(null)
 
+  const onReturn = useCallback((e) => {
+    animation.current && animation.current.stop();
+    returnAction(e);
+  }, []);
   return (
     <Container>
       <Heads title="Contact" conglomerateTitle url={window.document.location.href} />
@@ -31,11 +37,11 @@ export const ContactSuccess: FC<ContactSuccessProps> = memo(({
       </P>
       <LottieHandler>
         <Suspense fallback={<div />}>
-          <Lottie options={config} height={200} width={200} />
-        </Suspense>   
+          <Lottie eventListeners={[]} ref={animation} options={config} height={200} width={200} /> 
+        </Suspense>
       </LottieHandler>
       <P>
-        <A onClick={returnAction}>Send another one</A>
+        <A onClick={onReturn}>Send another one</A>
       </P>
     </Container>
   );
