@@ -1,147 +1,132 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <link rel="canonical" href="https://cyberlife-music.com" />
-    <link
-      rel="preload"
-      href="https://profilart.fr/045af2a3/playlist?name=dj-sets"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://profilart.fr/045af2a3/infos"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://res.cloudinary.com/hiilqldcr/video/upload/v1590399050/bg_webm.webm"
-      crossorigin
-    />
-    <link rel="stylesheet" href="/main.css" />
-    <link rel="manifest" href="/pwa/manifest.json" />
-    <link ref="dns-prefetch" href="https://profilart.fr" />
-    <link rel="dns-prefetch" href="https://storage.googleapis.com" />
-    <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-    
-    <meta charset="utf-8" />
-    <meta name="robots" content="all" />
-    <meta name="theme-color" content="#36595C" />
-    <link rel="apple-touch-icon" href="./apple-icon.png">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimal-ui"
-    />
-    <title>Cyberlife</title>
-    <style>
-      body {
-        background: #36595C;
-        background-image: linear-gradient(to right, #1B292C, #273e40);
-      }
-      #noscript {
-        margin: 1rem;
-      }
 
-      #noscript,
-      #noscript a {
-        color: rgb(108, 161, 166);
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 14px;
-      }
+<head>
+  <link rel="canonical" href="https://cyberlife-music.com" />
+  <link rel="preload" href="https://profilart.fr/045af2a3/playlist?name=dj-sets" crossorigin />
+  <link rel="preload" href="https://profilart.fr/045af2a3/infos" crossorigin />
+  <link rel="preload" href="https://res.cloudinary.com/hiilqldcr/video/upload/v1590399050/bg_webm.webm" crossorigin />
+  <link rel="stylesheet" href="/main.css" />
+  <link rel="manifest" href="/pwa/manifest.json" />
+  <link ref="dns-prefetch" href="https://profilart.fr" />
+  <link rel="dns-prefetch" href="https://storage.googleapis.com" />
+  <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 
-      #noscript a {
-        text-decoration: underline;
-      }
+  <meta charset="utf-8" />
+  <meta name="robots" content="all" />
+  <meta name="theme-color" content="#36595C" />
+  <link rel="apple-touch-icon" href="./apple-icon.png">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui" />
+  <title>Cyberlife</title>
+  <style>
+    body {
+      background: #36595C;
+      background-image: linear-gradient(to right, #1B292C, #273e40);
+    }
 
-      #error {
-        color: red;
-      }
+    #noscript {
+      margin: 1rem;
+    }
 
-      .grecaptcha-badge,
-      .grecaptcha-logo {
-        display: none !important;
-        opacity: 0 !important;
-      }
+    #noscript,
+    #noscript a {
+      color: rgb(108, 161, 166);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+    }
 
-      * {
-        margin: 0;
-        padding: 0;
-      }
+    #noscript a {
+      text-decoration: underline;
+    }
 
-      #container {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        flex-direction: column;
-        position: relative;
-        width: 100vw;
-        height:100vh;
-      }
+    #error {
+      color: red;
+    }
 
-      #handler {
-        display: block;
-        position: absolute;
-        bottom: 7.5rem;
-        right: calc(50% - 7.5rem);
-        width: 14rem;
-        height: 14rem;
-      }
+    .grecaptcha-badge,
+    .grecaptcha-logo {
+      display: none !important;
+      opacity: 0 !important;
+    }
 
-      #spinner {
-        border: solid 2px;
-        border-top-color: rgba(99, 99, 99, 0.5);
-        border-left-color: rgba(122, 122, 122, 0.5);
-        border-bottom-color: rgb(99, 99, 99, 0.5);
-        border-right-color: rgb(77, 77, 77, 0.5);
-        border-radius: 50%;
-        width: 14rem;
-        height: 14rem;
-        margin: 0;
-        padding: 0;
-        top: 1px;
-        left: 1px;
-        position: absolute;
-        
-      }
-    </style>
-    <script>
-      window.addEventListener('load', () => {
-        setTimeout(function () {
-          if (!window.loaded) {
-            caches.delete('workbox-precache-v2-' + window.location.href).then(function () {
-              window.location.reload(true);
-            });
-          }
-        }, 400);
-      });
+    * {
+      margin: 0;
+      padding: 0;
+    }
 
-    </script>
-  </head>
-  <body>
-    <noscript>
-      <p id="noscript">
-        <span id="error">FATAL EXCEPTION !!!</span><br /><br />
-        <a href="https://fr.wikipedia.org/wiki/JavaScript">Javascript</a> MUST
-        be enabled on your browser to run the website... <br />Please activate
-        it and <a href="https://cyberlife-music.com/">reload this page</a>.
-      </p>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-MFHZWRB"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"
-      ></iframe>
-    </noscript>
-    <div id="root">
-      <div id="container">
-        <div id="handler">
-          <div id="spinner"></div>
-        </div>
+    #container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      flex-direction: column;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #handler {
+      display: block;
+      position: absolute;
+      bottom: 7.5rem;
+      right: calc(50% - 7.5rem);
+      width: 14rem;
+      height: 14rem;
+    }
+
+    #spinner {
+      border: solid 2px;
+      border-top-color: rgba(99, 99, 99, 0.5);
+      border-left-color: rgba(122, 122, 122, 0.5);
+      border-bottom-color: rgb(99, 99, 99, 0.5);
+      border-right-color: rgb(77, 77, 77, 0.5);
+      border-radius: 50%;
+      width: 14rem;
+      height: 14rem;
+      margin: 0;
+      padding: 0;
+      top: 1px;
+      left: 1px;
+      position: absolute;
+
+    }
+
+  </style>
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(function () {
+        if (!window.loaded && caches) {
+          caches.delete('workbox-precache-v2-' + window.location.href).then(function () {
+            window.location.reload(true);
+          });
+        }
+      }, 500);
+    });
+  </script>
+</head>
+
+<body>
+  <noscript>
+    <p id="noscript">
+      <span id="error">FATAL EXCEPTION !!!</span><br /><br />
+      <a href="https://fr.wikipedia.org/wiki/JavaScript">Javascript</a> MUST
+      be enabled on your browser to run the website... <br />Please activate
+      it and <a href="https://cyberlife-music.com/">reload this page</a>.
+    </p>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MFHZWRB" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <div id="root">
+    <div id="container">
+      <div id="handler">
+        <div id="spinner"></div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

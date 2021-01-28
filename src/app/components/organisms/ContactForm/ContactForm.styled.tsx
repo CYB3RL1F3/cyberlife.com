@@ -55,8 +55,8 @@ export interface InputProps extends Positionnable {
 
 export const Input = styled<InputProps, {}>(Field)`
   ${({ index }) => inputStyle(index)};
-  background: ${({ haserror }) =>
-    haserror === 'true' ? 'rgba(244, 12, 26, 0.3)' : 'rgba(6, 11, 11, 0.57)'};
+  background: ${({ haserror, theme }) =>
+    haserror === 'true' ? theme.errors.background : theme.background.dark};
 `;
 
 export const Textarea = styled<InputProps, {}>(Field)`
@@ -69,8 +69,8 @@ export const Textarea = styled<InputProps, {}>(Field)`
   resize: vertical;
   padding: 0.5rem 1rem;
   max-height: 50vh;
-  background: ${({ haserror }) =>
-    haserror === 'true' ? 'rgba(244, 12, 26, 0.3)' : 'rgba(6, 11, 11, 0.57)'};
+  background: ${({ haserror, theme }) =>
+    haserror === 'true' ? theme.errors.background : theme.background.dark};
 `;
 
 export const SubmitWrapper = styled.p`
@@ -97,7 +97,7 @@ export const Bottom = styled.div<Positionnable>`
 
 export const Submit = styled.button`
   flex: 1;
-  background: rgba(6, 11, 11, 0.57);
+  background: ${({ theme }) => theme.background.dark};
   ${inputStyle};
   color: ${({ theme }) => theme.color};
   padding: 0;
@@ -127,13 +127,18 @@ export const ErrorField = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.average};
   flex: 0.6;
   padding-top: 0.25rem;
-  color: rgba(188, 11, 26, 0.8);
+  color: ${({ theme }) => theme.errors.text};
   ${({ theme }) => theme.media.mobile`
     flex: 1;
     font-size: 14pt;
     min-height: 2rem;
     line-height: 16pt;
   `}
+`;
+
+export const Verificator = styled.span`
+  color: ${({ theme }) => theme.color};
+  white-space: pre-line;
 `;
 
 export const CaptchaHandler = styled.div`

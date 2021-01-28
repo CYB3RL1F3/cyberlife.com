@@ -1,4 +1,4 @@
-import React, { FC, useCallback, MouseEvent } from 'react';
+import React, { FC, useCallback, MouseEvent, lazy } from 'react';
 import PlaylistModel from 'app/models/PodcastModel';
 import { Stores } from 'app/constants/stores';
 import { withLoadingStore } from 'app/hoc/LoadingStore/WithLoadingStore';
@@ -6,7 +6,7 @@ import { Container, Unavailable } from './Podcasts.styled';
 import { TrackModel } from 'app/models';
 import { observer } from 'mobx-react';
 import { usePlayerStore } from 'app/hooks/stores';
-import { PodcastItem } from 'app/components/molecules';
+const PodcastItem = lazy(() => import('app/components/molecules/PodcastItem'));
 import Heads from 'app/components/atoms/Heads';
 
 export interface PlaylistProps {
@@ -33,7 +33,7 @@ const PodcastsComponent: FC<PlaylistProps> = observer(({ data }) => {
   return (
     <Container>
       <Heads />
-      {data && data.tracks && data.tracks.length ? 
+      {data?.tracks?.length ? 
         data.tracks.map(
           (track: TrackModel, index: number): JSX.Element => {
             return (

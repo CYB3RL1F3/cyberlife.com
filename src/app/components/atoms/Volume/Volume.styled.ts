@@ -3,7 +3,7 @@ import { AlphaTransitionDelay } from 'app/components/SharedStyled';
 
 export const Container = styled.p`
   width: 10rem;
-  line-height: ${({ theme }) => (theme.isFirefox ? '7vh' : '4.5vh')};
+  line-height: ${({ theme }) => (theme.isFirefox ? '7vh' : '2.4rem')};
   display: inline-flex;
   max-height: 2.5rem;
   overflow: hidden;
@@ -35,7 +35,10 @@ export const IconHandler = styled.label`
   cursor: pointer;
 `;
 
-export const Icon = styled.img`
+export const Icon = styled.img.attrs({
+  width: "15px",
+  height: "20px"
+})`
   width: 15px;
   height: auto;
   padding-left: 5px;

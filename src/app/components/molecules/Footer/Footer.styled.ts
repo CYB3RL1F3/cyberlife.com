@@ -5,20 +5,24 @@ import {
 } from 'app/components/SharedStyled';
 import { Link as BaseLink } from 'app/components/atoms/Link';
 
-const height = '4vh';
+const height = '1.5rem';
 
 export const Container = styled.footer`
-  height: ${height};
+  height: 1em;
   min-height: 1.5rem;
   max-height: 5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100vw;
   ${({ theme }) => theme.media.tablet`
-    width: 100vw;
-    height: 3.5rem;
-    top: 90vh;
+    top: calc(100vh - 3rem);
     position: sticky;
+    bottom: unset;
+  `}
+  ${({ theme }) => theme.media.mobile`
+    position: unset;
+    min-height: 3rem;
   `}
 `;
 
@@ -42,12 +46,16 @@ export const Text = styled.p`
   box-sizing: border-box;
   flex: 0.9;
   line-height: 2.5rem;
+  
   ${({ theme }) => theme.media.tablet`
     line-height: 3rem;
   `}
   ${({ theme }) => theme.media.desktop`
     margin-top: 0.4rem;
   `}
+  @media(max-width: 285px) {
+    display: none;
+  }
 `;
 
 export const Link = styled(BaseLink)`

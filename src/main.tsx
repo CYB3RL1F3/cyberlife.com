@@ -35,9 +35,9 @@ ReactDOM.render(
 );
 
 // init PWA service worker
-if ('serviceWorker' in navigator && 'PushManager' in window) {
-  window.addEventListener('load', async () => {
-    window.loaded = true;
+window.addEventListener('load', async () => {
+  window.loaded = true;
+  if ('serviceWorker' in navigator && 'PushManager' in window) {
     if (window.navigator.onLine) {
       await caches.delete('workbox-precache-v2-' + window.location.href);
     }
@@ -67,9 +67,5 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker.ready.then((registration) => {
       registration.update();
     });
-  });
-} else {
-  window.addEventListener('load', () => {
-    window.loaded = true;
-  });
-}
+  }
+});

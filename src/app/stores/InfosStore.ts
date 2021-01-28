@@ -1,21 +1,25 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import { getInfos } from 'app/actions';
 import { InfosModel } from 'app/models';
 import AppStore from './AppStore';
 import { captureException } from '@sentry/browser';
 
 export class InfosStore {
-  private appStore: AppStore;
-  public type: number;
-  @observable public loading: boolean;
-  @observable public error: string;
-  @observable public data: InfosModel;
+  public loading: boolean = false;
+  public error: string = null;
+  public data: InfosModel = null;
 
-  constructor(appStore: AppStore) {
-    this.appStore = appStore;
+  constructor(private readonly appStore: AppStore) {
+    makeObservable(this, {
+      loading: observable,
+      data: observable,
+      error: observable,
+      loadInfos: action,
+      onInfosLoaded: action.bound,
+      onInfosFailed: action.bound
+    });
   }
 
-  @action
   loadInfos = () => {
     this.loading = true;
     this.error = null;
@@ -25,7 +29,6 @@ export class InfosStore {
       .catch(this.onInfosFailed);
   };
 
-  @action.bound
   onInfosLoaded = (response) => {
     try {
       this.data = new InfosModel(response.data);
@@ -36,7 +39,6 @@ export class InfosStore {
     }
   };
 
-  @action.bound
   onInfosFailed = (e) => {
     captureException(e);
     this.error = e;

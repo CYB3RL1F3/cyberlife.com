@@ -1,18 +1,28 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import { getReleases } from 'app/actions';
 import { ReleaseModel } from 'app/models';
 import { InitializableStore } from './stores';
 import { captureException } from '@sentry/browser';
 
 export class ReleasesStore implements InitializableStore {
-  @observable public loading: boolean;
-  @observable public data: ReleaseModel[];
-  @observable public error: string;
+  public loading: boolean = false;
+  public data: ReleaseModel[] = null;
+  public error: string = null;
+  
+  constructor() {
+    makeObservable(this, {
+      loading: observable,
+      data: observable.deep,
+      error: observable,
+      init: action,
+      loadReleases: action,
+      onReleasesLoaded: action.bound,
+      onReleasesFailed: action.bound
+    });
+  }
 
-  @action
   init = () => !this.data && this.loadReleases();
 
-  @action
   loadReleases = () => {
     this.loading = true;
     this.error = null;
@@ -21,7 +31,6 @@ export class ReleasesStore implements InitializableStore {
       .catch(this.onReleasesFailed);
   };
 
-  @action.bound
   onReleasesLoaded = (response) => {
     try {
       this.data = response.data.map((release) => new ReleaseModel(release));
@@ -31,7 +40,6 @@ export class ReleasesStore implements InitializableStore {
     }
   };
 
-  @action.bound
   onReleasesFailed = (e) => {
     captureException(e);
     this.error = e;

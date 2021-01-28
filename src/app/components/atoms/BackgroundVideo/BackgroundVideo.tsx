@@ -8,7 +8,7 @@ export const BackgroundVideo: FC = () => {
   const onLoad = useCallback(() => setVideoLoading(false), [setVideoLoading]);
   const ref = useRef(null);
   useEffect(() => {
-    if (ref && ref.current && !ref.current.oncanplay) {
+    if (ref?.current && !ref?.current?.oncanplay) {
       ref.current.oncanplay = onLoad;
     }
   }, [ref.current]);

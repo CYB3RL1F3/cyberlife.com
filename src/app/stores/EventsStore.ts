@@ -1,23 +1,30 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import { getEvents } from 'app/actions';
 import { EventModel } from 'app/models';
 import { InitializableStore } from './stores';
 import { captureException } from '@sentry/browser';
 export class EventsStore implements InitializableStore {
-  public type: number;
-  @observable public loading: boolean;
-  @observable public error: string;
-  @observable public data: EventModel[];
-  @observable public selected: EventModel;
+  public loading: boolean = false;
+  public error: string = null;
+  public data: EventModel[] = null;
+  public selected: EventModel = null;
 
-  constructor(type: number) {
-    this.type = type;
+  constructor(readonly type: number) {
+    makeObservable(this, {
+      loading: observable,
+      data: observable,
+      error: observable,
+      selected: observable,
+      init: action,
+      loadEvents: action,
+      onEventsLoaded: action.bound,
+      onEventsFailed: action.bound,
+      selectEvent: action
+    });
   }
 
-  @action
   init = () => !this.data && this.loadEvents();
 
-  @action
   loadEvents = () => {
     this.loading = true;
     this.error = null;
@@ -26,25 +33,21 @@ export class EventsStore implements InitializableStore {
       .catch(this.onEventsFailed);
   };
 
-  @action
   reset = () => {
     this.data = null;
   };
 
-  @action.bound
   onEventsLoaded = (response) => {
     this.data = response.data.map((event) => new EventModel(event, this.type));
     this.loading = false;
   };
 
-  @action.bound
   onEventsFailed = (e) => {
     captureException(e);
     this.error = e;
     this.loading = false;
   };
 
-  @action
   selectEvent = (id: number) => {
     this.selected = this.getEventById(id);
   };

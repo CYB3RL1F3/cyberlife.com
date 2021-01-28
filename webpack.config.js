@@ -2,24 +2,23 @@ const webpack = require('webpack');
 const path = require('path');
 
 // variables
-const isProduction = process.argv.indexOf('-p') >= 0;
+const isProduction = process.argv.indexOf('webpack.prod.js') >= 0;
 const sourcePath = path.resolve(__dirname, 'src');
 const outPath = path.resolve(__dirname, 'dist');
 const mode = isProduction ? 'production' : 'development';
 // plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 const SitemapWebpackPlugin = require('sitemap-webpack-plugin').default;
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const dotenv = require('dotenv');
 const manifest = require('./manifest');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const domain = process.env.domain || 'localhost:3000';
 
@@ -113,31 +112,31 @@ const paths = [
   {
     path: '/',
     lastMod: true,
-    priority: '1',
+    priority: 1,
     changeFreq: 'daily'
   },
   {
     path: '/events',
     lastMod: true,
-    priority: '1',
+    priority: 1,
     changeFreq: 'daily'
   },
   {
     path: '/charts',
     lastMod: true,
-    priority: '0.5',
+    priority: 0.5,
     changeFreq: 'monthly'
   },
   {
     path: '/releases',
     lastMod: true,
-    priority: '0.8',
+    priority: 0.8,
     changeFreq: 'daily'
   },
   {
     path: '/contact',
     lastMod: true,
-    priority: '0.8',
+    priority: 0.8,
     changeFreq: 'monthly'
   }
 ];
@@ -150,8 +149,9 @@ module.exports = {
   },
   output: {
     path: outPath,
-    filename: 'bundle.js',
-    chunkFilename: '[chunkhash].js',
+    filename: '[name].[fullhash].js',
+    sourceMapFilename: '[name].[fullhash].map',
+    chunkFilename: '[name].[fullhash].js',
     publicPath: '/'
   },
   target: 'web',
@@ -162,6 +162,10 @@ module.exports = {
       app: path.resolve(__dirname, 'src/app/'),
       types: path.resolve(__dirname, 'types/'),
       assets: path.resolve(__dirname, 'src/assets/')
+    },
+    fallback: {
+      fs: false,
+      net: false
     }
   },
   module: {
@@ -184,39 +188,41 @@ module.exports = {
       // css
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              query: {
-                esModule: false,
-                modules: {
-                  localIdentName: '[local]__[hash:base64:5]'
-                },
-                sourceMap: !isProduction,
-                importLoaders: 1
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                postcssOptions: {
-                  ident: 'postcss',
-                  plugins: [
-                    require('postcss-import')({ addDependencyTo: webpack }),
-                    require('postcss-url')(),
-                    require('postcss-cssnext')(),
-                    require('postcss-reporter')(),
-                    require('postcss-browser-reporter')({
-                      disabled: isProduction
-                    })
-                  ]
-                }
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              fallback: 'style-loader',
+              esModule: false,
+              modules: {
+                localIdentName: '[local]__[fullhash:base64:5]'
+              },
+              sourceMap: !isProduction,
+              importLoaders: 1
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                ident: 'postcss',
+                plugins: [
+                  require('postcss-import')({ addDependencyTo: webpack }),
+                  require('postcss-url')(),
+                  require('postcss-cssnext')(),
+                  require('postcss-reporter')(),
+                  require('postcss-browser-reporter')({
+                    disabled: isProduction
+                  })
+                ]
               }
             }
-          ]
-        })
+          }
+        ],
+        sideEffects: true,
       },
       // static assets
       { test: /\.html$/, use: 'html-loader' },
@@ -246,7 +252,6 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      name: true,
       cacheGroups: {
         commons: {
           chunks: 'initial',
@@ -261,20 +266,24 @@ module.exports = {
     },
   },
   plugins: [
-    new FixStyleOnlyEntriesPlugin(),
-    new ForceCaseSensitivityPlugin(),
-    new WebpackCleanupPlugin(),
-    new ExtractTextPlugin({
-      filename: 'styles.css',
-      disable: !isProduction
+    // new FixStyleOnlyEntriesPlugin(),
+    new CaseSensitivePathsPlugin(),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].[fullhash].css',
+      chunkFilename: '[name].[fullhash].css'
     }),
     new HtmlWebpackPlugin(index),
     new RobotstxtPlugin(robotsOptions),
-    new SitemapWebpackPlugin('http:' + domain, paths, {
-      fileName: 'sitemap.xml',
-      lastMod: true,
-      changeFreq: 'monthly',
-      priority: '0.5'
+    new SitemapWebpackPlugin({
+      base: 'https://' + domain, 
+      paths, 
+      options: {
+        fileName: 'sitemap.xml',
+        lastMod: true,
+        changeFreq: 'monthly',
+        priority: 0.5
+      }
     }),
     new webpack.DefinePlugin(
       configFromEnv
@@ -314,11 +323,5 @@ module.exports = {
     },
     stats: 'minimal'
   },
-  devtool: 'cheap-module-eval-source-map',
-  node: {
-    // workaround for webpack-dev-server issue
-    // https://github.com/webpack/webpack-dev-server/issues/60#issuecomment-103411179
-    fs: 'empty',
-    net: 'empty'
-  }
+  devtool: 'eval-source-map',
 };

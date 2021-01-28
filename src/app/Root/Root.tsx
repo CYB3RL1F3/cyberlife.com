@@ -6,7 +6,7 @@ import { AppLoader } from 'app/components/organisms';
 const AppPromise = import('app/containers/App');
 const App = lazy(() => AppPromise);
 
-setTimeout(() => require('assets/main.css'), 0);
+// setTimeout(() => require('assets/main.css'), 0);
 
 export const Root: FC = ({ children }) => {
   // const { loaded } = useAppStore();

@@ -1,15 +1,15 @@
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import TrackModel from './TrackModel';
 
 export class PodcastModel {
-  readonly id: number;
-  @observable public title: string;
-  @observable public description: string;
-  @observable public genre: string;
-  @observable public taglist: string[];
-  @observable public artwork: string;
-  @observable public soundcloud: string;
-  @observable public tracks: TrackModel[];
+  readonly id: number = null;
+  public title: string = null;
+  public description: string = null;
+  public genre: string = null;
+  public artwork: string = null;
+  public soundcloud: string = null;
+  public taglist: string[] = null;
+  public tracks: TrackModel[] = null;
 
   constructor(podcast: any) {
     Object.keys(podcast).forEach(
@@ -23,6 +23,16 @@ export class PodcastModel {
         }
       }
     );
+    makeObservable(this, {
+      title: observable,
+      description: observable,
+      genre: observable,
+      artwork: observable,
+      soundcloud: observable,
+      taglist: observable.deep,
+      tracks: observable.deep,
+
+    });
   }
 }
 

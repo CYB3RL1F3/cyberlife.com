@@ -156,3 +156,4 @@ workbox.routing.setCatchHandler((t) => {
       return Response.error();
   }
 });
+

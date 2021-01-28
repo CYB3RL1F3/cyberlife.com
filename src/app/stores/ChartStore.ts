@@ -1,38 +1,47 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import { ChartModel } from 'app/models';
 import { getCharts } from 'app/actions';
 import { InitializableStore } from './stores';
 import { captureException } from '@sentry/browser';
 
 export class ChartStore implements InitializableStore {
-  @observable public loading: boolean;
-  @observable public error: string;
-  @observable public data: ChartModel;
 
-  @action
+  public loading: boolean = false;
+  public error: string = null;
+  public data: ChartModel = null;
+  
+  constructor() {
+    makeObservable(this, {
+      loading: observable,
+      data: observable,
+      error: observable,
+      init: action,
+      loadCharts: action,
+      onChartsLoaded: action.bound,
+      onChartsFailed: action.bound
+    });
+  }
+
   init = () => !this.data && this.loadCharts();
 
-  @action
   loadCharts = () => {
     this.loading = true;
     this.error = null;
     getCharts()
       .then(this.onChartsLoaded)
-      .catch(this.onChartsError);
+      .catch(this.onChartsFailed);
   };
 
-  @action.bound
   onChartsLoaded = (response) => {
     try {
       this.data = new ChartModel(response.data[0]);
       this.loading = false;
     } catch (e) {
-      this.onChartsError(e);
+      this.onChartsFailed(e);
     }
   };
 
-  @action.bound
-  onChartsError = (e) => {
+  onChartsFailed = (e) => {
     captureException(e);
     this.error = e.toString();
     this.loading = false;

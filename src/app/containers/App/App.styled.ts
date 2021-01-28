@@ -35,19 +35,14 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     height: unset;
+    min-height: calc(100vh - 6.6rem);
   `}
   ${({ theme }) => theme.media.mobile`
-    min-height: 75vh;
-
-    @media(max-height: 700px) {
-      min-height: 74vh;
-    }
-    @media(max-height: 680px) {
-      min-height: 72vh;
-    }
+    min-height: calc(100vh - 7rem);
   `}
   width: 100vw;
-  height: 85vh;
+  height: calc(100vh - 6.6rem);
+  
   padding: 0;
 `;
 
@@ -74,7 +69,7 @@ export const Content = styled.div`
   animation: ${welcome} 0.3s ease-in-out forwards;
   animation-delay: 1s;
   animation-iteration-count: 1;
-  height: 85vh;
+  height: 84vh;
   position: relative;
   overflow-y: overlay;
   will-change: scroll-position;
@@ -119,7 +114,7 @@ export const Content = styled.div`
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: rgba(16, 27, 28, 0.7);
+    background: rgba(15, 24, 25, 0.9);
   }
 
   /* Handle on hover */

@@ -1,27 +1,40 @@
-import { observable, action } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { PodcastModel } from 'app/models';
 import { InitializableStore } from './stores';
 import { getPodcasts } from 'app/actions/actions';
 import { captureException } from '@sentry/browser';
 
 export class PodcastStore implements InitializableStore {
-  @observable public loading: boolean;
-  @observable public data: PodcastModel;
-  @observable public error: string;
 
-  @action
+  public loading: boolean = true;
+  public data: PodcastModel = null;
+  public error: string = null;
+
+  constructor() {
+    makeObservable(this, {
+      loading: observable,
+      data: observable.deep,
+      error: observable,
+      init: action,
+      loadPodcasts: action,
+      onPodcastLoaded: action,
+      onPodcastFailed: action
+    });
+  }
+
   init = () => !this.data && this.loadPodcasts();
 
-  @action
-  loadPodcasts = () => {
+  loadPodcasts = async () => {
     this.loading = true;
     this.error = null;
-    getPodcasts()
-      .then(this.onPodcastLoaded)
-      .catch(this.onPodcastFailed);
+    try {
+      const response = await getPodcasts();
+      this.onPodcastLoaded(response);
+    } catch(e) {
+      this.onPodcastFailed(e);
+    }
   };
 
-  @action.bound
   onPodcastLoaded = (response) => {
     try {
       this.data = new PodcastModel(response.data);
@@ -31,7 +44,6 @@ export class PodcastStore implements InitializableStore {
     }
   };
 
-  @action.bound
   onPodcastFailed = (e) => {
     captureException(e);
     this.error = e;
