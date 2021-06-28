@@ -23,6 +23,7 @@ export interface Theme {
   fonts: {
     primary: string;
   };
+  icon: string;
   fontSizes: {
     small: string;
     average: string;
@@ -92,40 +93,41 @@ export const media = Object.keys(sizes).reduce(
 
 export const theme: Theme = {
   color: '#6ca1a6',
-  fontSizes: { 
-    small: '8pt', 
-    average: '10pt', 
-    big: '12pt', 
-    menu: '16pt'
+  icon: '#172325',
+  fontSizes: {
+    small: '8pt',
+    average: '10pt',
+    big: '12pt',
+    menu: '16pt',
   },
   isAndroid: isAndroid(),
   isFirefox: isFirefox(),
   picturePlaceholder: 'rgba(42, 43, 65, 0.5)',
-  fonts: { 
-    primary: 'myriad-pro' 
+  fonts: {
+    primary: 'myriad-pro',
   },
-  background: { 
-    fromColor: '#1B292C', 
+  background: {
+    fromColor: '#1B292C',
     toColor: '#273e40',
     color: '#1D3D46',
-    dark: 'rgba(6, 11, 11, 0.57)'
+    dark: 'rgba(6, 11, 11, 0.57)',
   },
-  player: { 
-    backgroundColor: '#1c2d2f', 
-    backgroundColorMini: '#457076' 
+  player: {
+    backgroundColor: '#1c2d2f',
+    backgroundColorMini: '#457076',
   },
   slider: {
     color: 'rgba(108,161,166, 0.5)',
     focus: 'rgba(108,161,166, 0.6)',
     thumbBorder: '#324648',
     thumbShadow: 'rgba(0, 0, 0, 0.4)',
-    thumbColor: 'rgba(255, 255, 255, 0.3)'
+    thumbColor: 'rgba(255, 255, 255, 0.3)',
   },
   errors: {
     text: 'rgba(188, 11, 26, 0.8)',
-    background: 'rgba(244, 12, 26, 0.3)'
+    background: 'rgba(244, 12, 26, 0.3)',
   },
-  media
+  media,
 };
 
 

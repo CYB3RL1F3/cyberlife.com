@@ -20,7 +20,6 @@ const manifest = require('./manifest');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const domain = process.env.domain || 'localhost:3000';
 
 const cyberlife = {
   description: "Inspired by a wide range of electronic genres, between dub techno, IDM, drum and bass, dubstep, tribalistic world music, ambient, trip hop, psychedelic rock & goa trance, Cyberlife, who got rooted years ago in the techno culture, brings the ambition to shape a very personal style, surfing on forward thinking, psychedelic, hypnotic and melancholic vibes. By applying layers of effects on stretched field recordings or destructured analog synths jams on a large scale of tempos, the exploration of the meanders of the matrix of electronic music defines his director line, with an aim to find transcendance and reveal a futuristic and organic universe. As both DJ and producer, he gets a natural attraction for modern and organic sounds, mixing with old school influences. Don't look for the nerd behind this name, keep the mystery and unpredictability, and share a musical mindtrip.",
@@ -31,6 +30,8 @@ const cyberlife = {
 
 let env = dotenv.config().parsed;
 if (!env) env = process.env;
+const domain = env.domain || 'cyberlife-music.com';
+
 const configFromEnv = Object.keys(env).reduce((prev, next) => {
   prev[`process.env.${next}`] = JSON.stringify(env[next]);
   return prev;
@@ -295,9 +296,18 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: 'assets/pwa/manifest.json', to: 'pwa/manifest.json' },
-        { from: 'assets/pwa/**/*', to: '[name].[ext]' },
+        { from: 'assets/pwa/**/*', to: '[name][ext]' },
         { from: 'assets/main.css', to: 'main.css' },
-        { from: 'assets/fonts/**.*', to: 'fonts/[name].[ext]' },
+        { from: 'assets/fonts/**.*', to: 'fonts/[name][ext]' },
+        { from: 'assets/images/**.*', to: 'images/[name][ext]' },
+        {
+          from: 'assets/images/socials/**.*',
+          to: 'images/socials/[name][ext]',
+        },
+        {
+          from: 'assets/images/volume/**.*',
+          to: 'images/volume/[name][ext]',
+        },
       ],
     }),
     new WebpackPwaManifest(manifest),

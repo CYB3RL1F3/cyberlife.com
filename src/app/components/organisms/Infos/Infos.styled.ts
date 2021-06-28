@@ -25,6 +25,21 @@ const bioAnim = keyframes`
   }
 `;
 
+const linkAnim = keyframes`
+  0% {
+    transform: scale(0) translateX(5px);
+  }
+  75% {
+    transform: scale(0) translateX(5px);
+  }
+  96% {
+    transform: scale(1.2) translateX(5px);
+  }
+  100% {
+    transform: scale(1) translateX(0);
+  }
+`;
+
 export const InfosContainer = styled.article`
   mask-type: luminance;
   overflow: hidden;
@@ -47,6 +62,15 @@ export const Paragraph = styled.p`
 
 export const A = styled.a`
   font-size: inherit;
+  display: inline-block;
+  width: 3rem;
   ${TextStyle};
   text-decoration: underline;
+  animation: ${linkAnim} 2.5s linear 0s 1 normal forwards;
+  transition: all 0.5s linear !important;
+  filter: brightness(1);
+  &:hover {
+    transform: scale(1.25) translateX(5px) !important;
+    filter: brightness(1.5);
+  }
 `;

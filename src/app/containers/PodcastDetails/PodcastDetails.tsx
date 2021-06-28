@@ -83,7 +83,14 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(({ data
     const descriptionHtml = description.replace(/(\n)/g, '<br />');
     return (
       <Container>
-        <Heads title={title} description={description.replace(/\"/gmi, '')} image={artwork} url={url} ogType="music.song" twitterCard="player" />
+        <Heads
+          title={title}
+          description={description.replace(/\"/gim, '')}
+          image={artwork}
+          url={url}
+          ogType="music.song"
+          twitterCard="player"
+        />
         <TitleHandler>
           <Title>{title}</Title>
           <GoBack path={paths.podcasts}>&lt; Back</GoBack>
@@ -98,16 +105,18 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(({ data
             {download && <Button href={download}>Download</Button>}
           </ThumbHandler>
           <TextHandler>
-            <P>Published on {format(new Date(date), 'dd/MM/yyyy')}</P>
-            <P>Duration: {computedDuration}</P>
-            <P>Style: {genre}</P>
-            <P>© {license.replace(/\-/g, ' ')}</P>
+            {date && <P>Published on {format(new Date(date), 'dd/MM/yyyy')}</P>}
+            {computedDuration && <P>Duration: {computedDuration}</P>}
+            {genre && <P>Style: {genre}</P>}
+            {license && <P>© {license.replace(/\-/g, ' ')}</P>}
             <br />
-            <P>
-              <A href={soundcloud} target="_blank">
-                View on Soundcloud
-              </A>
-            </P>
+            {soundcloud && (
+              <P>
+                <A href={soundcloud} target="_blank">
+                  View on Soundcloud
+                </A>
+              </P>
+            )}
           </TextHandler>
         </DataContainer>
         <TrackHandler opacity={playing ? 1 : 0.5}>
@@ -121,11 +130,9 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(({ data
           />
         </TrackHandler>
         <Description>
-          <DescriptionHandler>
-            {parseHtml(descriptionHtml)}
-          </DescriptionHandler>
+          <DescriptionHandler>{parseHtml(descriptionHtml)}</DescriptionHandler>
           <TagList>
-            {taglist.map(
+            {taglist.filter(t => t.trim()).map(
               (tag: string): JSX.Element => (
                 <Tag
                   href={`https://soundcloud.com/tags/${tag}`}

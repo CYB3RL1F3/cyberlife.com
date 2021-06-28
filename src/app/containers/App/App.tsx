@@ -12,8 +12,6 @@ console.log(
   'background: #120000; color: #bada55; font-size: 35px; text-transform: uppercase; margin: 1px'
 );
 
-// require('assets/main.css');
-
 export const App: FC = ({ children }) => (
   <ModalContextProvider>
     <AppContainer>
