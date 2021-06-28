@@ -31,7 +31,7 @@ export const App = hot(module)(({ history }) => (
             />
           )
         )}
-        <Route path="*" component={Err404} status={404} />
+        <Route path="*" component={Err404} />
       </Switch>
     </Router>
   </Root>
