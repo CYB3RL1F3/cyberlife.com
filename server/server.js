@@ -11,21 +11,24 @@ const player = require('./player');
 const releaseDetails = require('./release');
 const eventDetails = require('./event');
 const fileReplace = require('./file');
+require('dotenv').config();
 
 const routes = {
-  podcasts: "/",
-  podcastDetails: "/podcasts/:id",
-  events: "/events",
-  eventDetails: "/events/:type/:id",
-  eventDetailsDefault: "/events/:id",
+  podcasts: '/',
+  podcastDetails: '/podcasts/:id',
+  events: '/events',
+  eventDetails: '/events/:type/:id',
+  eventDetailsDefault: '/events/:id',
   charts: '/charts',
-  releases: "/releases",
-  releaseDetails: "/releases/:id",
+  releases: '/releases',
+  releaseDetails: '/releases/:id',
   bio: '/biography',
   contact: '/contact',
-  about: '/about'
-}
+  about: '/about',
+  presskit: '/presskit',
+};
 
+const pressKitUrl = process.env.PRESSKIT_URL;
 const appFile = path.join(__dirname, '../dist', 'index.html');
 
 const app = express();
@@ -159,6 +162,8 @@ Object.keys(routes).forEach((r) => {
         return releaseDetails(req, res, appFile);
       } else if (/(events)\/[a-zA-Z0-9]*/gmi.test(req.path)) {
         return eventDetails(req, res, appFile);
+      } else if (/(presskit)/gmi.test(req.path)) {
+        return res.redirect(pressKitUrl)
       } else {
         const title = getTitle(req.path);
         const metadata = meta(title, req.path);

@@ -30,7 +30,7 @@ export const Waveform = styled.div<Background & MiniContext>`
 `;
 
 export const Container = styled.div<MiniContext>`
-  width: 95%;
+  width: ${({ isMini }) => (isMini ? '100%' : '95%')};
   ${({ theme }) => theme.media.mobile`
     width: 100%;
   `}
@@ -39,14 +39,15 @@ export const Container = styled.div<MiniContext>`
     isMini ? theme.player.backgroundColorMini : theme.player.backgroundColor};
   overflow: hidden;
   position: relative;
+  cursor: pointer;
   margin: 0;
 `;
 
 export const Content = styled.div.attrs(({ progression, opacity }) => ({
   style: {
-    width: `${parseFloat(progression) || 0}%`,
-    opacity
-  }
+    width: `${parseFloat(progression) || 0}%`,
+    opacity,
+  },
 }))<Trackline>`
   height: ${height - 0.2}vh;
   top: 2.6vh;

@@ -14,8 +14,10 @@ export class SelectedPodcastStore implements InitializableStore {
   public data: TrackModel = null;
   public error: string = null;
 
-
-  constructor(private readonly router: RouterStore, private readonly podcastStore: PodcastStore) {
+  constructor(
+    private readonly router: RouterStore,
+    private readonly podcastStore: PodcastStore
+  ) {
     makeObservable(this, {
       loading: observable,
       data: observable.deep,
@@ -23,21 +25,21 @@ export class SelectedPodcastStore implements InitializableStore {
       init: action,
       getPodcastByIdFromRouter: action,
       onPodcastLoaded: action.bound,
-      onPodcastFailed: action.bound
+      onPodcastFailed: action.bound,
     });
   }
 
   getPodcastFromStore = (id): TrackModel | null =>
-    this.podcastStore.data &&
-    this.podcastStore.data.tracks &&
-    this.podcastStore.data.tracks.find((track: TrackModel) => track.id === id);
+    this.podcastStore?.data?.tracks?.find(
+      (track: TrackModel) => track.id === id
+    );
 
   getPodcastInfo = () => {
     const uri = this.router.location.pathname
       .replace('/podcasts/', '')
       .split('/');
     return {
-      id: parseInt(uri[0], 10)
+      id: parseInt(uri[0], 10),
     };
   };
 

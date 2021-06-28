@@ -48,17 +48,6 @@ const releaseDetails = async (req, res, appFile) => {
     const name = `Cyberlife - ${title}`
     const html = await fileReplace(appFile, name, meta);
     return res.status(200).send(html);
-    /*
-    return readFile(appFile, {
-      encoding: 'utf8'
-    }, (err, file) => {
-      if (err || !file) throw new Error('no file');
-      console.log(file);
-      const html = file.replace('<meta name="Content-Type" content="text/html; charset=utf-8">', heads.replace(/\"/gmi, "'")).replace('<title>Cyberlife</title>', `<title>Cyberlife - ${track.title}</title>`);
-      console.log(html);
-      return res.status(200).send(html);
-    });
-    */
   } catch(e) {
     console.log(e);
     res.status(404).sendFile(appFile);

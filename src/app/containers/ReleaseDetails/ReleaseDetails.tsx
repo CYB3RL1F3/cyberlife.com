@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, lazy, Suspense } from 'react';
 import { ReleaseModel } from 'app/models';
 import { Stores } from 'app/constants';
 import {
@@ -13,7 +13,7 @@ import {
   P,
   Tracklist,
   ThumbHandler,
-  PlayersHandler
+  PlayersHandler,
 } from './ReleaseDetails.styled';
 import { withLoadingStore } from 'app/hoc';
 import { Track } from 'types/releases';
@@ -22,7 +22,9 @@ import { ReleasePlayer } from 'app/components/molecules';
 
 import Button from 'app/components/atoms/Button';
 import Heads from 'app/components/atoms/Heads';
-import { paths } from "app/paths";
+import { paths } from 'app/paths';
+
+const Icon = lazy(() => import('app/components/atoms/Icon'));
 export interface ReleaseDetailsProps {
   data: ReleaseModel;
 }
@@ -37,16 +39,26 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
     cat,
     label,
     discogs,
-    styles
+    styles,
   } = data;
   const url = window.document.location.href;
   const description = `${label} (${cat})\nRelease date: ${releaseDateFormatted}`;
   return (
     <Container>
-      <Heads title={`Cyberlife - ${title}`} description={description} image={thumb} url={url} ogType="article" />
+      <Heads
+        title={`Cyberlife - ${title}`}
+        description={description}
+        image={thumb}
+        url={url}
+        ogType="article"
+      />
       <TitleHandler>
         <Title>{title}</Title>
-        <GoBack path={paths.releases}>&lt; Back</GoBack>
+        <GoBack path={paths.releases}>
+          <Suspense fallback={<span />}>
+            <Icon name="go-back" size={18} />
+          </Suspense>
+        </GoBack>
       </TitleHandler>
       <DataContainer>
         <ThumbHandler>
@@ -89,7 +101,7 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
       </PlayersHandler>
     </Container>
   );
-}
+};
 
 export const ReleaseDetails = withLoadingStore(Stores.selected_release)(
   ReleaseDetailsComponent

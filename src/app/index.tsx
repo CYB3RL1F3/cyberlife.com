@@ -5,7 +5,8 @@ import { Root } from 'app/Root';
 import routes, { RouteType } from './routes';
 import Err404 from './containers/Err404';
 
-export const getComponent = (component: string) => lazy(() => import(`app/containers/${component}`))
+export const getComponent = (component: string) =>
+  lazy(() => import(`app/containers/${component}`));
 
 export const RouteComponent = ({ exact = false, path, component }) => (
   <Suspense fallback={<div />}>
@@ -31,7 +32,7 @@ export const App = hot(module)(({ history }) => (
             />
           )
         )}
-        <Route path="*" component={Err404} status={404} />
+        <Route path="*" component={Err404} />
       </Switch>
     </Router>
   </Root>

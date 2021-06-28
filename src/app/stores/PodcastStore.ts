@@ -5,7 +5,6 @@ import { getPodcasts } from 'app/actions/actions';
 import { captureException } from '@sentry/browser';
 
 export class PodcastStore implements InitializableStore {
-
   public loading: boolean = true;
   public data: PodcastModel = null;
   public error: string = null;
@@ -18,11 +17,14 @@ export class PodcastStore implements InitializableStore {
       init: action,
       loadPodcasts: action,
       onPodcastLoaded: action,
-      onPodcastFailed: action
+      onPodcastFailed: action,
     });
   }
 
-  init = () => !this.data && this.loadPodcasts();
+  init = () => {
+    if (!this.data) return this.loadPodcasts();
+    else this.onPodcastLoaded({ data: this.data });;
+  };
 
   loadPodcasts = async () => {
     this.loading = true;
@@ -30,7 +32,8 @@ export class PodcastStore implements InitializableStore {
     try {
       const response = await getPodcasts();
       this.onPodcastLoaded(response);
-    } catch(e) {
+    } catch (e) {
+      console.log(e);
       this.onPodcastFailed(e);
     }
   };
