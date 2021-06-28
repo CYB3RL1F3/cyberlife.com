@@ -27,7 +27,7 @@ import {
 } from 'app/components/atoms/Responsive';
 import { paths } from "app/paths";
 import Heads from 'app/components/atoms/Heads';
-
+const Icon = lazy(() => import('app/components/atoms/Icon'));
 const Map = lazy(() => import('app/components/atoms/Map'));
 
 interface EventDetailsProps {
@@ -38,10 +38,19 @@ export const EventDetailsComponent: FC<EventDetailsProps> = ({ data }) => {
   if (data) {
     return (
       <Container>
-        <Heads title={`Cyberlife @ ${data.title}`} image={data.flyer.front} description={`${data.formattedDate}, at ${data.location.address}`} ogType="article" />
+        <Heads
+          title={`Cyberlife @ ${data.title}`}
+          image={data.flyer.front}
+          description={`${data.formattedDate}, at ${data.location.address}`}
+          ogType="article"
+        />
         <TitleHandler>
           <Title>{data.title}</Title>
-          <GoBack path={paths.events}>&lt; Back</GoBack>
+          <GoBack path={paths.events}>
+            <Suspense fallback={<span />}>
+              <Icon name="go-back" size={18} />
+            </Suspense>
+          </GoBack>
         </TitleHandler>
         <Content>
           <ContentHandler>
@@ -62,7 +71,6 @@ export const EventDetailsComponent: FC<EventDetailsProps> = ({ data }) => {
                 <PicHandler picture={data.flyer.front}>
                   <Flyer src={data.flyer.front} alt={data.title} />
                 </PicHandler>
-
               </Section>
             )}
             {data.lineup && data.lineup.length > 0 && (

@@ -64,13 +64,15 @@ export const A = styled.a`
   font-size: inherit;
   display: inline-block;
   width: 3rem;
+  height: 2rem;
   ${TextStyle};
   text-decoration: underline;
   animation: ${linkAnim} 2.5s linear 0s 1 normal forwards;
-  transition: all 0.5s linear !important;
+  transition: all 0.3s linear !important;
   filter: brightness(1);
   &:hover {
     transform: scale(1.25) translateX(5px) !important;
+    transition: all 0.3s linear !important;
     filter: brightness(1.5);
   }
 `;
