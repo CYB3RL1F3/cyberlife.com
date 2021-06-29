@@ -21,7 +21,7 @@ export const getVolumeEmojiValue = (volume: number | null) => {
   }
 };
 
-export const volumeEmojis = Array(4).fill(null).map((v, volume) => require(`assets/images/volume/${volume}.svg`).default)
+export const volumeEmojis = Array(4).fill(null).map((v, volume) => `/volume/${volume}`)
 
 export const getVolumeEmoji = (volume = 0) => volumeEmojis[getVolumeEmojiValue(volume)]
 
