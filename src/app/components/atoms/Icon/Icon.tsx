@@ -1,5 +1,4 @@
 import React, { FC, useCallback, useMemo, useState, useEffect } from 'react';
-import classNames from 'classnames';
 
 export type ImgDimension = number | 'auto';
 
@@ -9,6 +8,8 @@ export interface IconProps {
   fill?: string;
   className?: string;
 }
+
+export const cache: Record<string, string> = {};
 
 export const getIcon = (name: string) =>
   name.indexOf('https://') === -1 ? `/images/${name}.svg` : name;
@@ -59,22 +60,19 @@ export const Icon: FC<IconProps> = ({
     []
   );
 
-  const cls = useMemo(
-    () =>
-      classNames({
-        [className]: true,
-        [fill || '']: fill?.indexOf('#') !== 0 && fill !== 'currentcolor',
-      }),
-    [className, fill]
-  );
-
   useEffect(() => {
     const asyncEffect = async () => {
       setCurrentSource(name);
       const url = getIcon(name);
       try {
-        const res = await fetch(url);
-        const data = await res.text();
+        let data: string;
+        if (cache[url]) {
+          data = cache[url];
+        } else {
+          const res = await fetch(url);
+          data = await res.text();
+          cache[url] = data;
+        }
         const svgString = applySvgTransformations(data, fill, size);
         setSvg(svgString);
       } catch (e) {
@@ -101,7 +99,7 @@ export const Icon: FC<IconProps> = ({
     [svg]
   );
   if (!svg) return null;
-  return <span className={cls} dangerouslySetInnerHTML={svgHtml} />;
+  return <span className={className} dangerouslySetInnerHTML={svgHtml} />;
 };
 
 export default Icon;

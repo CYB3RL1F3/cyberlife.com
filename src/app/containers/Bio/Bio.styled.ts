@@ -13,6 +13,10 @@ export const Text = styled.p`
   line-height: 12pt;
 `;
 
+export const CenterText = styled(Text)`
+  text-align: center;
+`;
+
 export const Link = styled(BaseLink)`
   ${TextStyle};
   font-size: ${({ theme }) => theme.fontSizes.big};
