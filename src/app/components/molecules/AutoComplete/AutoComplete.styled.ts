@@ -16,6 +16,8 @@ export const AutoCompleteItemGroup = styled.div`
   top: 2.6rem;
   display: flex;
   flex-direction: column;
+  max-height: 20rem;
+  overflow-y: scroll;
 `;
 
 export const AutoCompleteItemStyled = styled.p`
