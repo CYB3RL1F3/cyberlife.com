@@ -22,17 +22,20 @@ export class TrackModel {
   public stats: Stats = null;
   public license: string = null;
   public taglist: string[] = null;
+  public tracklist?: string[] = undefined;
 
   public playing: boolean = false;
   public seek: number = 0;
   public loaded: number = 0;
 
-  constructor(track: any, podcastArtwork, readonly source: string = 'podcasts') {
-    Object.keys(track).forEach(
-      (key: string): void => {
-        this[key] = track[key];
-      }
-    );
+  constructor(
+    track: any,
+    podcastArtwork,
+    readonly source: string = 'podcasts'
+  ) {
+    Object.keys(track).forEach((key: string): void => {
+      this[key] = track[key];
+    });
     if (!track.artwork) {
       this.artwork = podcastArtwork;
     } else {
@@ -52,6 +55,7 @@ export class TrackModel {
       genre: observable,
       stats: observable,
       license: observable,
+      tracklist: observable.deep,
       taglist: observable.deep,
       playing: observable,
       seek: observable,
@@ -61,7 +65,7 @@ export class TrackModel {
       play: action,
       stop: action,
       pause: action
-    })
+    });
   }
 
   getPosition = (pct: number): number => (pct / 100) * this.duration;

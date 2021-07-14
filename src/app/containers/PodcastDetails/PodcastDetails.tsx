@@ -87,9 +87,15 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(
         download,
         license,
         description,
+        tracklist,
         url,
       } = data;
-      const descriptionHtml = description.replace(/(\n)/g, '<br />');
+      const descriptionHtml = description
+        .replace(/(\n)/g, '<br />')
+        .replace(
+          /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gim,
+          '<a target="_blank" href="$1">$1</a>'
+        );
       return (
         <Container>
           <Heads
@@ -148,6 +154,15 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(
             <DescriptionHandler>
               {parseHtml(descriptionHtml)}
             </DescriptionHandler>
+            {tracklist && (
+              <DescriptionHandler>
+                {tracklist.map((track, index) => (
+                  <P>
+                    {index + 1}. {track}
+                  </P>
+                ))}
+              </DescriptionHandler>
+            )}
             <TagList>
               {taglist
                 .filter((t) => t.trim())

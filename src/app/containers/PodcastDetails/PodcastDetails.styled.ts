@@ -81,6 +81,10 @@ export const Description = styled.div`
 export const DescriptionHandler = styled.p`
   ${TextStyle};
   padding-bottom: 1rem;
+  & a {
+    ${TextStyle}
+    text-decoration: underscore;
+  }
 `;
 
 export interface Displayable {
