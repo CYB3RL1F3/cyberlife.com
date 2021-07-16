@@ -31,6 +31,8 @@ export const AutoCompleteItemStyled = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.big};
   color: ${({ theme }) => theme.color};
   box-sizing: border-box;
+  background: ${({ theme, selected }) =>
+    selected ? theme.background.fromColor : 'black'};
   ${({ theme }) => theme.media.mobile`
     margin: 0.25rem 0;
     height: 2.5rem;
@@ -39,6 +41,6 @@ export const AutoCompleteItemStyled = styled.p`
     font-size: ${({ theme }) => theme.fontSizes.big};
   `}
   &:hover {
-    background: ${({ theme }) => theme.background.fromColor};
+    background-color: ${({ theme }) => theme.background.fromColor};
   }
 `;
