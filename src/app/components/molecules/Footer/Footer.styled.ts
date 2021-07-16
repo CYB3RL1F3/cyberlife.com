@@ -8,7 +8,7 @@ import { Link as BaseLink } from 'app/components/atoms/Link';
 const height = '1.5rem';
 
 export const Container = styled.footer`
-  height: 1em;
+  height: 2.6rem;
   min-height: 1.5rem;
   max-height: 5rem;
   display: flex;
@@ -46,12 +46,13 @@ export const Text = styled.p`
   box-sizing: border-box;
   flex: 0.9;
   line-height: 2.5rem;
-  
+  overflow: hidden;
+
   ${({ theme }) => theme.media.tablet`
     line-height: 3rem;
   `}
   ${({ theme }) => theme.media.desktop`
-    margin-top: 0.4rem;
+    padding-top: 0.4rem;
   `}
   @media(max-width: 285px) {
     display: none;

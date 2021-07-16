@@ -30,6 +30,9 @@ export const IconHandler = styled.label`
     line-height: 4rem;
     padding-top: 0;
   `}
+  ${({ theme }) => theme.media.mobile`
+    height: 100%;
+  `}
   overflow: hidden;
   padding-top: 0.8vh;
   cursor: pointer;
