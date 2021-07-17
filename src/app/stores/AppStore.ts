@@ -22,8 +22,7 @@ export class AppStore {
 
   isAssetsLoading = (): boolean => this.assetBackgroundLoading;
 
-  isReady = (): boolean =>
-    this.infosLoaded && this.assetBackgroundLoaded && !this.error;
+  isReady = (): boolean => this.infosLoaded && !this.error;
 
   startFetchingData = () => {
     this.fetchingInfos = true;
@@ -69,7 +68,7 @@ export class AppStore {
       validAsset: action,
       validate: action,
       validateInfos: action,
-      fail: action
+      fail: action,
     });
   }
 }

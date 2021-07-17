@@ -2,17 +2,15 @@ import React, { FC, useCallback, useEffect, MouseEvent } from 'react';
 import { captureException, withScope } from '@sentry/browser';
 import { useAppStore, useInfosStore } from "app/hooks/stores";
 import { getMessagesAccordingToLoadingState } from 'app/utils/messageManager';
-import { PixelTracker } from 'app/components/atoms';
 import {
-  PixelTrackersWrapper,
   Output,
   Console,
   Container,
   A,
   LottieHandler,
-  LoadingSpinner
+  LoadingSpinner,
 } from './AppLoader.styled';
-import { paths } from "app/paths";
+import { paths } from 'app/paths';
 import { observer } from 'mobx-react';
 import { isIe, isAndroid } from 'app/utils/browsers';
 import { IE } from './IE';
@@ -24,14 +22,8 @@ let stateMessages: string[] = [];
 export const AppLoader: FC = observer(() => {
   const infosStore = useInfosStore();
   const appStore = useAppStore();
-  const startLoadingBackgroundAsset = useCallback((): void => {
-    appStore.startFetchingAsset("Background");
-  }, []);
 
-  stateMessages = getMessagesAccordingToLoadingState(
-    appStore,
-    stateMessages
-  );
+  stateMessages = getMessagesAccordingToLoadingState(appStore, stateMessages);
   const { error } = appStore;
   if (error) {
     withScope((scope) => {
@@ -39,10 +31,6 @@ export const AppLoader: FC = observer(() => {
       captureException(error);
     });
   }
-
-  const onBackgroundAssetLoaded = useCallback((): void => {
-    appStore.validAsset("Background");
-  }, []);
 
   const refresh = useCallback((e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -65,16 +53,10 @@ export const AppLoader: FC = observer(() => {
   ) : (
     <Background>
       <Container>
-        <PixelTrackersWrapper>
-          <PixelTracker
-            onStartLoading={startLoadingBackgroundAsset}
-            onLoad={onBackgroundAssetLoaded}
-          />
-        </PixelTrackersWrapper>
         <Console>
           <Output>
             <strong>
-              <u>Cyberlife.com</u> loading process
+              <u>cyberlife-music.com</u> app loading process
             </strong>
           </Output>
           <br />
@@ -94,11 +76,10 @@ export const AppLoader: FC = observer(() => {
           <LottieHandler>
             <LoadingSpinner />
           </LottieHandler>
-
         </Console>
       </Container>
     </Background>
   );
-})
+});
 
 export default AppLoader;
