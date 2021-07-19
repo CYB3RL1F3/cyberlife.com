@@ -12,6 +12,9 @@ export const Container = styled.p`
   ${({ theme }) => theme.media.desktop`
     padding-top: 0.3rem;
   `}
+  ${({ theme }) => theme.media.mobile`
+    height: 100%;
+  `}
   @media(max-width: 360px) {
     width: 7rem;
   }
