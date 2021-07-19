@@ -90,11 +90,19 @@ export const EventDetailsComponent: FC<EventDetailsProps> = ({ data }) => {
             )}
             <Section>
               <Info>
-                <InfoLink target="_blank" href={data.links.event}>
+                <InfoLink
+                  target="_blank"
+                  rel="external nofollow"
+                  href={data.links.event}
+                >
                   More infos
                 </InfoLink>
                 {' - '}
-                <InfoLink target="_blank" href={data.links.venue}>
+                <InfoLink
+                  target="_blank"
+                  rel="external nofollow"
+                  href={data.links.venue}
+                >
                   Promoter
                 </InfoLink>
               </Info>

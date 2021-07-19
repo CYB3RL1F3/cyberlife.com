@@ -31,7 +31,7 @@ export const Infos: FC = observer(() => {
 
             <Paragraph>
               <br />
-              <Button href="/presskit" target="_blank">
+              <Button href="/presskit" target="_blank" rel="external nofollow">
                 Download Press kit
               </Button>
             </Paragraph>

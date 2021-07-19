@@ -35,14 +35,14 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     height: unset;
-    min-height: calc(100vh - 6.6rem);
+    min-height: calc(100vh - 6.7rem);
   `}
   ${({ theme }) => theme.media.mobile`
     min-height: calc(100vh - 7rem);
   `}
   width: 100vw;
-  height: calc(100vh - 6.6rem);
-  
+  height: calc(100vh - 6.7rem);
+
   padding: 0;
 `;
 

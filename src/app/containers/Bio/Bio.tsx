@@ -22,7 +22,7 @@ export const Bio: FC = observer(() => {
           </CenterText>
           <Text>
             <br />
-            <Button href="/presskit" target="_blank">
+            <Button href="/presskit" target="_blank" rel="external nofollow">
               Download Press kit
             </Button>
           </Text>
