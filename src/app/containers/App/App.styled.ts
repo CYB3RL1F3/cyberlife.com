@@ -35,7 +35,7 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     height: unset;
-    min-height: calc(100vh - 6.7rem);
+    min-height: calc(100vh - 8rem);
   `}
   ${({ theme }) => theme.media.mobile`
     min-height: calc(100vh - 7rem);
@@ -92,9 +92,10 @@ export const Content = styled.div`
       animation: none;
       transform: translateX(0vw);
     }
-    min-height: 68vh;
+    min-height: 65vh;
     height: unset;
     overflow-y: visible;
+    bottom: 0.5rem;
   `}
 
   ::-webkit-scrollbar * {

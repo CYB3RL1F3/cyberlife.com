@@ -14,11 +14,13 @@ export const Container = styled.footer`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
   width: 100vw;
   ${({ theme }) => theme.media.tablet`
     top: calc(100vh - 3rem);
     position: sticky;
     bottom: unset;
+    
   `}
   ${({ theme }) => theme.media.mobile`
     position: unset;
@@ -33,10 +35,6 @@ export const FooterTxt = css`
   line-height: ${height};
   ${AlphaTransitionDelay(50)}
   min-height: 2.2rem;
-  ${({ theme }) => theme.media.tablet`
-    height: 3.5rem;
-    line-height: 3.9rem;
-  `}
 `;
 
 export const Text = styled.p`
@@ -47,6 +45,9 @@ export const Text = styled.p`
   flex: 0.9;
   line-height: 2.5rem;
   overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
 
   ${({ theme }) => theme.media.tablet`
     line-height: 3rem;
