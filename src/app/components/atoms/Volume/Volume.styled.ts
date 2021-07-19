@@ -3,37 +3,43 @@ import { AlphaTransitionDelay } from 'app/components/SharedStyled';
 
 export const Container = styled.p`
   width: 10rem;
-  line-height: ${({ theme }) => (theme.isFirefox ? '7vh' : '2.4rem')};
   display: inline-flex;
-  max-height: 2.5rem;
+  height: inherit;
+  align-items: center;
   overflow: hidden;
   justify-content: space-between;
   ${AlphaTransitionDelay(60)};
   ${({ theme }) => theme.media.desktop`
     padding-top: 0.3rem;
   `}
+  @media(max-width: 360px) {
+    width: 7rem;
+  }
 `;
 
 export const InputHandler = styled.span`
   width: 8rem;
   height: 4.5vh;
   ${({ theme }) => theme.media.tablet`
-      height: 3.5rem;
-      line-height: 3.5rem;
+      height: 2.5rem;
     `}
+  display: flex;
+  align-items: center;
+  ${({ theme }) => theme.media.mobile`
+      line-height: 3.1rem;
+  `}
+  & input {
+    margin-bottom: 3px;
+  }
 `;
 
 export const IconHandler = styled.label`
   width: 2rem;
-  line-height: ${({ theme }) => (theme.isFirefox ? '5.5vh' : '2.5rem')};
-  height: ${({ theme }) => (theme.isFirefox ? '5.5vh' : '2.5rem')};
   ${({ theme }) => theme.media.tablet`
-    line-height: 4rem;
     padding-top: 0;
   `}
-  ${({ theme }) => theme.media.mobile`
-    height: 100%;
-  `}
+  display: inline-flex;
+  align-items: center;
   overflow: hidden;
   cursor: pointer;
 `;

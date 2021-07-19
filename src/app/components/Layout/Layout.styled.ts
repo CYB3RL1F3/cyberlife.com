@@ -25,12 +25,14 @@ export const Bg = styled.div`
 export const ChildrenHandler = styled.div`
   ${BackgroundLayer};
   position: absolute;
+  ${({ theme }) => theme.media.tablet`
+    overflow: hidden scroll;
+  `}
   ${({ theme }) => theme.media.mobile`
     height: 100%;
     position: relative;
   `}
   z-index: 1;
-  overflow-x: hidden;
-  overflow-y: overlay;
+  overflow: hidden;
   will-change: scroll-position;
 `;
