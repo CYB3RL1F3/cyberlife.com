@@ -8,25 +8,26 @@ const Modal: FC = () => {
 
 
   const kill = useCallback(() => {
-    if (!opened) 
-    dispatch({
-      type: "unmount"
-    })
+    console.log('passs');
+    if (!opened)
+      dispatch({
+        type: 'unmount',
+      });
   }, [dispatch, opened]);
-  
+
   const close = useCallback(() => {
     onClose();
     dispatch({
-      type: "close"
+      type: 'close',
     });
     setTimeout(kill, 800);
   }, [onClose, dispatch]);
   const open = useCallback(() => {
     dispatch({
-      type: "open"
+      type: 'open',
     });
   }, [dispatch]);
-  
+  console.log(mounted);
   if (!mounted) return null;
   return (
     <ModalWrapper opened={opened && mounted}>
@@ -34,8 +35,8 @@ const Modal: FC = () => {
       <ModalContent
         onClick={open}
         onmouseleave={kill}
-        opened={opened} 
-        initialStyle={initialStyle} 
+        opened={opened}
+        initialStyle={initialStyle}
         finalStyle={finalStyle}
         picture={picture}
       />

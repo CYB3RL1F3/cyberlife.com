@@ -14,6 +14,7 @@ import {
   Tracklist,
   ThumbHandler,
   PlayersHandler,
+  A,
 } from './ReleaseDetails.styled';
 import { withLoadingStore } from 'app/hoc';
 import { Track } from 'types/releases';
@@ -65,7 +66,7 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
           <PicHandler picture={thumb}>
             <Image src={thumb} alt={title} />
           </PicHandler>
-          <Button href={discogs} target="_blank">
+          <Button href={discogs} target="_blank" rel="external nofollow">
             Get Vinyl
           </Button>
         </ThumbHandler>
@@ -80,7 +81,16 @@ export const ReleaseDetailsComponent: FC<ReleaseDetailsProps> = ({ data }) => {
             <Tracklist>
               {tracks.map((track: Track) => (
                 <P key={track.title}>
-                  <b>-</b> {track.fullTitle}
+                  <b>-</b>
+                  <A
+                    rel="external nofollow"
+                    target="_blank"
+                    href={new URL(
+                      `https://www.youtube.com/results?search_query=${track.fullTitle}`
+                    ).toString()}
+                  >
+                    {track.fullTitle}
+                  </A>
                 </P>
               ))}
             </Tracklist>

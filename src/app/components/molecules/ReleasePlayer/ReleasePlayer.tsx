@@ -38,7 +38,7 @@ export const ReleasePlayer: FC<ReleasePlayerProps> = observer(({ track, title })
   const opacity = useMemo(() => track.playing ? 1 : 0.5, [track.playing]);
   return (
     <Handler>
-      <Title href={track.soundcloud} target="_blank">
+      <Title href={track.soundcloud} target="_blank" rel="external nofollow">
         {title}
       </Title>
       <Container opacity={opacity}>

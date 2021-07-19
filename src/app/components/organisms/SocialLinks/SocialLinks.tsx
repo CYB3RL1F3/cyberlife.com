@@ -10,19 +10,44 @@ export interface SocialLinksProps {
 
 export const SocialLinks: FC<SocialLinksProps> = ({ data }) => (
   <Suspense fallback={<div />}>
-    <A title="Facebook" href={data.facebook} target="_blank">
+    <A
+      title="Facebook"
+      href={data.facebook}
+      target="_blank"
+      rel="external nofollow"
+    >
       <Icon size={25} name="socials/facebook" />
     </A>
-    <A title="Twitter" href={data.twitter} target="_blank">
+    <A
+      title="Twitter"
+      href={data.twitter}
+      target="_blank"
+      rel="external nofollow"
+    >
       <Icon size={25} name="socials/twitter" />
     </A>
-    <A title="Soundcloud" href={data.soundcloud} target="_blank">
+    <A
+      title="Soundcloud"
+      href={data.soundcloud}
+      target="_blank"
+      rel="external nofollow"
+    >
       <Icon size={25} name="socials/soundcloud" />
     </A>
-    <A title="Discogs" href={data.discogs} target="_blank">
+    <A
+      title="Discogs"
+      href={data.discogs}
+      target="_blank"
+      rel="external nofollow"
+    >
       <Icon size={25} name="socials/discogs" />
     </A>
-    <A title="Resident Advisor" href={data.RA} target="_blank">
+    <A
+      title="Resident Advisor"
+      href={data.RA}
+      target="_blank"
+      rel="external nofollow"
+    >
       <Icon size={25} name="socials/resident-advisor" />
     </A>
   </Suspense>

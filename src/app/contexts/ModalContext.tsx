@@ -36,35 +36,51 @@ const modalContextState: ModalState = {
   }
 }
 
-type Actions = ReducerAction<Reducer<ModalState, {
-  type: "create" | "open" | "close" | "mount" | "unmount";
-  payload?: Partial<ModalState>;
-}>>;
+type Actions = ReducerAction<
+  Reducer<
+    ModalState,
+    {
+      type: 'create' | 'open' | 'ready' | 'close' | 'mount' | 'unmount';
+      payload?: Partial<ModalState>;
+    }
+  >
+>;
 
-const modalContextReducer: Reducer<ModalState, Actions> = (state, { payload, type }) => {
+const modalContextReducer: Reducer<ModalState, Actions> = (
+  state,
+  { payload, type }
+) => {
   switch (type) {
-    case "create": {
+    case 'create': {
       return {
         ...state,
         ...payload,
         opened: false,
-        mounted: true
+        mounted: false,
       };
     }
-    case "open":
+    case 'ready': {
+      return {
+        ...state,
+        ...payload,
+        opened: false,
+        mounted: true,
+      };
+    }
+    case 'open':
       return {
         ...state,
         opened: true,
       };
-    case "unmount":
+    case 'unmount':
       return {
         ...state,
         mounted: false,
       };
-    case "close":
-      return { 
+    case 'close':
+      return {
         ...state,
-        opened: false
+        opened: false,
       };
     default:
       return;

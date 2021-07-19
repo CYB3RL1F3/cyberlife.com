@@ -16,8 +16,13 @@ const ExtensiblePic: FC<ExtensiblePicProps> = ({ children, className, picture })
   const { dispatch } = useContext(ModalContext);
   const open = useCallback(() => {
     dispatch({
-      type: "open"
+      type: 'ready',
     });
+    setTimeout(() => {
+      dispatch({
+        type: 'open',
+      });
+    }, 50);
   }, [dispatch]);
 
   const defineModaleClickableZone = useCallback(() => {
@@ -27,22 +32,22 @@ const ExtensiblePic: FC<ExtensiblePicProps> = ({ children, className, picture })
     const pic = pics[0];
     const { picWidth, picHeight } = getHomotheticDimensions(pic, 0.9);
     dispatch({
-      type: "create",
+      type: 'create',
       payload: {
         picture,
         initialStyle: {
           width: toPixel(pic.width),
           height: toPixel(pic.height),
           top: toPixel(rect.top),
-          left: toPixel(rect.left)
+          left: toPixel(rect.left),
         },
         finalStyle: {
           width: toPixel(picWidth),
-          height:toPixel(picHeight),
-          top: "5vh",
-          left: `calc(50vw - ${picWidth / 2}px)`
-        }
-      }
+          height: toPixel(picHeight),
+          top: '5vh',
+          left: `calc(50vw - ${picWidth / 2}px)`,
+        },
+      },
     });
   }, [picHandlerRef.current, dispatch, picture]);
 

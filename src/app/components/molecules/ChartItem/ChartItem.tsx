@@ -8,12 +8,10 @@ interface ChartProp {
   link: string;
 }
 
-export const ChartItem: FC<ChartProp> = (
-  chart: ChartProp
-) => (
+export const ChartItem: FC<ChartProp> = (chart: ChartProp) => (
   <Container index={chart.index}>
     <Paragraph>
-      <Link target="_blank" href={chart.link}>
+      <Link target="_blank" rel="external nofollow" href={chart.link}>
         {chart.title}
       </Link>
     </Paragraph>

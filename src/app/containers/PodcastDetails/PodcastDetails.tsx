@@ -93,7 +93,7 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(
       const descriptionHtml = description
         .replace(
           /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gim,
-          '<a target="_blank" href="$1">$1</a>'
+          '<a rel="external nofollow" target="_blank" href="$1">$1</a>'
         )
         .replace(/(\n)/g, '<br />');
       return (
@@ -133,7 +133,7 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(
               <br />
               {soundcloud && (
                 <P>
-                  <A href={soundcloud} target="_blank">
+                  <A href={soundcloud} rel="external nofollow" target="_blank">
                     View on Soundcloud
                   </A>
                 </P>
@@ -171,6 +171,7 @@ export const PodcastDetailsComponent: FC<PodcastDetailsProps> = observer(
                     <Tag
                       href={`https://soundcloud.com/tags/${tag}`}
                       target="_blank"
+                      rel="external nofollow"
                       key={tag}
                     >
                       #{tag}

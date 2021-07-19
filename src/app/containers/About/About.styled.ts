@@ -10,6 +10,7 @@ export const Container = styled.section`
 export const PictureHandler = styled(ExtensiblePic)`
   width: 100%;
   margin: 1rem 0;
+  cursor: pointer;
 `;
 
 export const Picture = styled.img`
